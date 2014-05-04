@@ -12,4 +12,5 @@ public interface ViewInterface {
 }
 /* Umawialismy sie, ze nie bedzie takiego obiektu jak Card. Zmieniam na Integera - do pozniejszych zmian.
 Chcę doprowadzić projekt do stanu kompilującego się.
+Bartek.
  */
