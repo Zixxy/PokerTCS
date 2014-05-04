@@ -22,7 +22,7 @@ public interface ModelInterface {
 	//game
 	void fold(int playerId) throws Exception;
 	void check(int playerId) throws Exception;
-	void raise(int amount, int playerId) throws Exception;
+	void raise(int playerId, int amount) throws Exception;
 	void resign(int playerId) throws Exception;   // player is resigning to game
 }
 
