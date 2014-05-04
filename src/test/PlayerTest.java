@@ -1,6 +1,7 @@
-package Model;
+package test;
 
 
+import Model.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
