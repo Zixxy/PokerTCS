@@ -1,7 +1,7 @@
-package Adapter;
+package main.java.Adapter;
 
-import Model.ModelInterface;
-import View.ViewInterface;
+import main.java.Model.ModelInterface;
+import main.java.View.ViewInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;

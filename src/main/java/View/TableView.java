@@ -1,4 +1,4 @@
-package View;
+package main.java.View;
 
 public class TableView implements ViewInterface{
 	
@@ -30,7 +30,7 @@ public class TableView implements ViewInterface{
 
     @Override
     public void sendMessage(String text) throws Exception {
-        
+
     }
 
 }

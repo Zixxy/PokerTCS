@@ -1,7 +1,7 @@
-package Adapter;
+package main.java.Adapter;
 
-import Model.ModelInterface;
-import View.ViewInterface;
+import main.java.Model.ModelInterface;
+import main.java.View.ViewInterface;
 
 /**
  * Created by dakurels on 05.05.14.
