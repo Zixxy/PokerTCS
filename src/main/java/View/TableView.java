@@ -51,6 +51,8 @@ public class TableView implements ViewInterface{
 		grid.setHgap(20);
 		grid.setVgap(0);
 		grid.setPadding(new Insets(10, 20, 10, 200));
+		final TextField userCashTextField = new TextField();
+	    grid.add(userCashTextField, 0, 1);
 		Button btnpas = new Button("pas");
 		HBox pas = new HBox(50);
 		pas.setAlignment(Pos.BOTTOM_RIGHT);
@@ -70,7 +72,8 @@ public class TableView implements ViewInterface{
 		btnRaise.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
-		    	
+		    	adapter.raise(playerId, userCashTextField.getText());
+		    	userCashTextField.clear();
 		    }
 		});
 		Button btnCheck = new Button("Check");
@@ -78,8 +81,6 @@ public class TableView implements ViewInterface{
 		Check.setAlignment(Pos.BOTTOM_RIGHT);
 		Check.getChildren().add(btnCheck);
 		grid.add(Check, 3, 1);
-		TextField userCashTextField = new TextField();
-	    grid.add(userCashTextField, 0, 1);
 		Scene scene = new Scene(grid, 800, 600);
 	//	grid.setGridLinesVisible(true);
 		primaryStage.setScene(scene);
