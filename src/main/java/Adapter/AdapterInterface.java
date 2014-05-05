@@ -12,6 +12,7 @@ public interface AdapterInterface {
     public void check(int playerId);
     public void raise(int playerId, int amount);
     public void resign(int playerId);
+    public void clearTable();
     public void sendMessage(String text);
     public void addPlayer(String name, int id);
     public void removePlayer(int id);

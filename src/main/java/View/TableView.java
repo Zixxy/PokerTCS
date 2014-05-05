@@ -66,7 +66,7 @@ public class TableView implements ViewInterface{
 		
 	}
     @Override
-    public void sendMessage(String text) throws Exception {
+    public void sendMessage(String text) {
     }
 
 }
