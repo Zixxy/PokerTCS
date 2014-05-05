@@ -90,6 +90,7 @@ public class ModelOne implements ModelInterface {
     public void addPlayer(String name) {
         players.add(new Player(name, 1000));
         numberOfPlayers=players.size();
+        adapter.addPlayer(name, numberOfPlayers-1);
     }
 
     @Override
@@ -97,6 +98,7 @@ public class ModelOne implements ModelInterface {
         if(players.get(playerId).getInGame()==true) numberInGame--;
         players.remove(playerId);
         numberOfPlayers=players.size();
+        adapter.removePlayer(playerId);
     }
 
     @Override
@@ -133,6 +135,8 @@ public class ModelOne implements ModelInterface {
             onTable+=this.limit - players.get(playerId).getOffer();
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(this.limit);
+            adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
+            adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
 
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
@@ -148,6 +152,8 @@ public class ModelOne implements ModelInterface {
             onTable+=(amount - players.get(playerId).getOffer());
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (amount - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(amount);
+            adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
+            adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
             this.limit = amount;
             this.raisingPlayerId = playerId;
 
@@ -170,15 +176,21 @@ public class ModelOne implements ModelInterface {
         }
         adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
         players.get(currentPlayerId).setMoney(players.get(currentPlayerId).getMoney()+onTable);
+        adapter.updatePlayerCash(currentPlayerId, players.get(currentPlayerId).getMoney());
         startRound();
     }
 
     private void startRound(){
+        adapter.clearTable();
+        int i=0;
         for(Player p:players){
             p.setMoney(p.getMoney()-10);
+            adapter.updatePlayerCash(i, p.getMoney());
             p.setOffer(10);
+            adapter.updatePlayerCash(i, p.getOffer());
             p.setInGame(true);
             currentPlayerId=0;
+            i++;
         }
         this.limit=10;
         this.numberInGame=numberOfPlayers;
@@ -186,8 +198,11 @@ public class ModelOne implements ModelInterface {
     }
 
     private void checkItAll(){
+        int i=0;
         for(Player p:players){
             if(p.getInGame()) p.setMoney(p.getMoney()+(onTable/numberInGame));
+            adapter.updatePlayerCash(i, p.getMoney());
+            i++;
         }
         startRound();
     };

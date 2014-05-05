@@ -81,6 +81,12 @@ public class MainAdapter implements AdapterInterface {
             view.updatePlayerLinedCash(id, cash);
         }
     }
+    @Override
+    public void clearTable() {
+        for(ViewInterface view: views) {
+            view.clearTable();
+        }
+    }
 
     @Override
     public void addModel(ModelInterface mod){
