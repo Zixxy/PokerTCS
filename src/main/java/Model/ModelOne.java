@@ -1,7 +1,10 @@
 package main.java.Model;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
+
+import com.sun.xml.internal.bind.v2.model.core.Adapter;
+import main.java.Adapter.MainAdapter.*;
 
 /**
  * Created by bartek on 05.05.14.
@@ -13,6 +16,7 @@ public class ModelOne implements ModelInterface {
     private int limit;
     private int currentPlayerId;
     private int numberInGame;
+    private int raisingPlayerId;
 
     public ModelOne(){
         this.started=false;
@@ -95,13 +99,8 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start() {
-        for(Player p:players){
-            p.setMoney(p.getMoney()-10);
-            p.setOffer(10);
-            p.setInGame(true);
-        }
-        this.limit=10;
-        this.numberInGame=numberOfPlayers;
+        started=true;
+        startRound();
     }
 
     @Override
@@ -110,11 +109,18 @@ public class ModelOne implements ModelInterface {
         if(currentPlayerId==playerId) {
             players.get(playerId).setInGame(false);
             numberInGame--;
-            if(numberInGame==1) this.won();
+
+            if (numberInGame == 1) won();
+            else {
+                if (currentPlayerId == raisingPlayerId) checkItAll();
+                else {
+                    while (players.get(currentPlayerId).getInGame() == false) {
+                        currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
+                    }
+                }
+            }
         }
-        while(players.get(currentPlayerId).getInGame()==false) {
-            currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
-        }
+
 
     }
 
@@ -122,11 +128,13 @@ public class ModelOne implements ModelInterface {
     public void check(int playerId) {
         //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
         if(currentPlayerId==playerId) {
-            players.get(playerId).setMoney(players.get(playerId).getMoney()-(this.limit-players.get(playerId).getOffer()));
+            players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(this.limit);
-        }
-        while(players.get(currentPlayerId).getInGame()==false) {
-            currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
+
+            while (players.get(currentPlayerId).getInGame() == false) {
+                currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
+            }
+            if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
 
@@ -134,12 +142,15 @@ public class ModelOne implements ModelInterface {
     public void raise(int playerId, int amount) {
         //rowniez zabezpieczyc przed brakiem gotowki
         if(currentPlayerId==playerId) {
-            players.get(playerId).setMoney(players.get(playerId).getMoney()-(amount-players.get(playerId).getOffer()));
+            players.get(playerId).setMoney(players.get(playerId).getMoney() - (amount - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(amount);
-            this.limit=amount;
-        }
-        while(players.get(currentPlayerId).getInGame()==false) {
-            currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
+            this.limit = amount;
+            this.raisingPlayerId = playerId;
+
+            while (players.get(currentPlayerId).getInGame() == false) {
+                currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
+            }
+            if (currentPlayerId == raisingPlayerId) checkItAll();
         }
     }
 
@@ -150,6 +161,25 @@ public class ModelOne implements ModelInterface {
     }
 
     private void won(){
-        //TO DO, uruchamiane gdy w grze zostal tylko jeden gracz(zwyciezca).
+        while(players.get(currentPlayerId).getInGame()==false) {
+            currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
+        }
+        Adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
+        startRound();
     }
+
+    private void startRound(){
+        for(Player p:players){
+            p.setMoney(p.getMoney()-10);
+            p.setOffer(10);
+            p.setInGame(true);
+            currentPlayerId=0;
+        }
+        this.limit=10;
+        this.numberInGame=numberOfPlayers;
+    }
+
+    private void CheckItAll(){
+
+    };
 }
