@@ -1,4 +1,4 @@
-package main.java.Adapter;
+package Adapter;
 
 /**
  * Created by dakurels on 05.05.14.

@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 public interface ViewInterface {
 	public void addPlayer(String name, int id); // możemy się umówić czy playera identyfikujemy imieniem czy id
