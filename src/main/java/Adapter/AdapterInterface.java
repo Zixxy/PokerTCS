@@ -1,5 +1,8 @@
 package Adapter;
 
+import Model.ModelInterface;
+import View.ViewInterface;
+
 /**
  * Created by dakurels on 05.05.14.
  */
@@ -14,4 +17,6 @@ public interface AdapterInterface {
     public void removePlayer(int id) throws Exception;
     public void updatePlayerCash(int id, int cash) throws Exception;
     public void updatePlayerLinedCash(int id, int cash) throws Exception;
+    public void addModel(ModelInterface mod) throws Exception;
+    public void addView(ViewInterface view) throws Exception;
 }
