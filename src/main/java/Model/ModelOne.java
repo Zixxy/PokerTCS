@@ -1,10 +1,7 @@
-package main.java.Model;
+package Model;
 
 
 import java.util.ArrayList;
-
-import com.sun.xml.internal.bind.v2.model.core.Adapter;
-import main.java.Adapter.MainAdapter.*;
 
 /**
  * Created by bartek on 05.05.14.
