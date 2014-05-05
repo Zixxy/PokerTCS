@@ -85,6 +85,7 @@ public class MainAdapter implements AdapterInterface {
     @Override
     public void addModel(ModelInterface mod) throws Exception {
         models.add(mod);
+
     }
 
     @Override
