@@ -16,7 +16,7 @@ public class TableView implements ViewInterface{
 	private MainAdapter adapter;
 	private int playerId;
 	
-	TableView(MainAdapter a, int p){
+	public TableView(MainAdapter a, int p){
 		adapter = a;
 		playerId = p;
 	}
@@ -67,6 +67,12 @@ public class TableView implements ViewInterface{
 		Raise.setAlignment(Pos.BOTTOM_RIGHT);
 		Raise.getChildren().add(btnRaise);
 		grid.add(Raise, 1, 1);
+		btnRaise.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	
+		    }
+		});
 		Button btnCheck = new Button("Check");
 		HBox Check = new HBox(50);
 		Check.setAlignment(Pos.BOTTOM_RIGHT);
