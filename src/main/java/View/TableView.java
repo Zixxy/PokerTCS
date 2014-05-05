@@ -1,5 +1,8 @@
 package main.java.View;
 
+import main.java.Adapter.MainAdapter;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,7 +13,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class TableView implements ViewInterface{
+	private MainAdapter adapter;
 	
+	TableView(MainAdapter a){
+		adapter = a;
+	}
 	@Override
 	public void addPlayer(String name, int id) {
 	}
@@ -47,6 +54,12 @@ public class TableView implements ViewInterface{
 		pas.setAlignment(Pos.BOTTOM_RIGHT);
 		pas.getChildren().add(btnpas);
 		grid.add(pas, 2, 1);
+		btnpas.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	adapter.fold(0);
+		    }
+		});
 		Button btnRaise = new Button("Raise");
 		HBox Raise = new HBox(50);
 		Raise.setAlignment(Pos.BOTTOM_RIGHT);
