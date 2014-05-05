@@ -1,6 +1,7 @@
 package main.java.View;
 
 import main.java.Adapter.MainAdapter;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class TableView implements ViewInterface{
+public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
 	private int playerId;
 	
@@ -44,6 +45,9 @@ public class TableView implements ViewInterface{
 	}
 	@Override
 	public void updatePlayerLinedCash(int id, int cash) {
+	}
+	public void constructWindow(String[] args){
+		Application.launch(args);
 	}
 	public void start(Stage primaryStage) throws Exception {
 		GridPane grid = new GridPane();
@@ -77,6 +81,7 @@ public class TableView implements ViewInterface{
 		    }
 		});
 		Button btnCheck = new Button("Check");
+		
 		HBox Check = new HBox(50);
 		Check.setAlignment(Pos.BOTTOM_RIGHT);
 		Check.getChildren().add(btnCheck);
