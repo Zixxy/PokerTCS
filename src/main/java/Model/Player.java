@@ -1,4 +1,4 @@
-package Model;
+package main.java.Model;
 
 /**
  * Created by bartek on 05.05.14.
@@ -9,7 +9,9 @@ public class Player{
         this.money=arg2;
     }
     private String name;
-    private Integer money;
+    private int money;
+    private boolean inGame;
+    private int offer;
 
     public void setName(String arg1){
         this.name=arg1;
@@ -23,7 +25,22 @@ public class Player{
         return this.name;
     }
 
-    public Integer getMoney(){
+    public int getMoney(){
         return this.money;
+    }
+
+    public boolean getInGame(){
+        return this.inGame;
+    }
+    public void setInGame(boolean arg1){
+        this.inGame=arg1;
+    }
+
+    public void setOffer(Integer arg1){
+        this.offer=arg1;
+    }
+
+    public int getOffer(){
+        return this.offer;
     }
 }

@@ -1,15 +1,14 @@
 package test;
 
 
-import main.Model.Player;
+import main.java.Model.Player;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by bartek on 05.05.14.
  */
-
 public class PlayerTest {
     @Test
     public void testOfConstructor() throws Exception {

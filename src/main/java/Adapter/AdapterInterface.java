@@ -1,10 +1,10 @@
-package Adapter;
+package main.java.Adapter;
 
 /**
  * Created by dakurels on 05.05.14.
  */
 
-public interface Adapter {
+public interface AdapterInterface {
     public void fold(int playerId) throws Exception;
     public void check(int playerId) throws Exception;
     public void raise(int playerId, int amount) throws Exception;
