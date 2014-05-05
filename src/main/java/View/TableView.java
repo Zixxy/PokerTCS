@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 public class TableView implements ViewInterface{
 	
@@ -27,5 +27,10 @@ public class TableView implements ViewInterface{
 	@Override
 	public void updatePlayerLinedCash(int id, int cash) {
 	}
-	
+
+    @Override
+    public void sendMessage(String text) throws Exception {
+        
+    }
+
 }
