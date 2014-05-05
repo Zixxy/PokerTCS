@@ -20,6 +20,5 @@ public class RunHere {
         model.addPlayer("Bartek");
         model.addPlayer("Szymon");
         model.start();
-        while(true);
     }
 }

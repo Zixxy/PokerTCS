@@ -10,7 +10,7 @@ import main.java.View.ViewInterface;
 public interface AdapterInterface {
     public void fold(int playerId);
     public void check(int playerId);
-    public void raise(int playerId, int amount);
+    public void raise(int playerId, String amount);
     public void resign(int playerId);
     public void clearTable();
     public void sendMessage(String text);
