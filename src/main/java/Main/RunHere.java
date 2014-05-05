@@ -15,7 +15,6 @@ public class RunHere {
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
         adapter.addView(view);
-
         adapter.constructAllWindows(args);
         model.addPlayer("Sylwek");
         model.addPlayer("Maciek");
