@@ -171,6 +171,7 @@ public class ModelOne implements ModelInterface {
             p.setOffer(10);
             p.setInGame(true);
             currentPlayerId=0;
+            //comment
         }
         this.limit=10;
         this.numberInGame=numberOfPlayers;
