@@ -14,9 +14,11 @@ import javafx.stage.Stage;
 
 public class TableView implements ViewInterface{
 	private MainAdapter adapter;
+	private int playerId;
 	
-	TableView(MainAdapter a){
+	TableView(MainAdapter a, int p){
 		adapter = a;
+		playerId = p;
 	}
 	@Override
 	public void addPlayer(String name, int id) {
@@ -57,7 +59,7 @@ public class TableView implements ViewInterface{
 		btnpas.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
-		    	adapter.fold(0);
+		    	adapter.fold(playerId);
 		    }
 		});
 		Button btnRaise = new Button("Raise");
