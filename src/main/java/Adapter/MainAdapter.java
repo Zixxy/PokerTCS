@@ -19,42 +19,42 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void fold(int playerId) throws Exception {
+    public void fold(int playerId) {
         for(ModelInterface model: models) {
             model.fold(playerId);
         }
     }
 
     @Override
-    public void check(int playerId) throws Exception {
+    public void check(int playerId) {
         for(ModelInterface model: models) {
             model.check(playerId);
         }
     }
 
     @Override
-    public void raise(int playerId, int amount) throws Exception {
+    public void raise(int playerId, int amount){
         for(ModelInterface model: models) {
             model.raise(playerId, amount);
         }
     }
 
     @Override
-    public void resign(int playerId) throws Exception {
+    public void resign(int playerId){
         for(ModelInterface model: models) {
             model.resign(playerId);
         }
     }
 
     @Override
-    public void sendMessage(String text) throws Exception {
+    public void sendMessage(String text){
         for(ViewInterface view: views) {
             view.sendMessage(text);
         }
     }
 
     @Override
-    public void addPlayer(String name, int id) throws Exception {
+    public void addPlayer(String name, int id){
         for(ViewInterface view: views) {
             view.addPlayer(name, id);
         }
@@ -62,34 +62,34 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void removePlayer(int id) throws Exception {
+    public void removePlayer(int id){
         for(ViewInterface view: views) {
             view.removePlayer(id);
         }
     }
 
     @Override
-    public void updatePlayerCash(int id, int cash) throws Exception {
+    public void updatePlayerCash(int id, int cash){
         for(ViewInterface view: views) {
             view.updatePlayerCash(id, cash);
         }
     }
 
     @Override
-    public void updatePlayerLinedCash(int id, int cash) throws Exception {
+    public void updatePlayerLinedCash(int id, int cash){
         for(ViewInterface view: views) {
             view.updatePlayerLinedCash(id, cash);
         }
     }
 
     @Override
-    public void addModel(ModelInterface mod) throws Exception {
+    public void addModel(ModelInterface mod){
         models.add(mod);
 
     }
 
     @Override
-    public void addView(ViewInterface view) throws Exception {
+    public void addView(ViewInterface view){
         views.add(view);
     }
 }
