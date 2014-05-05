@@ -33,9 +33,16 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void raise(int playerId, int amount){
+    public void raise(int playerId, String amount){
+        int cash;
+        try {
+            cash = Integer.valueOf(amount);
+        }
+        catch (NumberFormatException e) { return; }
+        if(cash < 0)
+            return;
         for(ModelInterface model: models) {
-            model.raise(playerId, amount);
+            model.raise(playerId, cash);
         }
     }
 

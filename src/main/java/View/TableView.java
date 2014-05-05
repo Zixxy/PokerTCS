@@ -1,6 +1,7 @@
 package main.java.View;
 
 import main.java.Adapter.MainAdapter;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class TableView implements ViewInterface{
+public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
 	private int playerId;
 	
@@ -45,12 +46,17 @@ public class TableView implements ViewInterface{
 	@Override
 	public void updatePlayerLinedCash(int id, int cash) {
 	}
+	public void constructWindow(String[] args){
+		Application.launch(args);
+	}
 	public void start(Stage primaryStage) throws Exception {
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.BOTTOM_RIGHT);
 		grid.setHgap(20);
 		grid.setVgap(0);
 		grid.setPadding(new Insets(10, 20, 10, 200));
+		final TextField userCashTextField = new TextField();
+	    grid.add(userCashTextField, 0, 1);
 		Button btnpas = new Button("pas");
 		HBox pas = new HBox(50);
 		pas.setAlignment(Pos.BOTTOM_RIGHT);
@@ -70,16 +76,16 @@ public class TableView implements ViewInterface{
 		btnRaise.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
-		    	
+		    	adapter.raise(playerId, userCashTextField.getText());
+		    	userCashTextField.clear();
 		    }
 		});
 		Button btnCheck = new Button("Check");
+		
 		HBox Check = new HBox(50);
 		Check.setAlignment(Pos.BOTTOM_RIGHT);
 		Check.getChildren().add(btnCheck);
 		grid.add(Check, 3, 1);
-		TextField userCashTextField = new TextField();
-	    grid.add(userCashTextField, 0, 1);
 		Scene scene = new Scene(grid, 800, 600);
 	//	grid.setGridLinesVisible(true);
 		primaryStage.setScene(scene);
