@@ -1,6 +1,6 @@
 package Model;
 
-public interface ModelInterface {
+public interface Model {
 	//get
 	boolean isStarted() throws Exception; // returns true if game has started
 	int getLimit() throws Exception; //returns value of limit or -1 if is no limit
