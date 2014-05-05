@@ -13,7 +13,7 @@ public class MainAdapter implements AdapterInterface {
     private Collection<ModelInterface> models;
     private Collection<ViewInterface> views;
 
-    MainAdapter() {
+    public MainAdapter() {
         models = new ArrayList<ModelInterface>();
         views = new ArrayList<ViewInterface>();
     }
