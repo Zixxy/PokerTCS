@@ -1,25 +1,30 @@
 package main.java.Model;
 
 
+import main.java.Adapter.AdapterInterface;
+
 import java.util.ArrayList;
 
 /**
  * Created by bartek on 05.05.14.
  */
 public class ModelOne implements ModelInterface {
+    private AdapterInterface adapter;
     private boolean started;//is game started?
     private int numberOfPlayers;
     private ArrayList<Player> players;
     private int limit;
+    private int onTable;
     private int currentPlayerId;
     private int numberInGame;
     private int raisingPlayerId;
 
-    public ModelOne(){
+    public ModelOne(AdapterInterface arg1){
         this.started=false;
         this.numberOfPlayers=0;
         this.players= new ArrayList<Player>();
         this.limit=0;
+        this.adapter=arg1;
     }
     @Override
     public boolean isStarted() {
@@ -125,6 +130,7 @@ public class ModelOne implements ModelInterface {
     public void check(int playerId) {
         //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
         if(currentPlayerId==playerId) {
+            onTable+=this.limit - players.get(playerId).getOffer();
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(this.limit);
 
@@ -139,6 +145,7 @@ public class ModelOne implements ModelInterface {
     public void raise(int playerId, int amount) {
         //rowniez zabezpieczyc przed brakiem gotowki
         if(currentPlayerId==playerId) {
+            onTable+=(amount - players.get(playerId).getOffer());
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (amount - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(amount);
             this.limit = amount;
@@ -161,7 +168,8 @@ public class ModelOne implements ModelInterface {
         while(players.get(currentPlayerId).getInGame()==false) {
             currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
         }
-        Adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
+        adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
+        players.get(currentPlayerId).setMoney(players.get(currentPlayerId).getMoney()+onTable);
         startRound();
     }
 
@@ -171,13 +179,16 @@ public class ModelOne implements ModelInterface {
             p.setOffer(10);
             p.setInGame(true);
             currentPlayerId=0;
-            //comment
         }
         this.limit=10;
         this.numberInGame=numberOfPlayers;
+        this.onTable=10*numberInGame;
     }
 
-    private void CheckItAll(){
-
+    private void checkItAll(){
+        for(Player p:players){
+            if(p.getInGame()) p.setMoney(p.getMoney()+(onTable/numberInGame));
+        }
+        startRound();
     };
 }
