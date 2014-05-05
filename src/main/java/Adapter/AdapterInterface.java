@@ -1,4 +1,4 @@
-package Adapter;
+package main.java.Adapter;
 
 import Model.ModelInterface;
 import View.ViewInterface;
