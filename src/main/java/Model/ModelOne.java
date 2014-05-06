@@ -189,9 +189,10 @@ public class ModelOne implements ModelInterface {
             p.setOffer(10);
             adapter.updatePlayerCash(i, p.getOffer());
             p.setInGame(true);
-            currentPlayerId=0;
+
             i++;
         }
+        currentPlayerId=0;
         this.limit=10;
         this.numberInGame=numberOfPlayers;
         this.onTable=10*numberInGame;
