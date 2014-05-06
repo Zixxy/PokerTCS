@@ -1,0 +1,45 @@
+Jako użytkownik chcę móc przebijać podczas licytacji.
+Jako użytkownik chcę móc pasować podczas licytacji.
+Jako użytkownik chcę móc sprawdzać podczas licytacji.
+Jako użytkownik chcę móc all-inować podczas licytacji.
+Jako użytkownik chcę aby aplikacja rozkładała gotówkę po zakończeniu rozdania.
+Jako użytkownik chcę wiedzieć jaką gotówką dysponuję.
+Jako użytkownik chcę wiedzieć jaką gotówką dysponują przeciwnicy.
+Jako użytkownik chcę wiedzieć jakie ruchy wykonują inni gracze.
+Jako użytkownik chcę wiedzieć ile gotówki jest wyłożonej na stole.
+Jako użytkownik chcę wiedzieć ile każdy użytkownik wyłożył gotówki na stół przed sobą.
+Jako użytkownik chcę mieć dostęp do kart w swojej ręce.
+Jako użytkownik chcę mieć dostęp do kart położonych na stole.
+Jako użytkownik chcę aby gra była rozłożona na cztery tury.
+Jako użytkownik chcę aby licytacja rozpoczynała się w każdej turze.
+Jako użytkownik chcę aby big i small blindy były pobierane tylko przed flopem.
+Jako użytkownik chcę aby przed rozdaniem kart zostało pobrane ante.
+Jako użytkownik chcę wiedzieć kto jest na small- i big-blindzie.
+Jako użytkownik chcę aby po każdym rozdaniu pozycja small- i big-blinda przesuwała się zgodnie ze wskazówkami zegara.
+Jako użytkownik chcę aby licytacja w pre-flopie rozpoczynała się od gracza pod big-blindzie.
+Jako użytkownik chcę aby licytacja w innych turach rozpoczynała się od gracza na small-blindzie.
+Jako użytkownik chcę aby w każdej turze byłą odpowiednia liczba kart na stole.
+Jako użytkownik chcę aby aplikacja sama obliczała jaki jest najlepszy układ kart z mojej ręki i kart ze stołu.
+Jako użytkownik chcę aby aplikacja porównywała mój układ z układami innych graczy.
+Jako użytkownik chcę poznać wynik rozdania.
+Jako użytkownik chcę aby gracze bez gotówki nie mogli grać.
+Jako użytkownik chcę mieć wybór czy pokazywać swoje karty przy zakończeniu rozdania.
+Jako użytkownik chcę móc założyć konto.
+Jako użytkownik chcę móc ustawić hasło konta.
+Jako użytkownik chcę móc założyć stół o wybranej nazwie.
+Jako użytkownik chcę kontrolować ilość gotówki przypisanej do mojego konta.
+Jako założyciel stołu chcę móc rozpocząć rozgrywkę.
+Jako założyciel stołu chcę móc ustawić kwotę small blind.
+Jako założyciel stołu chcę móc ustawić kwotę big blind.
+Jako założyciel stołu chcę móc ustawić kwotę ante.
+Jako założyciel stołu chcę móc ustawić tempo rośnięcia blindów.
+Jako założyciel stołu chcę móc ustawić limity stawek.
+Jako założyciel stołu chcę móc ustawić ograniczenia na kwotę rebuy.
+Jako użytkownik chcę mieć możliwość rebuya.
+Jako użytkownik chcę mieć dostęp do wglądu w ustawienia stołu.
+Jako użytkownik chcę móc wybrać ilość gotówki, z którą wchodzę do gry.
+Jako użytkownik chcę aby przy wyjściu wyświetlało się okienko informujące mnie o konsekwencjach wyjścia w danym momencie.
+Jako administrator chcę mieć dostęp do logów aktywności an serwerze.
+Jako użytkownik chcę móc komunikować się z innymi graczami.
+Jako użytkownik chcę dostawać powiadomienia po zakończeniu każdego rozdania.
+Jako użytkownik chcę po odejściu od stołu dostać komunikat ile zarobiłem/straciłem.
