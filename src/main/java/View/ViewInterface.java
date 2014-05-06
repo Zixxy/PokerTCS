@@ -1,5 +1,6 @@
 package main.java.View;
 
+import main.java.Adapter.MainAdapter;
 import javafx.stage.Stage;
 
 public interface ViewInterface {
@@ -13,6 +14,7 @@ public interface ViewInterface {
 	public void updatePlayerLinedCash(int id, int cash);// ustawiamy gotówkę jaką player ma przed sobą na stole
     public void sendMessage(String text);
     public void constructWindow(String[] args);
+    public void almostContructor(MainAdapter a, int p);
 }
 /* Umawialismy sie, ze nie bedzie takiego obiektu jak Card. Zmieniam na Integera - do pozniejszych zmian.
 Chcę doprowadzić projekt do stanu kompilującego się.

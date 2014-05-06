@@ -17,7 +17,9 @@ public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
 	private int playerId;
 	
-	public TableView(MainAdapter a, int p){
+	public TableView(){
+	}
+	public void almostContructor(MainAdapter a, int p){
 		adapter = a;
 		playerId = p;
 	}
@@ -45,9 +47,6 @@ public class TableView extends Application implements ViewInterface{
 	}
 	@Override
 	public void updatePlayerLinedCash(int id, int cash) {
-	}
-	public void constructWindow(String[] args){
-		Application.launch(args);
 	}
 	public void start(Stage primaryStage) throws Exception {
 		GridPane grid = new GridPane();
@@ -81,7 +80,12 @@ public class TableView extends Application implements ViewInterface{
 		    }
 		});
 		Button btnCheck = new Button("Check");
-		
+		btnCheck.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	adapter.check(playerId);
+		    }
+		});
 		HBox Check = new HBox(50);
 		Check.setAlignment(Pos.BOTTOM_RIGHT);
 		Check.getChildren().add(btnCheck);
@@ -95,5 +99,10 @@ public class TableView extends Application implements ViewInterface{
     @Override
     public void sendMessage(String text) {
     }
+	@Override
+	public void constructWindow(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
