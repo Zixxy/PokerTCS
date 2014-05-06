@@ -14,6 +14,7 @@ public class ModelOneTest {
     @Test
     public void testOfConstructor() throws Exception {
         MainAdapter adapter = new MainAdapter();
+        ModelOne model= new ModelOne(adapter);
 
 
     }

@@ -11,11 +11,12 @@ import main.java.View.ViewInterface;
 public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter=new MainAdapter();
-        ViewInterface view = new TableView(adapter,0);
+        TableView view = new TableView();
+        view.almostContructor(adapter,0);
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
         adapter.addView(view);
-        adapter.constructAllWindows(args);
+        view.constructWindow(args);
         model.addPlayer("Sylwek");
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");
