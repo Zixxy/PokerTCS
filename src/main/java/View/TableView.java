@@ -13,17 +13,46 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class TableView extends Application implements ViewInterface{
-    private static MainAdapter adapter;
-    private int playerId;
 
+public class TableView extends Application implements ViewInterface{
+    private MainAdapter adapter;
+    private int playerId;
+    
+    private static TableView latestCreatedTableView;
+   
     public TableView(){
+    	latestCreatedTableView = this;
     }
-    public void almostContructor(MainAdapter a, int p){
-    System.out.println("Podpinam "+a);
+    
+    public static synchronized TableView createTableView(final String[] args, MainAdapter a, int p){
+    	Thread createTableViewCaller = Thread.currentThread();
+    	TableView previouslyCreatedTableView = TableView.latestCreatedTableView;
+    	Thread viewThread = new Thread(){
+            public void run(){
+            	TableView.launch(TableView.class, args);
+            }
+        };
+        viewThread.start();
+        while(TableView.latestCreatedTableView == previouslyCreatedTableView )
+    		Thread.yield();
+        while(!TableView.latestCreatedTableView.isConstructed()){
+    		TableView.latestCreatedTableView.almostConstructor(a, p);
+    		createTableViewCaller.yield();
+    	}
+    	return latestCreatedTableView;
+    }
+  
+    private boolean isConstructed(){
+    	if(adapter != null)
+    		return true;
+    	return false;
+    }
+    
+    private void almostConstructor(MainAdapter a, int p){
         adapter = a;
         playerId = p;
     }
+    
     @Override
     public void addPlayer(String name, int id) {
     }
@@ -65,8 +94,6 @@ public class TableView extends Application implements ViewInterface{
         btnpas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-
-              System.out.println(adapter);
                 adapter.fold(playerId);
             }
         });
@@ -103,9 +130,4 @@ public class TableView extends Application implements ViewInterface{
     public void sendMessage(String text) {
         System.out.println(text);
     }
-    @Override
-    public void constructWindow(String[] args) {
-        launch(args);
-    }
-
 }
