@@ -14,12 +14,13 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class TableView extends Application implements ViewInterface{
-    private MainAdapter adapter;
+    private static MainAdapter adapter;
     private int playerId;
 
     public TableView(){
     }
     public void almostContructor(MainAdapter a, int p){
+    System.out.println("Podpinam "+a);
         adapter = a;
         playerId = p;
     }
@@ -64,6 +65,8 @@ public class TableView extends Application implements ViewInterface{
         btnpas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+
+              System.out.println(adapter);
                 adapter.fold(playerId);
             }
         });
@@ -98,6 +101,7 @@ public class TableView extends Application implements ViewInterface{
     }
     @Override
     public void sendMessage(String text) {
+        System.out.println(text);
     }
     @Override
     public void constructWindow(String[] args) {
