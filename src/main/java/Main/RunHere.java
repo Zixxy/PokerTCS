@@ -30,7 +30,7 @@ public class RunHere {
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
 
-      //  adapter.addView(view);
+      //
         model.addPlayer("Sylwek");
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");
