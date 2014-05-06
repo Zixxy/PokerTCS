@@ -57,7 +57,7 @@ public class TableView extends Application implements ViewInterface{
         grid.setPadding(new Insets(10, 20, 10, 200));
         final TextField userCashTextField = new TextField();
         grid.add(userCashTextField, 0, 1);
-        Button btnpas = new Button("pas");
+        Button btnpas = new Button("fold");
         HBox pas = new HBox(50);
         pas.setAlignment(Pos.BOTTOM_RIGHT);
         pas.getChildren().add(btnpas);
@@ -106,7 +106,6 @@ public class TableView extends Application implements ViewInterface{
     @Override
     public void constructWindow(String[] args) {
         launch(args);
-
     }
 
 }
