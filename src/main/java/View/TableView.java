@@ -26,9 +26,11 @@ public class TableView extends Application implements ViewInterface{
     	latestCreatedTableView = this;
     }
     
-    public static synchronized TableView createTableView(final String[] args, MainAdapter a, int p){
+    public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
     	if(latestCreatedTableView != null){
+    		ViewInterface out = new Table(a,p);
     		javafx.application.Platform.runLater(new Table(a,p));
+    		return out;
     	}
     	Thread createTableViewCaller = Thread.currentThread();
     	TableView previouslyCreatedTableView = TableView.latestCreatedTableView;
