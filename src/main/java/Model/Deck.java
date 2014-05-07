@@ -1,0 +1,101 @@
+package main.java.Model;
+
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Created by dakurels on 07.05.14.
+ */
+public class Deck {
+    public static class Card implements Comparable<Card>{
+        public enum Value {
+            TWO,
+            THREE,
+            FOUR,
+            FIVE,
+            SIX,
+            SEVEN,
+            EIGHT,
+            NINE,
+            TEN,
+            JACK,
+            QUEEN,
+            KING,
+            ACE
+        }
+        public enum Color {
+            CLUBS,
+            DIAMONDS,
+            HEARTS,
+            SPADES
+        }
+        private Value value;
+        private Color color;
+        public Value getValue() {
+            return value;
+        }
+        public Color getColor() {
+            return color;
+        }
+
+        private Card() {}
+        private Card(Value value, Color color) {
+            this.value = value;
+            this.color = color;
+        }
+
+        @Override
+        public String toString() {
+            String value = this.value.toString();
+            String color = this.color.toString();
+            return value.charAt(0) + value.substring(1).toLowerCase() + " of " + color.toLowerCase();
+        }
+        @Override
+        public int compareTo(Card card) {
+            if(this.value == card.value)
+                return this.color.compareTo(card.color);
+            return this.value.compareTo(card.value);
+        }
+        @Override
+        public boolean equals(Object card) {
+            if(card == null || card.getClass() != Card.class)
+                return false;
+            return this.compareTo((Card) card) == 0;
+        }
+        @Override
+        public int hashCode() {
+            return this.value.hashCode()*31 + this.color.hashCode();
+        }
+    }
+
+    private static List<Card> standardCards;
+    private List<Card> deckCards;
+    static {
+        for(Card.Color color: Card.Color.values()) {
+            for(Card.Value value: Card.Value.values()) {
+                standardCards.add(new Card(value, color));
+            }
+        }
+
+    }
+
+    public Card getSpecifiedCard(Card.Value value, Card.Color color) {
+        for(Card card: standardCards) {
+            if(card.value == value && card.color == color)
+                return card;
+        }
+        throw new IllegalArgumentException();
+    }
+    public Deck() {
+        deckCards.addAll(standardCards);
+        Collections.shuffle(deckCards);
+    }
+    public boolean isEmpty() {
+        return deckCards.isEmpty();
+    }
+    public Card getNextCard() {
+        Card out = deckCards.get(0);
+        deckCards.remove(0);
+        return out;
+    }
+}
