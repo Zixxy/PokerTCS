@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,6 +27,9 @@ public class TableView extends Application implements ViewInterface{
     }
     
     public static synchronized TableView createTableView(final String[] args, MainAdapter a, int p){
+    	if(latestCreatedTableView != null){
+    		javafx.application.Platform.runLater(new Table(a,p));
+    	}
     	Thread createTableViewCaller = Thread.currentThread();
     	TableView previouslyCreatedTableView = TableView.latestCreatedTableView;
     	Thread viewThread = new Thread(){
