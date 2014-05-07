@@ -105,11 +105,4 @@ public class MainAdapter implements AdapterInterface {
     public void addView(ViewInterface view){
         views.add(view);
     }
-
-    @Override
-    public void constructAllWindows(String argc[]) {
-        for(ViewInterface view: views){
-            view.constructWindow(argc);
-        }
-    }
 }

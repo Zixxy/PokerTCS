@@ -20,5 +20,4 @@ public interface AdapterInterface {
     public void updatePlayerLinedCash(int id, int cash);
     public void addModel(ModelInterface mod);
     public void addView(ViewInterface view);
-    public void constructAllWindows(String argc[]);
 }
