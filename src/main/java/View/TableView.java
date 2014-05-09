@@ -127,7 +127,7 @@ public class TableView extends Application implements ViewInterface{
         Check.setAlignment(Pos.BOTTOM_RIGHT);
         Check.getChildren().add(btnCheck);
         grid.add(Check, 3, 1);
-        Scene scene = new Scene(grid, 700, 420);
+        Scene scene = new Scene(grid, 960, 600);
         //	grid.setGridLinesVisible(true);
         primaryStage.setScene(scene);
         cssPath = this.getClass().getResource("application.css").toExternalForm();
