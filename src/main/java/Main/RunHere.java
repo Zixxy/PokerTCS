@@ -19,6 +19,8 @@ public class RunHere {
         ViewInterface view1 = TableView.createTableView(args, adapter, 1);
         ViewInterface view2 = TableView.createTableView(args, adapter, 2);
         ViewInterface view3 = TableView.createTableView(args, adapter, 3);
+
+        
         adapter.addView(view);
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
