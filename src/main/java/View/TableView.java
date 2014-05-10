@@ -4,9 +4,11 @@ import main.java.Adapter.MainAdapter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -86,8 +88,12 @@ public class TableView extends Application implements ViewInterface{
     public void updatePlayerLinedCash(int id, int cash) {
     }
     public void start(Stage primaryStage) throws Exception {
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.BOTTOM_RIGHT);
+    	Parent root = FXMLLoader.load(getClass().getResource("Test.fxml"));
+
+    	
+    	/*GridPane grid = new GridPane();
+        root.getChildren().add(grid);
+        grid.setAlignment(Pos.BOTTOM_CENTER);
         grid.setHgap(20);
         grid.setVgap(0);
         grid.setPadding(new Insets(10, 20, 10, 200));
@@ -126,12 +132,11 @@ public class TableView extends Application implements ViewInterface{
         HBox Check = new HBox(50);
         Check.setAlignment(Pos.BOTTOM_RIGHT);
         Check.getChildren().add(btnCheck);
-        grid.add(Check, 3, 1);
-        Scene scene = new Scene(grid, 960, 600);
+        grid.add(Check, 3, 1);*/
+        Scene scene = new Scene(root, 960, 600);
         //	grid.setGridLinesVisible(true);
+        primaryStage.setTitle("FXML Welcome");
         primaryStage.setScene(scene);
-        cssPath = this.getClass().getResource("application.css").toExternalForm();
-		scene.getStylesheets().add(cssPath);
         primaryStage.show();
 
     }
