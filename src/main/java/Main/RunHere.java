@@ -16,9 +16,9 @@ public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
-        //ViewInterface view1 = TableView.createTableView(args, adapter, 1);
-        //ViewInterface view2 = TableView.createTableView(args, adapter, 2);
-       // ViewInterface view3 = TableView.createTableView(args, adapter, 3);
+        ViewInterface view1 = TableView.createTableView(args, adapter, 1);
+        ViewInterface view2 = TableView.createTableView(args, adapter, 2);
+        ViewInterface view3 = TableView.createTableView(args, adapter, 3);
 
         
         adapter.addView(view);

@@ -13,10 +13,10 @@
 <Image url="@Table.jpg" />
 </image>
 </ImageView>
-<HBox layoutX="528.8759765625" layoutY="547.0" spacing="15.0">
-<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" />
-<HBox layoutX="712.2275390625" layoutY="547.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
-<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" text="Check" />
+<HBox layoutX="479.0" layoutY="547.0" prefHeight="30.0" prefWidth="455.0" spacing="15.0">
+<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="25.0" prefWidth="171.0" />
+<HBox layoutX="714.8759765625" layoutY="547.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
+<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" text="Check" /><Button mnemonicParsing="false" text="Resign" />
 </children>
 </HBox>
 </children>
