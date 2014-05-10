@@ -1,32 +1,49 @@
 package main.java.View;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import main.java.Adapter.MainAdapter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-public class TableView extends Application implements ViewInterface{
+public class TableView extends Application implements ViewInterface, Initializable{
     private MainAdapter adapter;
     private int playerId;
     private String cssPath;
+
+	@FXML // fx:id="userCashTextField"
+    private TextField userCashTextField; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnCheck"
+    private Button btnCheck; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnFold"
+    private Button btnFold; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnRaise"
+    private Button btnRaise; // Value injected by FXMLLoader
     
     private static TableView latestCreatedTableView;
    
     public TableView(){
     	latestCreatedTableView = this;
     }
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {		
+	}
+	
     
     public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
     	if(latestCreatedTableView != null){
@@ -46,7 +63,7 @@ public class TableView extends Application implements ViewInterface{
     		Thread.yield();
         while(!TableView.latestCreatedTableView.isConstructed()){
     		TableView.latestCreatedTableView.almostConstructor(a, p);
-    		createTableViewCaller.yield();
+    		Thread.yield();
     	}
     	return latestCreatedTableView;
     }
@@ -87,55 +104,51 @@ public class TableView extends Application implements ViewInterface{
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
     }
+    
+    public void checkEvent(ActionEvent e)
+    {
+    	adapter.check(playerId);
+    }
+    
+    public void foldEvent(ActionEvent e)
+    {
+        adapter.fold(playerId);
+    }
+    
+    public void raiseEvent(ActionEvent e)
+    {
+        adapter.raise(playerId, userCashTextField.getText());
+        userCashTextField.clear();
+    }
+    
     public void start(Stage primaryStage) throws Exception {
-    	Parent root = FXMLLoader.load(getClass().getResource("Test.fxml"));
+    	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
 
-    	
-    	/*GridPane grid = new GridPane();
-        root.getChildren().add(grid);
-        grid.setAlignment(Pos.BOTTOM_CENTER);
-        grid.setHgap(20);
-        grid.setVgap(0);
-        grid.setPadding(new Insets(10, 20, 10, 200));
-        final TextField userCashTextField = new TextField();
-        grid.add(userCashTextField, 0, 1);
-        Button btnpas = new Button("fold");
-        HBox pas = new HBox(50);
-        pas.setAlignment(Pos.BOTTOM_RIGHT);
-        pas.getChildren().add(btnpas);
-        grid.add(pas, 2, 1);
-        btnpas.setOnAction(new EventHandler<ActionEvent>() {
+        /*btnFold.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 adapter.fold(playerId);
             }
         });
-        Button btnRaise = new Button("Raise");
-        HBox Raise = new HBox(50);
-        Raise.setAlignment(Pos.BOTTOM_RIGHT);
-        Raise.getChildren().add(btnRaise);
-        grid.add(Raise, 1, 1);
+
         btnRaise.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 adapter.raise(playerId, userCashTextField.getText());
                 userCashTextField.clear();
             }
-        });
-        Button btnCheck = new Button("Check");
-        btnCheck.setOnAction(new EventHandler<ActionEvent>() {
+        });*/
+
+       /* btnCheck.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 adapter.check(playerId);
             }
-        });
-        HBox Check = new HBox(50);
-        Check.setAlignment(Pos.BOTTOM_RIGHT);
-        Check.getChildren().add(btnCheck);
-        grid.add(Check, 3, 1);*/
-        Scene scene = new Scene(root, 960, 600);
+        });*/
+
+        Scene scene = new Scene(root);
         //	grid.setGridLinesVisible(true);
-        primaryStage.setTitle("FXML Welcome");
+        primaryStage.setTitle("Welcome");
         primaryStage.setScene(scene);
         primaryStage.show();
 
