@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 public class TableView extends Application implements ViewInterface, Initializable{
     private MainAdapter adapter;
     private int playerId;
-    private String cssPath;
 
 	@FXML // fx:id="userCashTextField"
     private TextField userCashTextField; // Value injected by FXMLLoader
