@@ -47,7 +47,7 @@
 <children>
 <Label layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="229.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
-<Font size="41.0" />
+<Font size="25.0" />
 </font>
 </Label>
 <Label layoutX="14.0" layoutY="63.0" prefHeight="53.0" prefWidth="229.0" text="Cash" textFill="WHITE">
