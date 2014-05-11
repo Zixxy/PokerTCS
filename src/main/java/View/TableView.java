@@ -21,49 +21,13 @@ import javafx.stage.Stage;
 import main.java.Adapter.MainAdapter;
 
 
-public class TableView extends Application implements ViewInterface, Initializable{
+public class TableView extends Application implements ViewInterface{
     private MainAdapter adapter;
     private int playerId;
     
-    private static MainAdapter tempAdapter;
-    private static int tempPlayerId;
+    public static MainAdapter tempAdapter;
+    public static int tempPlayerId;
     private static AtomicInteger constructionCounter = new AtomicInteger(0);
-    
-    @FXML
-    private GridPane playerOneGrid;
-	@FXML // fx:id="userCashTextField"
-    private TextField userCashTextField; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnCheck"
-    private Button btnCheck; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnFold"
-    private Button btnFold; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnRaise"
-    private Button btnRaise; // Value injected by FXMLLoader
-    
-    @FXML // fx:id="firstPlayerCard"
-    private Pane firstPlayerCard; // Value injected by FXMLLoader
-
-    @FXML // fx:id="thirdCardOnTable"
-    private Pane thirdCardOnTable; // Value injected by FXMLLoader
-
-    @FXML // fx:id="secondCardOnTable"
-    private Pane secondCardOnTable; // Value injected by FXMLLoader
-
-    @FXML // fx:id="firstCardOnTable"
-    private Pane firstCardOnTable; // Value injected by FXMLLoader
-
-    @FXML // fx:id="secondPlayerCard"
-    private Pane secondPlayerCard; // Value injected by FXMLLoader
-
-    @FXML // fx:id="fourthCardOnTable"
-    private Pane fourthCardOnTable; // Value injected by FXMLLoader
-
-    @FXML // fx:id="FifthCardOnTable"
-    private Pane FifthCardOnTable; // Value injected by FXMLLoader
-    
     private static TableView latestCreatedTableView;
    
     public TableView(){
@@ -72,25 +36,16 @@ public class TableView extends Application implements ViewInterface, Initializab
     	latestCreatedTableView = this;
     }
     
-    @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {		
-	}
-    
     public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
-    	if(latestCreatedTableView != null){
-    		ViewInterface out = new Table(a,p);
-    		javafx.application.Platform.runLater(new Table(a,p));
-    		return out;
-    	}
     	tempAdapter = a;
         tempPlayerId = p;
     	System.out.println("aww");
-    	Thread viewThread = new Thread(){
-    		public void run(){
+    //	Thread viewThread = new Thread(){
+    //		public void run(){
     		Application.launch(TableView.class, args);
-    		}
-    	};
-    	viewThread.start();
+    //		}
+    //	};
+    	
         while(constructionCounter.get() < 2){
         	Thread.yield();
         }
@@ -132,24 +87,7 @@ public class TableView extends Application implements ViewInterface, Initializab
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
     }
-    
-    @FXML
-    public void checkEvent(ActionEvent e){
-    	adapter.check(playerId);
-    }
-    
-    @FXML
-    public void foldEvent(ActionEvent e){
-        adapter.fold(playerId);
-    }
-    
-    @FXML
-    public void raiseEvent(ActionEvent e){
-        adapter.raise(playerId, userCashTextField.getText());
-        userCashTextField.clear();
-    }
-    
-    private AnchorPane root;
+
     public void start(Stage primaryStage) throws Exception {
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
         Scene scene = new Scene(root);
