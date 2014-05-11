@@ -32,7 +32,7 @@
 <children><ImageView fx:id="fourthCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
 </children></Pane>
 <Pane layoutX="313.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0">
-<children><ImageView fx:id="FifthCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+<children><ImageView fx:id="fifthCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
 </children></Pane>
 </children></HBox><HBox layoutX="259.0" layoutY="462.0" prefHeight="130.0" prefWidth="254.0" spacing="12.0">
 <children><Pane prefHeight="130.0" prefWidth="101.0">
@@ -60,7 +60,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
-<children><HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" /><HBox fx:id="playerCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
+<children><HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" /><HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
 </children>
 </GridPane>
 </children>

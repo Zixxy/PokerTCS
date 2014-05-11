@@ -118,7 +118,6 @@ public class TableView extends Application implements ViewInterface{
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
         Scene scene = new Scene(root);
         //	grid.setGridLinesVisible(true);
-        //clearTable();
         primaryStage.setTitle("PokerTCS");
         primaryStage.setScene(scene);
 

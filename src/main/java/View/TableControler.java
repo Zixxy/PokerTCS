@@ -118,7 +118,7 @@ public class TableControler{
     }
     
     public boolean isConstructed(){
-		if(/*firstCardOnTable == null
+		if(firstCardOnTable == null
 			|| btnFold == null
 			|| btnRaise == null
 			|| btnCheck == null
@@ -126,10 +126,10 @@ public class TableControler{
 			|| secondCardOnTable == null
 			|| thirdCardOnTable == null
 			|| fourthCardOnTable == null
-			|| FifthCardOnTable == null
+			|| fifthCardOnTable == null
 			|| playerOneCashBox == null
 			|| playerTwoCashBox == null
-			|| */ playerThreeCashBox == null
+			|| playerThreeCashBox == null
 			|| playerFourCashBox == null
 			|| playerFiveCashBox == null
 			|| playerSixCashBox == null
