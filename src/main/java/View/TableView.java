@@ -20,7 +20,11 @@ import javafx.stage.Stage;
 public class TableView extends Application implements ViewInterface, Initializable{
     private MainAdapter adapter;
     private int playerId;
-
+    
+    private static MainAdapter tempAdapter;
+    private static int tempPlayerId;
+    private static int constructionCounter = 0;
+    
 	@FXML // fx:id="userCashTextField"
     private TextField userCashTextField; // Value injected by FXMLLoader
 
@@ -36,13 +40,14 @@ public class TableView extends Application implements ViewInterface, Initializab
     private static TableView latestCreatedTableView;
    
     public TableView(){
+    	constructionCounter ++;
+    	almostConstructor();
     	latestCreatedTableView = this;
     }
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {		
 	}
-	
     
     public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
     	if(latestCreatedTableView != null){
@@ -50,32 +55,18 @@ public class TableView extends Application implements ViewInterface, Initializab
     		javafx.application.Platform.runLater(new Table(a,p));
     		return out;
     	}
-    	Thread createTableViewCaller = Thread.currentThread();
-    	TableView previouslyCreatedTableView = TableView.latestCreatedTableView;
-    	Thread viewThread = new Thread(){
-            public void run(){
-            	TableView.launch(TableView.class, args);
-            }
-        };
-        viewThread.start();
-        while(TableView.latestCreatedTableView == previouslyCreatedTableView )
+    	tempAdapter = a;
+        tempPlayerId = p;
+    	Application.launch(TableView.class, args);
+        while(constructionCounter < 2)
     		Thread.yield();
-        while(!TableView.latestCreatedTableView.isConstructed()){
-    		TableView.latestCreatedTableView.almostConstructor(a, p);
-    		Thread.yield();
-    	}
+        constructionCounter = 0;
     	return latestCreatedTableView;
     }
-  
-    private boolean isConstructed(){
-    	if(adapter != null)
-    		return true;
-    	return false;
-    }
     
-    private void almostConstructor(MainAdapter a, int p){
-        adapter = a;
-        playerId = p;
+    private void almostConstructor(){
+        adapter = tempAdapter;
+        playerId = tempPlayerId;
     }
     
     @Override
@@ -104,25 +95,25 @@ public class TableView extends Application implements ViewInterface, Initializab
     public void updatePlayerLinedCash(int id, int cash) {
     }
     
-    public void checkEvent(ActionEvent e)
-    {
+    @FXML
+    public void checkEvent(ActionEvent e){
     	adapter.check(playerId);
     }
     
-    public void foldEvent(ActionEvent e)
-    {
+    @FXML
+    public void foldEvent(ActionEvent e){
+    	System.out.println("adapter"+adapter);
         adapter.fold(playerId);
     }
     
-    public void raiseEvent(ActionEvent e)
-    {
+    @FXML
+    public void raiseEvent(ActionEvent e){
         adapter.raise(playerId, userCashTextField.getText());
         userCashTextField.clear();
     }
     
     public void start(Stage primaryStage) throws Exception {
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
-
         /*btnFold.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {

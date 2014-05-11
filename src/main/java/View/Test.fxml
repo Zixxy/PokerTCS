@@ -13,15 +13,15 @@
 <Image url="@Table.jpg" />
 </image>
 </ImageView>
-<HBox layoutX="479.0" layoutY="547.0" prefHeight="30.0" prefWidth="455.0" spacing="15.0">
+<HBox layoutX="552.0" layoutY="546.0" prefHeight="30.0" prefWidth="386.0" spacing="15.0">
 <children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="25.0" prefWidth="171.0" />
 <HBox layoutX="714.8759765625" layoutY="547.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
-<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" text="Check" /><Button mnemonicParsing="false" text="Resign" />
+<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" text="Check" />
 </children>
 </HBox>
 </children>
 </HBox>
-<Pane layoutY="160.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="25.0" layoutY="192.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
@@ -40,7 +40,7 @@
 </ImageView>
 </children>
 </Pane>
-<Pane layoutY="340.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="105.0" layoutY="366.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
@@ -59,7 +59,7 @@
 </ImageView>
 </children>
 </Pane>
-<Pane layoutX="120.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="120.0" layoutY="35.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
@@ -116,7 +116,7 @@
 </ImageView>
 </children>
 </Pane>
-<Pane layoutX="690.0" layoutY="3.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="707.0" layoutY="35.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
@@ -135,7 +135,7 @@
 </ImageView>
 </children>
 </Pane>
-<Pane layoutX="820.0" layoutY="160.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="804.0" layoutY="192.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
@@ -154,7 +154,7 @@
 </ImageView>
 </children>
 </Pane>
-<Pane layoutX="820.0" layoutY="340.0" prefHeight="151.0" prefWidth="126.0">
+<Pane layoutX="720.0" layoutY="366.0" prefHeight="151.0" prefWidth="126.0">
 <children>
 <Label alignment="CENTER" layoutX="6.0" layoutY="86.0" prefHeight="34.0" prefWidth="116.0" text="Player" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
 <font>
