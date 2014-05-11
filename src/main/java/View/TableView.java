@@ -5,10 +5,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.java.Adapter.MainAdapter;
+import main.java.Model.Deck;
 
 
 public class TableView extends Application implements ViewInterface{
@@ -65,50 +65,19 @@ public class TableView extends Application implements ViewInterface{
     public void updatePlayerCash(int id, int cash) {
     }
     @Override
-    public void addThreeCardsOnTable(Integer firstCard, Integer secondCard,
-                                     Integer thirdCard) {
+    public void addThreeCardsOnTable(Deck firstCard, Deck secondCard,
+    		Deck thirdCard) {
     }
     @Override
-    public void addOneCard(Integer card) {
-    	Image image = new Image(TableView.class.getResourceAsStream("person.gif"));
-    	if(latestCreatedTableControler.firstCardOnTable.getImage() == null)
-    		latestCreatedTableControler.firstCardOnTable.setImage(image);
-
-    	else if(latestCreatedTableControler.secondCardOnTable.getImage() == null)
-    		latestCreatedTableControler.secondCardOnTable.setImage(image);
-    	
-    	else if(latestCreatedTableControler.thirdCardOnTable.getImage() == null)
-    		latestCreatedTableControler.thirdCardOnTable.setImage(image);
-    	
-    	else if(latestCreatedTableControler.fourthCardOnTable.getImage() == null)
-    		latestCreatedTableControler.fourthCardOnTable.setImage(image);
-    	
-    	else if(latestCreatedTableControler.fifthCardOnTable.getImage() == null)
-    		latestCreatedTableControler.fifthCardOnTable.setImage(image);
-    	
-    	return;  	
+    public void addOneCard(Deck card) {
+    	latestCreatedTableControler.addOneCard(card);  	
     }
     @Override
     public void clearTable() {
-    	/*if(latestCreatedTableControler.firstCardOnTable.getImage() != null)
-    		latestCreatedTableControler.firstCardOnTable.setImage(null);
-
-    	if(latestCreatedTableControler.secondCardOnTable.getImage() != null)
-    		latestCreatedTableControler.secondCardOnTable.setImage(null);
-    	
-    	if(latestCreatedTableControler.thirdCardOnTable.getImage() != null)
-    		latestCreatedTableControler.thirdCardOnTable.setImage(null);
-    	
-    	if(latestCreatedTableControler.fourthCardOnTable.getImage() != null)
-    		latestCreatedTableControler.fourthCardOnTable.setImage(null);
-    	
-    	if(latestCreatedTableControler.fifthCardOnTable.getImage() != null)
-    		latestCreatedTableControler.fifthCardOnTable.setImage(null);
-    	*/
-    	return;  
+    	latestCreatedTableControler.clearTable();
     }
     @Override
-    public void updatePlayerHand(Integer firstCardId, Integer secondCardId) {
+    public void updatePlayerHand(Deck firstCard, Deck secondCard) {
     }
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
@@ -119,8 +88,6 @@ public class TableView extends Application implements ViewInterface{
         Scene scene = new Scene(root);
         //	grid.setGridLinesVisible(true);
         primaryStage.setTitle("Welcome");
-        addOneCard(1);
-        clearTable();
         primaryStage.setScene(scene);
         primaryStage.show();
 

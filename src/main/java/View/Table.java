@@ -1,18 +1,17 @@
 package main.java.View;
 
-import main.java.Adapter.MainAdapter;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import main.java.Adapter.MainAdapter;
+import main.java.Model.Deck;
 /*
  *  This class will be deleted when online playing will be activated.
  *  Actually for tests offline playing it is needed.
@@ -45,17 +44,17 @@ public class Table implements ViewInterface, Runnable{
     public void updatePlayerCash(int id, int cash) {
     }
     @Override
-    public void addThreeCardsOnTable(Integer firstCard, Integer secondCard,
-                                     Integer thirdCard) {
+    public void addThreeCardsOnTable(Deck firstCard, Deck secondCard,
+    		Deck thirdCard) {
     }
     @Override
-    public void addOneCard(Integer card) {
+    public void addOneCard(Deck card) {
     }
     @Override
     public void clearTable() {
     }
     @Override
-    public void updatePlayerHand(Integer firstCardId, Integer secondCardId) {
+    public void updatePlayerHand(Deck firstCard, Deck secondCard) {
     }
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
