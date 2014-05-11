@@ -16,7 +16,6 @@ public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
-        
         adapter.addView(view);
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);

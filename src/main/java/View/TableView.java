@@ -2,6 +2,7 @@ package main.java.View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import main.java.Adapter.MainAdapter;
 import javafx.application.Application;
@@ -14,6 +15,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 
@@ -23,8 +29,10 @@ public class TableView extends Application implements ViewInterface, Initializab
     
     private static MainAdapter tempAdapter;
     private static int tempPlayerId;
-    private static int constructionCounter = 0;
+    private static AtomicInteger constructionCounter = new AtomicInteger(0);
     
+    @FXML
+    private GridPane playerOneGrid;
 	@FXML // fx:id="userCashTextField"
     private TextField userCashTextField; // Value injected by FXMLLoader
 
@@ -40,7 +48,7 @@ public class TableView extends Application implements ViewInterface, Initializab
     private static TableView latestCreatedTableView;
    
     public TableView(){
-    	constructionCounter ++;
+    	constructionCounter.incrementAndGet();
     	almostConstructor();
     	latestCreatedTableView = this;
     }
@@ -57,13 +65,24 @@ public class TableView extends Application implements ViewInterface, Initializab
     	}
     	tempAdapter = a;
         tempPlayerId = p;
-    	Application.launch(TableView.class, args);
-        while(constructionCounter < 2)
-    		Thread.yield();
-        constructionCounter = 0;
+    	System.out.println("aww");
+    	Thread viewThread = new Thread(){
+    		public void run(){
+    		Application.launch(TableView.class, args);
+    		}
+    	};
+    	viewThread.start();
+        while(constructionCounter.get() < 2){
+        	Thread.yield();
+        }
+        constructionCounter = new AtomicInteger(0);
+        latestCreatedTableView.loadPlayers();
     	return latestCreatedTableView;
     }
     
+    private void loadPlayers(){
+    //	TextField userTextField = new TextField();
+    }
     private void almostConstructor(){
         adapter = tempAdapter;
         playerId = tempPlayerId;
@@ -111,9 +130,11 @@ public class TableView extends Application implements ViewInterface, Initializab
         userCashTextField.clear();
     }
     
+    private AnchorPane root;
     public void start(Stage primaryStage) throws Exception {
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
         Scene scene = new Scene(root);
+        //	grid.setGridLinesVisible(true);
         primaryStage.setTitle("Welcome");
         primaryStage.setScene(scene);
         primaryStage.show();
