@@ -104,20 +104,20 @@ public class TableControler{
     @FXML
     private ImageView secondPlayerCard;
 
-    @FXML
-    private ImageView firstCardOnTable;
+    @FXML 
+    ImageView firstCardOnTable;
     
     @FXML
-    private ImageView secondCardOnTable;
+    ImageView secondCardOnTable;
 
     @FXML
-    private ImageView thirdCardOnTable;
+    ImageView thirdCardOnTable;
     
     @FXML
-    private ImageView fourthCardOnTable;
+    ImageView fourthCardOnTable;
     
     @FXML
-    private ImageView FifthCardOnTable;
+    ImageView fifthCardOnTable;
     
     @FXML
     private HBox playerOneCashBox;
