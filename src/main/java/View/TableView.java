@@ -4,10 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import main.java.Adapter.MainAdapter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,12 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
+import main.java.Adapter.MainAdapter;
 
 
 public class TableView extends Application implements ViewInterface, Initializable{
@@ -44,6 +42,27 @@ public class TableView extends Application implements ViewInterface, Initializab
 
     @FXML // fx:id="btnRaise"
     private Button btnRaise; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="firstPlayerCard"
+    private Pane firstPlayerCard; // Value injected by FXMLLoader
+
+    @FXML // fx:id="thirdCardOnTable"
+    private Pane thirdCardOnTable; // Value injected by FXMLLoader
+
+    @FXML // fx:id="secondCardOnTable"
+    private Pane secondCardOnTable; // Value injected by FXMLLoader
+
+    @FXML // fx:id="firstCardOnTable"
+    private Pane firstCardOnTable; // Value injected by FXMLLoader
+
+    @FXML // fx:id="secondPlayerCard"
+    private Pane secondPlayerCard; // Value injected by FXMLLoader
+
+    @FXML // fx:id="fourthCardOnTable"
+    private Pane fourthCardOnTable; // Value injected by FXMLLoader
+
+    @FXML // fx:id="FifthCardOnTable"
+    private Pane FifthCardOnTable; // Value injected by FXMLLoader
     
     private static TableView latestCreatedTableView;
    
