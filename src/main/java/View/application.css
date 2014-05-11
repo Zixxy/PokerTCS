@@ -1,6 +1,6 @@
 .root
 {
--fx-background-image: url("table.jpg");
+-fx-background-image: url("Table.jpg");
 }
 
 .label
@@ -9,3 +9,4 @@
 -fx-font-weight: bold;
 -fx-text-fill: #B0B0B0;
 }
+
