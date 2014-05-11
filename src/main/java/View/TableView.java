@@ -39,14 +39,13 @@ public class TableView extends Application implements ViewInterface{
     public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
     	tempAdapter = a;
         tempPlayerId = p;
-    	System.out.println("aww");
-    //	Thread viewThread = new Thread(){
-    //		public void run(){
+  //  	Thread viewThread = new Thread(){
+  //  		public void run(){
     		Application.launch(TableView.class, args);
-    //		}
-    //	};
-    	
-        while(constructionCounter.get() < 2){
+ //   		}
+ //   	};
+ //   	viewThread.start();
+        while(constructionCounter.get() < 1){
         	Thread.yield();
         }
         constructionCounter = new AtomicInteger(0);

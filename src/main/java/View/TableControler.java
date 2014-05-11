@@ -2,56 +2,109 @@ package main.java.View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import main.java.Adapter.MainAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class TableControler{
 	private MainAdapter adapter;
 	private int playerId;
 	public TableControler(){
 		adapter = TableView.tempAdapter;
-		playerId = TableView.tempPlayerId;
 	}
+
     @FXML
-    private GridPane playerOneGrid;
-	@FXML // fx:id="userCashTextField"
-    private TextField userCashTextField; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnCheck"
-    private Button btnCheck; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnFold"
-    private Button btnFold; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnRaise"
-    private Button btnRaise; // Value injected by FXMLLoader
+    private TextField userCashTextField;
     
-    @FXML // fx:id="firstPlayerCard"
-    private Pane firstPlayerCard; // Value injected by FXMLLoader
+    @FXML
+    private Button btnCheck;
+    
+    @FXML
+    private Button btnRaise;
+    
+    @FXML
+    private Button btnFold;
+    
+	@FXML
+    private Pane firstPlayerCard;
+	
+    @FXML
+    private Pane secondPlayerCard;
 
-    @FXML // fx:id="thirdCardOnTable"
-    private Pane thirdCardOnTable; // Value injected by FXMLLoader
+    @FXML
+    private Pane firstCardOnTable;
+    
+    @FXML
+    private Pane secondCardOnTable;
 
-    @FXML // fx:id="secondCardOnTable"
-    private Pane secondCardOnTable; // Value injected by FXMLLoader
+    @FXML
+    private Pane thirdCardOnTable;
+    
+    @FXML
+    private Pane fourthCardOnTable;
+    
+    @FXML
+    private Pane FifthCardOnTable;
+    
+    @FXML
+    private HBox playerOneCashBox;
 
-    @FXML // fx:id="firstCardOnTable"
-    private Pane firstCardOnTable; // Value injected by FXMLLoader
+    @FXML
+    private HBox playerTwoCashBox;
+    
+    @FXML
+    private HBox playerThreeCashBox;
+    
+    @FXML
+    private HBox playerFourCashBox;
+    
+    @FXML
+    private HBox playerFiveCashBox;
+    
+    @FXML
+    private HBox playerSixCashBox;
+    
+    @FXML
+    private HBox playerSevenCashBox;
 
-    @FXML // fx:id="secondPlayerCard"
-    private Pane secondPlayerCard; // Value injected by FXMLLoader
+    @FXML
+    private HBox playerEightCashBox;
 
-    @FXML // fx:id="fourthCardOnTable"
-    private Pane fourthCardOnTable; // Value injected by FXMLLoader
+    @FXML
+    private HBox playerOneNameBox;
 
-    @FXML // fx:id="FifthCardOnTable"
-    private Pane FifthCardOnTable; // Value injected by FXMLLoader
+    @FXML
+    private HBox playerTwoNameBox;
+    
+    @FXML
+    private HBox playerThreeNameBox;
+
+    @FXML
+    private HBox playerFourNameBox;
+    
+    @FXML
+    private HBox playerFiveNameBox;
+    
+    @FXML
+    private HBox playerSixNameBox;
+    
+    @FXML
+    private HBox playerSevenNameBox;
+    
+    @FXML
+    private HBox playerEightNameBox;
+    
+
     
     @FXML
     public void checkEvent(ActionEvent e){
@@ -60,6 +113,9 @@ public class TableControler{
     
     @FXML
     public void foldEvent(ActionEvent e){
+    	Text text = new Text("Neon Sign");
+    	playerOneNameBox.getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
         adapter.fold(playerId);
     }
     
