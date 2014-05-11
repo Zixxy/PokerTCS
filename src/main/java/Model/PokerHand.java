@@ -23,6 +23,9 @@ public class PokerHand implements Comparable<PokerHand>{
 	}
 	private HandNames handName;
 	private List<Deck.Card> cards;
+	public HandNames getHandName(){return handName;}
+	public List<Deck.Card> asList(){return cards;}
+	public Deck.Card getCard(int index){return cards.get(index);}
 	private static boolean isPoker(List<Deck.Card> cardsIn){
 		Collections.sort(cardsIn);
 		return isColor(cardsIn) && isStraight(cardsIn);
