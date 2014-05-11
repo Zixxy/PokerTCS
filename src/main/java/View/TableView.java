@@ -39,11 +39,17 @@ public class TableView extends Application implements ViewInterface{
 			Thread.yield();
 		}
 		while(latestCreatedTableControler == null){
-			System.out.println("as!s " + latestCreatedTableControler );
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(!latestCreatedTableControler.isConstructed()){
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
@@ -56,7 +62,14 @@ public class TableView extends Application implements ViewInterface{
 	}
 
 	@Override
-    public void addPlayer(String name, int id) {
+    public void addPlayer(final String name,final int id) {
+		 javafx.application.Platform.runLater(new Runnable() {
+
+		        @Override
+		        public void run() {
+		        	latestCreatedTableControler.addPlayer(name, id);
+		        }
+		    });
     }
     @Override
     public void removePlayer(int id) {

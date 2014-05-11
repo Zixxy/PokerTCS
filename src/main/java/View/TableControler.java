@@ -117,11 +117,8 @@ public class TableControler{
         userCashTextField.clear();
     }
     
-	public boolean isConstructed(){
-		if(playerOneCashBox == null)
-			return false;
-					
-		/*if(firstCardOnTable == null
+    public boolean isConstructed(){
+		if(/*firstCardOnTable == null
 			|| btnFold == null
 			|| btnRaise == null
 			|| btnCheck == null
@@ -132,7 +129,7 @@ public class TableControler{
 			|| FifthCardOnTable == null
 			|| playerOneCashBox == null
 			|| playerTwoCashBox == null
-			|| playerThreeCashBox == null
+			|| */ playerThreeCashBox == null
 			|| playerFourCashBox == null
 			|| playerFiveCashBox == null
 			|| playerSixCashBox == null
@@ -146,37 +143,43 @@ public class TableControler{
 			|| playerSixNameBox == null
 			|| playerSevenNameBox == null
 			|| playerEightNameBox == null)
-			return false;*/
+			return false;
 		return true;
 	}
 	
-	public void addPlayer(String name, int id){
-		while(playerOneCashBox == null)
-			Thread.yield();
+    public void addPlayer(String name, int id){
     	Text text = new Text(name);
     	switch(id){
     	case 1:
+    		playerTwoNameBox.getChildren().clear();
     		playerOneNameBox.getChildren().add(text);
     		break;
     	case 2:
+    		playerTwoNameBox.getChildren().clear();
     		playerTwoNameBox.getChildren().add(text);
     		break;
     	case 3:
+    		playerThreeNameBox.getChildren().clear();
     		playerThreeNameBox.getChildren().add(text);
     		break;
     	case 4:
+    		playerFourNameBox.getChildren().clear();
     		playerFourNameBox.getChildren().add(text);
     		break;
     	case 5:
+    		playerFiveNameBox.getChildren().clear();
     		playerFiveNameBox.getChildren().add(text);
     		break;
     	case 6:
+    		playerSixNameBox.getChildren().clear();
     		playerSixNameBox.getChildren().add(text);
     		break;
     	case 7:
+    		playerSevenNameBox.getChildren().clear();
     		playerSevenNameBox.getChildren().add(text);
     		break;
     	case 8:
+    		playerEightNameBox.getChildren().clear();
     		playerEightNameBox.getChildren().add(text);
     		break;
     	}
