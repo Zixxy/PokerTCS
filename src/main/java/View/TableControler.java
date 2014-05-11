@@ -184,17 +184,40 @@ public class TableControler{
     }
 
     public void addOneCard(Card card) {
+    	/* 
+    	 * Cards' colors:
+    	 * CLUBS - 0
+    	 * DIAMONDS - 1
+    	 * HEARTS - 2
+    	 * SPADES - 3
+    	 */
+    	int cardId = card.getValue().id;
+    	int cardColor = 0;
+    	if(card.getColor() == Card.Color.CLUBS){
+    		cardColor = 0;
+    	}
+    	else if(card.getColor() == Card.Color.DIAMONDS){
+    		cardColor = 1;
+    	}
+    	else if(card.getColor() == Card.Color.HEARTS){
+    		cardColor = 2;
+    	}
+    	else if(card.getColor() == Card.Color.SPADES){
+    		cardColor = 3;
+    	}
     	
-    	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/10_karo.png"));
-    	Image image2 = new Image(TableView.class.getResourceAsStream("/main/java/Cards/A_pik.png"));
+    	Integer cardNumber = 20*cardColor + cardId;
+    	String s = Integer.toString(cardNumber);
+    	System.out.println("/main/java/Cards/" + s + ".png");
+    	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
     	if(firstCardOnTable.getImage() == null)
     		firstCardOnTable.setImage(image);
 
-    	if(secondCardOnTable.getImage() == null)
-    		secondCardOnTable.setImage(image2);
+    	else if(secondCardOnTable.getImage() == null)
+    		secondCardOnTable.setImage(image);
     	
     	else if(thirdCardOnTable.getImage() == null)
-    		thirdCardOnTable.setImage(image2);
+    		thirdCardOnTable.setImage(image);
     	
     	else if(fourthCardOnTable.getImage() == null)
     		fourthCardOnTable.setImage(image);
@@ -206,21 +229,25 @@ public class TableControler{
     }
 
     public void clearTable() {
-    	/*if(firstCardOnTable.getImage() != null)
-    		firstCardOnTable.setImage(null);
+		/*firstCardOnTable.setImage(null);
 
-    	if(secondCardOnTable.getImage() != null)
-    		secondCardOnTable.setImage(null);
-    	
-    	if(thirdCardOnTable.getImage() != null)
-    		thirdCardOnTable.setImage(null);
-    	
-    	if(fourthCardOnTable.getImage() != null)
-    		fourthCardOnTable.setImage(null);
-    	
-    	if(fifthCardOnTable.getImage() != null)
-    		fifthCardOnTable.setImage(null);*/
+		secondCardOnTable.setImage(null);
+		
+		thirdCardOnTable.setImage(null);
+
+		fourthCardOnTable.setImage(null);
+
+		fifthCardOnTable.setImage(null);*/
 
     	return;  
     }
+
+	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard) {
+		addOneCard(firstCard);
+		
+		addOneCard(secondCard);
+		
+		addOneCard(thirdCard);
+		
+	}
 }

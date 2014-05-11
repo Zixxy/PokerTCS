@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.java.Adapter.MainAdapter;
-import main.java.Model.Deck;
 import main.java.Model.Deck.Card;
 
 
@@ -66,8 +65,8 @@ public class TableView extends Application implements ViewInterface{
     public void updatePlayerCash(int id, int cash) {
     }
     @Override
-    public void addThreeCardsOnTable(Card firstCard, Card secondCard,
-    		Card thirdCard) {
+    public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard) {
+    	latestCreatedTableControler.addThreeCardsOnTable(firstCard, secondCard, thirdCard);
     }
     @Override
     public void addOneCard(Card card) {
@@ -88,8 +87,10 @@ public class TableView extends Application implements ViewInterface{
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
         Scene scene = new Scene(root);
         //	grid.setGridLinesVisible(true);
-        primaryStage.setTitle("Welcome");
+        //clearTable();
+        primaryStage.setTitle("PokerTCS");
         primaryStage.setScene(scene);
+
         primaryStage.show();
 
     }
