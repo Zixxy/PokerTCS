@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 public class TableControler{
 	private MainAdapter adapter;
 	private int playerId;
-	TableControler(){
+	public TableControler(){
 		adapter = TableView.tempAdapter;
 		playerId = TableView.tempPlayerId;
 	}
