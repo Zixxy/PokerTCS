@@ -76,6 +76,7 @@ public class TableView extends Application implements ViewInterface{
     }
     @Override
     public void addOneCard(Integer card) {
+    	
     }
     @Override
     public void clearTable() {

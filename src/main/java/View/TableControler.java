@@ -1,15 +1,12 @@
 package main.java.View;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import main.java.Adapter.MainAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -36,25 +33,25 @@ public class TableControler{
     private Button btnFold;
     
 	@FXML
-    private Pane firstPlayerCard;
+    private ImageView firstPlayerCard;
 	
     @FXML
-    private Pane secondPlayerCard;
+    private ImageView secondPlayerCard;
 
     @FXML
-    private Pane firstCardOnTable;
+    private ImageView firstCardOnTable;
     
     @FXML
-    private Pane secondCardOnTable;
+    private ImageView secondCardOnTable;
 
     @FXML
-    private Pane thirdCardOnTable;
+    private ImageView thirdCardOnTable;
     
     @FXML
-    private Pane fourthCardOnTable;
+    private ImageView fourthCardOnTable;
     
     @FXML
-    private Pane FifthCardOnTable;
+    private ImageView FifthCardOnTable;
     
     @FXML
     private HBox playerOneCashBox;
@@ -125,4 +122,7 @@ public class TableControler{
         userCashTextField.clear();
     }
     
+    public void addOneCard(Integer Card){
+    }
+	
 }

@@ -20,13 +20,27 @@
 </HBox>
 </children>
 </HBox><HBox layoutX="189.0" layoutY="208.0" prefHeight="130.0" prefWidth="570.0" spacing="12.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="203.0">
-<children><Pane fx:id="firstCardOnTable" prefHeight="126.0" prefWidth="101.0" /><Pane fx:id="secondCardOnTable" prefHeight="126.0" prefWidth="101.0" />
-<Pane fx:id="thirdCardOnTable" layoutX="111.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0" />
-<Pane fx:id="fourthCardOnTable" layoutX="212.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0" />
-<Pane fx:id="FifthCardOnTable" layoutX="313.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0" />
+<children><Pane prefHeight="126.0" prefWidth="101.0">
+<children><ImageView fx:id="firstCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane><Pane prefHeight="126.0" prefWidth="101.0">
+<children><ImageView fx:id="secondCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
+<Pane layoutX="111.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0">
+<children><ImageView fx:id="thirdCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
+<Pane layoutX="212.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0">
+<children><ImageView fx:id="fourthCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
+<Pane layoutX="313.0" layoutY="10.0" prefHeight="126.0" prefWidth="101.0">
+<children><ImageView fx:id="FifthCardOnTable" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
 </children></HBox><HBox layoutX="259.0" layoutY="462.0" prefHeight="130.0" prefWidth="254.0" spacing="12.0">
-<children><Pane fx:id="firstPlayerCard" prefHeight="130.0" prefWidth="101.0" />
-<Pane fx:id="secondPlayerCard" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="101.0" />
+<children><Pane prefHeight="130.0" prefWidth="101.0">
+<children><ImageView fx:id="firstPlayerCard" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
+<Pane layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="101.0">
+<children><ImageView fx:id="secondPlayerCard" fitHeight="130.0" fitWidth="100.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+</children></Pane>
 </children></HBox>
 <Pane layoutX="101.0" layoutY="387.0" prefHeight="151.0" prefWidth="126.0">
 <children>
