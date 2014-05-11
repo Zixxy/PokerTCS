@@ -22,46 +22,50 @@ import main.java.Adapter.MainAdapter;
 
 
 public class TableView extends Application implements ViewInterface{
-    private MainAdapter adapter;
-    private int playerId;
-    
-    public static MainAdapter tempAdapter;
-    public static int tempPlayerId;
-    private static AtomicInteger constructionCounter = new AtomicInteger(0);
-    private static TableView latestCreatedTableView;
-   
-    public TableView(){
-    	constructionCounter.incrementAndGet();
-    	almostConstructor();
-    	latestCreatedTableView = this;
-    }
-    
-    public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
-    	tempAdapter = a;
-        tempPlayerId = p;
-  //  	Thread viewThread = new Thread(){
-  //  		public void run(){
-    		Application.launch(TableView.class, args);
- //   		}
- //   	};
- //   	viewThread.start();
-        while(constructionCounter.get() < 1){
-        	Thread.yield();
-        }
-        constructionCounter = new AtomicInteger(0);
-        latestCreatedTableView.loadPlayers();
-    	return latestCreatedTableView;
-    }
-    
-    private void loadPlayers(){
-    //	TextField userTextField = new TextField();
-    }
-    private void almostConstructor(){
-        adapter = tempAdapter;
-        playerId = tempPlayerId;
-    }
-    
-    @Override
+	private MainAdapter adapter;
+	private int playerId;
+	public static MainAdapter tempAdapter;
+	public static int tempPlayerId;
+	private static AtomicInteger constructionCounter = new AtomicInteger(0);
+	private static TableView latestCreatedTableView;
+	public static TableControler latestCreatedTableControler;
+
+	public TableView(){
+		constructionCounter.incrementAndGet();
+		almostConstructor();
+		latestCreatedTableView = this;
+	}
+
+	public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
+		tempAdapter = a;
+		tempPlayerId = p;
+		Thread viewThread = new Thread(){
+			public void run(){
+				Application.launch(TableView.class, args);
+			}
+		};
+		viewThread.start();
+		while(constructionCounter.get() < 1){
+			Thread.yield();
+		}
+		while(latestCreatedTableControler == null){
+			System.out.println("as!s" + latestCreatedTableControler );
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		constructionCounter = new AtomicInteger(0);
+		return latestCreatedTableView;
+	}
+	private void almostConstructor(){
+		adapter = tempAdapter;
+		playerId = tempPlayerId;
+	}
+
+	@Override
     public void addPlayer(String name, int id) {
     }
     @Override

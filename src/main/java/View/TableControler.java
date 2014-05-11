@@ -18,8 +18,74 @@ public class TableControler{
 	private int playerId;
 	public TableControler(){
 		adapter = TableView.tempAdapter;
+		TableView.latestCreatedTableControler = this;
 	}
-
+	
+	public boolean isConstructed(){
+		if(playerOneCashBox == null)
+			return false;
+					
+		/*if(firstCardOnTable == null
+			|| btnFold == null
+			|| btnRaise == null
+			|| btnCheck == null
+			|| userCashTextField == null
+			|| secondCardOnTable == null
+			|| thirdCardOnTable == null
+			|| fourthCardOnTable == null
+			|| FifthCardOnTable == null
+			|| playerOneCashBox == null
+			|| playerTwoCashBox == null
+			|| playerThreeCashBox == null
+			|| playerFourCashBox == null
+			|| playerFiveCashBox == null
+			|| playerSixCashBox == null
+			|| playerSevenCashBox == null
+			|| playerEightCashBox == null
+			|| playerOneNameBox == null
+			|| playerTwoNameBox == null
+			|| playerThreeNameBox == null
+			|| playerFourNameBox == null
+			|| playerFiveNameBox == null
+			|| playerSixNameBox == null
+			|| playerSevenNameBox == null
+			|| playerEightNameBox == null)
+			return false;*/
+		return true;
+	}
+	
+	public void addPlayer(String name, int id){
+		while(playerOneCashBox == null)
+			Thread.yield();
+    	Text text = new Text(name);
+    	switch(id){
+    	case 1:
+    		playerOneNameBox.getChildren().add(text);
+    		break;
+    	case 2:
+    		playerTwoNameBox.getChildren().add(text);
+    		break;
+    	case 3:
+    		playerThreeNameBox.getChildren().add(text);
+    		break;
+    	case 4:
+    		playerFourNameBox.getChildren().add(text);
+    		break;
+    	case 5:
+    		playerFiveNameBox.getChildren().add(text);
+    		break;
+    	case 6:
+    		playerSixNameBox.getChildren().add(text);
+    		break;
+    	case 7:
+    		playerSevenNameBox.getChildren().add(text);
+    		break;
+    	case 8:
+    		playerEightNameBox.getChildren().add(text);
+    		break;
+    	}
+    	text.setTextAlignment(TextAlignment.CENTER);
+    }
     @FXML
     private TextField userCashTextField;
     
@@ -110,9 +176,6 @@ public class TableControler{
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	Text text = new Text("Neon Sign");
-    	playerOneNameBox.getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
         adapter.fold(playerId);
     }
     
