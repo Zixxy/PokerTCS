@@ -102,7 +102,6 @@ public class TableView extends Application implements ViewInterface, Initializab
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	System.out.println("adapter"+adapter);
         adapter.fold(playerId);
     }
     
@@ -114,30 +113,7 @@ public class TableView extends Application implements ViewInterface, Initializab
     
     public void start(Stage primaryStage) throws Exception {
     	AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
-        /*btnFold.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                adapter.fold(playerId);
-            }
-        });
-
-        btnRaise.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                adapter.raise(playerId, userCashTextField.getText());
-                userCashTextField.clear();
-            }
-        });*/
-
-       /* btnCheck.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                adapter.check(playerId);
-            }
-        });*/
-
         Scene scene = new Scene(root);
-        //	grid.setGridLinesVisible(true);
         primaryStage.setTitle("Welcome");
         primaryStage.setScene(scene);
         primaryStage.show();
