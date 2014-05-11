@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import main.java.Adapter.MainAdapter;
-import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 
 public class TableControler{
 	private MainAdapter adapter;
@@ -183,7 +183,8 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
     }
 
-    public void addOneCard(Deck card) {
+    public void addOneCard(Card card) {
+    	
     	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/10_karo.png"));
     	Image image2 = new Image(TableView.class.getResourceAsStream("/main/java/Cards/A_pik.png"));
     	if(firstCardOnTable.getImage() == null)

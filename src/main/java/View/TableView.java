@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.java.Adapter.MainAdapter;
 import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 
 
 public class TableView extends Application implements ViewInterface{
@@ -65,11 +66,11 @@ public class TableView extends Application implements ViewInterface{
     public void updatePlayerCash(int id, int cash) {
     }
     @Override
-    public void addThreeCardsOnTable(Deck firstCard, Deck secondCard,
-    		Deck thirdCard) {
+    public void addThreeCardsOnTable(Card firstCard, Card secondCard,
+    		Card thirdCard) {
     }
     @Override
-    public void addOneCard(Deck card) {
+    public void addOneCard(Card card) {
     	latestCreatedTableControler.addOneCard(card);  	
     }
     @Override
@@ -77,7 +78,7 @@ public class TableView extends Application implements ViewInterface{
     	latestCreatedTableControler.clearTable();
     }
     @Override
-    public void updatePlayerHand(Deck firstCard, Deck secondCard) {
+    public void updatePlayerHand(Card firstCard, Card secondCard) {
     }
     @Override
     public void updatePlayerLinedCash(int id, int cash) {

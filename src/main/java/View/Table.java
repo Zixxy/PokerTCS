@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.java.Adapter.MainAdapter;
-import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 /*
  *  This class will be deleted when online playing will be activated.
  *  Actually for tests offline playing it is needed.
@@ -44,17 +44,17 @@ public class Table implements ViewInterface, Runnable{
     public void updatePlayerCash(int id, int cash) {
     }
     @Override
-    public void addThreeCardsOnTable(Deck firstCard, Deck secondCard,
-    		Deck thirdCard) {
+    public void addThreeCardsOnTable(Card firstCard, Card secondCard,
+    		Card thirdCard) {
     }
     @Override
-    public void addOneCard(Deck card) {
+    public void addOneCard(Card card) {
     }
     @Override
     public void clearTable() {
     }
     @Override
-    public void updatePlayerHand(Deck firstCard, Deck secondCard) {
+    public void updatePlayerHand(Card firstCard, Card secondCard) {
     }
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
