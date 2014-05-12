@@ -23,9 +23,57 @@ public class PokerHand implements Comparable<PokerHand>{
 	}
 	private HandNames handName;
 	private List<Deck.Card> cards;
-	public HandNames getHandName(){return handName;}
-	public List<Deck.Card> asList(){return cards;}
-	public Deck.Card getCard(int index){return cards.get(index);}
+	public HandNames getHandName(){
+        return handName;
+    }
+	public List<Deck.Card> asList(){
+        return cards;
+    }
+	public Deck.Card getCard(int index){
+        return cards.get(index);
+    }
+    public static PokerHand evaluate(List<Deck.Card> cardsIn) throws IllegalArgumentException{
+        PokerHand out = null;
+        if(cardsIn == null || cardsIn.size() != 7) throw new IllegalArgumentException() ;
+        for(int i =0; i<7; i++) {
+            for(int j = i+1; j<7; j++) {
+                List<Deck.Card> cards = new ArrayList<Deck.Card>();
+                for(int k =0; k<7; k++) {
+                    if(k!=i && k!=j)
+                        cards.add(cardsIn.get(k));
+                }
+                PokerHand actual = evaluateFiveCards(cards);
+                if(out == null || actual.compareTo(out) > 0)
+                    out = actual;
+            }
+        }
+        return out;
+    }
+    @Override
+    public int compareTo(PokerHand o) {
+        if(this.handName == o.handName) {
+            for(int i = 4; i>=0; i--)
+                if(this.cards.get(i).getValue() != o.cards.get(i).getValue())
+                    return this.cards.get(i).getValue().compareTo(o.cards.get(i).getValue());
+        }
+        return this.handName.compareTo(o.handName);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || o.getClass() != PokerHand.class) return false;
+        return this.compareTo((PokerHand) o) == 0;
+    }
+    @Override
+    public int hashCode() {
+        int out = this.handName.hashCode();
+        for(int i = 0; i<5; i++) {
+            out*=31;
+            out+=this.cards.get(i).getValue().hashCode();
+        }
+        return out;
+    }
+
+
 	private static boolean isPoker(List<Deck.Card> cardsIn){
 		Collections.sort(cardsIn);
 		return isColor(cardsIn) && isStraight(cardsIn);
@@ -106,7 +154,6 @@ public class PokerHand implements Comparable<PokerHand>{
 		}
 		return false;
 	}
-	
 	private static PokerHand evaluateFiveCards( List<Deck.Card> cardsIn) throws IllegalArgumentException{
 		if(cardsIn == null || cardsIn.size() != 5) throw new IllegalArgumentException() ;
 		if(isPoker(cardsIn)) return new PokerHand(cardsIn, HandNames.POKER);
@@ -118,47 +165,7 @@ public class PokerHand implements Comparable<PokerHand>{
 		if(isTwoPairs(cardsIn)) return new PokerHand(cardsIn, HandNames.TWOPAIRS);
 		if(isPair(cardsIn)) return new PokerHand(cardsIn, HandNames.PAIR);
 		return new PokerHand(cardsIn, HandNames.HIGHCARD);
-		
-	}
-	public static PokerHand evaluate(List<Deck.Card> cardsIn) throws IllegalArgumentException{
-		PokerHand out = null;
-		if(cardsIn == null || cardsIn.size() != 7) throw new IllegalArgumentException() ;
-		for(int i =0; i<7; i++) {
-			for(int j = i+1; j<7; j++) {
-				List<Deck.Card> cards = new ArrayList<Deck.Card>();
-				for(int k =0; k<7; k++) {
-					if(k!=i && k!=j)
-						cards.add(cardsIn.get(k));
-				}
-				PokerHand actual = evaluateFiveCards(cards);
-				if(out == null || actual.compareTo(out) > 0)
-					out = actual;
-			}
-		}
-		return out;
-	}
-	@Override
-	public int compareTo(PokerHand o) {
-		if(this.handName == o.handName) {
-			for(int i = 4; i>=0; i--)
-				if(this.cards.get(i).getValue() != o.cards.get(i).getValue())
-					return this.cards.get(i).getValue().compareTo(o.cards.get(i).getValue());
-		}
-		return this.handName.compareTo(o.handName);
-	}
-	@Override
-	public boolean equals(Object o) {
-		if(o == null || o.getClass() != PokerHand.class) return false;
-		return this.compareTo((PokerHand) o) == 0;
-	}
-	@Override
-	public int hashCode() {
-		int out = this.handName.hashCode();
-		for(int i = 0; i<5; i++) {
-			out*=31;
-			out+=this.cards.get(i).getValue().hashCode();
-		}
-		return out;
+
 	}
 	
 }

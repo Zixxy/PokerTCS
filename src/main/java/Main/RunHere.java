@@ -1,8 +1,5 @@
 package main.java.Main;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.*;
+
 import main.java.Adapter.MainAdapter;
 import main.java.Model.ModelOne;
 import main.java.View.TableView;

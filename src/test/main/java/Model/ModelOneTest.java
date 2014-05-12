@@ -1,12 +1,10 @@
-package test;
+package main.java.Model;
 
 
-import main.java.Model.ModelOne;
 import main.java.Adapter.MainAdapter;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 
 /**
