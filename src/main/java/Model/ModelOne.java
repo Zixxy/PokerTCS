@@ -11,6 +11,7 @@ import java.util.List;
  * Created by bartek on 05.05.14.
  */
 public class ModelOne implements ModelInterface {
+    private int actualId;
     private AdapterInterface adapter;
     private boolean started;//is game started?
     private int numberOfPlayers;
@@ -20,13 +21,16 @@ public class ModelOne implements ModelInterface {
     private int currentPlayerId;
     private int numberInGame;
     private int raisingPlayerId;
-    private int enter;
+    private int ante;
     private Deck deck;
     private Deck.Card cards[];
     private int stage;
     private int resigned;
+    private int startedAmount;
+
 
     public ModelOne(AdapterInterface arg1){
+        actualId = 0;
         this.started=false;
         this.numberOfPlayers=0;
         this.players= new ArrayList<Player>();
@@ -34,6 +38,8 @@ public class ModelOne implements ModelInterface {
         this.adapter=arg1;
         this.resigned=0;
         this.cards = new Deck.Card[5];
+        this.ante=10;
+        this.startedAmount=1000;
     }//
     @Override
     public boolean isStarted() {
@@ -100,14 +106,25 @@ public class ModelOne implements ModelInterface {
     }
 
     @Override
+    public void setAnte(int arg1){
+        ante=arg1;
+    }
+
+    @Override
+    public Deck.Card[] getHandCards(int playerId){
+        return players.get(playerId).getCards();
+    }
+
+    @Override
     public void setStartedAmount(int amount) {
+        startedAmount=amount;
 
     }
 
     @Override
     public void addPlayer(String name) {
         if(!this.started) {
-            players.add(new Player(name, 1000));
+            players.add(new Player(name, startedAmount));
             numberOfPlayers = players.size();
             adapter.addPlayer(name, numberOfPlayers - 1);
         }
@@ -116,8 +133,10 @@ public class ModelOne implements ModelInterface {
     @Override
     public void removePlayer(int playerId) {
         if(players.get(playerId).getInGame()==true) numberInGame--;
-        players.remove(playerId);
-        numberOfPlayers=players.size();
+        players.get(playerId).setResigned(true);
+
+        resigned++;
+        numberOfPlayers--;
         adapter.removePlayer(playerId);
     }//
 
@@ -183,7 +202,7 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-            this.limit +=amount;
+            this.limit = players.get(playerId).getOffer();
             this.raisingPlayerId = playerId;
             currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             while (players.get(currentPlayerId).getInGame() == false) {
@@ -201,8 +220,7 @@ public class ModelOne implements ModelInterface {
         fold(playerId);
         currentPlayerId=temporaryCurrentPlayerId;
         removePlayer(playerId);
-        resigned++;
-        numberOfPlayers--;
+
     }
 
     private void won(){
@@ -210,6 +228,12 @@ public class ModelOne implements ModelInterface {
             currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
         }
         adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
+        for(Player p:players) {
+
+
+            if (!p.getResigned()) adapter.sendMessage("Gracz "+p.getName() + " mial "+ Arrays.deepToString(p.getCards()));
+        }
+        //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
         players.get(currentPlayerId).setMoney(players.get(currentPlayerId).getMoney()+onTable);
         adapter.updatePlayerCash(currentPlayerId, players.get(currentPlayerId).getMoney());
         startRound();
@@ -220,21 +244,22 @@ public class ModelOne implements ModelInterface {
         stage=0;
         for(int i=0;i<5;i++) cards[i]=null;
         deck=new Deck();
-        enter=10;
+
         int i=0;
         for(Player p:players){
             p.setCards(deck);
-            p.setMoney(p.getMoney()- enter);
-            adapter.updatePlayerLinedCash(i, p.getMoney());
-            p.setOffer(enter);
+            p.setMoney(p.getMoney()- ante);
+            adapter.updatePlayerCash(i, p.getMoney());
+            p.setOffer(ante);
             adapter.updatePlayerLinedCash(i, p.getOffer());
             p.setInGame(true);
             i++;
         }
+        adapter.startNewRound();
         currentPlayerId=0;
-        this.limit= enter;
+        this.limit= ante;
         this.numberInGame=numberOfPlayers-resigned;
-        this.onTable= enter *numberInGame;
+        this.onTable= ante *numberInGame;
     }
 
 
