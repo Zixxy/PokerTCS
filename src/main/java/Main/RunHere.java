@@ -2,6 +2,7 @@ package main.java.Main;
 
 import main.java.Adapter.MainAdapter;
 import main.java.Model.ModelOne;
+import main.java.View.CommandLine;
 import main.java.View.TableView;
 import main.java.View.ViewInterface;
 
@@ -13,9 +14,10 @@ public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
-
+        ViewInterface textView = new CommandLine(adapter);
 
         adapter.addView(view);
+        adapter.addView(textView);
 
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
