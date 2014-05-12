@@ -132,7 +132,7 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="584.0" layoutY="1.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="567.0" layoutY="1.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -231,6 +231,6 @@
 <HBox layoutX="315.0" layoutY="154.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFiveLinedCash" layoutX="616.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerSevenLinedCash" layoutX="785.0" layoutY="268.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerEightLinedCash" layoutX="703.0" layoutY="401.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerEightLinedCash" layoutX="703.0" layoutY="401.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="396.0" layoutY="78.0" prefHeight="30.0" prefWidth="171.0" />
 	</children>
 </AnchorPane>

@@ -30,6 +30,9 @@ public class TableControler{
 		TableView.latestCreatedTableControler = this;
 	}
 	
+	@FXML
+	private HBox PotBox;
+	
     @FXML
     private TextField userCashTextField;
     
@@ -184,6 +187,14 @@ public class TableControler{
 		return true;
 	}
 	
+    public void setPot(int cash){
+    	Text text = new Text("POT: $"+Integer.toString(cash));
+    	text.setFill(Color.BEIGE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 20));
+    	PotBox.getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
+    }
+    
     public void addPlayer(String name, int id){
     	Text text = new Text(name);
     	DropShadow ds = new DropShadow();
@@ -268,7 +279,7 @@ public class TableControler{
     }
     
     public void updatePlayerCash(int id,int cash){
-    	Text text = new Text(Integer.toString(cash));
+    	Text text = new Text("$"+Integer.toString(cash));
     	Light.Distant light = new Light.Distant();
     	light.setAzimuth(-100.0);
     	Lighting lighting = new Lighting();
@@ -445,43 +456,66 @@ public class TableControler{
     	secondPlayerCard.setImage(image);
 	}
 	
+	public void removePlayersLinedCash(int id){
+		updatePlayerLinedCash(id, -1);
+	}
+	
 	public void updatePlayerLinedCash(int id, int cash) {
-    	Text text = new Text(Integer.toString(cash));
-    	
-    	switch(id){
-    	case 1:
-    		playerOneLinedCash.getChildren().clear();
-    		playerOneLinedCash.getChildren().add(text);
-    		break;
-    	case 2:
-    		playerTwoLinedCash.getChildren().clear();
-    		playerTwoLinedCash.getChildren().add(text);
-    		break;
-    	case 3:
-    		playerThreeLinedCash.getChildren().clear();
-    		playerThreeLinedCash.getChildren().add(text);
-    		break;
-    	case 4:
-    		playerFourLinedCash.getChildren().clear();
-    		playerFourLinedCash.getChildren().add(text);
-    		break;
-    	case 5:
-    		playerFiveLinedCash.getChildren().clear();
-    		playerFiveLinedCash.getChildren().add(text);
-    		break;
-    	case 6:
-    		playerSixLinedCash.getChildren().clear();
-    		playerSixLinedCash.getChildren().add(text);
-    		break;
-    	case 7:
-    		playerSevenLinedCash.getChildren().clear();
-    		playerSevenLinedCash.getChildren().add(text);
-    		break;
-    	case 8:
-    		playerEightLinedCash.getChildren().clear();
-    		playerEightLinedCash.getChildren().add(text);
-    		break;
-    	}
+		Text text = new Text("$"+Integer.toString(cash));
+		text.setCache(true);
+		text.setFill(Color.MAROON);
+		text.setFont(Font.font(null, FontWeight.BOLD, 19));
+		
+		switch(id){
+		case 1:
+			if(playerOneLinedCash != null)
+				playerOneLinedCash.getChildren().clear();
+			if(cash>0)
+				playerOneLinedCash.getChildren().add(text);
+			break;
+		case 2:
+			if(playerTwoLinedCash != null)
+				playerTwoLinedCash.getChildren().clear();
+			if(cash>0)
+				playerTwoLinedCash.getChildren().add(text);
+			break;
+		case 3:
+			if(playerThreeLinedCash != null)
+				playerThreeLinedCash.getChildren().clear();
+			if(cash>0)
+				playerThreeLinedCash.getChildren().add(text);
+			break;
+		case 4:
+			if(playerFourLinedCash != null)
+				playerFourLinedCash.getChildren().clear();
+			if(cash>0)
+				playerFourLinedCash.getChildren().add(text);
+			break;
+		case 5:
+			if(playerFiveLinedCash != null)
+				playerFiveLinedCash.getChildren().clear();
+			if(cash>0)
+				playerFiveLinedCash.getChildren().add(text);
+			break;
+		case 6:
+			if(playerSixLinedCash != null)
+				playerSixLinedCash.getChildren().clear();
+			if(cash>0)
+				playerSixLinedCash.getChildren().add(text);
+			break;
+		case 7:
+			if(playerSevenLinedCash != null)
+				playerSevenLinedCash.getChildren().clear();
+			if(cash>0)
+				playerSevenLinedCash.getChildren().add(text);
+			break;
+		case 8:
+			if(playerEightLinedCash != null)
+				playerEightLinedCash.getChildren().clear();
+			if(cash>0)
+				playerEightLinedCash.getChildren().add(text);
+			break;
+		}
     	text.setTextAlignment(TextAlignment.CENTER);
 	}
 }

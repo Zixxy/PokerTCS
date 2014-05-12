@@ -60,7 +60,12 @@ public class TableView extends Application implements ViewInterface{
 		adapter = tempAdapter;
 		playerId = tempPlayerId;
 	}
-
+	
+	@Override
+	public void setPot(int cash){
+		latestCreatedTableControler.setPot(cash);
+	}
+	
 	@Override
 	public void addPlayer(final String name,final int id) {
 		javafx.application.Platform.runLater(new Runnable() {
@@ -117,7 +122,10 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
+				setPot(0);
 				latestCreatedTableControler.clearTable();
+				for(int i=0; i < 8; i++)
+					latestCreatedTableControler.removePlayersLinedCash(i+1);
 			}
 		});
 	}
@@ -146,7 +154,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-			//	latestCreatedTableControler.removePlayersLinedCash(id+1, cash+1);
+				latestCreatedTableControler.removePlayersLinedCash(id+1);
 			}
 		});
 	}
