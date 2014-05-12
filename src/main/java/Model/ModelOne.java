@@ -88,9 +88,11 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void addPlayer(String name) {
-        players.add(new Player(name, 1000));
-        numberOfPlayers=players.size();
-        adapter.addPlayer(name, numberOfPlayers-1);
+        if(!this.started) {
+            players.add(new Player(name, 1000));
+            numberOfPlayers = players.size();
+            adapter.addPlayer(name, numberOfPlayers - 1);
+        }
     }
 
     @Override
@@ -113,14 +115,12 @@ public class ModelOne implements ModelInterface {
         if(currentPlayerId==playerId) {
             players.get(playerId).setInGame(false);
             numberInGame--;
-
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje\n");
+            while (players.get(currentPlayerId).getInGame() == false) {
+                currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             if (numberInGame == 1) won();
             else {
                 if (currentPlayerId == raisingPlayerId) checkItAll();
-                else {
-                    while (players.get(currentPlayerId).getInGame() == false) {
-                        currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
-                    }
                 }
             }
         }
@@ -160,13 +160,17 @@ public class ModelOne implements ModelInterface {
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             }
-            if (currentPlayerId == raisingPlayerId) checkItAll();
+
         }
     }
 
 
     @Override
     public void resign(int playerId) {
+        int temporaryCurrentPlayerId=currentPlayerId;
+        currentPlayerId=playerId;
+        fold(playerId);
+        currentPlayerId=temporaryCurrentPlayerId;
 
     }
 
