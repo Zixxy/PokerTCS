@@ -188,8 +188,11 @@ public class TableControler{
 	}
 	
     public void setPot(int cash){
-    	Text text = new Text("$"+Integer.toString(cash));
+    	Text text = new Text("POT: $"+Integer.toString(cash));
+    	text.setFill(Color.BEIGE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 20));
     	PotBox.getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
     }
     
     public void addPlayer(String name, int id){
@@ -461,7 +464,7 @@ public class TableControler{
 		Text text = new Text("$"+Integer.toString(cash));
 		text.setCache(true);
 		text.setFill(Color.MAROON);
-		text.setFont(Font.font(null, FontWeight.BOLD, 23));
+		text.setFont(Font.font(null, FontWeight.BOLD, 19));
 		
 		switch(id){
 		case 1:
