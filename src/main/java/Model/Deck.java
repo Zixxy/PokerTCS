@@ -1,5 +1,6 @@
 package main.java.Model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class Deck {
     private static List<Card> standardCards;
     private List<Card> deckCards;
     static {
+        standardCards = new ArrayList<Card>();
         for(Card.Color color: Card.Color.values()) {
             for(Card.Value value: Card.Value.values()) {
                 standardCards.add(new Card(value, color));
@@ -91,6 +93,7 @@ public class Deck {
         throw new IllegalArgumentException();
     }
     public Deck() {
+        deckCards = new ArrayList<Card>();
         deckCards.addAll(standardCards);
         Collections.shuffle(deckCards);
     }
