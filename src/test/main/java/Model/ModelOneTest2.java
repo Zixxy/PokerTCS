@@ -18,7 +18,8 @@ public class ModelOneTest2 {
         model.addPlayer("Bartek");
         model.addPlayer("Miron");
 
-        model.setStartedAmount(2000);
+        model.setStartedAmount(2020);
+        model.setAnte(20);
         model.removePlayer(3);
         model.addPlayer("Maciek");
         assertEquals(5,model.size());
@@ -45,6 +46,7 @@ public class ModelOneTest2 {
         model.raise(3, 200);
         assertEquals(3, model.getActualPlayer());
         model.raise(3, 400);
+        assertEquals(1600,model.getMoney(3));
         assertEquals(4,model.getActualPlayer());
         assertEquals(1800,model.getMoney(0));
         assertEquals(1800 , model.getMoney(1) );
