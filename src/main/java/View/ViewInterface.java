@@ -9,7 +9,10 @@ public interface ViewInterface {
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard);
 	public void addOneCard(Card card);
 	/**
-	 * removes cards from table. This method also for each player removes lined cash.
+	 * Method:
+	 * -removes cards from table.
+	 * -for each player removes lined cash.
+	 * -sets pot to $0
 	 */
 	public void clearTable();
 	/**
@@ -26,4 +29,8 @@ public interface ViewInterface {
 	public void removePlayersLinedCash(int id);
     public void sendMessage(String text);
     public void startNewRound();
+    /**
+     * it sets pot on table.
+     */
+    public void setPot(int cash);
 }

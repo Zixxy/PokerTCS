@@ -30,6 +30,9 @@ public class TableControler{
 		TableView.latestCreatedTableControler = this;
 	}
 	
+	@FXML
+	private HBox PotBox;
+	
     @FXML
     private TextField userCashTextField;
     
@@ -184,6 +187,11 @@ public class TableControler{
 		return true;
 	}
 	
+    public void setPot(int cash){
+    	Text text = new Text("$"+Integer.toString(cash));
+    	PotBox.getChildren().add(text);
+    }
+    
     public void addPlayer(String name, int id){
     	Text text = new Text(name);
     	DropShadow ds = new DropShadow();
@@ -268,7 +276,7 @@ public class TableControler{
     }
     
     public void updatePlayerCash(int id,int cash){
-    	Text text = new Text(Integer.toString(cash));
+    	Text text = new Text("$"+Integer.toString(cash));
     	Light.Distant light = new Light.Distant();
     	light.setAzimuth(-100.0);
     	Lighting lighting = new Lighting();
@@ -450,7 +458,7 @@ public class TableControler{
 	}
 	
 	public void updatePlayerLinedCash(int id, int cash) {
-		Text text = new Text(Integer.toString(cash));
+		Text text = new Text("$"+Integer.toString(cash));
 		text.setCache(true);
 		text.setFill(Color.MAROON);
 		text.setFont(Font.font(null, FontWeight.BOLD, 23));
