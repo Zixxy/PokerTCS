@@ -18,6 +18,8 @@ public interface ModelInterface {
 	void addPlayer(String name);
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
+    void setAnte(int arg);//sets Ante
+    Deck.Card[] getHandCards(int playerId);//
 
 	//game
 	void fold(int playerId);
