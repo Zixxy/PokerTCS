@@ -23,4 +23,6 @@ public interface AdapterInterface {
     public void addView(ViewInterface view);
     public void addThreeCards(Deck.Card cards[]);
     public void addOneCard(Deck.Card card);
+    public void startNewRound();
+    public Deck.Card[] getHandCards(int playerId);
 }
