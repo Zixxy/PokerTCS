@@ -3,7 +3,9 @@ package main.java.Model;
 
 import main.java.Adapter.AdapterInterface;
 
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bartek on 05.05.14.
@@ -18,6 +20,11 @@ public class ModelOne implements ModelInterface {
     private int currentPlayerId;
     private int numberInGame;
     private int raisingPlayerId;
+    private int enter;
+    private Deck deck;
+    private Deck.Card cards[];
+    private int stage;
+    private int resigned;
 
     public ModelOne(AdapterInterface arg1){
         this.started=false;
@@ -25,7 +32,9 @@ public class ModelOne implements ModelInterface {
         this.players= new ArrayList<Player>();
         this.limit=0;
         this.adapter=arg1;
-    }
+        this.resigned=0;
+        this.cards = new Deck.Card[5];
+    }//
     @Override
     public boolean isStarted() {
         return started;
@@ -158,12 +167,12 @@ public class ModelOne implements ModelInterface {
     public void raise(int playerId, int amount) {
         //rowniez zabezpieczyc przed brakiem gotowki
         if(currentPlayerId==playerId) {
-            onTable+=(amount - players.get(playerId).getOffer());
-            players.get(playerId).setMoney(players.get(playerId).getMoney() - (amount - players.get(playerId).getOffer()));
-            players.get(playerId).setOffer(amount);
+            onTable+=amount;
+            players.get(playerId).setMoney(players.get(playerId).getMoney() -amount);
+            players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-            this.limit = amount;
+            this.limit +=amount;
             this.raisingPlayerId = playerId;
 
             while (players.get(currentPlayerId).getInGame() == false) {
@@ -181,6 +190,8 @@ public class ModelOne implements ModelInterface {
         fold(playerId);
         currentPlayerId=temporaryCurrentPlayerId;
         removePlayer(playerId);
+        resigned++;
+        numberOfPlayers--;
     }
 
     private void won(){
@@ -195,29 +206,64 @@ public class ModelOne implements ModelInterface {
 
     private void startRound(){
         adapter.clearTable();
+        stage=0;
+        for(int i=0;i<5;i++) cards[i]=null;
+        deck=new Deck();
+        enter=10;
         int i=0;
         for(Player p:players){
-            p.setMoney(p.getMoney()-10);
+            p.setCards(deck);
+            p.setMoney(p.getMoney()- enter);
             adapter.updatePlayerCash(i, p.getMoney());
-            p.setOffer(10);
+            p.setOffer(enter);
             adapter.updatePlayerCash(i, p.getOffer());
             p.setInGame(true);
-
             i++;
         }
         currentPlayerId=0;
-        this.limit=10;
-        this.numberInGame=numberOfPlayers;
-        this.onTable=10*numberInGame;
+        this.limit= enter;
+        this.numberInGame=numberOfPlayers-resigned;
+        this.onTable= enter *numberInGame;
+    }
+
+
+    private PokerHand getPlayerHand(Player player) {
+        List<Deck.Card> cards = new ArrayList<Deck.Card>();
+        cards.addAll(Arrays.asList(player.getCards()));
+        cards.addAll(Arrays.asList(this.cards));
+        return PokerHand.evaluate(cards);
     }
 
     private void checkItAll(){
-        int i=0;
-        for(Player p:players){
-            if(p.getInGame()) p.setMoney(p.getMoney()+(onTable/numberInGame));
-            adapter.updatePlayerCash(i, p.getMoney());
-            i++;
+        if (stage==0){
+            cards[0]=deck.getNextCard();
+            cards[1]=deck.getNextCard();
+            cards[2]=deck.getNextCard();
         }
-        startRound();
-    };
+        if (stage==1){
+            cards[3]=deck.getNextCard();
+        }
+        if (stage==2){
+            cards[4]=deck.getNextCard();
+        }
+        if (stage==3) {
+            List<Player> inGamePlayers = new ArrayList<Player>();
+            for(Player p:players) {
+                if(p.getInGame()) {
+                    inGamePlayers.add(p);
+                }
+            }
+            Player max = inGamePlayers.get(0);
+            for(Player player: inGamePlayers) {
+                if (getPlayerHand(player).compareTo(getPlayerHand(max)) > 0)
+                    max = player;
+            }
+             for(Player player: inGamePlayers) {
+                 if (getPlayerHand(player).compareTo(getPlayerHand(max)) < 0)
+                     player.setInGame(false);
+             }
+        }
+        won();
+        stage++;
+    }
 }
