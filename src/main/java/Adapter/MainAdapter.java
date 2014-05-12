@@ -21,14 +21,14 @@ public class MainAdapter implements AdapterInterface {
     @Override
     public void fold(int playerId) {
         for(ModelInterface model: models) {
-            model.fold(playerId);
+            model.fold(playerId-1);
         }
     }
 
     @Override
     public void check(int playerId) {
         for(ModelInterface model: models) {
-            model.check(playerId);
+            model.check(playerId-1);
         }
     }
 
@@ -42,14 +42,14 @@ public class MainAdapter implements AdapterInterface {
         if(cash < 0)
             return;
         for(ModelInterface model: models) {
-            model.raise(playerId, cash);
+            model.raise(playerId-1, cash);
         }
     }
 
     @Override
     public void resign(int playerId){
         for(ModelInterface model: models) {
-            model.resign(playerId);
+            model.resign(playerId-1);
         }
     }
 
