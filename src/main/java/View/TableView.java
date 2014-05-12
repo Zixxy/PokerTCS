@@ -119,7 +119,7 @@ public class TableView extends Application implements ViewInterface{
 			public void run() {
 				latestCreatedTableControler.clearTable();
 				for(int i=0; i < 8; i++)
-					latestCreatedTableControler.removePlayersLinedCash(id+1);
+					latestCreatedTableControler.removePlayersLinedCash(i+1);
 			}
 		});
 	}
