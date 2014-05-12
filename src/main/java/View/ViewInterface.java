@@ -23,6 +23,6 @@ public interface ViewInterface {
 	/**
 	 * it should be used while adding each stack of money to the common pot, so that it becomes clear field.
 	 */
-	public void removePlayersLinedCash(int id, int cash);
+	public void removePlayersLinedCash(int id);
     public void sendMessage(String text);
 }
