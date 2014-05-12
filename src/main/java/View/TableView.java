@@ -67,7 +67,7 @@ public class TableView extends Application implements ViewInterface{
 
 		        @Override
 		        public void run() {
-		        	latestCreatedTableControler.addPlayer(name, id);
+		        	latestCreatedTableControler.addPlayer(name, id+1);
 		        }
 		    });
     }
@@ -77,7 +77,7 @@ public class TableView extends Application implements ViewInterface{
 
     		@Override
     		public void run() {
-    			latestCreatedTableControler.removePlayer(id);
+    			latestCreatedTableControler.removePlayer(id+1);
     		}
     	});
     }
@@ -87,7 +87,7 @@ public class TableView extends Application implements ViewInterface{
 
     		@Override
     		public void run() {
-    			latestCreatedTableControler.updatePlayerCash(id,cash);
+    			latestCreatedTableControler.updatePlayerCash(id+1,cash);
     		}
     	});
     }
@@ -125,7 +125,7 @@ public class TableView extends Application implements ViewInterface{
     public void updatePlayerHand(Card firstCard, Card secondCard) {
     }
     @Override
-    public void updatePlayerLinedCash(int id, int cash) {
+    public void updatePlayerLinedCash(int id, int cash) { // pamietaj o id +1!!!
     }
 
     public void start(Stage primaryStage) throws Exception {
