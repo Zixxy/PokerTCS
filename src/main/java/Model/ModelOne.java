@@ -11,6 +11,7 @@ import java.util.List;
  * Created by bartek on 05.05.14.
  */
 public class ModelOne implements ModelInterface {
+    private int pot;
     private int actualId;
     private int smallBlindPosition;
     private int bigBlindPosition;
@@ -112,16 +113,6 @@ public class ModelOne implements ModelInterface {
     @Override
     public int getMoney(int playerId) {
         return players.get(playerId).getMoney();
-    }
-
-    @Override
-    public void setLimitVariant(int variant) {
-
-    }
-
-    @Override
-    public void setLimit(int limit) {
-
     }
 
     @Override
@@ -268,6 +259,7 @@ public class ModelOne implements ModelInterface {
     }
 
     private void startRound(){
+        pot = 0;
         adapter.clearTable();
         stage=0;
         for(int i=0;i<5;i++) cards[i]=null;
@@ -295,6 +287,7 @@ public class ModelOne implements ModelInterface {
         adapter.sendMessage("Gracz " + players.get(currentPlayerId).getName() + " wpłacił dużą ciemną");
         raise(currentPlayerId, Math.min(players.get(currentPlayerId).getMoney(), bigBlind));
         raisingPlayerId = currentPlayerId;
+        adapter.setPot(pot);
     }
 
 
@@ -306,21 +299,27 @@ public class ModelOne implements ModelInterface {
     }
 
     private void checkItAll(){
-        if (stage==0){
+        for(Player player: players) {
+            pot += player.getOffer();
+            player.setOffer(0);
+        }
+        adapter.setPot(pot);
+        raisingPlayerId = smallBlindPosition;
+        if (getActualStage() ==0){
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
             cards[2]=deck.getNextCard();
             adapter.addThreeCards(cards);
         }
-        if (stage==1){
+        if (getActualStage() ==1){
             cards[3]=deck.getNextCard();
             adapter.addOneCard(cards[3]);
         }
-        if (stage==2){
+        if (getActualStage() ==2){
             cards[4]=deck.getNextCard();
             adapter.addOneCard(cards[4]);
         }
-        if (stage==3) {
+        if (getActualStage() ==3) {
             List<Player> inGamePlayers = new ArrayList<Player>();
             for(Player p:players) {
                 if(p.getInGame()) {
@@ -338,7 +337,11 @@ public class ModelOne implements ModelInterface {
              }
             won();
         }
-        stage++;
-        raisingPlayerId=currentPlayerId;
+        stage = getActualStage() + 1;
+    }
+
+    @Override
+    public int getActualStage() {
+        return stage;
     }
 }

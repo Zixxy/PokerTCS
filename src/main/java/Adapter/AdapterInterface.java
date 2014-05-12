@@ -25,4 +25,6 @@ public interface AdapterInterface {
     public void addOneCard(Deck.Card card);
     public void startNewRound();
     public Deck.Card[] getHandCards(int playerId);
+    public void setPot(int pot);
+    public int getActualStage();
 }

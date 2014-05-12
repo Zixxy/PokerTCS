@@ -14,14 +14,13 @@ public interface ModelInterface {
 	int getActualPlayer();    //returns index of player, whose move is now
 	int getMoney(int playerId);  //returns amount of many of player
 	//set
-	void setLimitVariant(int variant)throws Exception; // -1 if fixed limit 0 if pot limit 1 if no limit
-	void setLimit(int limit); //set limit
 	void setStartedAmount(int amount);
 	void addPlayer(String name);
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
     void setAnte(int arg);//sets Ante
     Deck.Card[] getHandCards(int playerId);//
+    int getActualStage();
 
 	//game
 	void fold(int playerId);
