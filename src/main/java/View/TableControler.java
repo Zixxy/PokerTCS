@@ -4,8 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -185,7 +190,7 @@ public class TableControler{
     	ds.setOffsetX(4.0f);
     	ds.setOffsetY(4.0f);
     	text.setEffect(ds);
-    	text.setFill(Color.SANDYBROWN);
+    	text.setFill(Color.BURLYWOOD);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
     	
     	switch(id){
@@ -264,6 +269,14 @@ public class TableControler{
     
     public void updatePlayerCash(int id,int cash){
     	Text text = new Text(Integer.toString(cash));
+    	Light.Distant light = new Light.Distant();
+    	light.setAzimuth(-100.0);
+    	Lighting lighting = new Lighting();
+    	
+    	text.setFill(Color.BEIGE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 16));
+    	text.setEffect(lighting);
+
     	switch(id){
     	case 1:
     		playerOneCashBox.getChildren().clear();
