@@ -187,30 +187,37 @@ public class TableControler{
     }
     
     public void removePlayer(int id){
-    	
     	switch(id){
     	case 1:
+    		playerOneCashBox.getChildren().clear();
     		playerOneNameBox.getChildren().clear();
     		break;
     	case 2:
+    		playerTwoCashBox.getChildren().clear();
     		playerTwoNameBox.getChildren().clear();
     		break;
     	case 3:
+    		playerThreeCashBox.getChildren().clear();
     		playerThreeNameBox.getChildren().clear();
     		break;
     	case 4:
+    		playerFourCashBox.getChildren().clear();
     		playerFourNameBox.getChildren().clear();
     		break;
     	case 5:
+    		playerFiveCashBox.getChildren().clear();
     		playerFiveNameBox.getChildren().clear();
     		break;
     	case 6:
+    		playerSixCashBox.getChildren().clear();
     		playerSixNameBox.getChildren().clear();
     		break;
     	case 7:
+    		playerSevenCashBox.getChildren().clear();
     		playerSevenNameBox.getChildren().clear();
     		break;
     	case 8:
+    		playerEightCashBox.getChildren().clear();
     		playerEightNameBox.getChildren().clear();
     		break;
     	}

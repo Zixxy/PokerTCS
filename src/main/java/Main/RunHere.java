@@ -23,13 +23,7 @@ public class RunHere {
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");
         model.addPlayer("Szymon");
-        try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        model.removePlayer(1);
         model.start();
+        view.removePlayer(1);
     }
 }
