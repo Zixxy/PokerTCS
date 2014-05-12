@@ -1,5 +1,6 @@
 package main.java.Adapter;
 
+import main.java.Model.Deck;
 import main.java.Model.ModelInterface;
 import main.java.View.ViewInterface;
 
@@ -104,5 +105,19 @@ public class MainAdapter implements AdapterInterface {
     @Override
     public void addView(ViewInterface view){
         views.add(view);
+    }
+
+    @Override
+    public void addThreeCards(Deck.Card[] cards) {
+        for(ViewInterface view: views) {
+            view.addThreeCardsOnTable(cards[0], cards[1], cards[2]);
+        }
+    }
+
+    @Override
+    public void addOneCard(Deck.Card card) {
+        for(ViewInterface view: views) {
+            view.addOneCard(card);
+        }
     }
 }

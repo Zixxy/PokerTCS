@@ -148,7 +148,7 @@ public class ModelOne implements ModelInterface {
     public void check(int playerId) {
         //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
         if(currentPlayerId==playerId) {
-            if(players.get(playerId).getMoney() >= this.limit - players.get(playerId).getOffer())
+            if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer())
                 return;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" sprawdza\n");
             onTable+=this.limit - players.get(playerId).getOffer();
@@ -157,6 +157,7 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
 
+            currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             }
@@ -224,9 +225,9 @@ public class ModelOne implements ModelInterface {
         for(Player p:players){
             p.setCards(deck);
             p.setMoney(p.getMoney()- enter);
-            adapter.updatePlayerCash(i, p.getMoney());
+            adapter.updatePlayerLinedCash(i, p.getMoney());
             p.setOffer(enter);
-            adapter.updatePlayerCash(i, p.getOffer());
+            adapter.updatePlayerLinedCash(i, p.getOffer());
             p.setInGame(true);
             i++;
         }
@@ -249,13 +250,15 @@ public class ModelOne implements ModelInterface {
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
             cards[2]=deck.getNextCard();
-
+            adapter.addThreeCards(cards);
         }
         if (stage==1){
             cards[3]=deck.getNextCard();
+            adapter.addOneCard(cards[3]);
         }
         if (stage==2){
             cards[4]=deck.getNextCard();
+            adapter.addOneCard(cards[4]);
         }
         if (stage==3) {
             List<Player> inGamePlayers = new ArrayList<Player>();
@@ -273,8 +276,8 @@ public class ModelOne implements ModelInterface {
                  if (getPlayerHand(player).compareTo(getPlayerHand(max)) < 0)
                      player.setInGame(false);
              }
+            won();
         }
-        won();
         stage++;
         raisingPlayerId=currentPlayerId;
     }
