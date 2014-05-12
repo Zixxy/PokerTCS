@@ -202,7 +202,7 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-            this.limit =amount + players.get(playerId).getOffer();
+            this.limit = players.get(playerId).getOffer();
             this.raisingPlayerId = playerId;
             currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             while (players.get(currentPlayerId).getInGame() == false) {
