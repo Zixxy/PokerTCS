@@ -228,7 +228,16 @@ public class ModelOne implements ModelInterface {
             currentPlayerId=(currentPlayerId+1)%numberOfPlayers;
         }
         adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
+        for(Player p:players) {
 
+
+            if (!p.getResigned()) adapter.sendMessage("Gracz "+p.getName() + " mial "+ Arrays.deepToString(p.getCards()));
+        }
+        try {
+            wait(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         players.get(currentPlayerId).setMoney(players.get(currentPlayerId).getMoney()+onTable);
         adapter.updatePlayerCash(currentPlayerId, players.get(currentPlayerId).getMoney());
         startRound();
