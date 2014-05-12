@@ -202,7 +202,7 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-            this.limit +=amount;
+            this.limit =amount + players.get(playerId).getOffer();
             this.raisingPlayerId = playerId;
             currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             while (players.get(currentPlayerId).getInGame() == false) {
@@ -233,11 +233,7 @@ public class ModelOne implements ModelInterface {
 
             if (!p.getResigned()) adapter.sendMessage("Gracz "+p.getName() + " mial "+ Arrays.deepToString(p.getCards()));
         }
-        try {
-            wait(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
         players.get(currentPlayerId).setMoney(players.get(currentPlayerId).getMoney()+onTable);
         adapter.updatePlayerCash(currentPlayerId, players.get(currentPlayerId).getMoney());
         startRound();
