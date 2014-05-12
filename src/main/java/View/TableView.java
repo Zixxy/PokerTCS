@@ -152,7 +152,7 @@ public class TableView extends Application implements ViewInterface{
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
+		AnchorPane root = FXMLLoader.load(getClass().getResource("SceneGraph.fxml"));
 		Scene scene = new Scene(root);
 		// grid.setGridLinesVisible(true);
 		primaryStage.setTitle("PokerTCS");
