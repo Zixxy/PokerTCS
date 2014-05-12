@@ -1,6 +1,8 @@
-package main.java.Model;
+package test.main.java.Model;
 
 import junit.framework.TestCase;
+import main.java.Model.Player;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
