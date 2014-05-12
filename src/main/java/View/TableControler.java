@@ -308,7 +308,7 @@ public class TableControler{
     }
 
     public void clearTable() {
-		/*firstCardOnTable.setImage(null);
+		firstCardOnTable.setImage(null);
 
 		secondCardOnTable.setImage(null);
 		
@@ -316,7 +316,7 @@ public class TableControler{
 
 		fourthCardOnTable.setImage(null);
 
-		fifthCardOnTable.setImage(null);*/
+		fifthCardOnTable.setImage(null);
 
     	return;  
     }
@@ -328,5 +328,72 @@ public class TableControler{
 		
 		addOneCard(thirdCard);
 		
+	}
+	
+	public void updatePlayerHand(Card firstCard, Card secondCard) {
+		/* 
+    	 * Cards' colors:
+    	 * CLUBS - 0
+    	 * DIAMONDS - 1
+    	 * HEARTS - 2
+    	 * SPADES - 3
+    	 */
+		
+		if(firstCard == null && secondCard == null)
+		{
+			firstPlayerCard.setImage(null);
+
+			secondPlayerCard.setImage(null);
+		}
+		
+    	int cardId = firstCard.getValue().id;
+    	int cardColor = 0;
+    	if(firstCard.getColor() == Card.Color.CLUBS){
+    		cardColor = 0;
+    	}
+    	else if(firstCard.getColor() == Card.Color.DIAMONDS){
+    		cardColor = 1;
+    	}
+    	else if(firstCard.getColor() == Card.Color.HEARTS){
+    		cardColor = 2;
+    	}
+    	else if(firstCard.getColor() == Card.Color.SPADES){
+    		cardColor = 3;
+    	}
+    	
+    	Integer cardNumber = 20*cardColor + cardId;
+    	String s = Integer.toString(cardNumber);
+    	System.out.println("/main/java/Cards/" + s + ".png");
+    	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+
+		firstCardOnTable.setImage(image);
+		
+		//-----------------------------------------------------------------------------------------------------
+		
+		cardId = secondCard.getValue().id;
+		if(secondCard.getColor() == Card.Color.CLUBS){
+    		cardColor = 0;
+    	}
+    	else if(secondCard.getColor() == Card.Color.DIAMONDS){
+    		cardColor = 1;
+    	}
+    	else if(secondCard.getColor() == Card.Color.HEARTS){
+    		cardColor = 2;
+    	}
+    	else if(secondCard.getColor() == Card.Color.SPADES){
+    		cardColor = 3;
+    	}
+    	
+    	cardNumber = 20*cardColor + cardId;
+    	s = Integer.toString(cardNumber);
+    	System.out.println("/main/java/Cards/" + s + ".png");
+    	image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+
+    	
+    	secondCardOnTable.setImage(image);
+	}
+	
+	public void updatePlayerLinedCash(int id, int cash) {
+
 	}
 }
