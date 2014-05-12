@@ -15,9 +15,11 @@ public class Player{
     private int money;
     private boolean inGame;
     private int offer;
-    private boolean checking;
-    private Deck.Card cards[];
     private boolean resigned;
+    private Deck.Card cards[];
+
+
+
 
 
     public Deck.Card[] getCards(){
@@ -51,11 +53,11 @@ public class Player{
         else this.inGame=arg1;
     }
 
-    public boolean getChecking(){
-        return this.checking;
+    public boolean getResigned(){
+        return this.resigned;
     }
-    public void setChecking(boolean arg1){
-        this.checking=arg1;
+    public void setResigned(boolean arg1){
+        this.resigned =arg1;
     }
 
     public void setOffer(Integer arg1){
