@@ -26,7 +26,7 @@ public class ModelOneTest2 {
         
         model.removePlayer(3);
         model.addPlayer("Bartek");
-    //    assertEquals(5,model.size());
+        //assertEquals(5,model.size());
         assertFalse(model.isStarted());
         model.start();
         assertTrue(model.isStarted());
@@ -84,15 +84,12 @@ public class ModelOneTest2 {
         model.raise(0, 100);
         model.raise(1, 56475438);
         model.raise(0, 200);
-        model.check(1);
-        model.raise(4,12345);
-        assertEquals(4, model.getActualPlayer());
         assertEquals(1400, model.getMoney(0));
-        assertEquals(1400, model.getMoney(1) );
+        assertEquals(1600, model.getMoney(1) );
         assertEquals(1400, model.getMoney(4));
         assertEquals(1600, model.getMoney(2) );
         assertEquals(1600, model.getMoney(5));
+        model.check(1);
 	}
-
 
 }

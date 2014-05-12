@@ -50,6 +50,10 @@ public class PokerHand implements Comparable<PokerHand>{
         return out;
     }
     @Override
+    public String toString(){
+    	return cards.toString();
+    }
+    @Override
     public int compareTo(PokerHand o) {
         if(this.handName == o.handName) {
             for(int i = 4; i>=0; i--)
