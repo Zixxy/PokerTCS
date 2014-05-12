@@ -1,4 +1,4 @@
-package test.main.java.Model;
+package main.java.Model;
 
 import static org.junit.Assert.*;
 import main.java.Adapter.MainAdapter;

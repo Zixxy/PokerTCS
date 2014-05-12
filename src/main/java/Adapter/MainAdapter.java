@@ -124,4 +124,16 @@ public class MainAdapter implements AdapterInterface {
     public Deck.Card[] getHandCards(int playerId) {
         return model.getHandCards(playerId);
     }
+
+    @Override
+    public void setPot(int pot) {
+        for(ViewInterface view: views) {
+            view.setPot(pot);
+        }
+    }
+
+    @Override
+    public int getActualStage() {
+        return model.getActualStage();
+    }
 }

@@ -118,4 +118,9 @@ public class CommandLine implements ViewInterface{
             System.out.println(tab[1].toString());
         }
     }
+
+    @Override
+    public void setPot(int cash) {
+
+    }
 }
