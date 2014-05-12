@@ -14,19 +14,17 @@ public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
-        ViewInterface view2 = TableView.createTableView(args, adapter, 1);
-        ViewInterface view3 = TableView.createTableView(args, adapter, 2);
-        ViewInterface view4 = TableView.createTableView(args, adapter, 3);
         ViewInterface textView = new CommandLine(adapter);
 
         adapter.addView(view);
-        adapter.addView(view2);
-        adapter.addView(view3);
-        adapter.addView(view4);
         adapter.addView(textView);
 
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
+        model.setAnte(10);
+        model.setStartedAmount(2000);
+        model.setSmallBlind(10);
+        model.setBigBlind(20);
         model.addPlayer("Sylwek");
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");

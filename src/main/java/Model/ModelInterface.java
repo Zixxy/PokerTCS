@@ -8,7 +8,9 @@ public interface ModelInterface {
 	int size();  //returns amount of players
 	boolean isInGame(int playerId); //returns true if player is still in game
 	int getSmallBlind();  //returns index of small blind
+    void setSmallBlind(int small);
 	int getBigBlind();    //returns index of big blind
+    void setBigBlind(int big);
 	int getActualPlayer();    //returns index of player, whose move is now
 	int getMoney(int playerId);  //returns amount of many of player
 	//set
