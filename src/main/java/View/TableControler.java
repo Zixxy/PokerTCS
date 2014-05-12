@@ -151,7 +151,7 @@ public class TableControler{
     	Text text = new Text(name);
     	switch(id){
     	case 1:
-    		playerTwoNameBox.getChildren().clear();
+    		playerOneNameBox.getChildren().clear();
     		playerOneNameBox.getChildren().add(text);
     		break;
     	case 2:
@@ -185,7 +185,76 @@ public class TableControler{
     	}
     	text.setTextAlignment(TextAlignment.CENTER);
     }
-
+    
+    public void removePlayer(int id){
+    	
+    	switch(id){
+    	case 1:
+    		playerOneNameBox.getChildren().clear();
+    		break;
+    	case 2:
+    		playerTwoNameBox.getChildren().clear();
+    		break;
+    	case 3:
+    		playerThreeNameBox.getChildren().clear();
+    		break;
+    	case 4:
+    		playerFourNameBox.getChildren().clear();
+    		break;
+    	case 5:
+    		playerFiveNameBox.getChildren().clear();
+    		break;
+    	case 6:
+    		playerSixNameBox.getChildren().clear();
+    		break;
+    	case 7:
+    		playerSevenNameBox.getChildren().clear();
+    		break;
+    	case 8:
+    		playerEightNameBox.getChildren().clear();
+    		break;
+    	}
+    }
+    
+    public void updatePlayerCash(int id,int cash){
+    	Text text = new Text(Integer.toString(cash));
+    	switch(id){
+    	case 1:
+    		playerOneCashBox.getChildren().clear();
+    		playerOneCashBox.getChildren().add(text);
+    		break;
+    	case 2:
+    		playerTwoCashBox.getChildren().clear();
+    		playerTwoCashBox.getChildren().add(text);
+    		break;
+    	case 3:
+    		playerThreeCashBox.getChildren().clear();
+    		playerThreeCashBox.getChildren().add(text);
+    		break;
+    	case 4:
+    		playerFourCashBox.getChildren().clear();
+    		playerFourCashBox.getChildren().add(text);
+    		break;
+    	case 5:
+    		playerFiveCashBox.getChildren().clear();
+    		playerFiveCashBox.getChildren().add(text);
+    		break;
+    	case 6:
+    		playerSixCashBox.getChildren().clear();
+    		playerSixCashBox.getChildren().add(text);
+    		break;
+    	case 7:
+    		playerSevenCashBox.getChildren().clear();
+    		playerSevenCashBox.getChildren().add(text);
+    		break;
+    	case 8:
+    		playerEightCashBox.getChildren().clear();
+    		playerEightCashBox.getChildren().add(text);
+    		break;
+    	}
+    	text.setTextAlignment(TextAlignment.CENTER);
+    }
+    
     public void addOneCard(Card card) {
     	/* 
     	 * Cards' colors:
