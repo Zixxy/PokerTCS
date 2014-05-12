@@ -41,6 +41,15 @@ public class ModelOne implements ModelInterface {
         return 0;
     }
 
+    public int getNumberOfPlayers(){
+        return numberOfPlayers;
+    }
+
+    public int getNumberInGame(){
+        return numberInGame;
+    }
+
+
     @Override
     public int size() {
         return numberOfPlayers;
@@ -171,7 +180,7 @@ public class ModelOne implements ModelInterface {
         currentPlayerId=playerId;
         fold(playerId);
         currentPlayerId=temporaryCurrentPlayerId;
-
+        removePlayer(playerId);
     }
 
     private void won(){

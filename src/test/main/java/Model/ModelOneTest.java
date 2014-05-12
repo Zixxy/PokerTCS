@@ -1,6 +1,6 @@
 package main.java.Model;
 
-
+import junit.framework.TestCase;
 import main.java.Adapter.MainAdapter;
 import org.junit.Test;
 
@@ -8,18 +8,18 @@ import static org.junit.Assert.*;
 
 
 /**
- * Created by bartek on 06.05.14.
+ * Created by Arytmetyk on 2014-05-12.
  */
-public class ModelOneTest {
+public class ModelOneTest extends TestCase {
     @Test
-    public void test0() throws Exception {
+    public void testFold() throws Exception {
         MainAdapter adapter = new MainAdapter();
         ModelOne model= new ModelOne(adapter);
         model.addPlayer("Sylwek");
         model.addPlayer("Szymon");
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");
-        model.addPlayer("Miron");
+
         assertFalse(model.isStarted());
         model.start();
         assertTrue(model.isStarted());
@@ -30,12 +30,11 @@ public class ModelOneTest {
         model.fold(1);
         assertFalse(model.isInGame(1));
         model.fold(2);
-        assertFalse(model.isInGame(2));
-        assertEquals(model.getMoney(0),990);
-        assertEquals(model.getMoney(1),990);
-        assertEquals(model.getMoney(2),990);
-        assertEquals(model.getMoney(3),1030);
-
-
+        //assertFalse(model.isInGame(2));
+        assertEquals(980,model.getMoney(0));
+        assertEquals(980,model.getMoney(1));
+        assertEquals(980,model.getMoney(2));
+        assertEquals(1020,model.getMoney(3));
     }
+
 }
