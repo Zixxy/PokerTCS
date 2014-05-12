@@ -174,7 +174,7 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
             this.limit +=amount;
             this.raisingPlayerId = playerId;
-
+            currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % numberOfPlayers;
             }
@@ -239,6 +239,7 @@ public class ModelOne implements ModelInterface {
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
             cards[2]=deck.getNextCard();
+
         }
         if (stage==1){
             cards[3]=deck.getNextCard();
@@ -265,5 +266,6 @@ public class ModelOne implements ModelInterface {
         }
         won();
         stage++;
+        raisingPlayerId=currentPlayerId;
     }
 }
