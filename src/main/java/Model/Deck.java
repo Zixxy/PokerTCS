@@ -85,7 +85,7 @@ public class Deck {
 
     }
 
-    public Card getSpecifiedCard(Card.Value value, Card.Color color) {
+    public static Card getSpecifiedCard(Card.Value value, Card.Color color) {
         for(Card card: standardCards) {
             if(card.value == value && card.color == color)
                 return card;

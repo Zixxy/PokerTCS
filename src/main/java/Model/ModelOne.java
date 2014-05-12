@@ -142,14 +142,15 @@ public class ModelOne implements ModelInterface {
                 }
             }
         }
-
-
     }
 
     @Override
     public void check(int playerId) {
         //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
         if(currentPlayerId==playerId) {
+            if(players.get(playerId).getMoney() >= this.limit - players.get(playerId).getOffer())
+                return;
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" sprawdza\n");
             onTable+=this.limit - players.get(playerId).getOffer();
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(this.limit);
@@ -167,6 +168,15 @@ public class ModelOne implements ModelInterface {
     public void raise(int playerId, int amount) {
         //rowniez zabezpieczyc przed brakiem gotowki
         if(currentPlayerId==playerId) {
+            if(amount > players.get(playerId).getMoney())
+                return;
+            if(amount + players.get(playerId).getOffer() < limit)
+                return;
+            if(amount + players.get(playerId).getOffer() == limit) {
+                check(playerId);
+                return;
+            }
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" podbija o " + amount + "\n");
             onTable+=amount;
             players.get(playerId).setMoney(players.get(playerId).getMoney() -amount);
             players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
