@@ -4,9 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import main.java.Adapter.MainAdapter;
@@ -39,19 +44,19 @@ public class TableControler{
     private ImageView secondPlayerCard;
 
     @FXML 
-    ImageView firstCardOnTable;
+    private ImageView firstCardOnTable;
     
     @FXML
-    ImageView secondCardOnTable;
+    private ImageView secondCardOnTable;
 
     @FXML
-    ImageView thirdCardOnTable;
+    private ImageView thirdCardOnTable;
     
     @FXML
-    ImageView fourthCardOnTable;
+    private ImageView fourthCardOnTable;
     
     @FXML
-    ImageView fifthCardOnTable;
+    private ImageView fifthCardOnTable;
     
     @FXML
     private HBox playerOneCashBox;
@@ -102,6 +107,33 @@ public class TableControler{
     private HBox playerEightNameBox;
     
     @FXML
+    private HBox playerOneLinedCash;
+	
+    @FXML
+    private HBox playerTwoLinedCash;
+
+    @FXML
+    private HBox playerThreeLinedCash;
+
+    @FXML
+    private HBox playerFourLinedCash;
+
+    @FXML
+    private HBox playerFiveLinedCash;
+
+    @FXML
+    private HBox playerSixLinedCash;
+
+    @FXML
+    private HBox playerSevenLinedCash;
+
+    @FXML
+    private HBox playerEightLinedCash;
+
+    @FXML
+    private HBox playerNineLinedCash;
+    
+    @FXML
     public void checkEvent(ActionEvent e){
     	adapter.check(playerId);
     }
@@ -149,6 +181,13 @@ public class TableControler{
 	
     public void addPlayer(String name, int id){
     	Text text = new Text(name);
+    	DropShadow ds = new DropShadow();
+    	ds.setOffsetX(4.0f);
+    	ds.setOffsetY(4.0f);
+    	text.setEffect(ds);
+    	text.setFill(Color.SANDYBROWN);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	
     	switch(id){
     	case 1:
     		playerOneNameBox.getChildren().clear();
@@ -394,6 +433,41 @@ public class TableControler{
 	}
 	
 	public void updatePlayerLinedCash(int id, int cash) {
-
+    	Text text = new Text(Integer.toString(cash));
+    	switch(id){
+    	case 1:
+    		playerOneLinedCash.getChildren().clear();
+    		playerOneLinedCash.getChildren().add(text);
+    		break;
+    	case 2:
+    		playerTwoLinedCash.getChildren().clear();
+    		playerTwoLinedCash.getChildren().add(text);
+    		break;
+    	case 3:
+    		playerThreeLinedCash.getChildren().clear();
+    		playerThreeLinedCash.getChildren().add(text);
+    		break;
+    	case 4:
+    		playerFourLinedCash.getChildren().clear();
+    		playerFourLinedCash.getChildren().add(text);
+    		break;
+    	case 5:
+    		playerFiveLinedCash.getChildren().clear();
+    		playerFiveLinedCash.getChildren().add(text);
+    		break;
+    	case 6:
+    		playerSixLinedCash.getChildren().clear();
+    		playerSixLinedCash.getChildren().add(text);
+    		break;
+    	case 7:
+    		playerSevenLinedCash.getChildren().clear();
+    		playerSevenLinedCash.getChildren().add(text);
+    		break;
+    	case 8:
+    		playerEightLinedCash.getChildren().clear();
+    		playerEightLinedCash.getChildren().add(text);
+    		break;
+    	}
+    	text.setTextAlignment(TextAlignment.CENTER);
 	}
 }

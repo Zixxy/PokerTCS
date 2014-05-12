@@ -132,9 +132,25 @@ public class TableView extends Application implements ViewInterface{
 		});
 	}
 	@Override
-	public void updatePlayerLinedCash(int id, int cash) { // pamietaj o id +1!!!
+	public void updatePlayerLinedCash(final int id,final int cash) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				latestCreatedTableControler.updatePlayerLinedCash(id+1, cash+1);
+			}
+		});
 	}
-
+	
+	@Override
+	public void removePlayersLinedCash(final int id,final int cash) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+			//	latestCreatedTableControler.removePlayersLinedCash(id+1, cash+1);
+			}
+		});
+	}
+	
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
 		Scene scene = new Scene(root);
