@@ -446,8 +446,11 @@ public class TableControler{
 	}
 	
 	public void updatePlayerLinedCash(int id, int cash) {
-    	Text text = new Text(Integer.toString(cash));
-    	
+		Text text = new Text(Integer.toString(cash));
+		text.setCache(true);
+		text.setFill(Color.MAROON);
+		text.setFont(Font.font(null, FontWeight.BOLD, 23));
+		
     	switch(id){
     	case 1:
     		playerOneLinedCash.getChildren().clear();
