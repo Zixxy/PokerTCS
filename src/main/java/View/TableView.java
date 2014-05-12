@@ -60,12 +60,18 @@ public class TableView extends Application implements ViewInterface{
 		adapter = tempAdapter;
 		playerId = tempPlayerId;
 	}
-	
+
 	@Override
-	public void setPot(int cash){
-		latestCreatedTableControler.setPot(cash);
+	public void setPot(final int cash){
+		javafx.application.Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				latestCreatedTableControler.setPot(cash);
+			}
+		});
 	}
-	
+
 	@Override
 	public void addPlayer(final String name,final int id) {
 		javafx.application.Platform.runLater(new Runnable() {
