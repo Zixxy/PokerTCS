@@ -299,9 +299,13 @@ public class ModelOne implements ModelInterface {
     }
 
     private void checkItAll(){
+        int x = -1;
         for(Player player: players) {
+            x++;
+            if(player.getResigned()) continue;
             pot += player.getOffer();
             player.setOffer(0);
+            adapter.updatePlayerLinedCash(x, 0);
         }
         adapter.setPot(pot);
         raisingPlayerId = smallBlindPosition;
