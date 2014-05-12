@@ -93,6 +93,11 @@ public class CommandLine implements ViewInterface{
     }
 
     @Override
+    public void removePlayersLinedCash(int id) {
+        System.out.println("Remove player's " + id + "lined cash");
+    }
+
+    @Override
     public void sendMessage(String text) {
         System.out.println(text);
     }

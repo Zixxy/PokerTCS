@@ -136,13 +136,13 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				latestCreatedTableControler.updatePlayerLinedCash(id+1, cash+1);
+				latestCreatedTableControler.updatePlayerLinedCash(id+1, cash);
 			}
 		});
 	}
 	
 	@Override
-	public void removePlayersLinedCash(final int id,final int cash) {
+	public void removePlayersLinedCash(final int id) {
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -152,7 +152,7 @@ public class TableView extends Application implements ViewInterface{
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		AnchorPane root = FXMLLoader.load(getClass().getResource("Test.fxml"));
+		AnchorPane root = FXMLLoader.load(getClass().getResource("SceneGraph.fxml"));
 		Scene scene = new Scene(root);
 		// grid.setGridLinesVisible(true);
 		primaryStage.setTitle("PokerTCS");

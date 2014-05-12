@@ -1,5 +1,6 @@
 package main.java.Adapter;
 
+import main.java.Model.Deck;
 import main.java.Model.ModelInterface;
 import main.java.View.ViewInterface;
 
@@ -20,4 +21,6 @@ public interface AdapterInterface {
     public void updatePlayerLinedCash(int id, int cash);
     public void addModel(ModelInterface mod);
     public void addView(ViewInterface view);
+    public void addThreeCards(Deck.Card cards[]);
+    public void addOneCard(Deck.Card card);
 }
