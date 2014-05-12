@@ -34,7 +34,7 @@ public class ModelOne implements ModelInterface {
         this.adapter=arg1;
         this.resigned=0;
         this.cards = new Deck.Card[5];
-    }
+    }//
     @Override
     public boolean isStarted() {
         return started;
