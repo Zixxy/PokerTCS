@@ -132,7 +132,13 @@ public class TableView extends Application implements ViewInterface{
 		});
 	}
 	@Override
-	public void updatePlayerLinedCash(int id, int cash) { // pamietaj o id +1!!!
+	public void updatePlayerLinedCash(final int id,final int cash) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				latestCreatedTableControler.updatePlayerLinedCash(id+1, cash+1);
+			}
+		});
 	}
 
 	public void start(Stage primaryStage) throws Exception {

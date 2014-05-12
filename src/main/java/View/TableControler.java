@@ -107,6 +107,33 @@ public class TableControler{
     private HBox playerEightNameBox;
     
     @FXML
+    private HBox playerOneLinedCash;
+	
+    @FXML
+    private HBox playerTwoLinedCash;
+
+    @FXML
+    private HBox playerThreeLinedCash;
+
+    @FXML
+    private HBox playerFourLinedCash;
+
+    @FXML
+    private HBox playerFiveLinedCash;
+
+    @FXML
+    private HBox playerSixLinedCash;
+
+    @FXML
+    private HBox playerSevenLinedCash;
+
+    @FXML
+    private HBox playerEightLinedCash;
+
+    @FXML
+    private HBox playerNineLinedCash;
+    
+    @FXML
     public void checkEvent(ActionEvent e){
     	adapter.check(playerId);
     }
@@ -406,6 +433,41 @@ public class TableControler{
 	}
 	
 	public void updatePlayerLinedCash(int id, int cash) {
-
+    	Text text = new Text(Integer.toString(cash));
+    	switch(id){
+    	case 1:
+    		playerOneLinedCash.getChildren().clear();
+    		playerOneLinedCash.getChildren().add(text);
+    		break;
+    	case 2:
+    		playerTwoLinedCash.getChildren().clear();
+    		playerTwoLinedCash.getChildren().add(text);
+    		break;
+    	case 3:
+    		playerThreeLinedCash.getChildren().clear();
+    		playerThreeLinedCash.getChildren().add(text);
+    		break;
+    	case 4:
+    		playerFourLinedCash.getChildren().clear();
+    		playerFourLinedCash.getChildren().add(text);
+    		break;
+    	case 5:
+    		playerFiveLinedCash.getChildren().clear();
+    		playerFiveLinedCash.getChildren().add(text);
+    		break;
+    	case 6:
+    		playerSixLinedCash.getChildren().clear();
+    		playerSixLinedCash.getChildren().add(text);
+    		break;
+    	case 7:
+    		playerSevenLinedCash.getChildren().clear();
+    		playerSevenLinedCash.getChildren().add(text);
+    		break;
+    	case 8:
+    		playerEightLinedCash.getChildren().clear();
+    		playerEightLinedCash.getChildren().add(text);
+    		break;
+    	}
+    	text.setTextAlignment(TextAlignment.CENTER);
 	}
 }
