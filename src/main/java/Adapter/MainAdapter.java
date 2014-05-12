@@ -11,26 +11,22 @@ import java.util.Collection;
  * Created by dakurels on 05.05.14.
  */
 public class MainAdapter implements AdapterInterface {
-    private Collection<ModelInterface> models;
+    private ModelInterface model;
     private Collection<ViewInterface> views;
 
     public MainAdapter() {
-        models = new ArrayList<ModelInterface>();
+        model = null;
         views = new ArrayList<ViewInterface>();
     }
 
     @Override
     public void fold(int playerId) {
-        for(ModelInterface model: models) {
-            model.fold(playerId);
-        }
+        model.fold(playerId);
     }
 
     @Override
     public void check(int playerId) {
-        for(ModelInterface model: models) {
-            model.check(playerId);
-        }
+        model.check(playerId);
     }
 
     @Override
@@ -42,16 +38,12 @@ public class MainAdapter implements AdapterInterface {
         catch (NumberFormatException e) { return; }
         if(cash < 0)
             return;
-        for(ModelInterface model: models) {
-            model.raise(playerId, cash);
-        }
+        model.raise(playerId, cash);
     }
 
     @Override
     public void resign(int playerId){
-        for(ModelInterface model: models) {
-            model.resign(playerId);
-        }
+        model.resign(playerId);
     }
 
     @Override
@@ -98,7 +90,7 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void addModel(ModelInterface mod){
-        models.add(mod);
+        model = mod;
 
     }
 
@@ -119,5 +111,17 @@ public class MainAdapter implements AdapterInterface {
         for(ViewInterface view: views) {
             view.addOneCard(card);
         }
+    }
+
+    @Override
+    public void startNewRound() {
+        for(ViewInterface view: views) {
+            view.startNewRound();
+        }
+    }
+
+    @Override
+    public Deck.Card[] getHandCards(int playerId) {
+        return model.getHandCards(playerId);
     }
 }

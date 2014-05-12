@@ -151,6 +151,17 @@ public class TableView extends Application implements ViewInterface{
 		});
 	}
 	
+	@Override
+	public void sendMessage(String text) {
+		System.out.println(text);
+	}
+	
+	@Override
+	public void startNewRound() {
+		Card[] cards = adapter.getHandCards(playerId);
+		updatePlayerHand(cards[0],cards[1]);
+	}
+	
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = FXMLLoader.load(getClass().getResource("SceneGraph.fxml"));
 		Scene scene = new Scene(root);
@@ -160,9 +171,5 @@ public class TableView extends Application implements ViewInterface{
 
 		primaryStage.show();
 
-	}
-	@Override
-	public void sendMessage(String text) {
-		System.out.println(text);
 	}
 }

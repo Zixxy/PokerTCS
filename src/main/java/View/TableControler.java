@@ -418,7 +418,7 @@ public class TableControler{
     	System.out.println("/main/java/Cards/" + s + ".png");
     	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
 
-		firstCardOnTable.setImage(image);
+		firstPlayerCard.setImage(image);
 		
 		//-----------------------------------------------------------------------------------------------------
 		
@@ -442,11 +442,12 @@ public class TableControler{
     	image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
 
     	
-    	secondCardOnTable.setImage(image);
+    	secondPlayerCard.setImage(image);
 	}
 	
 	public void updatePlayerLinedCash(int id, int cash) {
     	Text text = new Text(Integer.toString(cash));
+    	
     	switch(id){
     	case 1:
     		playerOneLinedCash.getChildren().clear();

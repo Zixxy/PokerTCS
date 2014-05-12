@@ -3,6 +3,7 @@ package main.java.View;
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,12 @@ import java.util.Scanner;
  */
 public class CommandLine implements ViewInterface{
 
+    private ArrayList<Integer> players;
+
+    private AdapterInterface adapter;
     public CommandLine(final AdapterInterface adapt) {
+        players = new ArrayList<Integer>();
+        adapter = adapt;
         Runnable run = new Runnable() {
             private AdapterInterface adapter = adapt;
             @Override
@@ -43,6 +49,7 @@ public class CommandLine implements ViewInterface{
 
     @Override
     public void addPlayer(String name, int id) {
+        players.add(id);
         System.out.println("Added player " + name + ", id: " + id);
     }
 
@@ -100,5 +107,15 @@ public class CommandLine implements ViewInterface{
     @Override
     public void sendMessage(String text) {
         System.out.println(text);
+    }
+
+    @Override
+    public void startNewRound() {
+        for(Integer playerId: players) {
+            Deck.Card tab[] = adapter.getHandCards(playerId);
+            System.out.println("Player " + playerId + "cards: ");
+            System.out.println(tab[0].toString());
+            System.out.println(tab[1].toString());
+        }
     }
 }

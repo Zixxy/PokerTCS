@@ -25,4 +25,5 @@ public interface ViewInterface {
 	 */
 	public void removePlayersLinedCash(int id);
     public void sendMessage(String text);
+    public void startNewRound();
 }
