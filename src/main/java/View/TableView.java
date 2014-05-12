@@ -118,6 +118,8 @@ public class TableView extends Application implements ViewInterface{
 			@Override
 			public void run() {
 				latestCreatedTableControler.clearTable();
+				for(int i=0; i < 8; i++)
+					latestCreatedTableControler.removePlayersLinedCash(id+1);
 			}
 		});
 	}
@@ -146,7 +148,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-			//	latestCreatedTableControler.removePlayersLinedCash(id+1, cash+1);
+				latestCreatedTableControler.removePlayersLinedCash(id+1);
 			}
 		});
 	}
