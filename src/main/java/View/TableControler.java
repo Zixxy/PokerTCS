@@ -4,9 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import main.java.Adapter.MainAdapter;
@@ -39,19 +44,19 @@ public class TableControler{
     private ImageView secondPlayerCard;
 
     @FXML 
-    ImageView firstCardOnTable;
+    private ImageView firstCardOnTable;
     
     @FXML
-    ImageView secondCardOnTable;
+    private ImageView secondCardOnTable;
 
     @FXML
-    ImageView thirdCardOnTable;
+    private ImageView thirdCardOnTable;
     
     @FXML
-    ImageView fourthCardOnTable;
+    private ImageView fourthCardOnTable;
     
     @FXML
-    ImageView fifthCardOnTable;
+    private ImageView fifthCardOnTable;
     
     @FXML
     private HBox playerOneCashBox;
@@ -149,6 +154,13 @@ public class TableControler{
 	
     public void addPlayer(String name, int id){
     	Text text = new Text(name);
+    	DropShadow ds = new DropShadow();
+    	ds.setOffsetX(4.0f);
+    	ds.setOffsetY(4.0f);
+    	text.setEffect(ds);
+    	text.setFill(Color.SANDYBROWN);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	
     	switch(id){
     	case 1:
     		playerOneNameBox.getChildren().clear();
