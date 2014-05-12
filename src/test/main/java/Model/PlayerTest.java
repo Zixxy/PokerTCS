@@ -1,15 +1,14 @@
 package main.java.Model;
 
-
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 /**
- * Created by bartek on 05.05.14.
+ * Created by Arytmetyk on 2014-05-12.
  */
-public class PlayerTest {
+public class PlayerTest extends TestCase {
     @Test
     public void testOfConstructor() throws Exception {
         Player player=new Player("Krzysztof", 950);

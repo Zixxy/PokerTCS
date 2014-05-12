@@ -13,7 +13,10 @@ public class RunHere {
     public static void main(String[] args){
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
+
+
         adapter.addView(view);
+
         ModelOne model = new ModelOne(adapter);
         adapter.addModel(model);
         model.addPlayer("Sylwek");
@@ -21,6 +24,6 @@ public class RunHere {
         model.addPlayer("Bartek");
         model.addPlayer("Szymon");
         model.start();
-        view.removePlayer(1);
+
     }
 }
