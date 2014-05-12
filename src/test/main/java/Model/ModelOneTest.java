@@ -5,7 +5,7 @@ import main.java.Adapter.MainAdapter;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
+//
 
 /**
  * Created by Arytmetyk on 2014-05-12.

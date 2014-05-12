@@ -110,7 +110,7 @@ public class ModelOne implements ModelInterface {
         players.remove(playerId);
         numberOfPlayers=players.size();
         adapter.removePlayer(playerId);
-    }
+    }//
 
     @Override
     public void start() {
