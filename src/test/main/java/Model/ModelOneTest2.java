@@ -14,18 +14,19 @@ public class ModelOneTest2 {
 		MainAdapter adapter = new MainAdapter();
         ModelOne model= new ModelOne(adapter);
         adapter.addModel(model);
-        //adapter.addView(new CommandLine(adapter));
+        adapter.addView(new CommandLine(adapter));
+        model.setStartedAmount(2020);
+        model.setAnte(20);
         model.addPlayer("Sylwek");
         model.addPlayer("Szymon");
         model.addPlayer("Maciek");
         model.addPlayer("Bartek");
         model.addPlayer("Miron");
 
-        model.setStartedAmount(2020);
-     //   model.setAnte(20);
+        
         model.removePlayer(3);
-        model.addPlayer("Maciek");
-        assertEquals(5,model.size());
+        model.addPlayer("Bartek");
+    //    assertEquals(5,model.size());
         assertFalse(model.isStarted());
         model.start();
         assertTrue(model.isStarted());
@@ -50,7 +51,7 @@ public class ModelOneTest2 {
         assertEquals(4, model.getActualPlayer());
         model.raise(4, 400);
         assertEquals(1600,model.getMoney(4));
-        assertEquals(4,model.getActualPlayer());
+        assertEquals(5,model.getActualPlayer());
         assertEquals(1800,model.getMoney(0));
         assertEquals(1800 , model.getMoney(1) );
         assertEquals(1700 ,model.getMoney(2));
@@ -65,7 +66,7 @@ public class ModelOneTest2 {
         assertEquals(1600, model.getMoney(1));
         assertEquals(1600,model.getMoney(2) );
         assertEquals(1600 , model.getMoney(4) );
-        assertEquals(1600, model.getMoney(4) );
+        assertEquals(1600, model.getMoney(5) );
         model.fold(2);
         assertTrue(model.isInGame(2));
         model.fold(5);
