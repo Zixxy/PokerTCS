@@ -270,6 +270,7 @@ public class ModelOne implements ModelInterface {
         pot = 0;
         adapter.clearTable();
         stage=0;
+        System.err.println("Start bew round stage:" + stage);
         for(int i=0;i<5;i++) cards[i]=null;
         deck=new Deck();
 
@@ -318,6 +319,7 @@ public class ModelOne implements ModelInterface {
             player.setOffer(0);
             adapter.updatePlayerLinedCash(x, 0);
         }
+        System.err.println("Actual round: " + stage);
         adapter.setPot(pot);
         currentPlayerId = smallBlindPosition;
         while(players.get(currentPlayerId).getInGame() == false)

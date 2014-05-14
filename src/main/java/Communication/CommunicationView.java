@@ -36,7 +36,9 @@ public class CommunicationView  implements ViewInterface{
         public void run() {
             while(true) {
                 try {
+                    System.out.println("WAITING FOR CONNECTION");
                     communicationView.add(server.accept());
+                    System.out.println("STOPPED");
                 }
                 catch (IOException e) {}
             }
@@ -59,7 +61,6 @@ public class CommunicationView  implements ViewInterface{
                     this.view.parse(this.in.readLine(), socket);
                 } catch (IOException e) {
                     System.err.println("Cannot read message");
-                    break;
                 }
             }
         }
@@ -73,6 +74,7 @@ public class CommunicationView  implements ViewInterface{
             System.err.println("Cannot make server at port: " + port);
             throw e;
         }
+        System.out.println("Created server at port : " + port);
         this.adapter = adapter;
         clients = new ArrayList<Socket>();
         outs = new ArrayList<PrintWriter>();
@@ -82,16 +84,20 @@ public class CommunicationView  implements ViewInterface{
     }
 
     private synchronized void add(Socket x) {
+        System.out.println("CONNECT: " + x.getInetAddress().toString());
         clients.add(x);
         try {
             outs.add(new PrintWriter(x.getOutputStream(), true));
-            massagesListeners.add(new Thread(new MassageListener(this, x)));
+            Thread newUser = new Thread(new MassageListener(this, x));
+            newUser.start();
+            massagesListeners.add(newUser);
         }
         catch (Exception e){}
 
     }
 
     private synchronized void parse(String order, Socket socket){
+        System.err.println("GOT ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
         /*
@@ -112,21 +118,25 @@ public class CommunicationView  implements ViewInterface{
         else if(txt[0].equals("resign")) {
             adapter.resign(Integer.valueOf(txt[1]));
         }
-        else if(txt[0].equals("userCards")) {
+        else if(txt[0].equals("usercards")) {
+            System.out.println("ASKED: " + txt[1]);
             this.sendCards(socket, Integer.valueOf(txt[1]));
         }
     }
 
     private void sendCommand(String txt) {
-            for (PrintWriter print : outs)
-                print.println(txt);
+        System.err.println("SEND OUT: "+txt);
+        for (PrintWriter print : outs)
+            print.println(txt);
     }
     private synchronized void sendCards(Socket socket, int id) {
         try {
             (new PrintWriter(socket.getOutputStream(), true)).println("yourCards~" + adapter.getHandCards(id)[0].toString() + "~" + adapter.getHandCards(id)[1]);
+            System.out.println("yourCards~" + adapter.getHandCards(id)[0].toString() + "~" + adapter.getHandCards(id)[1]);
             waiting--;
         }
         catch (IOException e) {
+            System.out.println("Cannot send cards, FATAL ERROR");
             System.err.println("Cannot send cards, FATAL ERROR");
         }
     }
@@ -208,7 +218,9 @@ public class CommunicationView  implements ViewInterface{
         synchronized(CommunicationView.class) {
             this.sendCommand("startNewRound");
             waiting = outs.size();
-            while(waiting > 0);
+            while(waiting > 0) {
+                System.out.println("ERRRRRRRROOOOOOOOORRRRRR");
+            }
         }
     }
 

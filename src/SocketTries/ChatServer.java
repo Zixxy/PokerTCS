@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Created by dakurels on 2014-05-14.
  */
 public class ChatServer {
-    static int port = 50000;
+    static int port = 2048;
     public static void main(String args[]) throws Exception{
         ServerSocket server = new ServerSocket(port);
         Socket client = server.accept();
