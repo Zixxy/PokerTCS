@@ -15,8 +15,9 @@ public class ChatServer {
     public static void main(String args[]) throws Exception{
         ServerSocket server = new ServerSocket(port);
         Socket client = server.accept();
-        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        Socket client2 = server.accept();
+        PrintWriter out = new PrintWriter(client2.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(client2.getInputStream()));
         Scanner consoleIn = new Scanner(System.in);
         while(true){
             out.println(consoleIn.nextLine());
