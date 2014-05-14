@@ -160,16 +160,18 @@ public class ModelOne implements ModelInterface {
     public void fold(int playerId) {
         //zabezpieczyc tak zeby ostatni gracz nie mogl pasowac - on wygrywa
         if(currentPlayerId==playerId) {
+            boolean raising = false;
+            if(currentPlayerId == raisingPlayerId)
+                raising = true;
             players.get(playerId).setInGame(false);
             numberInGame--;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje\n");
-            while (players.get(currentPlayerId).getInGame() == false) {
+            while (players.get(currentPlayerId).getInGame() == false)
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             if (numberInGame == 1) won();
-            else {
-                if (currentPlayerId == raisingPlayerId) checkItAll();
-                }
-            }
+            else if (currentPlayerId == raisingPlayerId) checkItAll();
+            if(raising)
+                raisingPlayerId = currentPlayerId;
         }
     }
 
@@ -241,7 +243,13 @@ public class ModelOne implements ModelInterface {
             i++;
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
+        }
+        i = -1;
+        for(Player p: players) {
+            i++;
+            if(p.getResigned()) continue;
             adapter.updatePlayerCash(i, players.get(i).getMoney());
+            adapter.updatePlayerLinedCash(i, 0);
         }
         adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
         for(Player p:players) {
@@ -252,7 +260,7 @@ public class ModelOne implements ModelInterface {
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
 
         smallBlindPosition = (smallBlindPosition + 1) % players.size();
-        while (players.get(smallBlindPosition).getInGame() == false) {
+        while (players.get(smallBlindPosition).getResigned() == true) {
             smallBlindPosition = (smallBlindPosition + 1) % players.size();
         }
         startRound();
@@ -275,6 +283,9 @@ public class ModelOne implements ModelInterface {
             p.setInGame(true);
             i++;
         }
+        while(players.get(smallBlindPosition).getInGame() == false)
+            smallBlindPosition = (smallBlindPosition+1)%players.size();
+        adapter.sendMessage("SmallBlindPosition: "+smallBlindPosition);
         adapter.startNewRound();
         currentPlayerId=smallBlindPosition;
         this.limit= ante;
@@ -308,7 +319,11 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerLinedCash(x, 0);
         }
         adapter.setPot(pot);
-        raisingPlayerId = smallBlindPosition;
+        currentPlayerId = smallBlindPosition;
+        while(players.get(currentPlayerId).getInGame() == false)
+            currentPlayerId = (currentPlayerId + 1)%players.size();
+        raisingPlayerId = currentPlayerId;
+
         if (getActualStage() ==0){
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
