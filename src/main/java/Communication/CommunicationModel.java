@@ -20,22 +20,24 @@ public class CommunicationModel implements ModelInterface {
     int port=50000;
     private AdapterInterface adapter;
     private PrintWriter out ;
+    BufferedReader in;
     Thread listen;
     public CommunicationModel(AdapterInterface adapter) throws IOException {
         this.adapter=adapter;
         this.socket=new Socket(this.ip,this.port);
         this.out = new PrintWriter(socket.getOutputStream(), true);
-        this.listen = new Thread(new Listener(this.socket,this));
+        this.listen = new Thread(new Listener(this.socket,this,in));
         this.listen.start();
+        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 }
     class Listener implements Runnable{
         Socket socket;
-        BufferedReader in;
+        BufferedReader in2;
         CommunicationModel communicationModel;
 
-        public Listener(Socket socket, CommunicationModel communicationModel) throws IOException {
+        public Listener(Socket socket, CommunicationModel communicationModel, BufferedReader in2) throws IOException {
             this.socket=socket;
-            in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            this.in2=in2;
             this.communicationModel=communicationModel;
 
         }
@@ -45,7 +47,9 @@ public class CommunicationModel implements ModelInterface {
         public void run() {
             while(true){
                 try {
-                    communicationModel.parse(in.readLine());
+                    synchronized(CommunicationModel.class) {
+                        communicationModel.parse(in2.readLine());
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -61,8 +65,11 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("removeplayer")){
             adapter.removePlayer(new Integer(tab[1]));
         }
-        if(tab[0].toLowerCase().equals("updateplayercach")){
+        if(tab[0].toLowerCase().equals("updateplayerlinedcash")){
             adapter.updatePlayerLinedCash(new Integer(tab[1]),new Integer(tab[2]));
+        }
+        if(tab[0].toLowerCase().equals("updateplayercash")){
+            adapter.updatePlayerCash(new Integer(tab[1]), new Integer(tab[2]));
         }
         if(tab[0].toLowerCase().equals("setpot")){
             adapter.setPot(new Integer(tab[1]));
@@ -171,7 +178,21 @@ public class CommunicationModel implements ModelInterface {
 
     @Override
     public Deck.Card[] getHandCards(int playerId) {
-        return new Deck.Card[0];
+        String arr[];
+        Deck.Card arr2[]=new Deck.Card[2];
+        synchronized(CommunicationModel.class) {
+            out.println("userCards~" + playerId);
+            try {
+                arr=in.readLine().split("~");
+                arr2[0]=Deck.getSpecifiedCard(arr[1]);
+                arr2[1]=Deck.getSpecifiedCard(arr[2]);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+            return arr2;
+        }
     }
 
     @Override
