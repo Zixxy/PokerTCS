@@ -6,12 +6,18 @@ import main.java.View.CommandLine;
 import main.java.View.*;
 import main.java.View.ViewInterface;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 /**
 * Created by bartek on 05.05.14.
 */
 public class RunHere {
+    private static Config config;
     public static void main(String[] args){
+        config = new Config("config");
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 0);
         ViewInterface textView = new CommandLine(adapter);
