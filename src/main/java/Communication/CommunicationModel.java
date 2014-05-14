@@ -16,19 +16,21 @@ import java.net.Socket;
  */
 public class CommunicationModel implements ModelInterface {
     Socket socket;
-    String ip="192.168.0.4";
-    int port=50000;
+    String ip;
+    int port;
     private AdapterInterface adapter;
     private PrintWriter out ;
     BufferedReader in;
     Thread listen;
-    public CommunicationModel(AdapterInterface adapter) throws IOException {
+    public CommunicationModel(AdapterInterface adapter, String ip, int port) throws IOException {
         this.adapter=adapter;
         this.socket=new Socket(this.ip,this.port);
         this.out = new PrintWriter(socket.getOutputStream(), true);
         this.listen = new Thread(new Listener(this.socket,this,in));
         this.listen.start();
         this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+        this.ip=ip;
+        this.port=port;
 }
     class Listener implements Runnable{
         Socket socket;
