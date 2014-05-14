@@ -92,6 +92,22 @@ public class Deck {
         }
         throw new IllegalArgumentException();
     }
+    public static Card getSpecifiedCard(String sValue, String sColor) {
+        String arr[] = {sValue, sColor};
+        Card.Color color = null;
+        Card.Value value = null;
+        for(Card.Value valueTry: Card.Value.values())
+            if(valueTry.toString().toLowerCase().equals(arr[0]))
+                value = valueTry;
+        for(Card.Color colorTry: Card.Color.values())
+            if(colorTry.toString().toLowerCase().equals(arr[1]))
+                color = colorTry;
+        return getSpecifiedCard(value, color);
+    }
+    public static Card getSpecifiedCard(String fullName) {
+        String arr[] = fullName.toLowerCase().split(" of ");
+        return getSpecifiedCard(arr[0], arr[1]);
+    }
     public Deck() {
         deckCards = new ArrayList<Card>();
         deckCards.addAll(standardCards);
