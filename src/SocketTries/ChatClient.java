@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Created by dakurels on 2014-05-14.
  */
-public class ClientServer {
+public class ChatClient {
     static int port = 50000;
     static String ip = "192.168.0.104";
     public static void main(String args[]) throws Exception{
