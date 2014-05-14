@@ -331,16 +331,19 @@ public class ModelOne implements ModelInterface {
             cards[1]=deck.getNextCard();
             cards[2]=deck.getNextCard();
             adapter.addThreeCards(cards);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==1){
+        else if (getActualStage() ==1){
             cards[3]=deck.getNextCard();
             adapter.addOneCard(cards[3]);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==2){
+        else if (getActualStage() ==2){
             cards[4]=deck.getNextCard();
             adapter.addOneCard(cards[4]);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==3) {
+        else if (getActualStage() ==3) {
             List<Player> inGamePlayers = new ArrayList<Player>();
             for(Player p:players) {
                 if(p.getInGame()) {
@@ -358,7 +361,6 @@ public class ModelOne implements ModelInterface {
              }
             won();
         }
-        stage = getActualStage() + 1;
     }
 
     @Override
