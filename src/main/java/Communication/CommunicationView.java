@@ -21,7 +21,7 @@ public class CommunicationView  implements ViewInterface{
     private Collection<Socket> clients;
     private Collection<PrintWriter> outs;
     private AdapterInterface adapter;
-
+    private int waiting;
 
     private class ClientsListener implements Runnable {
         private CommunicationView communicationView;
@@ -56,7 +56,7 @@ public class CommunicationView  implements ViewInterface{
         public void run() {
             while (true) {
                 try {
-                    this.view.parse(this.in.readLine());
+                    this.view.parse(this.in.readLine(), socket);
                 } catch (IOException e) {
                     System.err.println("Cannot read message");
                     break;
@@ -91,7 +91,7 @@ public class CommunicationView  implements ViewInterface{
 
     }
 
-    private synchronized void parse(String order){
+    private synchronized void parse(String order, Socket socket){
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
         /*
@@ -112,75 +112,110 @@ public class CommunicationView  implements ViewInterface{
         else if(txt[0].equals("resign")) {
             adapter.resign(Integer.valueOf(txt[1]));
         }
-    }
-
-    private void sendCommand(String txt) {
-        synchronized(CommunicationView.class) {
-            for (PrintWriter print : outs)
-                print.println(txt);
+        else if(txt[0].equals("userCards")) {
+            this.sendCards(socket, Integer.valueOf(txt[1]));
         }
     }
 
+    private void sendCommand(String txt) {
+            for (PrintWriter print : outs)
+                print.println(txt);
+    }
+    private synchronized void sendCards(Socket socket, int id) {
+        try {
+            (new PrintWriter(socket.getOutputStream(), true)).println("yourCards~" + adapter.getHandCards(id)[0].toString() + "~" + adapter.getHandCards(id)[1]);
+            waiting--;
+        }
+        catch (IOException e) {
+            System.err.println("Cannot send cards, FATAL ERROR");
+        }
+    }
 
     @Override
     public void addPlayer(String name, int id) {
-        this.sendCommand("addPlayer~"+ name + "~" + id);
+        synchronized(CommunicationView.class) {
+            this.sendCommand("addPlayer~" + name + "~" + id);
+        }
     }
 
     @Override
     public void removePlayer(int id) {
-        this.sendCommand("removePlayer" + "~" + id);
+        synchronized(CommunicationView.class) {
+            this.sendCommand("removePlayer" + "~" + id);
+        }
     }
 
     @Override
     public void updatePlayerCash(int id, int cash) {
-        this.sendCommand("updatePlayerCash~"+ id + "~" + cash);
+            synchronized(CommunicationView.class) {
+                this.sendCommand("updatePlayerCash~" + id + "~" + cash);
+            }
     }
 
     @Override
     public void addThreeCardsOnTable(Deck.Card firstCard, Deck.Card secondCard, Deck.Card thirdCard) {
-        this.sendCommand("addThreeCards~" + firstCard.toString() + "~" + secondCard.toString() + "~" + thirdCard.toString());
+        synchronized(CommunicationView.class) {
+            this.sendCommand("addThreeCards~" + firstCard.toString() + "~" + secondCard.toString() + "~" + thirdCard.toString());
+        }
 
     }
 
     @Override
     public void addOneCard(Deck.Card card) {
-        this.sendCommand("addOneCard~" + card.toString());
+        synchronized(CommunicationView.class) {
+            this.sendCommand("addOneCard~" + card.toString());
+        }
     }
 
     @Override
     public void clearTable() {
-        this.sendCommand("clearTable");
+        synchronized(CommunicationView.class) {
+            this.sendCommand("clearTable");
+        }
 
     }
 
     @Override
     public void updatePlayerHand(Deck.Card firstCard, Deck.Card secondCard) {
-        //TODO
+        synchronized(CommunicationView.class) {
+            //TODO
+        }
     }
 
     @Override
     public void updatePlayerLinedCash(int id, int cash) {
-        this.sendCommand("updatePlayerLinedCash~" + id);
+        synchronized(CommunicationView.class) {
+            this.sendCommand("updatePlayerLinedCash~" + id + "~" + cash);
+        }
     }
 
     @Override
     public void removePlayersLinedCash(int id) {
-        this.sendCommand("removePlayersLinedCash~0");
+        synchronized(CommunicationView.class) {
+            this.sendCommand("updatePlayerLinedCash~" + id + "~0");
+        }
     }
 
     @Override
     public void sendMessage(String text) {
-        this.sendCommand("sendMessage~" + text);
+        synchronized(CommunicationView.class) {
+            this.sendCommand("sendMessage~" + text);
+        }
     }
 
     @Override
     public void startNewRound() {
-        this.sendCommand("startNewRound");
+        synchronized(CommunicationView.class) {
+            this.sendCommand("startNewRound");
+            waiting = outs.size();
+            while(waiting > 0);
+        }
     }
 
     @Override
     public void setPot(int cash) {
-        this.sendCommand("setPot~" + cash);
+        synchronized(CommunicationView.class) {
+            this.sendCommand("setPot~" + cash);
+        }
     }
 }
