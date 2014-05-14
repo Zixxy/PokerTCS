@@ -50,6 +50,7 @@ public class RunHere {
         model.setBigBlind(20);
         //model.addPlayer("Sylwek");
         //model.addPlayer("Maciek");
+        //
         model.addPlayer("Bartek");
         model.addPlayer("Szymon");
         model.start();
