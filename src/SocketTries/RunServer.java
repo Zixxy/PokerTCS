@@ -24,6 +24,7 @@ public class RunServer {
 
 /*Wysłanie komunikatu*/
         out.println("Czo to za komunikat?");
+        System.out.println(in.readLine());
 
 /*Oczekiwanie i odebranie komunikatu*/
         String input = in.readLine();
