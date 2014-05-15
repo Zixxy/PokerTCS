@@ -160,16 +160,18 @@ public class ModelOne implements ModelInterface {
     public void fold(int playerId) {
         //zabezpieczyc tak zeby ostatni gracz nie mogl pasowac - on wygrywa
         if(currentPlayerId==playerId) {
+            boolean raising = false;
+            if(currentPlayerId == raisingPlayerId)
+                raising = true;
             players.get(playerId).setInGame(false);
             numberInGame--;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje\n");
-            while (players.get(currentPlayerId).getInGame() == false) {
+            while (players.get(currentPlayerId).getInGame() == false)
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             if (numberInGame == 1) won();
-            else {
-                if (currentPlayerId == raisingPlayerId) checkItAll();
-                }
-            }
+            else if (currentPlayerId == raisingPlayerId) checkItAll();
+            if(raising)
+                raisingPlayerId = currentPlayerId;
         }
     }
 
@@ -241,7 +243,13 @@ public class ModelOne implements ModelInterface {
             i++;
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
+        }
+        i = -1;
+        for(Player p: players) {
+            i++;
+            if(p.getResigned()) continue;
             adapter.updatePlayerCash(i, players.get(i).getMoney());
+            adapter.updatePlayerLinedCash(i, 0);
         }
         adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
         for(Player p:players) {
@@ -252,7 +260,7 @@ public class ModelOne implements ModelInterface {
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
 
         smallBlindPosition = (smallBlindPosition + 1) % players.size();
-        while (players.get(smallBlindPosition).getInGame() == false) {
+        while (players.get(smallBlindPosition).getResigned() == true) {
             smallBlindPosition = (smallBlindPosition + 1) % players.size();
         }
         startRound();
@@ -262,6 +270,7 @@ public class ModelOne implements ModelInterface {
         pot = 0;
         adapter.clearTable();
         stage=0;
+        System.err.println("Start bew round stage:" + stage);
         for(int i=0;i<5;i++) cards[i]=null;
         deck=new Deck();
 
@@ -275,6 +284,9 @@ public class ModelOne implements ModelInterface {
             p.setInGame(true);
             i++;
         }
+        while(players.get(smallBlindPosition).getInGame() == false)
+            smallBlindPosition = (smallBlindPosition+1)%players.size();
+        adapter.sendMessage("SmallBlindPosition: "+smallBlindPosition);
         adapter.startNewRound();
         currentPlayerId=smallBlindPosition;
         this.limit= ante;
@@ -299,27 +311,40 @@ public class ModelOne implements ModelInterface {
     }
 
     private void checkItAll(){
+        int x = -1;
         for(Player player: players) {
+            x++;
+            if(player.getResigned()) continue;
             pot += player.getOffer();
             player.setOffer(0);
+            adapter.updatePlayerLinedCash(x, 0);
         }
+        System.err.println("Actual round: " + stage);
         adapter.setPot(pot);
-        raisingPlayerId = smallBlindPosition;
+        this.limit = 0;
+        currentPlayerId = smallBlindPosition;
+        while(players.get(currentPlayerId).getInGame() == false)
+            currentPlayerId = (currentPlayerId + 1)%players.size();
+        raisingPlayerId = currentPlayerId;
+
         if (getActualStage() ==0){
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
             cards[2]=deck.getNextCard();
             adapter.addThreeCards(cards);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==1){
+        else if (getActualStage() ==1){
             cards[3]=deck.getNextCard();
             adapter.addOneCard(cards[3]);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==2){
+        else if (getActualStage() ==2){
             cards[4]=deck.getNextCard();
             adapter.addOneCard(cards[4]);
+            stage = getActualStage() + 1;
         }
-        if (getActualStage() ==3) {
+        else if (getActualStage() ==3) {
             List<Player> inGamePlayers = new ArrayList<Player>();
             for(Player p:players) {
                 if(p.getInGame()) {
@@ -337,7 +362,6 @@ public class ModelOne implements ModelInterface {
              }
             won();
         }
-        stage = getActualStage() + 1;
     }
 
     @Override

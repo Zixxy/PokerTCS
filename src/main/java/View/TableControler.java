@@ -188,6 +188,7 @@ public class TableControler{
 	}
 	
     public void setPot(int cash){
+        PotBox.getChildren().clear();
     	Text text = new Text("POT: $"+Integer.toString(cash));
     	text.setFill(Color.BEIGE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 20));
