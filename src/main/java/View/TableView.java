@@ -178,8 +178,13 @@ public class TableView extends Application implements ViewInterface{
 	}
 	
 	@Override
-	public void sendMessage(String text) {
-		tableControler.typeMessageToUserInChat(text, true);
+	public void sendMessage(final String text) {
+		javafx.application.Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				tableControler.typeMessageToUserInChat(text, true);
+			}
+		});
 	}
 	
 	@Override

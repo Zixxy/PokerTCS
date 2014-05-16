@@ -5,17 +5,17 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.View.TableControler">
+<AnchorPane prefHeight="600.0" prefWidth="960.0" stylesheets="@Buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.View.TableControler">
 	<children>
 <ImageView fitHeight="600.0" fitWidth="960.0" layoutX="-29.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <image>
 <Image url="@Table.jpg" />
 </image>
 </ImageView>
-<HBox layoutX="552.0" layoutY="546.0" prefHeight="30.0" prefWidth="386.0" spacing="15.0">
-<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="25.0" prefWidth="171.0" />
-<HBox layoutX="714.8759765625" layoutY="547.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
-<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" text="Check" />
+<HBox layoutX="522.0" layoutY="557.0" prefHeight="27.0" prefWidth="437.0" spacing="15.0">
+<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="27.0" prefWidth="183.0" />
+<HBox layoutX="714.8759765625" layoutY="547.0" prefHeight="38.0" prefWidth="251.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
+<children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" prefHeight="25.0" prefWidth="75.0" styleClass="raise" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" prefHeight="25.0" prefWidth="75.0" styleClass="fold" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" prefHeight="25.0" prefWidth="75.0" styleClass="check" text="Check" />
 </children>
 </HBox>
 </children>
