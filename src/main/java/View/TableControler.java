@@ -79,7 +79,7 @@ public class TableControler{
     }
 
     @FXML
-    private void intialize() {
+    private void initialize() {
         playersCashBox = new HBox[] {playerOneCashBox, playerTwoCashBox, playerThreeCashBox, playerFourCashBox,
                                      playerFiveCashBox, playerSixCashBox, playerSevenCashBox, playerEightCashBox};
         playersNameBox = new HBox[] {playerOneNameBox, playerTwoNameBox, playerThreeNameBox, playerFourNameBox,
