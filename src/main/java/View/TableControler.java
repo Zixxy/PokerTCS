@@ -24,7 +24,9 @@ import main.java.Model.Deck.Card;
 
 public class TableControler{
 	private MainAdapter adapter;
+	
 	private int playerId;
+	
 	public TableControler(){
 		adapter = TableView.tempAdapter;
 		TableView.RecentlyCreatedInstanceOfTableControler = this;

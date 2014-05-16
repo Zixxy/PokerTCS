@@ -70,7 +70,7 @@ public class TableView extends Application implements ViewInterface{
 		return RecentlyCreatedInstanceOfThis;
 	}
 	private void almostConstructor(){
-		RecentlyCreatedInstanceOfTableControler = tableControler;
+		tableControler = RecentlyCreatedInstanceOfTableControler;
 	}
 
 	@Override
