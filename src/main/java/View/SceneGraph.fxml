@@ -34,14 +34,17 @@
 <Pane layoutX="313.0" layoutY="10.0" prefHeight="88.0" prefWidth="70.0">
 <children><ImageView fx:id="fifthCardOnTable" fitHeight="88.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
 </children></Pane>
-</children></HBox><HBox layoutX="300.0" layoutY="476.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="476.0">
-<children><Pane prefHeight="100.0" prefWidth="80.0">
-<children><ImageView fx:id="firstPlayerCard" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+</children></HBox><HBox layoutX="352.0" layoutY="471.0" prefHeight="100.0" prefWidth="137.0" spacing="20.0">
+<children>
+<Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
+<children><ImageView fx:id="secondPlayerCard" fitHeight="109.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" rotate="352.0" />
 </children></Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
-<children><ImageView fx:id="secondPlayerCard" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-</children></Pane>
-</children></HBox><Pane layoutX="94.0" layoutY="45.0" prefHeight="136.0" prefWidth="110.0">
+<children>
+<ImageView fx:id="firstPlayerCard" fitHeight="109.0" fitWidth="91.0" layoutX="-23.0" pickOnBounds="true" preserveRatio="true" rotate="8.0" />
+</children>
+</Pane>
+</children></HBox><Pane layoutX="99.0" layoutY="65.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <Pane layoutX="1.0" layoutY="-1.0" prefHeight="136.0" prefWidth="110.0">
 <children><GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
@@ -63,7 +66,7 @@
 </children>
 </Pane>
 </children></Pane>
-<Pane layoutX="101.0" layoutY="398.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="550.0" layoutY="402.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -86,7 +89,7 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="21.0" layoutY="210.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="41.0" layoutY="240.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -155,7 +158,7 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="753.0" layoutY="45.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="748.0" layoutY="65.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -178,7 +181,7 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="827.0" layoutY="210.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="807.0" layoutY="240.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -201,7 +204,7 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="745.0" layoutY="398.0" prefHeight="136.0" prefWidth="110.0">
+<Pane layoutX="698.0" layoutY="385.0" prefHeight="136.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
@@ -223,14 +226,18 @@
 </rowConstraints>
 </GridPane>
 </children>
-</Pane><HBox fx:id="playerOneLinedCash" layoutX="209.0" layoutY="407.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerTwoLinedCash" layoutX="126.0" layoutY="270.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerThreeLinedCash" layoutX="188.0" layoutY="173.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerSixLinedCash" layoutX="707.0" layoutY="173.0" prefHeight="17.0" prefWidth="46.0" />
+</Pane><HBox fx:id="playerOneLinedCash" layoutX="505.0" layoutY="405.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerTwoLinedCash" layoutX="149.0" layoutY="292.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerThreeLinedCash" layoutX="212.0" layoutY="193.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerSixLinedCash" layoutX="700.0" layoutY="193.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFourLinedCash" layoutX="315.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox layoutX="315.0" layoutY="154.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFiveLinedCash" layoutX="616.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerSevenLinedCash" layoutX="785.0" layoutY="268.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerEightLinedCash" layoutX="703.0" layoutY="401.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="396.0" layoutY="78.0" prefHeight="30.0" prefWidth="171.0" />
+<HBox fx:id="playerSevenLinedCash" layoutX="762.0" layoutY="300.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerEightLinedCash" layoutX="663.0" layoutY="389.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="396.0" layoutY="78.0" prefHeight="30.0" prefWidth="171.0" />
+<Pane layoutX="14.0" layoutY="430.0" prefHeight="145.0" prefWidth="261.0">
+<children><TextArea fx:id="chatTextArea" editable="false" prefHeight="111.0" prefWidth="261.0" /><TextField fx:id="messageTextField" layoutY="110.0" onAction="#chatTyping" prefHeight="27.0" prefWidth="261.0" />
+</children>
+</Pane>
 	</children>
 </AnchorPane>

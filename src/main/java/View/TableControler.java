@@ -3,6 +3,7 @@ package main.java.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Light;
@@ -30,6 +31,12 @@ public class TableControler{
 	
 	@FXML
 	private HBox PotBox;
+
+    @FXML
+    private TextArea chatTextArea;
+    
+    @FXML
+    private TextField messageTextField;
 	
     @FXML
     private TextField userCashTextField;
@@ -61,6 +68,13 @@ public class TableControler{
     private HBox[] playersLinesCash;
 
     volatile private boolean isConstructed = false;
+    
+    @FXML
+    public void chatTyping(ActionEvent e){
+    	String message = messageTextField.getText();
+    	typeMessageToUserInChat(message, false);
+    	messageTextField.clear();
+    }
 
     @FXML
     public void checkEvent(ActionEvent e){
@@ -94,7 +108,16 @@ public class TableControler{
     public boolean isConstructed(){
 		return isConstructed;
 	}
-	
+
+    public void typeMessageToUserInChat(String message, boolean gameCommunicate){
+    	StringBuilder newMessage = new StringBuilder();
+    	newMessage.append(message);
+    	newMessage.append("\n");
+    	if(gameCommunicate)
+    	{} // text will be red.
+    	chatTextArea.appendText(newMessage.toString());
+    }
+    
     public void setPot(int cash){
         PotBox.getChildren().clear();
     	Text text = new Text("POT: $"+Integer.toString(cash));

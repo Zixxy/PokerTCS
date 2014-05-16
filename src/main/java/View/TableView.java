@@ -179,7 +179,7 @@ public class TableView extends Application implements ViewInterface{
 	
 	@Override
 	public void sendMessage(String text) {
-		System.out.println(text);
+		tableControler.typeMessageToUserInChat(text, true);
 	}
 	
 	@Override
