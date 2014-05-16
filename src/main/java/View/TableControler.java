@@ -27,7 +27,7 @@ public class TableControler{
 	private int playerId;
 	public TableControler(){
 		adapter = TableView.tempAdapter;
-		TableView.latestCreatedTableControler = this;
+		TableView.RecentlyCreatedInstanceOfTableControler = this;
 	}
 	
 	@FXML
