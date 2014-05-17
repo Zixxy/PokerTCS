@@ -26,9 +26,3 @@
     -fx-background-insets: 0;
     -fx-text-fill: white;
 }
-
-.background{
-	-fx-background-color: black;
-	-fx-text-fill: white;
-    -fx-background-radius: 30;
-}

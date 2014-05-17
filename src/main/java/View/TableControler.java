@@ -80,38 +80,56 @@ public class TableControler{
     	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
+    
+    public void setPlayerLastMove(int id, int move){
+    	/* 0 - raise
+    	 * 1 - fold
+    	 * 2 - check
+    	 */
+		Text text = null;
+    	switch(move){
+    		case 0:
+    			text = new Text("RAISE");
+    	    	break;
+    	    	
+    		case 1:
+    			text = new Text("FOLD");
+    			break;
+    			
+    		case 2:
+    			text = new Text("CHECK");
+    			break;
+    	}
+    		
+    	DropShadow ds = new DropShadow();
+    	ds.setOffsetX(4.0f);
+    	ds.setOffsetY(4.0f);
+    	text.setEffect(ds);
+    	text.setFill(Color.BLACK);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[id ].getChildren().clear();
+        playersLastMove[id].getChildren().setAll(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
+    }
+    
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	Text text = new Text("CHECK");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
+
     	adapter.check(playerId);
+    	setPlayerLastMove(playerId, 2);
     }
     
+   
     @FXML
     public void foldEvent(ActionEvent e){
-    	Text text = new Text("FOLD");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
+    	setPlayerLastMove(playerId, 1);
     	adapter.fold(playerId);
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-    	Text text = new Text("RAISE");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	System.out.println("OKOK");
-    	text.setTextAlignment(TextAlignment.CENTER);
+    	setPlayerLastMove(playerId, 0);
         adapter.raise(playerId, userCashTextField.getText());
         userCashTextField.clear();
     }

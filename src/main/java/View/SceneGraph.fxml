@@ -6,12 +6,10 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="960.0" stylesheets="@Buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.View.TableControler">
-	<children>
-<ImageView fitHeight="600.0" fitWidth="960.0" layoutX="-29.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+	<children><ImageView fitHeight="600.0" fitWidth="1005.0" pickOnBounds="true" preserveRatio="true">
 <image>
 <Image url="@Table.jpg" />
-</image>
-</ImageView>
+</image></ImageView>
 <HBox layoutX="509.0" layoutY="558.0" prefHeight="27.0" prefWidth="437.0" spacing="15.0">
 <children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="27.0" prefWidth="235.0" />
 <HBox layoutX="714.8759765625" layoutY="547.0" prefHeight="38.0" prefWidth="251.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
@@ -75,7 +73,7 @@
 </image>
 </ImageView>
 <HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" styleClass="background" GridPane.rowIndex="3"/>
+<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" styleClass="background" GridPane.rowIndex="3" />
 </children>
 <columnConstraints>
 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
