@@ -1,5 +1,6 @@
 package main.java.View;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.application.Application;
@@ -13,17 +14,29 @@ import main.java.Model.Deck.Card;
 
 public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
+	
 	private int playerId;
+	
+	private TableView referenceToThis;
+	
+	private TableControler tableControler;
+	
+	private static AtomicBoolean constructionFlag = new AtomicBoolean(false);
+	
+	private static TableView RecentlyCreatedInstanceOfThis;
+	
 	public static MainAdapter tempAdapter;
+	
 	public static int tempPlayerId;
-	private static AtomicInteger constructionCounter = new AtomicInteger(0);
-	private static TableView latestCreatedTableView;
-	public static TableControler latestCreatedTableControler;
+	
+	public static TableControler RecentlyCreatedInstanceOfTableControler;
 
 	public TableView(){
-		constructionCounter.incrementAndGet();
-		almostConstructor();
-		latestCreatedTableView = this;
+		adapter = tempAdapter;
+		playerId = tempPlayerId;
+		referenceToThis = this;
+		RecentlyCreatedInstanceOfThis = referenceToThis;
+		constructionFlag.set(true);
 	}
 
 	public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
@@ -35,30 +48,29 @@ public class TableView extends Application implements ViewInterface{
 			}
 		};
 		viewThread.start();
-		while(constructionCounter.get() < 1){
+		while(!constructionFlag.get()){
 			Thread.yield();
 		}
-		while(latestCreatedTableControler == null){
+		while(RecentlyCreatedInstanceOfTableControler == null){
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		while(!latestCreatedTableControler.isConstructed()){
+		RecentlyCreatedInstanceOfThis.almostConstructor();
+		while(!RecentlyCreatedInstanceOfTableControler.isConstructed()){
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		constructionCounter = new AtomicInteger(0);
-		return latestCreatedTableView;
+		constructionFlag.set(false);
+		return RecentlyCreatedInstanceOfThis;
 	}
 	private void almostConstructor(){
-		adapter = tempAdapter;
-		playerId = tempPlayerId;
+		tableControler = RecentlyCreatedInstanceOfTableControler;
 	}
 
 	@Override
@@ -67,7 +79,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.setPot(cash);
+				RecentlyCreatedInstanceOfTableControler.setPot(cash);
 			}
 		});
 	}
@@ -78,7 +90,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.addPlayer(name, id+1);
+				tableControler.addPlayer(name, id+1);
 			}
 		});
 	}
@@ -88,7 +100,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.removePlayer(id+1);
+				tableControler.removePlayer(id+1);
 			}
 		});
 	}
@@ -98,7 +110,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.updatePlayerCash(id+1,cash);
+				tableControler.updatePlayerCash(id+1,cash);
 			}
 		});
 	}
@@ -108,7 +120,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.addThreeCardsOnTable(firstCard, secondCard, thirdCard);
+				tableControler.addThreeCardsOnTable(firstCard, secondCard, thirdCard);
 			}
 		});
 	}
@@ -118,7 +130,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.addOneCard(card);
+				tableControler.addOneCard(card);
 			}
 		});
 	}
@@ -129,9 +141,9 @@ public class TableView extends Application implements ViewInterface{
 			@Override
 			public void run() {
 				setPot(0);
-				latestCreatedTableControler.clearTable();
+				tableControler.clearTable();
 				for(int i=0; i < 8; i++)
-					latestCreatedTableControler.removePlayersLinedCash(i+1);
+					tableControler.removePlayersLinedCash(i+1);
 			}
 		});
 	}
@@ -141,7 +153,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				latestCreatedTableControler.updatePlayerHand(firstCard, secondCard);
+				tableControler.updatePlayerHand(firstCard, secondCard);
 			}
 		});
 	}
@@ -150,7 +162,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				latestCreatedTableControler.updatePlayerLinedCash(id+1, cash);
+				tableControler.updatePlayerLinedCash(id+1, cash);
 			}
 		});
 	}
@@ -160,14 +172,19 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				latestCreatedTableControler.removePlayersLinedCash(id+1);
+				tableControler.removePlayersLinedCash(id+1);
 			}
 		});
 	}
 	
 	@Override
-	public void sendMessage(String text) {
-		System.out.println(text);
+	public void sendMessage(final String text) {
+		javafx.application.Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				tableControler.typeMessageToUserInChat(text, true);
+			}
+		});
 	}
 	
 	@Override

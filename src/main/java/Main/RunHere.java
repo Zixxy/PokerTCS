@@ -26,7 +26,7 @@ public class RunHere {
         MainAdapter adapter = new MainAdapter();
         ViewInterface view;
         try {
-            view = new CommunicationView(2048, adapter);
+            view = new CommunicationView(1224, adapter);
         }
         catch (IOException e) {
             System.err.println("FATAL ERROR");
