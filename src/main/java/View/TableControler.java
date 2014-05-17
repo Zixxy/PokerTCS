@@ -65,7 +65,12 @@ public class TableControler{
     @FXML
     private HBox playerOneLinedCash, playerTwoLinedCash, playerThreeLinedCash, playerFourLinedCash, playerFiveLinedCash,
                  playerSixLinedCash, playerSevenLinedCash, playerEightLinedCash;
-    private HBox[] playersLinesCash;
+    private HBox[] playersLinedCash;
+    
+    @FXML
+    private HBox playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
+    playerSixLastMove, playerSevenLastMove, playerEightLastMove;
+    private HBox[] playersLastMove;
 
     volatile private boolean isConstructed = false;
     
@@ -78,16 +83,35 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
+    	Text text = new Text("CHECK");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
     	adapter.check(playerId);
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-        adapter.fold(playerId);
+    	Text text = new Text("FOLD");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
+    	adapter.fold(playerId);
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
+    	Text text = new Text("RAISE");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	System.out.println("OKOK");
+    	text.setTextAlignment(TextAlignment.CENTER);
         adapter.raise(playerId, userCashTextField.getText());
         userCashTextField.clear();
     }
@@ -98,10 +122,12 @@ public class TableControler{
                                      playerFiveCashBox, playerSixCashBox, playerSevenCashBox, playerEightCashBox};
         playersNameBox = new HBox[] {playerOneNameBox, playerTwoNameBox, playerThreeNameBox, playerFourNameBox,
                                      playerFiveNameBox, playerSixNameBox, playerSevenNameBox, playerEightNameBox};
-        playersLinesCash = new HBox[] {playerOneLinedCash, playerTwoLinedCash, playerThreeLinedCash, playerFourLinedCash,
+        playersLinedCash = new HBox[] {playerOneLinedCash, playerTwoLinedCash, playerThreeLinedCash, playerFourLinedCash,
                                        playerFiveLinedCash, playerSixLinedCash, playerSevenLinedCash, playerEightLinedCash};
         cardsOnTable = new ImageView[] {firstCardOnTable, secondCardOnTable, thirdCardOnTable, fourthCardOnTable, fifthCardOnTable};
         playersCard = new ImageView[] {firstPlayerCard, secondPlayerCard};
+        playersLastMove = new HBox[] {playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
+        								playerSixLastMove, playerSevenLastMove, playerEightLastMove};
         isConstructed = true;
     }
     
@@ -143,6 +169,7 @@ public class TableControler{
         --id;
         playersNameBox[id].getChildren().clear();
         playersCashBox[id].getChildren().clear();
+        playersLastMove[id].getChildren().clear();
     }
     
     public void updatePlayerCash(int id,int cash){
@@ -177,7 +204,7 @@ public class TableControler{
     	System.out.println("/main/java/Cards/" + s + ".png");
     	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
         for (ImageView cardImage: cardsOnTable) {
-            if (cardImage == null) {
+            if (cardImage.getImage() == null) {
                 cardImage.setImage(image);
                 break;
             }
@@ -224,6 +251,10 @@ public class TableControler{
 		updatePlayerLinedCash(id, -1);
 	}
 	
+	public void clearPlayerLastMove(int id){
+		playersLastMove[id].getChildren().clear();
+	}
+	
 	public void updatePlayerLinedCash(int id, int cash) {
 		Text text = new Text("$"+Integer.toString(cash));
 		text.setCache(true);
@@ -231,11 +262,11 @@ public class TableControler{
 		text.setFont(Font.font(null, FontWeight.BOLD, 19));
 
         --id;
-        if (playersLinesCash[id] != null) {
-            playersLinesCash[id].getChildren().clear();
+        if (playersLinedCash[id] != null) {
+            playersLinedCash[id].getChildren().clear();
         }
         if (cash > 0) {
-            playersLinesCash[id].getChildren().add(text);
+            playersLinedCash[id].getChildren().add(text);
         }
 
     	text.setTextAlignment(TextAlignment.CENTER);
