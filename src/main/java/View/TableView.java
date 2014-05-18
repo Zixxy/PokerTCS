@@ -90,7 +90,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				tableControler.addPlayer(name, id+1);
+				tableControler.addPlayer(name, id);
 			}
 		});
 	}
@@ -100,7 +100,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				tableControler.removePlayer(id+1);
+				tableControler.removePlayer(id);
 			}
 		});
 	}
@@ -110,7 +110,7 @@ public class TableView extends Application implements ViewInterface{
 
 			@Override
 			public void run() {
-				tableControler.updatePlayerCash(id+1,cash);
+				tableControler.updatePlayerCash(id,cash);
 			}
 		});
 	}
@@ -162,7 +162,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				tableControler.updatePlayerLinedCash(id+1, cash);
+				tableControler.updatePlayerLinedCash(id, cash);
 			}
 		});
 	}
@@ -172,7 +172,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				tableControler.removePlayersLinedCash(id+1);
+				tableControler.removePlayersLinedCash(id);
 			}
 		});
 	}
@@ -202,5 +202,53 @@ public class TableView extends Application implements ViewInterface{
 
 		primaryStage.show();
 
+	}
+
+	@Override
+	public void updateActualPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updateActualPlayer(id);
+			}
+		});
+	}
+
+	@Override
+	public void updateResignedPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updateResignedPlayer(id);
+			}
+		});
+	}
+
+	@Override
+	public void updatePlayingPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updatePlayingPlayer(id);
+			}
+		});
+	}
+
+	@Override
+	public void updateSmallBLind(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBigBlind(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateDealer(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
