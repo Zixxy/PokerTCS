@@ -6,12 +6,6 @@ public interface ViewInterface {
 	public void addPlayer(String name, int id);
 	public void removePlayer(int id);
 	public void updatePlayerCash(int id, int cash);
-	public void updateActualPlayer(int id);
-	public void updateResignedPlayer(int id);
-	public void updatePlayingPlayer(int id);
-	public void updateSmallBLind(int id);
-	public void updateBigBlind(int id);
-	public void updateDealer(int id);
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard);
 	public void addOneCard(Card card);
 	/**

@@ -1,4 +1,4 @@
-package test.main.java.Model;
+package main.java.Model;
 
 import static org.junit.Assert.*;
 import main.java.Adapter.MainAdapter;
@@ -91,6 +91,5 @@ public class ModelOneTest2 {
         assertEquals(1600, model.getMoney(5));
         model.check(1);
 	}
-	
 
 }

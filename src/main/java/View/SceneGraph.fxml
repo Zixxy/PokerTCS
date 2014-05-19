@@ -5,19 +5,21 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane stylesheets="@Buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.View.TableControler">
-	<children><ImageView pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="600.0" prefWidth="960.0" stylesheets="@Buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.View.TableControler">
+	<children>
+<ImageView fitHeight="600.0" fitWidth="960.0" layoutX="-29.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <image>
 <Image url="@Table.jpg" />
-</image></ImageView>
+</image>
+</ImageView>
 <HBox layoutX="509.0" layoutY="558.0" prefHeight="27.0" prefWidth="437.0" spacing="15.0">
 <children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="27.0" prefWidth="235.0" />
-<HBox layoutX="714.8759765625" layoutY="547.0" prefHeight="38.0" prefWidth="251.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0" HBox.hgrow="ALWAYS">
+<HBox layoutX="714.8759765625" layoutY="547.0" prefHeight="38.0" prefWidth="251.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
 <children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" prefHeight="25.0" prefWidth="75.0" styleClass="raise" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" prefHeight="25.0" prefWidth="75.0" styleClass="fold" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" prefHeight="25.0" prefWidth="75.0" styleClass="check" text="Check" />
 </children>
 </HBox>
 </children>
-</HBox><HBox layoutX="271.0" layoutY="232.0" prefHeight="88.0" prefWidth="414.0" spacing="10.0" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="232.0">
+</HBox><HBox layoutX="271.0" layoutY="232.0" prefHeight="88.0" prefWidth="414.0" spacing="10.0">
 <children><Pane prefHeight="88.0" prefWidth="70.0">
 <children><ImageView fx:id="firstCardOnTable" fitHeight="88.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
 </children></Pane><Pane prefHeight="88.0" prefWidth="70.0">
@@ -54,7 +56,11 @@
     <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
 <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
-<children><ImageView fx:id="playerThreeFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" /><HBox fx:id="playerThreeNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" /><HBox fx:id="playerThreeCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerThreeLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
+<children><ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView><HBox fx:id="playerThreeNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" /><HBox fx:id="playerThreeCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerThreeLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
 </GridPane>
 </children>
@@ -63,9 +69,13 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="145.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerOneFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" styleClass="background" GridPane.rowIndex="3" />
+<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" styleClass="background" GridPane.rowIndex="3"/>
 </children>
 <columnConstraints>
 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,7 +93,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerTwoFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerTwoNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerTwoCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerTwoLastMove" prefHeight="26.0" prefWidth="110.0" GridPane.rowIndex="3" />
 </children>
@@ -103,7 +117,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="145.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerFourFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerFourNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerFourCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerFourLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
@@ -123,7 +141,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerFiveFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerFiveNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerFiveCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerFiveLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
@@ -143,7 +165,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerSixFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerSixNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerSixCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerSixLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
@@ -163,7 +189,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerSevenFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerSevenNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerSevenCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerSevenLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
@@ -183,7 +213,11 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerEightFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+<image>
+<Image url="@person.gif" />
+</image>
+</ImageView>
 <HBox fx:id="playerEightNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerEightCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerEightLastMove" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
@@ -207,7 +241,7 @@
 <HBox fx:id="playerFiveLinedCash" layoutX="616.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerSevenLinedCash" layoutX="762.0" layoutY="300.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerEightLinedCash" layoutX="663.0" layoutY="389.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="396.0" layoutY="78.0" prefHeight="30.0" prefWidth="171.0" />
-<Pane layoutX="14.0" layoutY="430.0" prefHeight="145.0" prefWidth="261.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="685.0" AnchorPane.topAnchor="430.0">
+<Pane layoutX="14.0" layoutY="430.0" prefHeight="145.0" prefWidth="261.0">
 <children><TextArea fx:id="chatTextArea" editable="false" prefHeight="111.0" prefWidth="261.0" /><TextField fx:id="messageTextField" layoutY="110.0" onAction="#chatTyping" prefHeight="27.0" prefWidth="261.0" />
 </children>
 </Pane>

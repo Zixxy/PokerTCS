@@ -44,11 +44,6 @@ public class TableControler{
     @FXML
     private Button btnCheck, btnRaise, btnFold;
     
-    @FXML
-    private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace, 
-    			playerSixFace, playerSevenFace, playerEightFace;
-    private ImageView[] playersFace;
-    
 	@FXML
     private ImageView firstPlayerCard, secondPlayerCard;
     private ImageView[] playersCard;
@@ -85,56 +80,38 @@ public class TableControler{
     	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
-    
-    public void setPlayerLastMove(int id, int move){
-    	/* 0 - raise
-    	 * 1 - fold
-    	 * 2 - check
-    	 */
-		Text text = null;
-    	switch(move){
-    		case 0:
-    			text = new Text("RAISE");
-    	    	break;
-    	    	
-    		case 1:
-    			text = new Text("FOLD");
-    			break;
-    			
-    		case 2:
-    			text = new Text("CHECK");
-    			break;
-    	}
-    		
-    	DropShadow ds = new DropShadow();
-    	ds.setOffsetX(4.0f);
-    	ds.setOffsetY(4.0f);
-    	text.setEffect(ds);
-    	text.setFill(Color.BLACK);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[id ].getChildren().clear();
-        playersLastMove[id].getChildren().setAll(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
-    }
-    
 
     @FXML
     public void checkEvent(ActionEvent e){
-
+    	Text text = new Text("CHECK");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
     	adapter.check(playerId);
-    	setPlayerLastMove(playerId, 2);
     }
     
-   
     @FXML
     public void foldEvent(ActionEvent e){
-    	setPlayerLastMove(playerId, 1);
+    	Text text = new Text("FOLD");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);
     	adapter.fold(playerId);
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-    	setPlayerLastMove(playerId, 0);
+    	Text text = new Text("RAISE");
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[playerId].getChildren().clear();
+    	playersLastMove[playerId].getChildren().add(text);
+    	System.out.println("OKOK");
+    	text.setTextAlignment(TextAlignment.CENTER);
         adapter.raise(playerId, userCashTextField.getText());
         userCashTextField.clear();
     }
@@ -151,8 +128,6 @@ public class TableControler{
         playersCard = new ImageView[] {firstPlayerCard, secondPlayerCard};
         playersLastMove = new HBox[] {playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
         								playerSixLastMove, playerSevenLastMove, playerEightLastMove};
-        playersFace = new ImageView[]{playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace, 
-        	    						playerSixFace, playerSevenFace, playerEightFace};
         isConstructed = true;
     }
     
@@ -186,11 +161,12 @@ public class TableControler{
     	text.setEffect(ds);
     	text.setFill(Color.BURLYWOOD);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-        playersNameBox[id].getChildren().setAll(text);
+        playersNameBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
     }
     
     public void removePlayer(int id){
+        --id;
         playersNameBox[id].getChildren().clear();
         playersCashBox[id].getChildren().clear();
         playersLastMove[id].getChildren().clear();
@@ -205,7 +181,7 @@ public class TableControler{
     	text.setFill(Color.BEIGE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 16));
     	text.setEffect(lighting);
-        playersCashBox[id].getChildren().setAll(text);
+        playersCashBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
     }
 
@@ -285,6 +261,7 @@ public class TableControler{
 		text.setFill(Color.MAROON);
 		text.setFont(Font.font(null, FontWeight.BOLD, 19));
 
+        --id;
         if (playersLinedCash[id] != null) {
             playersLinedCash[id].getChildren().clear();
         }
@@ -293,20 +270,5 @@ public class TableControler{
         }
 
     	text.setTextAlignment(TextAlignment.CENTER);
-	}
-
-	public void updateActualPlayer(int id) {
-		 Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPlayer.gif"));
-		 playersFace[id].setImage(image);
-	}
-
-	public void updateResignedPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/resignedPlayer.gif"));
-		playersFace[id].setImage(image);
-	}
-
-	public void updatePlayingPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif"));
-		playersFace[id].setImage(image);
 	}
 }

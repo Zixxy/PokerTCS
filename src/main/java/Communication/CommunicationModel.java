@@ -24,8 +24,6 @@ public class CommunicationModel implements ModelInterface {
     Thread listen;
     public CommunicationModel(AdapterInterface adapter, String ip, int port) throws IOException {
         this.adapter=adapter;
-        this.ip=ip;
-        this.port=port;
         this.socket=new Socket(this.ip,this.port);
         this.out = new PrintWriter(socket.getOutputStream(), true);
         this.listen = new Thread(new Listener(this.socket,this,in));

@@ -123,40 +123,4 @@ public class CommandLine implements ViewInterface{
     public void setPot(int cash) {
 
     }
-
-	@Override
-	public void updateActualPlayer(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateResignedPlayer(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updatePlayingPlayer(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateSmallBLind(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateBigBlind(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateDealer(int id) {
-		// TODO Auto-generated method stub
-		
-	}
 }
