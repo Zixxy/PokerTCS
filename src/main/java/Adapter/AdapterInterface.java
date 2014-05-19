@@ -25,6 +25,8 @@ public interface AdapterInterface {
 
     public void addPlayer(String name, int id);
     public void removePlayer(int id);
+    public void updateActualPlayer(int id);
+    public void updateResignPlayer(int id);
     public void updatePlayerCash(int id, int cash);
     public void updatePlayerLinedCash(int id, int cash);
     public void updatePlayerHand(int playerId,Deck.Card cards[]);

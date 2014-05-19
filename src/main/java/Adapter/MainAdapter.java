@@ -142,4 +142,19 @@ public class MainAdapter implements AdapterInterface {
     public int getActualStage() {
         return model.getActualStage();
     }
+
+	@Override
+	public void updateActualPlayer(int id) {
+		for(ViewInterface view: views){
+			view.updateActualPlayer(id);
+		}
+		
+	}
+
+	@Override
+	public void updateResignPlayer(int id) {
+		for(ViewInterface view: views){
+			view.updateResignedPlayer(id);
+		}
+	}
 }

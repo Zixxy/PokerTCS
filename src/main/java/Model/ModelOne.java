@@ -170,6 +170,7 @@ public class ModelOne implements ModelInterface {
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje\n");
             while (players.get(currentPlayerId).getInGame() == false)
                 currentPlayerId = (currentPlayerId + 1) % players.size();
+            adapter.updateActualPlayer(currentPlayerId);
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
             if(raising)
@@ -189,11 +190,11 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setOffer(this.limit);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-
             currentPlayerId = (currentPlayerId + 1) % players.size();
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             }
+            adapter.updateActualPlayer(currentPlayerId);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
@@ -222,7 +223,7 @@ public class ModelOne implements ModelInterface {
             while (players.get(currentPlayerId).getInGame() == false) {
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             }
-
+            adapter.updateActualPlayer(currentPlayerId);
         }
     }
 
@@ -233,8 +234,9 @@ public class ModelOne implements ModelInterface {
         currentPlayerId=playerId;
         fold(playerId);
         currentPlayerId=temporaryCurrentPlayerId;
+        adapter.updateActualPlayer(currentPlayerId);
         removePlayer(playerId);
-
+        adapter.updateResignPlayer(playerId);
     }
 
     private void won(){
@@ -293,6 +295,7 @@ public class ModelOne implements ModelInterface {
         adapter.sendMessage("SmallBlindPosition: "+smallBlindPosition);
         adapter.startNewRound();
         currentPlayerId=smallBlindPosition;
+        adapter.updateActualPlayer(currentPlayerId);
         this.limit= ante;
         this.numberInGame=numberOfPlayers-resigned;
         this.onTable= ante *numberInGame;
@@ -327,8 +330,11 @@ public class ModelOne implements ModelInterface {
         adapter.setPot(pot);
         this.limit = 0;
         currentPlayerId = smallBlindPosition;
+    
         while(players.get(currentPlayerId).getInGame() == false)
             currentPlayerId = (currentPlayerId + 1)%players.size();
+        adapter.updateActualPlayer(currentPlayerId);
+        
         raisingPlayerId = currentPlayerId;
 
         if (getActualStage() ==0){
