@@ -45,6 +45,10 @@ public class TableControler{
     @FXML
     private Button btnCheck, btnRaise, btnFold;
     
+    @FXML
+    private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
+    				playerSixFace, playerSevenFace, playerEightFace;
+    private ImageView[] playersFace;
 	@FXML
     private ImageView firstPlayerCard, secondPlayerCard;
     private ImageView[] playersCard;
@@ -130,6 +134,8 @@ public class TableControler{
         playersCard = new ImageView[] {firstPlayerCard, secondPlayerCard};
         playersLastMove = new HBox[] {playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
         								playerSixLastMove, playerSevenLastMove, playerEightLastMove};
+        playersFace = new ImageView[] {playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
+									playerSixFace, playerSevenFace, playerEightFace};
         isConstructed = true;
     }
     
@@ -272,5 +278,19 @@ public class TableControler{
         }
 
     	text.setTextAlignment(TextAlignment.CENTER);
+	}
+	public void updateActualPlayer(int id) {
+		 Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPlayer.gif"));
+		 playersFace[id].setImage(image);
+	}
+
+	public void updateResignedPlayer(int id) {
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/resignedPlayer.gif"));
+		playersFace[id].setImage(image);
+	}
+
+	public void updateNormalPlayer(int id) {
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif"));
+		playersFace[id].setImage(image);
 	}
 }

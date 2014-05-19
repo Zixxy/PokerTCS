@@ -16,14 +16,14 @@ import java.io.IOException;
 /**
 * Created by bartek on 05.05.14.
 */
-public class RunHereClient {
+public class RunHere {
     private static Config config;
     public static void main(String[] args){
         //config = new Config("config");
-        String ip="192.168.0.104";
+        String ip="192.168.1.101";
         int port=1226;
         MainAdapter adapter = new MainAdapter();
-        ViewInterface view = TableView.createTableView(args, adapter, 0);
+        ViewInterface view = TableView.createTableView(args, adapter, 3);
         //ViewInterface view = TableView.createTableView(args, adapter, config.getUserId());
         adapter.addView(view);
         ViewInterface textView = new CommandLine(adapter);

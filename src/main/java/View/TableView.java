@@ -205,4 +205,22 @@ public class TableView extends Application implements ViewInterface{
 		primaryStage.show();
 
 	}
+
+	@Override
+	public void updateActualPlayer(int id) {
+		tableControler.updateActualPlayer(id);
+		
+	}
+
+	@Override
+	public void updateNormalPlayer(int id) {
+		tableControler.updateNormalPlayer(id);
+		
+	}
+
+	@Override
+	public void updateResignedPlayer(int id) {
+		tableControler.updateResignedPlayer(id);
+		
+	}
 }

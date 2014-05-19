@@ -230,4 +230,25 @@ public class CommunicationView  implements ViewInterface{
             this.sendCommand("setPot~" + cash);
         }
     }
+
+	@Override
+	public void updateActualPlayer(int id) {
+        synchronized(CommunicationView.class) {
+            this.sendCommand("updateActualPlayer~" + id);
+        }
+	}
+
+	@Override
+	public void updateNormalPlayer(int id) {
+        synchronized(CommunicationView.class) {
+            this.sendCommand("updateNormalPlayer~" + id);
+        }
+	}
+
+	@Override
+	public void updateResignedPlayer(int id) {
+        synchronized(CommunicationView.class) {
+            this.sendCommand("updateResignedPlayer~" + id);
+        }
+	}
 }

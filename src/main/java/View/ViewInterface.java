@@ -6,6 +6,9 @@ public interface ViewInterface {
 	public void addPlayer(String name, int id);
 	public void removePlayer(int id);
 	public void updatePlayerCash(int id, int cash);
+	public void updateActualPlayer(int id);  // set highlight to player with id
+	public void updateNormalPlayer(int id);  //remove highlight to player with id
+	public void updateResignedPlayer(int id); //remove face of player with id
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard);
 	public void addOneCard(Card card);
 	/**
