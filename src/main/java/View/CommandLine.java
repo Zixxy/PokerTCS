@@ -2,6 +2,7 @@ package main.java.View;
 
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -85,12 +86,17 @@ public class CommandLine implements ViewInterface{
         System.out.println("Table cleared");
     }
 
-    @Override
+    
     public void updatePlayerHand(Deck.Card firstCard, Deck.Card secondCard) {
         System.out.println("Your hand :");
         System.out.println(firstCard.toString());
         System.out.println(secondCard.toString());
 
+    }
+    
+    @Override
+    public void updatePlayerHand(int playerId,Deck.Card firstCard, Deck.Card secondCard) {
+        updatePlayerHand(firstCard,secondCard);
     }
 
     @Override
@@ -111,16 +117,18 @@ public class CommandLine implements ViewInterface{
 
     @Override
     public void startNewRound() {
-        for(Integer playerId: players) {
+     /*   for(Integer playerId: players) {
             Deck.Card tab[] = adapter.getHandCards(playerId);
             System.out.println("Player " + playerId + "cards: ");
             System.out.println(tab[0].toString());
             System.out.println(tab[1].toString());
-        }
+        }*/
     }
 
     @Override
     public void setPot(int cash) {
 
     }
+
+	
 }
