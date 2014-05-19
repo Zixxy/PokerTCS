@@ -148,12 +148,13 @@ public class TableView extends Application implements ViewInterface{
 		});
 	}
 	@Override
-	public void updatePlayerHand(final Card firstCard, final Card secondCard) {
+	public void updatePlayerHand(final int id, final Card firstCard, final Card secondCard) {
 		javafx.application.Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				tableControler.updatePlayerHand(firstCard, secondCard);
+				if(id == playerId)
+					tableControler.updatePlayerHand(firstCard, secondCard);
 			}
 		});
 	}
@@ -189,8 +190,8 @@ public class TableView extends Application implements ViewInterface{
 	
 	@Override
 	public void startNewRound() {
-		Card[] cards = adapter.getHandCards(playerId);
-		updatePlayerHand(cards[0],cards[1]);
+		//Card[] cards = adapter.getHandCards(playerId);
+		//updatePlayerHand(cards[0],cards[1]);
 	}
 	
 	public void start(Stage primaryStage) throws Exception {

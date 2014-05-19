@@ -18,7 +18,7 @@ public interface ViewInterface {
 	/**
 	 * update Player Hand method. If nulls are given method clears player hand.
 	 */
-	public void updatePlayerHand(Card firstCard, Card secondCard);
+	public void updatePlayerHand(int id, Card firstCard, Card secondCard);
 	/**
 	 * it should be used to update player lined cash
 	 */
