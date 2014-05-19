@@ -24,13 +24,15 @@ public class CommunicationModel implements ModelInterface {
     Thread listen;
     public CommunicationModel(AdapterInterface adapter, String ip, int port) throws IOException {
         this.adapter=adapter;
-        this.socket=new Socket(this.ip,this.port);
-        this.out = new PrintWriter(socket.getOutputStream(), true);
-        this.listen = new Thread(new Listener(this.socket,this,in));
-        this.listen.start();
-        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
         this.ip=ip;
         this.port=port;
+        this.socket=new Socket(this.ip,this.port);
+        this.out = new PrintWriter(socket.getOutputStream(), true);
+        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+        this.listen = new Thread(new Listener(this.socket,this,in));
+        this.listen.start();
+
+
 }
     class Listener implements Runnable{
         Socket socket;
@@ -72,6 +74,12 @@ public class CommunicationModel implements ModelInterface {
         }
         if(tab[0].toLowerCase().equals("updateplayercash")){
             adapter.updatePlayerCash(new Integer(tab[1]), new Integer(tab[2]));
+        }
+        if(tab[0].toLowerCase().equals("updateplayerhand")){
+            Deck.Card arr[] = new Deck.Card[2];
+            arr[0]=Deck.getSpecifiedCard(tab[2]);
+            arr[1]=Deck.getSpecifiedCard(tab[3]);
+            adapter.updatePlayerHand(new Integer(tab[1]), arr);
         }
         if(tab[0].toLowerCase().equals("setpot")){
             adapter.setPot(new Integer(tab[1]));
@@ -178,7 +186,7 @@ public class CommunicationModel implements ModelInterface {
         out.println("setAnte~"+arg);
     }
 
-    @Override
+ /*   @Override
     public Deck.Card[] getHandCards(int playerId) {
         String arr[];
         Deck.Card arr2[]=new Deck.Card[2];
@@ -196,7 +204,7 @@ public class CommunicationModel implements ModelInterface {
             return arr2;
         }
     }
-
+*/
     @Override
     public int getActualStage() {
         return 0;
@@ -204,6 +212,7 @@ public class CommunicationModel implements ModelInterface {
 
     @Override
     public void fold(int playerId) {
+        System.out.println("Ja chce foldowac");
         out.println("fold~"+playerId);
     }
 
