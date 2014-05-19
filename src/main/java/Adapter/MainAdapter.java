@@ -120,9 +120,15 @@ public class MainAdapter implements AdapterInterface {
         }
     }
 
-    @Override
+  /*  @Override
     public Deck.Card[] getHandCards(int playerId) {
         return model.getHandCards(playerId);
+    }*/
+    @Override
+    public void updatePlayerHand(int playerId,Deck.Card[] cards){
+        for(ViewInterface view: views) {
+            view.updatePlayerHand(playerId, cards[0], cards[1]);
+        }
     }
 
     @Override
