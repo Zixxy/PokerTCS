@@ -160,7 +160,7 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void fold(int playerId) {
-        //zabezpieczyc tak zeby ostatni gracz nie mogl pasowac - on wygrywa
+        if (!started) return;
         if(currentPlayerId==playerId) {
             boolean raising = false;
             if(currentPlayerId == raisingPlayerId)
@@ -179,7 +179,7 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void check(int playerId) {
-        //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
+        if (!started) return;
         if(currentPlayerId==playerId) {
             if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer())
                 return;
@@ -200,7 +200,7 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void raise(int playerId, int amount) {
-        //rowniez zabezpieczyc przed brakiem gotowki
+        if (!started) return;
         if(currentPlayerId==playerId) {
             if(amount > players.get(playerId).getMoney())
                 return;
