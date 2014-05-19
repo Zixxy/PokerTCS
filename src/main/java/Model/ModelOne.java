@@ -245,7 +245,9 @@ public class ModelOne implements ModelInterface {
             i++;
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
+            adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName() + "\n ");
         }
+        adapter.sendMessage("Rozpoczynanie nowej rundy \n");
         i = -1;
         for(Player p: players) {
             i++;
@@ -253,7 +255,6 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(i, players.get(i).getMoney());
             adapter.updatePlayerLinedCash(i, 0);
         }
-        adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
         for(Player p:players) {
 
 
