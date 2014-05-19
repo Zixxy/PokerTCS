@@ -322,6 +322,7 @@ public class ModelOne implements ModelInterface {
         }
         System.err.println("Actual round: " + stage);
         adapter.setPot(pot);
+        this.limit = 0;
         currentPlayerId = smallBlindPosition;
         while(players.get(currentPlayerId).getInGame() == false)
             currentPlayerId = (currentPlayerId + 1)%players.size();

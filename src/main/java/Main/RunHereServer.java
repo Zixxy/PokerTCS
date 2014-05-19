@@ -42,10 +42,10 @@ public class RunHereServer {
 		//model.addPlayer("Sylwek");
 		//model.addPlayer("Maciek");
 		//
+		model.addPlayer("Bartek");
+		model.addPlayer("Sylwek");
 		model.addPlayer(" Maciek");
 		model.addPlayer("Miron");
-		model.addPlayer("Bartek");
-		model.addPlayer("Szymon");
 		model.start();
 
 	}
