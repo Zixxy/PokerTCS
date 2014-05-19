@@ -19,7 +19,7 @@ public interface ModelInterface {
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
     void setAnte(int arg);//sets Ante
-    Deck.Card[] getHandCards(int playerId);//
+   // Deck.Card[] getHandCards(int playerId);//
     int getActualStage();
 
 	//game
