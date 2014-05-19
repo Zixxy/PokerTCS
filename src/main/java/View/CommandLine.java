@@ -130,5 +130,23 @@ public class CommandLine implements ViewInterface{
 
     }
 
+	@Override
+	public void updateActualPlayer(int id) {
+		System.out.println("Player " + id + "is highlighted");
+		
+	}
+
+	@Override
+	public void updateNormalPlayer(int id) {
+		System.out.println("Player " + id + "is not highlighted");
+		
+	}
+
+	@Override
+	public void updateResignedPlayer(int id) {
+		System.out.println("Player " + id + "disappeared");
+		
+	}
+
 	
 }

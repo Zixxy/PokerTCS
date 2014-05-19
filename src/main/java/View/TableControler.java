@@ -285,8 +285,7 @@ public class TableControler{
 	}
 
 	public void updateResignedPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/resignedPlayer.gif"));
-		playersFace[id].setImage(image);
+		playersFace[id].setImage(null);
 	}
 
 	public void updateNormalPlayer(int id) {
