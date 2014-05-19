@@ -17,7 +17,7 @@ public class RunHereServer {
 		MainAdapter adapter = new MainAdapter();
 		ViewInterface view;
 		try {
-			view = new CommunicationView(1224, adapter);
+			view = new CommunicationView(1226, adapter);
 		}
 		catch (IOException e) {
 			System.err.println("FATAL ERROR");
@@ -43,7 +43,9 @@ public class RunHereServer {
 		//model.addPlayer("Maciek");
 		//
 		model.addPlayer("Bartek");
-		model.addPlayer("Szymon");
+		model.addPlayer("Sylwek");
+		model.addPlayer(" Maciek");
+		model.addPlayer("Miron");
 		model.start();
 
 	}

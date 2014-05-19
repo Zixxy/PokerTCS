@@ -152,13 +152,15 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start() {
-        started=true;
+        if (!started) {
+        	started=true;
         startRound();
+        }
     }
 
     @Override
     public void fold(int playerId) {
-        //zabezpieczyc tak zeby ostatni gracz nie mogl pasowac - on wygrywa
+        if (!started) return;
         if(currentPlayerId==playerId) {
             boolean raising = false;
             if(currentPlayerId == raisingPlayerId)
@@ -177,7 +179,7 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void check(int playerId) {
-        //zabezpieczyc aby ktos kto nie ma wystarczajaco duzej ilosci gotowki nie mogl sprawdzic
+        if (!started) return;
         if(currentPlayerId==playerId) {
             if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer())
                 return;
@@ -198,7 +200,7 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void raise(int playerId, int amount) {
-        //rowniez zabezpieczyc przed brakiem gotowki
+        if (!started) return;
         if(currentPlayerId==playerId) {
             if(amount > players.get(playerId).getMoney())
                 return;
@@ -243,7 +245,9 @@ public class ModelOne implements ModelInterface {
             i++;
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
+            adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName() + "\n ");
         }
+        adapter.sendMessage("Rozpoczynanie nowej rundy \n");
         i = -1;
         for(Player p: players) {
             i++;
@@ -251,7 +255,6 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(i, players.get(i).getMoney());
             adapter.updatePlayerLinedCash(i, 0);
         }
-        adapter.sendMessage("Koniec rundy, wygrał gracz" + players.get(currentPlayerId).getName() + "\n Rozpoczynanie nowej rundy \n");
         for(Player p:players) {
 
 
@@ -263,7 +266,7 @@ public class ModelOne implements ModelInterface {
         while (players.get(smallBlindPosition).getResigned() == true) {
             smallBlindPosition = (smallBlindPosition + 1) % players.size();
         }
-        startRound();
+        started=false;
     }
 
     private void startRound(){
@@ -322,6 +325,7 @@ public class ModelOne implements ModelInterface {
         }
         System.err.println("Actual round: " + stage);
         adapter.setPot(pot);
+        this.limit = 0;
         currentPlayerId = smallBlindPosition;
         while(players.get(currentPlayerId).getInGame() == false)
             currentPlayerId = (currentPlayerId + 1)%players.size();

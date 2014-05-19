@@ -217,10 +217,10 @@ public class CommunicationView  implements ViewInterface{
     public void startNewRound() {
         synchronized(CommunicationView.class) {
             this.sendCommand("startNewRound");
-            waiting = outs.size();
+            /*waiting = outs.size();
             while(waiting > 0) {
                 System.out.println("ERRRRRRRROOOOOOOOORRRRRR");
-            }
+            }*/
         }
     }
 
