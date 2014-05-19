@@ -25,6 +25,7 @@ public class TableControler{
 	private int playerId;
 	
 	public TableControler(){
+		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
 		TableView.RecentlyCreatedInstanceOfTableControler = this;
 	}
@@ -89,6 +90,7 @@ public class TableControler{
     	playersLastMove[playerId].getChildren().clear();
     	playersLastMove[playerId].getChildren().add(text);
     	text.setTextAlignment(TextAlignment.CENTER);
+    	System.out.println("im here");
     	adapter.check(playerId);
     }
     
