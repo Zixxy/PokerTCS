@@ -120,10 +120,10 @@ public class ModelOne implements ModelInterface {
         ante=arg1;
     }
 
-    @Override
-    public Deck.Card[] getHandCards(int playerId){
+    //@Override
+    /*public Deck.Card[] getHandCards(int playerId){
         return players.get(playerId).getCards();
-    }
+    }*/
 
     @Override
     public void setStartedAmount(int amount) {
@@ -281,6 +281,7 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(i, p.getMoney());
             p.setOffer(ante);
             adapter.updatePlayerLinedCash(i, p.getOffer());
+            adapter.updatePlayerHand(i,p.getCards());
             p.setInGame(true);
             i++;
         }
@@ -321,7 +322,6 @@ public class ModelOne implements ModelInterface {
         }
         System.err.println("Actual round: " + stage);
         adapter.setPot(pot);
-        this.limit = 0;
         currentPlayerId = smallBlindPosition;
         while(players.get(currentPlayerId).getInGame() == false)
             currentPlayerId = (currentPlayerId + 1)%players.size();
