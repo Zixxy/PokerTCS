@@ -171,6 +171,7 @@ public class TableControler{
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
+    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif")));
     }
     
     public void removePlayer(int id){
@@ -280,8 +281,16 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
 	}
 	public void updateActualPlayer(int id) {
-		 Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPlayer.gif"));
-		 playersFace[id].setImage(image);
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif"));
+		for(int i = 0; i < playersFace.length; ++i){
+			if(i!=id){
+				if(playersFace[i] != null){
+					playersFace[i].setImage(image);
+				}
+			}
+			
+		}
+		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPlayer.gif"))); 
 	}
 
 	public void updateResignedPlayer(int id) {
