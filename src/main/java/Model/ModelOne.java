@@ -152,8 +152,10 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start() {
-        started=true;
+        if (!started) {
+        	started=true;
         startRound();
+        }
     }
 
     @Override
@@ -263,7 +265,7 @@ public class ModelOne implements ModelInterface {
         while (players.get(smallBlindPosition).getResigned() == true) {
             smallBlindPosition = (smallBlindPosition + 1) % players.size();
         }
-        startRound();
+        started=false;
     }
 
     private void startRound(){
