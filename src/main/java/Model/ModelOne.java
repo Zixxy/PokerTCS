@@ -21,6 +21,7 @@ public class ModelOne implements ModelInterface {
     private ArrayList<Player> players;
     private int limit;
     private int onTable;
+    //private int lastPlayerId;
     private int currentPlayerId;
     private int numberInGame;
     private int raisingPlayerId;
