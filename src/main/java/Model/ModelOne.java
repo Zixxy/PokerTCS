@@ -152,6 +152,11 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start() {
+        int i=0;
+        for(Player p : players){
+            if(!p.getResigned()) adapter.addPlayer(p.getName(),i);
+            i++;
+        }
         if (!started) {
         	started=true;
         startRound();
