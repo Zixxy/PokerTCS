@@ -75,6 +75,12 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("updateplayercash")){
             adapter.updatePlayerCash(new Integer(tab[1]), new Integer(tab[2]));
         }
+        if(tab[0].toLowerCase().equals("updateresignedplayer")){
+            adapter.updateResignPlayer(new Integer(tab[1]));
+        }
+        if(tab[0].toLowerCase().equals("updateactualplayer")){
+            adapter.updateActualPlayer(new Integer(tab[1]));
+        }
         if(tab[0].toLowerCase().equals("updateplayerhand")){
             Deck.Card arr[] = new Deck.Card[2];
             arr[0]=Deck.getSpecifiedCard(tab[2]);
