@@ -172,7 +172,7 @@ public class ModelOne implements ModelInterface {
                 raising = true;
             players.get(playerId).setInGame(false);
             numberInGame--;
-            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje\n");
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje");
             while (players.get(currentPlayerId).getInGame() == false)
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             adapter.updateActualPlayer(currentPlayerId);
@@ -191,7 +191,7 @@ public class ModelOne implements ModelInterface {
         if(currentPlayerId==playerId) {
             if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer())
                 return;
-            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" sprawdza\n");
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" sprawdza");
             onTable+=this.limit - players.get(playerId).getOffer();
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
             players.get(playerId).setOffer(this.limit);
@@ -219,7 +219,7 @@ public class ModelOne implements ModelInterface {
                 check(playerId);
                 return;
             }
-            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" podbija o " + amount + "\n");
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" podbija o " + amount );
             onTable+=amount;
             players.get(playerId).setMoney(players.get(playerId).getMoney() -amount);
             players.get(playerId).setOffer(players.get(playerId).getOffer()+amount);
@@ -256,9 +256,9 @@ public class ModelOne implements ModelInterface {
             i++;
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
-            adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName() + "\n ");
+            adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName());
         }
-        adapter.sendMessage("Rozpoczynanie nowej rundy \n");
+        adapter.sendMessage("Rozpoczynanie nowej rundy ");
         i = -1;
         for(Player p: players) {
             i++;

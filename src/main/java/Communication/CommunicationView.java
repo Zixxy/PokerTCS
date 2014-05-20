@@ -118,6 +118,9 @@ public class CommunicationView  implements ViewInterface{
         else if(txt[0].equals("resign")) {
             adapter.resign(Integer.valueOf(txt[1]));
         }
+        else if(txt[0].equals("start")) {
+            adapter.start();
+        }
         else if(txt[0].equals("usercards")) {
             //System.out.println("ASKED: " + txt[1]);
             //this.sendCards(socket, Integer.valueOf(txt[1]));

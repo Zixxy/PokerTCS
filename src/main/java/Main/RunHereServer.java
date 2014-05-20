@@ -27,7 +27,7 @@ public class RunHereServer {
 
 		adapter.addView(view);
 
-		ViewInterface view2 = TableView.createTableView(args, adapter, 1);
+		ViewInterface view2 = TableView.createTableView(args, adapter, 0);
 		adapter.addView(view2);
 
 		ModelOne model = new ModelOne(adapter);
@@ -44,9 +44,9 @@ public class RunHereServer {
 		//model.addPlayer("Maciek");
 		//
 		model.addPlayer("Bartek");
+		model.addPlayer("Miron");
+		model.addPlayer("Maciek");
 		model.addPlayer("Sylwek");
-		//model.addPlayer(" Maciek");
-		//model.addPlayer("Miron");
 		//model.start();
 
 	}
