@@ -152,7 +152,7 @@ public class MainAdapter implements AdapterInterface {
 		for(ViewInterface view: views){
 			view.updateActualPlayer(id);
 		}
-		
+		//
 	}
 
 	@Override
