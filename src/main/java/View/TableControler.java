@@ -281,7 +281,7 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
 	}
 	public void updateActualPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif"));
 		for(int i = 0; i < playersFace.length; ++i){
 			if(i!=id){
 				if(playersFace[i] != null){
@@ -290,7 +290,7 @@ public class TableControler{
 			}
 			
 		}
-		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPlayer.gif"))); 
+		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPerson.gif"))); 
 	}
 
 	public void updateResignedPlayer(int id) {
@@ -298,7 +298,7 @@ public class TableControler{
 	}
 
 	public void updateNormalPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif"));
 		playersFace[id].setImage(image);
 	}
 }

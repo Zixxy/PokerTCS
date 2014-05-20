@@ -67,7 +67,7 @@
 <children>
 <ImageView fx:id="playerOneFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
 <HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" styleClass="background" GridPane.rowIndex="3" />
+<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" GridPane.rowIndex="3" />
 </children>
 <columnConstraints>
 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
