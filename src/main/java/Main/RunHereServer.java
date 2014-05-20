@@ -32,9 +32,9 @@ public class RunHereServer {
 
 		ModelOne model = new ModelOne(adapter);
 		adapter.addModel(model);
-		(new Scanner(System.in)).nextInt();
-	//	ViewInterface textView = new CommandLine(adapter);
-	//	adapter.addView(textView);
+		//(new Scanner(System.in)).nextInt();
+	ViewInterface textView = new CommandLine(adapter);
+		adapter.addView(textView);
 		System.out.println("LOOOOOL");
 		model.setAnte(10);
 		model.setStartedAmount(2000);
@@ -45,9 +45,9 @@ public class RunHereServer {
 		//
 		model.addPlayer("Bartek");
 		model.addPlayer("Sylwek");
-		model.addPlayer(" Maciek");
-		model.addPlayer("Miron");
-		model.start();
+		//model.addPlayer(" Maciek");
+		//model.addPlayer("Miron");
+		//model.start();
 
 	}
 }

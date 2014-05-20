@@ -130,7 +130,12 @@ public class CommandLine implements ViewInterface{
 
     }
 
-	@Override
+    @Override
+    public void setLastMove(int id, int move) {
+
+    }
+
+    @Override
 	public void updateActualPlayer(int id) {
 		System.out.println("Player " + id + "is highlighted");
 		
