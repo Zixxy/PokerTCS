@@ -171,7 +171,7 @@ public class TableControler{
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
-    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPlayer.gif")));
+    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif")));
     }
     
     public void removePlayer(int id){
