@@ -21,9 +21,9 @@ public class RunHere {
     public static void main(String[] args){
         //config = new Config("config");
         String ip="192.168.1.101";
-        int port=1227;
+        int port=1228;
         MainAdapter adapter = new MainAdapter();
-        ViewInterface view = TableView.createTableView(args, adapter, 3);
+        ViewInterface view = TableView.createTableView(args, adapter, 2);
         //ViewInterface view = TableView.createTableView(args, adapter, config.getUserId());
         adapter.addView(view);
         ViewInterface textView = new CommandLine(adapter);

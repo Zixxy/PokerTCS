@@ -37,5 +37,6 @@ public interface AdapterInterface {
     public void clearTable();
     public void sendMessage(String text);
     public void startNewRound();
+	public void setLastMove(int id, int move);
 
 }

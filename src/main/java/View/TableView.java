@@ -238,4 +238,14 @@ public class TableView extends Application implements ViewInterface{
 		});
 		
 	}
+	
+	@Override
+	public void setLastMove(final int id, final int move){
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.setLastMove(id, move);
+			}
+		});
+	}
 }

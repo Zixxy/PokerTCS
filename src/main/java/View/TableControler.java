@@ -43,7 +43,7 @@ public class TableControler{
     private TextField userCashTextField;
     
     @FXML
-    private Button btnCheck, btnRaise, btnFold;
+    private Button btnCheck, btnRaise, btnFold, startButton;
     
     @FXML
     private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
@@ -88,38 +88,25 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	Text text = new Text("CHECK");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
     	System.out.println("im here");
+    	
     	adapter.check(playerId);
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	Text text = new Text("FOLD");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);
     	adapter.fold(playerId);
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-    	Text text = new Text("RAISE");
-    	text.setFill(Color.WHITE);
-    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[playerId].getChildren().clear();
-    	playersLastMove[playerId].getChildren().add(text);
-    	System.out.println("OKOK");
-    	text.setTextAlignment(TextAlignment.CENTER);
         adapter.raise(playerId, userCashTextField.getText());
         userCashTextField.clear();
+    }
+    
+    @FXML
+    public void startEvent(ActionEvent e){
+    	adapter.start();
     }
 
     @FXML
@@ -300,5 +287,33 @@ public class TableControler{
 	public void updateNormalPlayer(int id) {
 		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif"));
 		playersFace[id].setImage(image);
+	}
+
+	public void setLastMove(int id, int move) {
+		/*
+		 * move:
+		 * 0 - raise
+		 * 1 - fold
+		 * 2 - check
+		 */
+		Text text;
+		switch(move){
+			case 0:
+				text = new Text("RAISE");
+				break;
+			case 1:
+				text = new Text("FOLD");
+				break;
+			case 2:
+				text = new Text("CHECK");
+				break;
+			default:
+				throw new RuntimeException("Unknown operation type");
+		}
+    	text.setFill(Color.WHITE);
+    	text.setFont(Font.font(null, FontWeight.BOLD, 14));
+    	playersLastMove[id].getChildren().clear();
+    	playersLastMove[id].getChildren().add(text);
+    	text.setTextAlignment(TextAlignment.CENTER);		
 	}
 }

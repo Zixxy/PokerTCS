@@ -161,4 +161,11 @@ public class MainAdapter implements AdapterInterface {
 			view.updateResignedPlayer(id);
 		}
 	}
+	
+	@Override
+	public void setLastMove(int id, int move){
+		for(ViewInterface view: views){
+			view.setLastMove(id, move);
+		}
+	}
 }

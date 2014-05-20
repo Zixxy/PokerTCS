@@ -251,4 +251,15 @@ public class CommunicationView  implements ViewInterface{
             this.sendCommand("updateResignedPlayer~" + id);
         }
 	}
+	
+	public void setLastMove(int id, int move){
+		/*
+		 * 0 - raise
+		 * 1 - fold
+		 * 2 - check
+		 */
+		synchronized(CommunicationView.class) {
+			this.sendCommand("setLastMove~" + id + "~" + move);
+		}
+	}
 }

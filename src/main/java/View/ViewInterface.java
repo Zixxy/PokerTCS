@@ -36,4 +36,11 @@ public interface ViewInterface {
      * it sets pot on table.
      */
     public void setPot(int cash);
+    
+    /**
+     * It sets the last move of the player.
+     * @param id
+     * @param move
+     */
+	public void setLastMove(int id, int move);
 }

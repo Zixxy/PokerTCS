@@ -173,6 +173,8 @@ public class ModelOne implements ModelInterface {
             adapter.updateActualPlayer(currentPlayerId);
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
+            
+            adapter.setLastMove(currentPlayerId, 1);
             if(raising)
                 raisingPlayerId = currentPlayerId;
         }
@@ -195,6 +197,7 @@ public class ModelOne implements ModelInterface {
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             }
             adapter.updateActualPlayer(currentPlayerId);
+            adapter.setLastMove(currentPlayerId, 2);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
@@ -224,6 +227,7 @@ public class ModelOne implements ModelInterface {
                 currentPlayerId = (currentPlayerId + 1) % players.size();
             }
             adapter.updateActualPlayer(currentPlayerId);
+            adapter.setLastMove(currentPlayerId, 0);
         }
     }
 

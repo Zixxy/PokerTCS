@@ -110,7 +110,10 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("startnewround")){
             adapter.startNewRound();
         }
-
+        
+        if(tab[0].toLowerCase().equals("setlastmove")){
+        	adapter.setLastMove(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
+        } 	
     }
     @Override
     public boolean isStarted() {
