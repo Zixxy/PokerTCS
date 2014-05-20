@@ -207,20 +207,35 @@ public class TableView extends Application implements ViewInterface{
 	}
 
 	@Override
-	public void updateActualPlayer(int id) {
-		tableControler.updateActualPlayer(id);
+	public void updateActualPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updateActualPlayer(id);
+			}
+		});
 		
 	}
 
 	@Override
-	public void updateNormalPlayer(int id) {
-		tableControler.updateNormalPlayer(id);
+	public void updateNormalPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updateNormalPlayer(id);
+			}
+		});
 		
 	}
 
 	@Override
-	public void updateResignedPlayer(int id) {
-		tableControler.updateResignedPlayer(id);
+	public void updateResignedPlayer(final int id) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.updateResignedPlayer(id);
+			}
+		});
 		
 	}
 }
