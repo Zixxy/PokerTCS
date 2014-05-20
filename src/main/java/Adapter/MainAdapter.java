@@ -42,6 +42,10 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
+    public void start(){
+    	model.start();
+    }
+    @Override
     public void resign(int playerId){
         model.resign(playerId);
     }

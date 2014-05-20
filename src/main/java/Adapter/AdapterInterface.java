@@ -22,7 +22,8 @@ public interface AdapterInterface {
     //public Deck.Card[] getHandCards(int playerId);
 
     public int getActualStage();
-
+    
+    public void start();
     public void addPlayer(String name, int id);
     public void removePlayer(int id);
     public void updateActualPlayer(int id);

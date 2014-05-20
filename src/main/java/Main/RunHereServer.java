@@ -1,6 +1,7 @@
 package main.java.Main;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import main.java.Adapter.MainAdapter;
 import main.java.Communication.CommunicationView;
@@ -17,7 +18,7 @@ public class RunHereServer {
 		MainAdapter adapter = new MainAdapter();
 		ViewInterface view;
 		try {
-			view = new CommunicationView(1227, adapter);
+			view = new CommunicationView(1228, adapter);
 		}
 		catch (IOException e) {
 			System.err.println("FATAL ERROR");
@@ -31,9 +32,9 @@ public class RunHereServer {
 
 		ModelOne model = new ModelOne(adapter);
 		adapter.addModel(model);
-		//(new Scanner(System.in)).nextInt();
-		ViewInterface textView = new CommandLine(adapter);
-		adapter.addView(textView);
+		(new Scanner(System.in)).nextInt();
+	//	ViewInterface textView = new CommandLine(adapter);
+	//	adapter.addView(textView);
 		System.out.println("LOOOOOL");
 		model.setAnte(10);
 		model.setStartedAmount(2000);
