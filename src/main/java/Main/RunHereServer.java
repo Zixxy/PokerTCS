@@ -17,7 +17,7 @@ public class RunHereServer {
 		MainAdapter adapter = new MainAdapter();
 		ViewInterface view;
 		try {
-			view = new CommunicationView(1226, adapter);
+			view = new CommunicationView(1227, adapter);
 		}
 		catch (IOException e) {
 			System.err.println("FATAL ERROR");
