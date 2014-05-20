@@ -21,7 +21,7 @@ public class RunHere {
     public static void main(String[] args){
         //config = new Config("config");
         String ip="192.168.1.101";
-        int port=1226;
+        int port=1227;
         MainAdapter adapter = new MainAdapter();
         ViewInterface view = TableView.createTableView(args, adapter, 3);
         //ViewInterface view = TableView.createTableView(args, adapter, config.getUserId());
