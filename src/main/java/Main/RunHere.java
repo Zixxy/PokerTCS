@@ -20,10 +20,10 @@ public class RunHere {
     private static Config config;
     public static void main(String[] args){
         //config = new Config("config");
-        String ip="127.0.0.1";
-        int port=1228;
+        String ip="192.168.0.104";
+        int port=1229;
         MainAdapter adapter = new MainAdapter();
-        ViewInterface view = TableView.createTableView(args, adapter, 0);
+        ViewInterface view = TableView.createTableView(args, adapter, 1);
         //ViewInterface view = TableView.createTableView(args, adapter, config.getUserId());
         adapter.addView(view);
         ViewInterface textView = new CommandLine(adapter);

@@ -158,7 +158,7 @@ public class TableControler{
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
-    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif")));
+    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif")));
     }
     
     public void removePlayer(int id){
@@ -268,7 +268,7 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
 	}
 	public void updateActualPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif"));
 		for(int i = 0; i < playersFace.length; ++i){
 			if(i!=id){
 				if(playersFace[i] != null){
@@ -277,7 +277,7 @@ public class TableControler{
 			}
 			
 		}
-		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Person/actualPerson.gif"))); 
+		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Pictures/actualPerson.gif"))); 
 	}
 
 	public void updateResignedPlayer(int id) {
@@ -285,7 +285,7 @@ public class TableControler{
 	}
 
 	public void updateNormalPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Person/playingPerson.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif"));
 		playersFace[id].setImage(image);
 	}
 

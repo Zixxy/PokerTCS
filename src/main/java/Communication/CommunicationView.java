@@ -1,14 +1,17 @@
 package main.java.Communication;
 
-import main.java.Adapter.AdapterInterface;
-import main.java.Model.Deck;
-import main.java.View.ViewInterface;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import main.java.Adapter.AdapterInterface;
+import main.java.Model.Deck;
+import main.java.View.ViewInterface;
 
 /**
  * Created by dakurels on 2014-05-14.

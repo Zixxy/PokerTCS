@@ -1,7 +1,6 @@
 package main.java.View;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -196,7 +195,7 @@ public class TableView extends Application implements ViewInterface{
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		AnchorPane root = FXMLLoader.load(getClass().getResource("SceneGraph.fxml"));
+		AnchorPane root = FXMLLoader.load(getClass().getResource("/main/java/FXML/SceneGraph.fxml"));
 		Scene scene = new Scene(root);
 		// grid.setGridLinesVisible(true);
 		primaryStage.setTitle("PokerTCS");

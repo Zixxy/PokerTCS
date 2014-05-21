@@ -5,8 +5,6 @@ import main.java.Model.Player;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * Created by Arytmetyk on 2014-05-12.
  */

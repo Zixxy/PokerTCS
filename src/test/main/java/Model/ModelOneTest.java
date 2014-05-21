@@ -5,8 +5,6 @@ import main.java.Adapter.MainAdapter;
 import main.java.Model.ModelOne;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 //
 
 /**
