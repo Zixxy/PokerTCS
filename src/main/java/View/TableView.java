@@ -38,6 +38,15 @@ public class TableView extends Application implements TableViewInterface{
 		constructionFlag.set(true);
 	}
 
+	public static TableViewInterface getTableView(MainAdapter adapt, int userId){
+		tempAdapter = adapt;
+		tempPlayerId = userId;
+		return new TableView();
+	}
+	/*
+	 * this method soon will be removed, when both gui and adapter will get used to new formation of files.
+	 */
+	@Deprecated
 	public static synchronized TableViewInterface createTableView(final String[] args, MainAdapter a, int p){
 		tempAdapter = a;
 		tempPlayerId = p;
@@ -194,16 +203,6 @@ public class TableView extends Application implements TableViewInterface{
 		//updatePlayerHand(cards[0],cards[1]);
 	}
 	
-	public void start(Stage primaryStage) throws Exception {
-		AnchorPane root = FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml"));
-		Scene scene = new Scene(root);
-		primaryStage.setTitle("PokerTCS");
-		primaryStage.setScene(scene);
-
-		primaryStage.show();
-
-	}
-
 	@Override
 	public void updateActualPlayer(final int id) {
 		javafx.application.Platform.runLater(new Runnable() {
@@ -246,4 +245,19 @@ public class TableView extends Application implements TableViewInterface{
 			}
 		});
 	}
+	
+	/*
+	 * this method soon will be removed, when both gui and adapter will get used to new formation of files.
+	 */
+	@Deprecated
+	public void start(Stage primaryStage) throws Exception {
+		AnchorPane root = FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("PokerTCS");
+		primaryStage.setScene(scene);
+
+		primaryStage.show();
+
+	}
+
 }
