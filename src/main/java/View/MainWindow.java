@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /*
- * i'm too hungry to finnish it now :]
+ * i'm too hungry to finish it now :]
  */
 
 public class MainWindow extends Application implements MainViewInterface {

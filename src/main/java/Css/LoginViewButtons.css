@@ -1,23 +1,24 @@
-.windows7-default {
-    top: 1px;
-    margin-bottom: 1px;
-    border-bottom-width: 1px;
-    background-color: #F9F9F9;
-    background-image: -moz-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.2)), color-stop(100%, rgba(255,255,255,0.2)));
-    background-image: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: -o-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+.button {
+    -fx-background-color:
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 3 10 3 10;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
 }
+.button:active {
+	-fx-background-color:
+        #3c7fb1,
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%),
+        linear-gradient(#fafdfe, #e8f5fc);
 
-.windows7-default:active {
-    top: 1px;
-    margin-bottom: 1px;
-    border-bottom-width: 1px;
-    background-color: #F9F9F9;
-    background-image: -moz-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.2)), color-stop(100%, rgba(255,255,255,0.2)));
-    background-image: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: -o-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 3 10 3 10;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
 }
