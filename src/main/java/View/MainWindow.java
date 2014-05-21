@@ -51,6 +51,7 @@ public class MainWindow extends Application implements MainViewInterface {
 	public static MainViewInterface createMainView(MainAdapter adapt, final String[] args) {
 		tempMainAdapter = adapt;
 		Thread mainViewThread = new Thread(){
+			@Override
 			public void run(){
 				Application.launch(MainWindow.class, args);
 			}
@@ -77,6 +78,7 @@ public class MainWindow extends Application implements MainViewInterface {
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				mainStage.setResizable(true);
 				mainStage.setHeight(620);
 				mainStage.setWidth(960);
 				mainPane.getChildren().clear();
@@ -110,6 +112,12 @@ public class MainWindow extends Application implements MainViewInterface {
 				System.err.println("ignore ''TabloControlerSynchronizer launching warning!'' ");
 			}
 		}
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainStage.setResizable(false);
+			}
+		});
 		return fullyCreatedTableViewInterface;
 	}
 	
