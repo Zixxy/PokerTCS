@@ -1,0 +1,23 @@
+.windows7-default {
+    top: 1px;
+    margin-bottom: 1px;
+    border-bottom-width: 1px;
+    background-color: #F9F9F9;
+    background-image: -moz-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.2)), color-stop(100%, rgba(255,255,255,0.2)));
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: -o-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+}
+
+.windows7-default:active {
+    top: 1px;
+    margin-bottom: 1px;
+    border-bottom-width: 1px;
+    background-color: #F9F9F9;
+    background-image: -moz-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.2)), color-stop(100%, rgba(255,255,255,0.2)));
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: -o-linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(255,255,255,0.2));
+}
