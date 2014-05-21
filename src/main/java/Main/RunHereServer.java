@@ -8,7 +8,7 @@ import main.java.Communication.CommunicationView;
 import main.java.Model.ModelOne;
 import main.java.View.CommandLine;
 import main.java.View.TableView;
-import main.java.View.ViewInterface;
+import main.java.View.TableViewInterface;
 
 public class RunHereServer {
 	private static Config config;
@@ -16,7 +16,7 @@ public class RunHereServer {
 	public static void main(String[] args) {
 
 		MainAdapter adapter = new MainAdapter();
-		ViewInterface view;
+		TableViewInterface view;
 		try {
 			view = new CommunicationView(1228, adapter);
 		}
@@ -27,13 +27,13 @@ public class RunHereServer {
 
 		adapter.addView(view);
 
-		ViewInterface view2 = TableView.createTableView(args, adapter, 0);
+		TableViewInterface view2 = TableView.createTableView(args, adapter, 0);
 		adapter.addView(view2);
 
 		ModelOne model = new ModelOne(adapter);
 		adapter.addModel(model);
 		//(new Scanner(System.in)).nextInt();
-	ViewInterface textView = new CommandLine(adapter);
+	TableViewInterface textView = new CommandLine(adapter);
 		adapter.addView(textView);
 		System.out.println("LOOOOOL");
 		model.setAnte(10);

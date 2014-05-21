@@ -11,7 +11,7 @@ import main.java.Adapter.MainAdapter;
 import main.java.Model.Deck.Card;
 
 
-public class TableView extends Application implements ViewInterface{
+public class TableView extends Application implements TableViewInterface{
 	private MainAdapter adapter;
 	
 	private int playerId;
@@ -38,7 +38,7 @@ public class TableView extends Application implements ViewInterface{
 		constructionFlag.set(true);
 	}
 
-	public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
+	public static synchronized TableViewInterface createTableView(final String[] args, MainAdapter a, int p){
 		tempAdapter = a;
 		tempPlayerId = p;
 		Thread viewThread = new Thread(){
@@ -195,9 +195,8 @@ public class TableView extends Application implements ViewInterface{
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		AnchorPane root = FXMLLoader.load(getClass().getResource("/main/java/FXML/SceneGraph.fxml"));
+		AnchorPane root = FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml"));
 		Scene scene = new Scene(root);
-		// grid.setGridLinesVisible(true);
 		primaryStage.setTitle("PokerTCS");
 		primaryStage.setScene(scene);
 

@@ -11,12 +11,12 @@ import java.util.Collection;
 
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
-import main.java.View.ViewInterface;
+import main.java.View.TableViewInterface;
 
 /**
  * Created by dakurels on 2014-05-14.
  */
-public class CommunicationView  implements ViewInterface{
+public class CommunicationView  implements TableViewInterface{
 
     private Thread clientsListener;
     private Collection<Thread> massagesListeners;

@@ -6,7 +6,7 @@ import main.java.Model.ModelInterface;
 import main.java.Model.ModelOne;
 import main.java.View.CommandLine;
 import main.java.View.*;
-import main.java.View.ViewInterface;
+import main.java.View.TableViewInterface;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,10 +23,10 @@ public class RunHere {
         String ip="192.168.0.104";
         int port=1229;
         MainAdapter adapter = new MainAdapter();
-        ViewInterface view = TableView.createTableView(args, adapter, 1);
+        TableViewInterface view = TableView.createTableView(args, adapter, 1);
         //ViewInterface view = TableView.createTableView(args, adapter, config.getUserId());
         adapter.addView(view);
-        ViewInterface textView = new CommandLine(adapter);
+        TableViewInterface textView = new CommandLine(adapter);
         adapter.addView(textView);
         ModelInterface model = null;
         try {

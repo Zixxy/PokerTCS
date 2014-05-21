@@ -2,7 +2,7 @@ package main.java.Adapter;
 
 import main.java.Model.Deck;
 import main.java.Model.ModelInterface;
-import main.java.View.ViewInterface;
+import main.java.View.TableViewInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,11 +12,11 @@ import java.util.Collection;
  */
 public class MainAdapter implements AdapterInterface {
     private ModelInterface model;
-    private Collection<ViewInterface> views;
+    private Collection<TableViewInterface> views;
 
     public MainAdapter() {
         model = null;
-        views = new ArrayList<ViewInterface>();
+        views = new ArrayList<TableViewInterface>();
     }
 
     @Override
@@ -52,14 +52,14 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void sendMessage(String text){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.sendMessage(text);
         }
     }
 
     @Override
     public void addPlayer(String name, int id){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.addPlayer(name, id);
         }
 
@@ -67,27 +67,27 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void removePlayer(int id){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.removePlayer(id);
         }
     }
 
     @Override
     public void updatePlayerCash(int id, int cash){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.updatePlayerCash(id, cash);
         }
     }
 
     @Override
     public void updatePlayerLinedCash(int id, int cash){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.updatePlayerLinedCash(id, cash);
         }
     }
     @Override
     public void clearTable() {
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.clearTable();
         }
     }
@@ -99,27 +99,27 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void addView(ViewInterface view){
+    public void addView(TableViewInterface view){
         views.add(view);
     }
 
     @Override
     public void addThreeCards(Deck.Card[] cards) {
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.addThreeCardsOnTable(cards[0], cards[1], cards[2]);
         }
     }
 
     @Override
     public void addOneCard(Deck.Card card) {
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.addOneCard(card);
         }
     }
 
     @Override
     public void startNewRound() {
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.startNewRound();
         }
     }
@@ -130,14 +130,14 @@ public class MainAdapter implements AdapterInterface {
     }*/
     @Override
     public void updatePlayerHand(int playerId,Deck.Card[] cards){
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.updatePlayerHand(playerId, cards[0], cards[1]);
         }
     }
 
     @Override
     public void setPot(int pot) {
-        for(ViewInterface view: views) {
+        for(TableViewInterface view: views) {
             view.setPot(pot);
         }
     }
@@ -149,7 +149,7 @@ public class MainAdapter implements AdapterInterface {
 
 	@Override
 	public void updateActualPlayer(int id) {
-		for(ViewInterface view: views){
+		for(TableViewInterface view: views){
 			view.updateActualPlayer(id);
 		}
 		//
@@ -157,14 +157,14 @@ public class MainAdapter implements AdapterInterface {
 
 	@Override
 	public void updateResignPlayer(int id) {
-		for(ViewInterface view: views){
+		for(TableViewInterface view: views){
 			view.updateResignedPlayer(id);
 		}
 	}
 	
 	@Override
 	public void setLastMove(int id, int move){
-		for(ViewInterface view: views){
+		for(TableViewInterface view: views){
 			view.setLastMove(id, move);
 		}
 	}
