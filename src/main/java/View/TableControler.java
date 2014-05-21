@@ -22,6 +22,8 @@ import main.java.Model.Deck.Card;
 public class TableControler{
 	private MainAdapter adapter;
 	
+    volatile private boolean isConstructed = false;
+    
 	private int playerId;
 	
 	public TableControler(){
@@ -76,8 +78,6 @@ public class TableControler{
     private HBox playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
     playerSixLastMove, playerSevenLastMove, playerEightLastMove;
     private HBox[] playersLastMove;
-
-    volatile private boolean isConstructed = false;
     
     @FXML
     public void chatTyping(ActionEvent e){
@@ -124,6 +124,10 @@ public class TableControler{
         playersFace = new ImageView[] {playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
 									playerSixFace, playerSevenFace, playerEightFace};
         isConstructed = true;
+        
+        synchronized(MainWindow.TableControlerSynchronizer){
+        	MainWindow.TableControlerSynchronizer.notifyAll();
+        }
     }
     
     public boolean isConstructed(){
