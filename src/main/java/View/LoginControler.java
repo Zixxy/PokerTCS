@@ -1,83 +1,98 @@
 package main.java.View;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 
 public class LoginControler {
 
     @FXML
+    private TextField userNameTextField;
+
+    @FXML
     private TextField ipTextField;
-
-    @FXML
-    private ImageView thirdImage;
-
-    @FXML
-    private ImageView fourthImage;
-
-    @FXML
-    private ImageView fifthImage;
 
     @FXML
     private TextField portNumberTextField;
 
     @FXML
-    private RadioButton secondRadioButton;
-
-    @FXML
-    private TextField userNameTextField;
-
-    @FXML
-    private RadioButton thirdRadioButton;
+    private TextField serverPortNumberTextField;
+    
 
     @FXML
     private Button exitButton;
 
     @FXML
-    private TextField serverPortNumberTextField;
-
-    @FXML
     private Button joinButton;
 
     @FXML
-    private ImageView firstImage;
-
-    @FXML
-    private RadioButton fifthRadioButton;
-
-    @FXML
-    private RadioButton fourthRadioButton;
-
-    @FXML
-    private ImageView sixthImage;
-
-    @FXML
-    private RadioButton sixthRadioButton;
-
-    @FXML
     private Button newHostButton;
+    
+    @FXML
+    private ImageView firstImage, secondImage, thirdImage, fourthImage, fifthImage, sixthImage;
+    private ImageView[] userImage;
+    private int pickedImage;
+    
+    @FXML
+    private RadioButton firstRadioButton, secondRadioButton, thirdRadioButton, fourthRadioButton, 
+                        fifthRadioButton, sixthRadioButton;
+    private RadioButton[] radioButtons;
+    private ToggleGroup groupRadioButtons;
 
     @FXML
-    private ImageView secondImage;
-
-    @FXML
-    private RadioButton firstRadioButton;
-
+    private void initialize(){
+    	userImage = new ImageView[]{firstImage, secondImage, thirdImage, fourthImage, fifthImage, sixthImage};
+    	radioButtons = new RadioButton[]{firstRadioButton, secondRadioButton, thirdRadioButton, fourthRadioButton, 
+    			fifthRadioButton, sixthRadioButton};
+    	groupRadioButtons = new ToggleGroup();
+    	for(RadioButton i : radioButtons)
+    		i.setToggleGroup(groupRadioButtons);
+    	groupRadioButtons.selectedToggleProperty().addListener(
+    			new ChangeListener<Toggle>(){
+    				public void changed(ObservableValue<? extends Toggle> ov,
+    						Toggle old_toggle, Toggle new_toggle) {
+    					if (groupRadioButtons.getSelectedToggle() != null) {
+    						for(int i = 0; i<6; i++)
+    							if(radioButtons[i] == groupRadioButtons.getSelectedToggle())
+    								pickedImage = i;
+    					}
+    				}
+    			});
+    }
+    
     @FXML
     void join(ActionEvent event) {
-    	//TODO
+    	String ip = ipTextField.getText();
+    	String port = portNumberTextField.getText();
+    	String name = userNameTextField.getText();
+        // pickedImage should be used now.
+    	userNameTextField.clear();
+    	ipTextField.clear();
+    	portNumberTextField.clear();
+    	// now we try to join somewhere.
     }
 
     @FXML
     void exit(ActionEvent event) {
+    	// we need to kill every process.
     	System.exit(0);
     }
 
     @FXML
     void makeNewHost(ActionEvent event) {
-    		//TODO
+    	String port = serverPortNumberTextField.getText();
+    	String name = userNameTextField.getText();
+        // pickedImage should be used now.
+    	userNameTextField.clear();
+    	serverPortNumberTextField.clear();
+    	// now we build host on above port.
     }
 }

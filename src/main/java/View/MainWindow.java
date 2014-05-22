@@ -151,11 +151,11 @@ public class MainWindow extends Application implements MainViewInterface {
 		System.out.println("im here");
 		MainViewInterface a = MainWindow.createMainView(new MainAdapter(), args);
 		a.showMainMenu();
-		try {
+		/*try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		a.showTable();
+		a.showTable();*/
 	}
 }
