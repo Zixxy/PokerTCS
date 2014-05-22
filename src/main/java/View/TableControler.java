@@ -88,25 +88,47 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	System.out.println("im here");
-    	
-    	adapter.check(playerId);
+    	Thread thread = new Thread(){
+    		@Override
+    		public void run(){
+    			adapter.check(playerId);
+    		}
+    	};
+    	thread.start();
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	adapter.fold(playerId);
+    	Thread thread = new Thread(){
+    		@Override
+    		public void run(){
+    			adapter.fold(playerId);
+    		}
+    	};
+    	thread.start();
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-        adapter.raise(playerId, userCashTextField.getText());
+    	Thread thread = new Thread(){
+    		@Override
+    		public void run(){
+    			adapter.raise(playerId, userCashTextField.getText());
+    		}
+    	};
+    	thread.start();
         userCashTextField.clear();
     }
     
     @FXML
     public void startEvent(ActionEvent e){
-    	adapter.start();
+    	Thread thread = new Thread(){
+    		@Override
+    		public void run(){
+    			adapter.start();
+    		}
+    	};
+    	thread.start();
     }
 
     @FXML

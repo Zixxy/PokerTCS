@@ -11,10 +11,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /*
+ * Created by sylwek 21.05.14
  * i'm too hungry to finish it now :]
  */
 
-public class MainWindow extends Application implements MainViewInterface {
+public class MainWindow extends Application implements MainWindowInterface {
 
 	private Stage mainStage;
 	private Scene actualScene;
@@ -22,6 +23,7 @@ public class MainWindow extends Application implements MainViewInterface {
 	
 	private final MainAdapter adapter;
 	private int playerId;
+	
 	public static MainAdapter tempMainAdapter;
 	public static MainWindow recentlyCreatedMainWindow;
 	
@@ -29,6 +31,9 @@ public class MainWindow extends Application implements MainViewInterface {
 	
     public static final String TableControlerSynchronizer = "We synchronize on this object during creating instance of TableControler";
 	
+    private static TableViewInterface fullyCreatedTableViewInterface;
+    private static volatile boolean tableViewInterfaceConstructionFlag;
+    
 	public MainWindow(){
 		adapter = tempMainAdapter;
 		System.out.println("im here");
@@ -48,7 +53,7 @@ public class MainWindow extends Application implements MainViewInterface {
 		mainStage.show();
 	}
 	
-	public static MainViewInterface createMainView(MainAdapter adapt, final String[] args) {
+	public static MainWindowInterface createMainView(MainAdapter adapt, final String[] args) {
 		tempMainAdapter = adapt;
 		Thread mainViewThread = new Thread(){
 			@Override
@@ -71,53 +76,77 @@ public class MainWindow extends Application implements MainViewInterface {
 			Thread.yield();
 		return recentlyCreatedMainWindow;
 	}
-	
+
 	@Override
-	public TableViewInterface showTable() {
-		TableViewInterface fullyCreatedTableViewInterface = TableView.getTableView(adapter, playerId);
-		javafx.application.Platform.runLater(new Runnable() {
+	public TableViewInterface showTable() {/*
+		final String innerSynchronizer = "inner synchronizer";
+		tableViewInterfaceConstructionFlag = false;
+		Thread mainViewThread = new Thread(){
 			@Override
-			public void run() {
-				mainStage.setResizable(true);
-				mainStage.setHeight(748);
-				mainStage.setWidth(1152);
-				mainPane.getChildren().clear();
-				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml")));
-				} catch (IOException e) {
-					System.err.println("We got a problem with launching TableView");
-					e.printStackTrace();
+			public void run(){*/
+
+				fullyCreatedTableViewInterface = TableView.getTableView(adapter, playerId);
+				javafx.application.Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						mainStage.setResizable(true);
+						mainStage.setHeight(748);
+						mainStage.setWidth(1152);
+						mainPane.getChildren().clear();
+						try {
+							mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml")));
+						} catch (IOException e) {
+							System.err.println("We got a problem with launching TableView");
+							e.printStackTrace();
+						}
+					}
+				});
+				synchronized(TableControlerSynchronizer){
+					try {
+						wait();
+					} catch (InterruptedException e) {
+						System.err.println("TabloControlerSynchronizer launching warning!");
+						while(TableView.RecentlyCreatedInstanceOfTableControler == null || 
+								!TableView.RecentlyCreatedInstanceOfTableControler.isConstructed())
+							Thread.yield();
+						System.err.println("ignore ''TabloControlerSynchronizer launching warning!'' ");
+					} catch (Exception e){
+						System.err.println("TabloControlerSynchronizer launching warning!");
+						while(TableView.RecentlyCreatedInstanceOfTableControler == null || 
+								!TableView.RecentlyCreatedInstanceOfTableControler.isConstructed())
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e1) {
+								System.err.println("We're old so we got problem with sleeping :( ");
+								e1.printStackTrace();
+							}
+						System.err.println("ignore ''TabloControlerSynchronizer launching warning!'' ");
+					}
 				}
+				javafx.application.Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						mainStage.setResizable(false);
+					}
+				});
+				/*synchronized(innerSynchronizer){
+					innerSynchronizer.notifyAll();
+				}
+				tableViewInterfaceConstructionFlag = true;
 			}
-		});
-		synchronized(TableControlerSynchronizer){
+		};
+		mainViewThread.start();
+		synchronized(innerSynchronizer){
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				System.err.println("TabloControlerSynchronizer launching warning!");
-				while(TableView.RecentlyCreatedInstanceOfTableControler == null || 
-						!TableView.RecentlyCreatedInstanceOfTableControler.isConstructed())
-					Thread.yield();
-				System.err.println("ignore ''TabloControlerSynchronizer launching warning!'' ");
-			} catch (Exception e){
-				System.err.println("TabloControlerSynchronizer launching warning!");
-				while(TableView.RecentlyCreatedInstanceOfTableControler == null || 
-						!TableView.RecentlyCreatedInstanceOfTableControler.isConstructed())
-					try {
-						Thread.sleep(20);
-					} catch (InterruptedException e1) {
-						System.err.println("We're old so we got problem with sleeping :( ");
-						e1.printStackTrace();
-					}
-				System.err.println("ignore ''TabloControlerSynchronizer launching warning!'' ");
+				System.err.println("We're old so we got problem with sleeping :( ");
+				e.printStackTrace();
 			}
 		}
-		javafx.application.Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				mainStage.setResizable(false);
-			}
-		});
+		while(!tableViewInterfaceConstructionFlag){
+			Thread.yield(); // we cant move on.
+		}*/
 		return fullyCreatedTableViewInterface;
 	}
 	
@@ -149,7 +178,7 @@ public class MainWindow extends Application implements MainViewInterface {
 	@Deprecated
 	public static void main(String[] args){
 		System.out.println("im here");
-		MainViewInterface a = MainWindow.createMainView(new MainAdapter(), args);
+		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(), args);
 		a.showMainMenu();
 		/*try {
 			Thread.sleep(7000);

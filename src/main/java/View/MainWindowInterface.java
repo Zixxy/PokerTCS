@@ -1,6 +1,6 @@
 package main.java.View;
 
-public interface MainViewInterface {
+public interface MainWindowInterface {
 	/**
 	 * while launching application this mainView should be created.
 	 * 

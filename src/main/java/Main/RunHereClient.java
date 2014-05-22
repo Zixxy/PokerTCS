@@ -16,8 +16,23 @@ import java.io.IOException;
 /**
 * Created by bartek on 05.05.14.
 */
-public class RunHere {
+public class RunHereClient {
     private static Config config;
+    public static void runClient(String ip, int port){
+    	MainAdapter adapter = Run.adapter;
+    	TableViewInterface view  = Run.mainWindow.showTable();
+    	adapter.addView(view);
+    	TableViewInterface textView = new CommandLine(adapter);
+        adapter.addView(textView);
+        ModelInterface model = null;
+        try {
+            model = new CommunicationModel(adapter,ip,port);
+        } catch (IOException e) {
+            System.err.println("Super blad polaczenia na "+ip+":"+port);
+            e.printStackTrace();
+        }
+        adapter.addModel(model);
+    }
     public static void main(String[] args){
         //config = new Config("config");
         String ip="192.168.0.104";
