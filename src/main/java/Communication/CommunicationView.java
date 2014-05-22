@@ -1,9 +1,6 @@
 package main.java.Communication;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -25,7 +22,9 @@ public class CommunicationView  implements TableViewInterface{
     private Collection<PrintWriter> outs;
     private AdapterInterface adapter;
     private int waiting;
-
+    public void addOut(Socket socket) throws IOException {
+        outs.add(new PrintWriter(socket.getOutputStream(),true));
+    }
     private class ClientsListener implements Runnable {
         private CommunicationView communicationView;
         private ServerSocket server;
@@ -34,6 +33,8 @@ public class CommunicationView  implements TableViewInterface{
             this.communicationView = communicationView;
             this.server = server;
         }
+
+
 
         @Override
         public void run() {
@@ -87,6 +88,7 @@ public class CommunicationView  implements TableViewInterface{
     }
     public CommunicationView(AdapterInterface adapter){
         this.adapter=adapter;
+        outs = new ArrayList<PrintWriter>();
     }
 
     private synchronized void add(Socket x) {
@@ -130,6 +132,9 @@ public class CommunicationView  implements TableViewInterface{
         else if(txt[0].equals("usercards")) {
             //System.out.println("ASKED: " + txt[1]);
             //this.sendCards(socket, Integer.valueOf(txt[1]));
+        }
+        else if(txt[0].equals("setstartedamount")){
+            adapter.setStartedAmount(Integer.valueOf(txt[1]));
         }
     }
 

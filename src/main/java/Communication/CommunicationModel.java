@@ -194,6 +194,13 @@ public class CommunicationModel implements ModelInterface {
         out.println("setAnte~"+arg);
     }
 
+    public void alphaserver() {
+        out.println("addtable");
+    }
+
+    public void betaserver() {
+        out.println("addplayertotable~0");
+    }
  /*   @Override
     public Deck.Card[] getHandCards(int playerId) {
         String arr[];

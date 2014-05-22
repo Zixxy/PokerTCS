@@ -50,13 +50,17 @@ class PlayerListener implements Runnable{
         while(true){
             try {
                 order=in.readLine();
-                if(p.inGame){
+                String txt[] = order.split("~");
+                if(p.inGame && !txt[0].equals("removeplayerfromtable".toLowerCase())){
                 Server.tables.get(p.tableNumber).cm.parse(order, p.socket);}
                 else{
-                    Server.parse(order,p.socket);
+                    Server.parse(order,p.socket, p);
                 }
             } catch (IOException e) {
                 System.err.println("Cannot read massage from playing player");
+                //player disconnected - removing him from game
+                Server.removePlayerFromTable(p,p.tableNumber);
+                break;
             }
         }
     }
@@ -89,11 +93,26 @@ class Table{
 public class Server {
 
     private static Thread mainListener;
-    public static int port;
+    public static int port=1229;
     public static ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
     public static ArrayList<Table> tables = new ArrayList<Table>();
-    public static void parse(String string, Socket socket){
 
+    synchronized static void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
+        System.err.println("GOT SERVER ORDER: " + order);
+        String txt[] = order.split("~");
+        txt[0]=txt[0].toLowerCase();
+        if(txt[0].equals("addtable")) {
+            addTable(p);
+        }
+        else if(txt[0].equals("addplayertotable")) {
+            addPlayerToTable(p,new Integer(txt[1]));
+        }
+        if(txt[0].equals("removetable")) {
+            removeTable(new Integer(txt[1]));
+        }
+        else if(txt[0].equals("removeplayerfromtable")) {
+            removePlayerFromTable(p,new Integer(txt[1]));
+        }
     }
     public static void addTable(PlayerOnline host){
         Table table = new Table(host);
@@ -105,6 +124,12 @@ public class Server {
         p.tableNumber=tableIndex;
         tables.get(tableIndex).mo.addPlayer(p.toString());
         tables.get(tableIndex).players.add(p);
+        try {
+            tables.get(tableIndex).cm.addOut(p.socket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     public static void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){

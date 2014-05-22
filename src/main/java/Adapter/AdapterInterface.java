@@ -38,5 +38,6 @@ public interface AdapterInterface {
     public void sendMessage(String text);
     public void startNewRound();
 	public void setLastMove(int id, int move);
+    public void setStartedAmount(int amount);
 
 }
