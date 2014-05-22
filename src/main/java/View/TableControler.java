@@ -354,8 +354,8 @@ public class TableControler{
 		}
     	text.setFill(Color.WHITE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[id-1].getChildren().clear();
-    	playersLastMove[id-1].getChildren().add(text);
+    	playersLastMove[id].getChildren().clear();
+    	playersLastMove[id].getChildren().add(text);
     	text.setTextAlignment(TextAlignment.CENTER);		
 	}
 	
