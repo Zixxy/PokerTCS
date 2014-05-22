@@ -85,6 +85,9 @@ public class CommunicationView  implements TableViewInterface{
         clientsListener = new Thread(new ClientsListener(this, this.server));
         clientsListener.start();
     }
+    public CommunicationView(AdapterInterface adapter){
+        this.adapter=adapter;
+    }
 
     private synchronized void add(Socket x) {
         System.out.println("CONNECT: " + x.getInetAddress().toString());
@@ -99,7 +102,7 @@ public class CommunicationView  implements TableViewInterface{
 
     }
 
-    private synchronized void parse(String order, Socket socket){
+    public synchronized void parse(String order, Socket socket){//public because Server uses it
         System.err.println("GOT ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
