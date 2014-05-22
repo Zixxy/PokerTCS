@@ -168,4 +168,9 @@ public class MainAdapter implements AdapterInterface {
 			view.setLastMove(id, move);
 		}
 	}
+
+    @Override
+    public void setStartedAmount(int amount) {
+        model.setStartedAmount(amount);
+    }
 }
