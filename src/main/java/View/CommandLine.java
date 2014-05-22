@@ -151,7 +151,5 @@ public class CommandLine implements TableViewInterface{
 	public void updateResignedPlayer(int id) {
 		System.out.println("Player " + id + "disappeared");
 		
-	}
-
-	
+	}	
 }

@@ -45,7 +45,7 @@ public class TableControler{
     private TextField userCashTextField;
     
     @FXML
-    private Button btnCheck, btnRaise, btnFold, startButton;
+    private Button btnCheck, btnRaise, btnFold, startButton, showCardsButton, exitButton;
     
     @FXML
     private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
@@ -80,6 +80,12 @@ public class TableControler{
     private HBox[] playersLastMove;
     
     @FXML
+    private ImageView playerOneFirstCard, playerOneSecondCard, playerTwoFirstCard, playerTwoSecondCard, playerThreeFirstCard,
+    playerThreeSecondCard, playerFourFirstCard, playerFourSecondCard, playerFiveFirstCard, playerFiveSecondCard,
+    playerSixFirstCard, playerSixSecondCard, playerSevenFirstCard, playerSevenSecondCard, playerEightFirstCard, playerEightSecondCard;
+    private ImageView[] playersCards;
+    
+    @FXML
     public void chatTyping(ActionEvent e){
     	String message = messageTextField.getText();
     	typeMessageToUserInChat(message, false);
@@ -105,6 +111,12 @@ public class TableControler{
     }
     
     @FXML
+    public void showCardsEvent(ActionEvent e){
+    	playersCards[2*playerId].setImage(playersCard[0].getImage());
+    	playersCards[2*playerId + 1].setImage(playersCard[1].getImage());
+    }
+    
+    @FXML
     public void startEvent(ActionEvent e){
     	adapter.start();
     }
@@ -123,6 +135,10 @@ public class TableControler{
         								playerSixLastMove, playerSevenLastMove, playerEightLastMove};
         playersFace = new ImageView[] {playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
 									playerSixFace, playerSevenFace, playerEightFace};
+        playersCards = new ImageView[] {playerOneFirstCard, playerOneSecondCard, playerTwoFirstCard, playerTwoSecondCard, playerThreeFirstCard,
+        	    playerThreeSecondCard, playerFourFirstCard, playerFourSecondCard, playerFiveFirstCard, playerFiveSecondCard,
+        	    playerSixFirstCard, playerSixSecondCard, playerSevenFirstCard, playerSevenSecondCard, playerEightFirstCard, playerEightSecondCard};
+      
         isConstructed = true;
         
         synchronized(MainWindow.TableControlerSynchronizer){
@@ -316,8 +332,24 @@ public class TableControler{
 		}
     	text.setFill(Color.WHITE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[id].getChildren().clear();
-    	playersLastMove[id].getChildren().add(text);
+    	playersLastMove[id-1].getChildren().clear();
+    	playersLastMove[id-1].getChildren().add(text);
     	text.setTextAlignment(TextAlignment.CENTER);		
+	}
+	
+	public void showCards(int id, Card firstCard, Card secondCard){
+		Card[] cards = new Card[] {firstCard, secondCard};
+		
+		for (int i = 0; i < 2; ++i) {
+            int cardId = cards[i].getValue().id;
+            int cardColor = getCardColorValue(cards[i].getColor());
+
+            Integer cardNumber = 20*cardColor + cardId;
+            String s = Integer.toString(cardNumber);
+            System.out.println("/main/java/Cards/" + s + ".png");
+            Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+
+            playersCards[2*(id-1) + i].setImage(image);
+        }
 	}
 }
