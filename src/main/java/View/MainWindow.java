@@ -79,8 +79,8 @@ public class MainWindow extends Application implements MainViewInterface {
 			@Override
 			public void run() {
 				mainStage.setResizable(true);
-				mainStage.setHeight(620);
-				mainStage.setWidth(960);
+				mainStage.setHeight(748);
+				mainStage.setWidth(1152);
 				mainPane.getChildren().clear();
 				try {
 					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml")));
@@ -122,8 +122,24 @@ public class MainWindow extends Application implements MainViewInterface {
 	}
 	
 	@Override
-	public MainMenu setMainMenu() {
-		// TODO Auto-generated method stub
+	public LoginControler showMainMenu() {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				mainStage.setResizable(true);
+				mainStage.setHeight(560);
+				mainStage.setWidth(750);
+				mainPane.getChildren().clear();
+				try {
+					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/Login.fxml")));
+				} catch (IOException e) {
+					System.err.println("We got a problem with launching LoginControler ");
+					e.printStackTrace();
+				} catch (Exception a) {
+					System.err.println("We got a huge problem with launching LoginControler ");
+				}
+			}
+		});
 		return null;
 	}
 	
@@ -133,6 +149,13 @@ public class MainWindow extends Application implements MainViewInterface {
 	@Deprecated
 	public static void main(String[] args){
 		System.out.println("im here");
-		MainWindow.createMainView(new MainAdapter(), args).showTable();
+		MainViewInterface a = MainWindow.createMainView(new MainAdapter(), args);
+		a.showMainMenu();
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		a.showTable();
 	}
 }

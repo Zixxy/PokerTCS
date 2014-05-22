@@ -7,6 +7,6 @@ public interface MainViewInterface {
 	 * @param args PokerTCS's main method args.
 	 */
 	public TableViewInterface showTable();
-	public MainMenu setMainMenu();
+	public LoginControler showMainMenu();
 	
 }
