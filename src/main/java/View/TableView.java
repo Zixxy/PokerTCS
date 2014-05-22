@@ -40,6 +40,7 @@ public class TableView extends Application implements TableViewInterface{
 
 	public static TableViewInterface getTableView(MainAdapter adapt, int userId){
 		tempAdapter = adapt;
+		System.out.println("adapter:= "+adapt);
 		tempPlayerId = userId;
 		return new TableView();
 	}
@@ -77,7 +78,8 @@ public class TableView extends Application implements TableViewInterface{
 		constructionFlag.set(false);
 		return RecentlyCreatedInstanceOfThis;
 	}
-	private void almostConstructor(){
+	@Override
+	public void almostConstructor(){
 		tableControler = RecentlyCreatedInstanceOfTableControler;
 	}
 

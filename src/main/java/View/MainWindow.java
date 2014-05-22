@@ -36,7 +36,7 @@ public class MainWindow extends Application implements MainWindowInterface {
     
 	public MainWindow(){
 		adapter = tempMainAdapter;
-		System.out.println("im here");
+		System.out.println(adapter);
 		recentlyCreatedMainWindow = this;
 		synchronized(sync){
 			sync.notifyAll();
@@ -129,6 +129,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 						mainStage.setResizable(false);
 					}
 				});
+				fullyCreatedTableViewInterface.almostConstructor();
 				/*synchronized(innerSynchronizer){
 					innerSynchronizer.notifyAll();
 				}

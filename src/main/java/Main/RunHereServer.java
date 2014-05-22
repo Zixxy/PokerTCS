@@ -30,7 +30,7 @@ public class RunHereServer {
 	/*	} catch(Exception e){
 			System.out.println("problems here!");
 		}*/
-	//	adapter.addView(view2);
+		adapter.addView(view2);
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
@@ -78,8 +78,6 @@ public class RunHereServer {
 		//model.addPlayer("Sylwek");
 		//model.addPlayer("Maciek");
 		//
-		model.addPlayer("Bartek");
-		model.addPlayer("Miron");
 		model.addPlayer("Maciek");
 		model.addPlayer("Sylwek");
 		//model.start();
