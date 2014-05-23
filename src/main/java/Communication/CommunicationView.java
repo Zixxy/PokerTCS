@@ -276,4 +276,9 @@ public class CommunicationView  implements TableViewInterface{
 			this.sendCommand("setLastMove~" + id + "~" + move);
 		}
 	}
+	@Override
+	public void almostConstructor() {
+		// TODO Auto-generated method stub
+		
+	}
 }
