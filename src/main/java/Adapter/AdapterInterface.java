@@ -1,6 +1,7 @@
 package main.java.Adapter;
 
 import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 import main.java.Model.ModelInterface;
 import main.java.View.TableViewInterface;
 
@@ -39,5 +40,5 @@ public interface AdapterInterface {
     public void startNewRound();
 	public void setLastMove(int id, int move);
     public void setStartedAmount(int amount);
-
+	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
 }

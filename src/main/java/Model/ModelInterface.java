@@ -1,5 +1,7 @@
 package main.java.Model;
 
+import main.java.Model.Deck.Card;
+
 public interface ModelInterface {
 	//get
 	boolean isStarted(); // returns true if game has started
@@ -27,5 +29,6 @@ public interface ModelInterface {
 	void check(int playerId);
 	void raise(int playerId, int amount);
 	void resign(int playerId);   // player is resigning to game
+	void showPlayerCards(int playerId, Card[] cards);
 }
 

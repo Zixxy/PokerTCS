@@ -136,6 +136,9 @@ public class CommunicationView  implements TableViewInterface{
         else if(txt[0].equals("setstartedamount")){
             adapter.setStartedAmount(Integer.valueOf(txt[1]));
         }
+        else if(txt[0].equals("showcards")){
+        	adapter.showCards(Integer.parseInt(txt[1]), Integer.parseInt(txt[2]), Integer.parseInt(txt[3]));
+        }
     }
 
     private void sendCommand(String txt) {
@@ -275,5 +278,13 @@ public class CommunicationView  implements TableViewInterface{
 		synchronized(CommunicationView.class) {
 			this.sendCommand("setLastMove~" + id + "~" + move);
 		}
+	}
+	@Override
+	public void almostConstructor() {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void showCards(int playerId, int firstCardNumber, int secondCardNumber) {
+		// TODO Auto-generated method stub	
 	}
 }

@@ -2,6 +2,7 @@ package main.java.Model;
 
 
 import main.java.Adapter.AdapterInterface;
+import main.java.Model.Deck.Card;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -400,4 +401,8 @@ public class ModelOne implements ModelInterface {
     public int getActualStage() {
         return stage;
     }
+	@Override
+	public void showPlayerCards(int playerId, Card[] cards) {
+		// TODO Auto-generated method stub
+	}
 }
