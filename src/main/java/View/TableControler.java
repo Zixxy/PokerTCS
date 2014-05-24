@@ -1,5 +1,8 @@
 package main.java.View;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,6 +28,8 @@ public class TableControler{
     volatile private boolean isConstructed = false;
     
 	private int playerId;
+	
+	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
 		playerId = TableView.tempPlayerId;
@@ -94,35 +99,32 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	Thread thread = new Thread(){
+    	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
     			adapter.check(playerId);
     		}
-    	};
-    	thread.start();
+    	});
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	Thread thread = new Thread(){
+    	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
     			adapter.fold(playerId);
     		}
-    	};
-    	thread.start();
+    	});
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-    	Thread thread = new Thread(){
+    	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
     			adapter.raise(playerId, userCashTextField.getText());
     		}
-    	};
-    	thread.start();
+    	});
         userCashTextField.clear();
     }
     
@@ -134,13 +136,12 @@ public class TableControler{
     
     @FXML
     public void startEvent(ActionEvent e){
-    	Thread thread = new Thread(){
+    	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
     			adapter.start();
     		}
-    	};
-    	thread.start();
+    	});
     }
 
     @FXML
