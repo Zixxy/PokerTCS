@@ -6,9 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
+import main.java.Model.Deck.Card;
 import main.java.Model.ModelInterface;
+import main.java.View.TableView;
 
 /**
  * Created by arytmetyk on 2014-05-14.
@@ -113,6 +117,10 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("setlastmove")){
         	adapter.setLastMove(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
         } 	
+        
+        if(tab[0].toLowerCase().equals("showcards")){
+        	adapter.showCards(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
+        }
     }
     @Override
     public boolean isStarted() {
@@ -245,4 +253,31 @@ public class CommunicationModel implements ModelInterface {
     public void resign(int playerId) {
         out.println("resign~"+playerId);
     }
+    
+    private int getCardColorValue(Card.Color color) {
+        switch (color) {
+            case CLUBS: return 0;
+            case DIAMONDS: return 1;
+            case HEARTS: return 2;
+            case SPADES: return 3;
+            default: throw new RuntimeException("Unknown card color");
+        }
+    }
+    
+	@Override
+	public void showPlayerCards(int playerId, Card[] cards) {
+		Card c = cards[0];
+		int cardId = c.getValue().id;
+    	int cardColor = getCardColorValue(c.getColor());
+    	
+    	Integer firstCardNumber = 20*cardColor + cardId;
+    	
+    	c = cards[1];
+		cardId = c.getValue().id;
+    	cardColor = getCardColorValue(c.getColor());
+    	
+    	Integer secondCardNumber = 20*cardColor + cardId;
+    	
+    	out.println("showCards~" + playerId + "~" + firstCardNumber + "~" + secondCardNumber);
+	}
 }

@@ -29,6 +29,8 @@ public class TableControler{
     
 	private int playerId;
 	
+	public Card[] thisPlayerCards;
+	
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
@@ -130,8 +132,7 @@ public class TableControler{
     
     @FXML
     public void showCardsEvent(ActionEvent e){
-    	playersCards[2*playerId].setImage(playersCard[0].getImage());
-    	playersCards[2*playerId + 1].setImage(playersCard[1].getImage());
+    	adapter.showPlayerCards(playerId, thisPlayerCards);
     }
     
     @FXML
@@ -360,15 +361,10 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);		
 	}
 	
-	public void showCards(int id, Card firstCard, Card secondCard){
-		Card[] cards = new Card[] {firstCard, secondCard};
-		
+	public void showCards(int id, int firstCardNumber, int secondCardNumber){
+		Integer[] cardsNumbers = new Integer[] { firstCardNumber, secondCardNumber };
 		for (int i = 0; i < 2; ++i) {
-            int cardId = cards[i].getValue().id;
-            int cardColor = getCardColorValue(cards[i].getColor());
-
-            Integer cardNumber = 20*cardColor + cardId;
-            String s = Integer.toString(cardNumber);
+			String s = cardsNumbers[i].toString();
             System.out.println("/main/java/Cards/" + s + ".png");
             Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
 

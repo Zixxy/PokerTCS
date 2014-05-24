@@ -44,4 +44,7 @@ public interface TableViewInterface {
      * @param move
      */
 	public void setLastMove(int id, int move);
+	
+	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
+
 }
