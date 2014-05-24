@@ -157,5 +157,12 @@ public class CommandLine implements TableViewInterface{
 	public void almostConstructor() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void showCards(int playerId, int firstCardNumber,
+			int secondCardNumber) {
+		// TODO Auto-generated method stub
+		
 	}	
 }

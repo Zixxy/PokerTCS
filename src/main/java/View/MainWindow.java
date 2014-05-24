@@ -24,6 +24,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 	private final MainAdapter adapter;
 	private int playerId;
 	
+	public static int id;
 	public static MainAdapter tempMainAdapter;
 	public static MainWindow recentlyCreatedMainWindow;
 	
@@ -46,6 +47,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
+		playerId = id;
 		mainStage = primaryStage;
 		mainPane = new AnchorPane();
 		mainStage.setScene(actualScene = new Scene(mainPane));
@@ -53,7 +55,8 @@ public class MainWindow extends Application implements MainWindowInterface {
 		mainStage.show();
 	}
 	
-	public static MainWindowInterface createMainView(MainAdapter adapt, final String[] args) {
+	public static MainWindowInterface createMainView(MainAdapter adapt, int myId, final String[] args) {
+		id = myId;
 		tempMainAdapter = adapt;
 		Thread mainViewThread = new Thread(){
 			@Override
