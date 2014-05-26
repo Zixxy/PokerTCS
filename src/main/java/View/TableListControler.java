@@ -2,6 +2,11 @@ package main.java.View;
 
 public class TableListControler implements TableListInterface {
 
+	public static TableListControler recentlyCreatedTableList;
+	
+	TableListControler(){
+		recentlyCreatedTableList = this;
+	}
 	@Override
 	public void guiAddTable(int numberOfTable) {
 		// TODO Auto-generated method stub
