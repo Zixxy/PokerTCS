@@ -197,9 +197,13 @@ public class MainWindow extends Application implements MainWindowInterface {
 	 */
 	@Deprecated
 	public static void main(String[] args){
-		System.out.println("im here");
+/*		System.out.println("im here");
+<<<<<<< HEAD
 		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(),args);
-		a.showMainMenu();
+=======
+		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(), args);
+>>>>>>> branch 'master' of https://github.com/Zixxy/PokerTCS.git
+		a.showMainMenu();*/
 		/*try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {

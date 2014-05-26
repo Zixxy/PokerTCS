@@ -22,8 +22,12 @@ public class CommunicationView  implements TableViewInterface{
     private Collection<PrintWriter> outs;
     private AdapterInterface adapter;
     private int waiting;
+
     public void addOut(Socket socket) throws IOException {
         outs.add(new PrintWriter(socket.getOutputStream(),true));
+    }
+    public void removeOut(Socket socket) throws IOException{
+        outs.remove(new PrintWriter(socket.getOutputStream(),true));
     }
     private class ClientsListener implements Runnable {
         private CommunicationView communicationView;

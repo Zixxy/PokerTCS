@@ -35,7 +35,8 @@ public class RunHereClient {
     }
     public static void main(String[] args){
         //config = new Config("config");
-        String ip="192.168.0.104";
+        //String ip="192.168.0.104";
+        String ip = "127.0.0.1";
         int port=1228;
         MainAdapter adapter = new MainAdapter();
         TableViewInterface view = TableView.createTableView(args, adapter, 1);

@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import main.java.Adapter.MainAdapter;
 import main.java.Communication.CommunicationView;
 import main.java.Model.ModelOne;
-import main.java.View.CommandLine;
-import main.java.View.TableView;
-import main.java.View.TableViewInterface;
+
 class Listener implements Runnable{
     ServerSocket socket;
     public Listener(int port) throws IOException {
@@ -52,7 +50,7 @@ class PlayerListener implements Runnable{
                 order=in.readLine();
                 String txt[] = order.split("~");
                 if(p.inGame && !txt[0].equals("removeplayerfromtable".toLowerCase())){
-                Server.tables.get(p.tableNumber).cm.parse(order, p.socket);}
+                Server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
                 else{
                     Server.parse(order,p.socket, p);
                 }
@@ -75,7 +73,7 @@ class PlayerOnline{
     public int tableNumber;
 }
 class Table{
-    public CommunicationView cm;
+    public CommunicationView cv;
     public ModelOne mo;
     public MainAdapter ma;
     public PlayerOnline host;
@@ -84,10 +82,10 @@ class Table{
         this.players  = new ArrayList<PlayerOnline>();
         this.host=p;
         ma = new MainAdapter();
-        this.cm=new CommunicationView(ma);
+        this.cv =new CommunicationView(ma);
         this.mo=new ModelOne(ma);
         ma.addModel(mo);
-        ma.addView(cm);
+        ma.addView(cv);
     }
 }
 public class Server {
@@ -125,7 +123,7 @@ public class Server {
         tables.get(tableIndex).mo.addPlayer(p.toString());
         tables.get(tableIndex).players.add(p);
         try {
-            tables.get(tableIndex).cm.addOut(p.socket);
+            tables.get(tableIndex).cv.addOut(p.socket);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,6 +141,12 @@ public class Server {
             p.inGame = false;
             tables.get(tableIndex).players.remove(p);
         }
+        try {
+            tables.get(tableIndex).cv.removeOut(p.socket);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         try {
@@ -152,4 +156,5 @@ public class Server {
         }
         mainListener.start();
     }
+
 }
