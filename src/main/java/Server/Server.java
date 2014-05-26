@@ -14,8 +14,10 @@ import main.java.Model.ModelOne;
 
 class Listener implements Runnable{
     ServerSocket socket;
-    public Listener(int port) throws IOException {
+    Server server;
+    public Listener(int port, Server server) throws IOException {
         socket=new ServerSocket(port);
+        this.server=server;
     }
     @Override
     public void run() {
@@ -24,8 +26,8 @@ class Listener implements Runnable{
         while(true){
             try {
                 p=new PlayerOnline(socket.accept());
-                Server.connected.add(p);
-                thread = new Thread(new PlayerListener(p));
+                server.connected.add(p);
+                thread = new Thread(new PlayerListener(p,server));
                 thread.start();
             } catch (IOException e) {
                 System.err.println("Error while waiting for connection");
@@ -36,8 +38,10 @@ class Listener implements Runnable{
 class PlayerListener implements Runnable{
     PlayerOnline p;
     BufferedReader in;
-    public PlayerListener(PlayerOnline p){
+    Server server;
+    public PlayerListener(PlayerOnline p, Server server){
         this.p=p;
+        this.server=server;
         try {
             this.in =  new BufferedReader(new InputStreamReader(p.socket.getInputStream()));
         } catch (IOException e) {
@@ -51,14 +55,14 @@ class PlayerListener implements Runnable{
                 order=in.readLine();
                 String txt[] = order.split("~");
                 if(p.inGame && !txt[0].equals("removeplayerfromtable".toLowerCase())){
-                Server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
+                server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
                 else{
-                    Server.parse(order,p.socket, p);
+                    server.parse(order,p.socket, p);
                 }
             } catch (IOException e) {
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
-                Server.removePlayerFromTable(p,p.tableNumber);
+                server.removePlayerFromTable(p,p.tableNumber);
                 break;
             }
         }
@@ -99,12 +103,12 @@ class Table{
 }
 public class Server {
 
-    private static Thread mainListener;
-    public static int port=1229;
-    public static ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
-    public static ArrayList<Table> tables = new ArrayList<Table>();
+    private Thread mainListener;
+    public int port=1229;
+    public ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
+    public ArrayList<Table> tables = new ArrayList<Table>();
 
-    synchronized static void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
+    synchronized void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
         System.err.println("GOT SERVER ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
@@ -122,7 +126,7 @@ public class Server {
         }
     }
 
-    public static void sendToLobby(String txt) {
+    public void sendToLobby(String txt) {
         for(PlayerOnline player: connected) {
             if(!player.inGame){
                 player.writer.println(txt);
@@ -130,12 +134,12 @@ public class Server {
         }
     }
 
-    public static void addTable(PlayerOnline host){
+    public void addTable(PlayerOnline host){
         Table table = new Table(host);
         tables.add(table);
         addPlayerToTable(host, tables.indexOf(table));
     }
-    public static void addPlayerToTable(PlayerOnline p, int tableIndex){
+    public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
         p.tableNumber=tableIndex;
         tables.get(tableIndex).mo.addPlayer(p.toString());
@@ -147,13 +151,13 @@ public class Server {
         }
 
     }
-    public static void removeTable(int tableIndex){
+    public void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){
             p.inGame = false;
         }
         tables.set(tableIndex, null);
     }
-    public static void  removePlayerFromTable(PlayerOnline p, int tableIndex){
+    public void  removePlayerFromTable(PlayerOnline p, int tableIndex){
         if(p == tables.get(tableIndex).host) removeTable(tableIndex);
         else {
             p.inGame = false;
@@ -167,9 +171,9 @@ public class Server {
         }
 
     }
-    public static void main(String[] args) {
+    public Server(int port) {
         try {
-            mainListener = new Thread(new Listener(port)) ;
+            mainListener = new Thread(new Listener(port,this)) ;
         } catch (IOException e) {
             System.err.println("Cannot make server at port" + port);
         }
