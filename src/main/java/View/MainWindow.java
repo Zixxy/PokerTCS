@@ -76,7 +76,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 	}
 
 	@Override
-	public TableViewInterface showTable(int playerId) {/*
+	public TableViewInterface showGame(int playerId) {/*
 		final String innerSynchronizer = "inner synchronizer";
 		tableViewInterfaceConstructionFlag = false;
 		Thread mainViewThread = new Thread(){
@@ -150,7 +150,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 	}
 	
 	@Override
-	public LoginControler showMainMenu() {
+	public void showMainMenu() {
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -168,16 +168,37 @@ public class MainWindow extends Application implements MainWindowInterface {
 				}
 			}
 		});
-		return null;
 	}
-	
+
+	@Override
+	public TableViewInterface showTableList() {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+			/*	mainStage.setResizable(true);
+				mainStage.setHeight(560);
+				mainStage.setWidth(750);
+				mainPane.getChildren().clear();*/
+				/*try {
+					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableList.fxml")));// or sth...
+				} catch (IOException e) {
+					System.err.println("We got a problem with launching TableList ");
+					e.printStackTrace();
+				} catch (Exception a) {
+					System.err.println("We got a huge problem with launching TableList ");
+				}*/
+			}
+		});
+		// we need to wait until this will not be null.
+		return (TableViewInterface) TableListControler.recentlyCreatedTableList;
+	}
 	/*
 	 * i need this for debuging MainWindow.
 	 */
 	@Deprecated
 	public static void main(String[] args){
 		System.out.println("im here");
-		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(),0, args);
+		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(),args);
 		a.showMainMenu();
 		/*try {
 			Thread.sleep(7000);

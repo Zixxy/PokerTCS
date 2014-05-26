@@ -273,4 +273,26 @@ public class TableView extends Application implements TableViewInterface{
 		primaryStage.show();
 
 	}
+//-------------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * we do not use this methods in game.
+	 */
+	@Override
+	public void guiAddTable(int numberOfTable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void guiRemoveTable(int numberOfTable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateNumberOfPlayers(int numberOfTable,
+			int currentNumberOfPlayers) {
+		// TODO Auto-generated method stub
+		
+	}
 }

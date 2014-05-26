@@ -2,7 +2,7 @@ package main.java.View;
 
 import main.java.Model.Deck.Card;
 
-public interface TableViewInterface {
+public interface TableViewInterface extends TableListInterface{
 	public void almostConstructor();
 	public void addPlayer(String name, int id);
 	public void removePlayer(int id);
