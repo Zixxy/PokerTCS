@@ -221,4 +221,13 @@ public class MainAdapter implements AdapterInterface {
     public void removePlayerFromTable(int tableIndex) {
         model.removePlayerFromTable(tableIndex);
     }
+    public void exchangeReference(TableViewInterface from, TableViewInterface to){
+    	for(TableViewInterface i : views){
+    		if(i.equals(from)){
+    			views.remove(i);
+    			break;
+    		}
+    	}
+    	views.add(to);
+    }
 }

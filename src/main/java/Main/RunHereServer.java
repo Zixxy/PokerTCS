@@ -6,6 +6,7 @@ import java.util.Scanner;
 import main.java.Adapter.MainAdapter;
 import main.java.Communication.CommunicationView;
 import main.java.Model.ModelOne;
+import main.java.Server.Server;
 import main.java.View.CommandLine;
 import main.java.View.MainWindow;
 import main.java.View.TableView;
@@ -16,7 +17,11 @@ public class RunHereServer {
 
 	public static void runServer(int port, String name){
 		MainAdapter adapter = Run.adapter;
-		TableViewInterface view;
+		Server server = new Server(port);
+		Run.mainWindow.showTableList();
+		
+		
+	/*	TableViewInterface view;
 		try {
 			view = new CommunicationView(port, adapter);
 		}
@@ -26,11 +31,11 @@ public class RunHereServer {
 		}
 		adapter.addView(view);
 		//try{
-		TableViewInterface view2 = Run.mainWindow.showTable(0);
+		TableViewInterface view2 = Run.mainWindow.showGame(0);*/
 	/*	} catch(Exception e){
 			System.out.println("problems here!");
 		}*/
-		adapter.addView(view2);
+	/*	adapter.addView(view2);
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
@@ -46,7 +51,7 @@ public class RunHereServer {
 		model.setSmallBlind(10);
 		model.setBigBlind(20);
 		model.addPlayer("Maciek");
-		model.addPlayer(name);
+		model.addPlayer(name);*/
 	}
 	public static void main(String[] args) {
 

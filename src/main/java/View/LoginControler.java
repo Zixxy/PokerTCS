@@ -1,5 +1,6 @@
 package main.java.View;
 
+import main.java.Main.Run;
 import main.java.Main.RunHereClient;
 import main.java.Main.RunHereServer;
 import javafx.beans.value.ChangeListener;
@@ -78,6 +79,7 @@ public class LoginControler {
     	String name1 = userNameTextField.getText();
     	if(name1.length() > 1)
     		name = name1;
+    	final String sendName = name;
         // pickedImage should be used now.
     	userNameTextField.clear();
     	ipTextField.clear();
@@ -85,7 +87,7 @@ public class LoginControler {
     	Thread thread = new Thread(){
     		@Override
     		public void run(){
-    			RunHereClient.runClient(ip, Integer.parseInt(port));
+    			RunHereClient.runClient(ip, Integer.parseInt(port), sendName);
     		}
     	};
     	thread.start();
