@@ -47,4 +47,5 @@ public interface TableViewInterface extends TableListInterface{
 	
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
 
+
 }

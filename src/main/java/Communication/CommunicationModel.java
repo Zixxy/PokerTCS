@@ -201,7 +201,7 @@ public class CommunicationModel implements ModelInterface {
     public void removePlayer(int playerId) {
         out.println("removePlayer~"+playerId);
     }
-
+//
     @Override
     public void start() {
         out.println("start~");
