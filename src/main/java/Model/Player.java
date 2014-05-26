@@ -4,24 +4,26 @@ package main.java.Model;
  * Created by bartek on 05.05.14.
  */
 public class Player{
-    public Player(String arg1, Integer arg2){
+    public Player(String arg1, Integer arg2, int id){
+    	this.id = id;
         this.name=arg1;
         this.money=arg2;
         cards = new Deck.Card[2];
         resigned=false;
     }
-
+    private final int id;
     private String name;
     private int money;
     private boolean inGame;
     private int offer;
     private boolean resigned;
     private Deck.Card cards[];
+    private boolean allIned;
+    private int thisRoundOffer;
 
-
-
-
-
+    public int getId(){
+    	return this.id;
+    }
     public Deck.Card[] getCards(){
         return cards;
     }
@@ -61,10 +63,28 @@ public class Player{
     }
 
     public void setOffer(Integer arg1){
+        if(arg1 > this.offer)
+            thisRoundOffer += arg1 - this.offer;
         this.offer=arg1;
     }
 
     public int getOffer(){
         return this.offer;
+    }
+
+    public boolean getAllIned() {
+        return allIned;
+    }
+
+    public void setAllIned(boolean arg) {
+        allIned = arg;
+    }
+
+    public void setRoundCash(int x){
+        this.thisRoundOffer = x;
+    }
+
+    public int getRoundCash(){
+        return thisRoundOffer;
     }
 }
