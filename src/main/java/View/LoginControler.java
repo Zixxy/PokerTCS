@@ -1,5 +1,7 @@
 package main.java.View;
 
+import main.java.Main.RunHereClient;
+import main.java.Main.RunHereServer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -70,14 +72,23 @@ public class LoginControler {
     
     @FXML
     void join(ActionEvent event) {
-    	String ip = ipTextField.getText();
-    	String port = portNumberTextField.getText();
-    	String name = userNameTextField.getText();
+    	final String ip = ipTextField.getText();
+    	final String port = portNumberTextField.getText();
+    	String name = "defaultName";
+    	String name1 = userNameTextField.getText();
+    	if(name1.length() > 1)
+    		name = name1;
         // pickedImage should be used now.
     	userNameTextField.clear();
     	ipTextField.clear();
     	portNumberTextField.clear();
-    	// now we try to join somewhere.
+    	Thread thread = new Thread(){
+    		@Override
+    		public void run(){
+    			RunHereClient.runClient(ip, Integer.parseInt(port));
+    		}
+    	};
+    	thread.start();
     }
 
     @FXML
@@ -88,11 +99,22 @@ public class LoginControler {
 
     @FXML
     void makeNewHost(ActionEvent event) {
-    	String port = serverPortNumberTextField.getText();
-    	String name = userNameTextField.getText();
+    	final String port = serverPortNumberTextField.getText();
+    	String name = "defaultName";
+    	String name1 = userNameTextField.getText();
+    	if(name1.length() > 1)
+    		name = name1;
+    	final String res = name;
         // pickedImage should be used now.
     	userNameTextField.clear();
     	serverPortNumberTextField.clear();
+    	Thread thread = new Thread(){
+			@Override
+			public void run(){
+				RunHereServer.runServer(Integer.parseInt(port), res);
+			}
+    	};
+    	thread.start();
     	// now we build host on above port.
     }
 }

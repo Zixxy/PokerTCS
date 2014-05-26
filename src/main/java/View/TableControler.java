@@ -1,5 +1,8 @@
 package main.java.View;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,6 +29,10 @@ public class TableControler{
     
 	private int playerId;
 	
+	public Card[] thisPlayerCards;
+	
+	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
+	
 	public TableControler(){
 		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
@@ -45,7 +52,7 @@ public class TableControler{
     private TextField userCashTextField;
     
     @FXML
-    private Button btnCheck, btnRaise, btnFold, startButton;
+    private Button btnCheck, btnRaise, btnFold, startButton, showCardsButton, exitButton;
     
     @FXML
     private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
@@ -80,6 +87,12 @@ public class TableControler{
     private HBox[] playersLastMove;
     
     @FXML
+    private ImageView playerOneFirstCard, playerOneSecondCard, playerTwoFirstCard, playerTwoSecondCard, playerThreeFirstCard,
+    playerThreeSecondCard, playerFourFirstCard, playerFourSecondCard, playerFiveFirstCard, playerFiveSecondCard,
+    playerSixFirstCard, playerSixSecondCard, playerSevenFirstCard, playerSevenSecondCard, playerEightFirstCard, playerEightSecondCard;
+    private ImageView[] playersCards;
+    
+    @FXML
     public void chatTyping(ActionEvent e){
     	String message = messageTextField.getText();
     	typeMessageToUserInChat(message, false);
@@ -88,25 +101,48 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	System.out.println("im here");
-    	
-    	adapter.check(playerId);
+    	tasksExecutor.execute(new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.check(playerId);
+    		}
+    	});
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	adapter.fold(playerId);
+    	tasksExecutor.execute(new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.fold(playerId);
+    		}
+    	});
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-        adapter.raise(playerId, userCashTextField.getText());
+    	tasksExecutor.execute(new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.raise(playerId, userCashTextField.getText());
+    		}
+    	});
         userCashTextField.clear();
     }
     
     @FXML
+    public void showCardsEvent(ActionEvent e){
+    	adapter.showPlayerCards(playerId, thisPlayerCards);
+    }
+    
+    @FXML
     public void startEvent(ActionEvent e){
-    	adapter.start();
+    	tasksExecutor.execute(new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.start();
+    		}
+    	});
     }
 
     @FXML
@@ -123,6 +159,10 @@ public class TableControler{
         								playerSixLastMove, playerSevenLastMove, playerEightLastMove};
         playersFace = new ImageView[] {playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
 									playerSixFace, playerSevenFace, playerEightFace};
+        playersCards = new ImageView[] {playerOneFirstCard, playerOneSecondCard, playerTwoFirstCard, playerTwoSecondCard, playerThreeFirstCard,
+        	    playerThreeSecondCard, playerFourFirstCard, playerFourSecondCard, playerFiveFirstCard, playerFiveSecondCard,
+        	    playerSixFirstCard, playerSixSecondCard, playerSevenFirstCard, playerSevenSecondCard, playerEightFirstCard, playerEightSecondCard};
+      
         isConstructed = true;
         
         synchronized(MainWindow.TableControlerSynchronizer){
@@ -319,5 +359,16 @@ public class TableControler{
     	playersLastMove[id].getChildren().clear();
     	playersLastMove[id].getChildren().add(text);
     	text.setTextAlignment(TextAlignment.CENTER);		
+	}
+	
+	public void showCards(int id, int firstCardNumber, int secondCardNumber){
+		Integer[] cardsNumbers = new Integer[] { firstCardNumber, secondCardNumber };
+		for (int i = 0; i < 2; ++i) {
+			String s = cardsNumbers[i].toString();
+            System.out.println("/main/java/Cards/" + s + ".png");
+            Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+
+            playersCards[2*(id-1) + i].setImage(image);
+        }
 	}
 }

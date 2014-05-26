@@ -40,6 +40,7 @@ public class TableView extends Application implements TableViewInterface{
 
 	public static TableViewInterface getTableView(MainAdapter adapt, int userId){
 		tempAdapter = adapt;
+		System.out.println("adapter:= "+adapt);
 		tempPlayerId = userId;
 		return new TableView();
 	}
@@ -77,7 +78,8 @@ public class TableView extends Application implements TableViewInterface{
 		constructionFlag.set(false);
 		return RecentlyCreatedInstanceOfThis;
 	}
-	private void almostConstructor(){
+	@Override
+	public void almostConstructor(){
 		tableControler = RecentlyCreatedInstanceOfTableControler;
 	}
 
@@ -162,6 +164,7 @@ public class TableView extends Application implements TableViewInterface{
 
 				@Override
 				public void run() {
+					RecentlyCreatedInstanceOfTableControler.thisPlayerCards = new Card[] { firstCard, secondCard };
 					tableControler.updatePlayerHand(firstCard, secondCard);
 				}
 			});
@@ -241,9 +244,20 @@ public class TableView extends Application implements TableViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				tableControler.setLastMove(id, move);
+				tableControler.setLastMove(id+1, move);
 			}
 		});
+	}
+	
+	@Override
+	public void showCards(final int playerId, final int firstCardNumber, final int secondCardNumber) {
+		javafx.application.Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tableControler.showCards(playerId, firstCardNumber, secondCardNumber);
+			}
+		});
+		
 	}
 	
 	/*
@@ -259,5 +273,4 @@ public class TableView extends Application implements TableViewInterface{
 		primaryStage.show();
 
 	}
-
 }

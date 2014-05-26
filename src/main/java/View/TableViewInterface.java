@@ -3,6 +3,7 @@ package main.java.View;
 import main.java.Model.Deck.Card;
 
 public interface TableViewInterface {
+	public void almostConstructor();
 	public void addPlayer(String name, int id);
 	public void removePlayer(int id);
 	public void updatePlayerCash(int id, int cash);
@@ -43,4 +44,7 @@ public interface TableViewInterface {
      * @param move
      */
 	public void setLastMove(int id, int move);
+	
+	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
+
 }

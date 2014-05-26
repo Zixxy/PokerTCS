@@ -173,4 +173,15 @@ public class MainAdapter implements AdapterInterface {
     public void setStartedAmount(int amount) {
         model.setStartedAmount(amount);
     }
+    
+    public void showPlayerCards(int playerId, Deck.Card[] cards){
+    	model.showPlayerCards(playerId, cards);
+    }
+    
+    @Override
+    public void showCards(int playerId, int firstCardNumber, int secondCardNumber){
+    	for(TableViewInterface view: views){
+			view.showCards(playerId, firstCardNumber, secondCardNumber);
+		}
+    }
 }

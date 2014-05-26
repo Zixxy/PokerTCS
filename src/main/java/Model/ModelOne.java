@@ -2,6 +2,7 @@ package main.java.Model;
 
 
 import main.java.Adapter.AdapterInterface;
+import main.java.Model.Deck.Card;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public class ModelOne implements ModelInterface {
     private Deck deck;
     private Deck.Card cards[];
     private int stage;
-    private int resigned;
     private int startedAmount;
     private int smallBlind;
     private int bigBlind;
@@ -42,7 +42,6 @@ public class ModelOne implements ModelInterface {
         this.players= new ArrayList<Player>();
         this.limit=0;
         this.adapter=arg1;
-        this.resigned=0;
         this.cards = new Deck.Card[5];
         this.ante=10;
         this.startedAmount=1000;
@@ -135,8 +134,19 @@ public class ModelOne implements ModelInterface {
     @Override
     public void addPlayer(String name) {
         if(!this.started) {
-            players.add(new Player(name, startedAmount));
-            numberOfPlayers++;
+        	if(numberOfPlayers >= 8){
+        		System.err.println("No available place");
+        		return;
+        	}
+        	numberOfPlayers++;
+        	for(Player p : players){
+        		if(p.getResigned()){
+        			p.setResigned(false);
+        			adapter.addPlayer(name, p.getId());
+        			return;
+        		}
+        	}
+            players.add(new Player(name, startedAmount, numberOfPlayers -1));
             adapter.addPlayer(name, numberOfPlayers - 1);
         }
     }
@@ -145,8 +155,7 @@ public class ModelOne implements ModelInterface {
     public void removePlayer(int playerId) {
         if(players.get(playerId).getInGame()==true) numberInGame--;
         players.get(playerId).setResigned(true);
-
-        resigned++;
+        
         numberOfPlayers--;
         adapter.removePlayer(playerId);
     }//
@@ -263,6 +272,10 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void resign(int playerId) {
+    	if(!started){
+    		adapter.updateResignPlayer(playerId);
+    		removePlayer(playerId);
+    	}
         int temporaryCurrentPlayerId=currentPlayerId;
         currentPlayerId=playerId;
         fold(playerId);
@@ -377,7 +390,7 @@ public class ModelOne implements ModelInterface {
         currentPlayerId=smallBlindPosition;
         adapter.updateActualPlayer(currentPlayerId);
         this.limit= ante;
-        this.numberInGame=numberOfPlayers-resigned;
+        this.numberInGame=numberOfPlayers;
         this.onTable= ante *numberInGame;
 
 
@@ -457,4 +470,8 @@ public class ModelOne implements ModelInterface {
     public int getActualStage() {
         return stage;
     }
+	@Override
+	public void showPlayerCards(int playerId, Card[] cards) {
+		// TODO Auto-generated method stub
+	}
 }

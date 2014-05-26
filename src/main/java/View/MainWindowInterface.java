@@ -1,12 +1,12 @@
 package main.java.View;
 
-public interface MainViewInterface {
+public interface MainWindowInterface {
 	/**
 	 * while launching application this mainView should be created.
 	 * 
 	 * @param args PokerTCS's main method args.
 	 */
-	public TableViewInterface showTable();
+	public TableViewInterface showTable(int playerId);
 	public LoginControler showMainMenu();
 	
 }
