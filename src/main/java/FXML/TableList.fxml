@@ -52,7 +52,7 @@
 </children>
 </GridPane>
 <HBox layoutX="358.0" layoutY="13.0" spacing="15.0">
-<children><Button layoutX="442.2275390625" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" styleClass="create" text="Create New Table" /><Button layoutX="513.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" styleClass="exit" text="Exit" />
+<children><Button fx:id="createNewTable" layoutX="442.2275390625" layoutY="11.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="125.0" styleClass="create" text="Create New Table" /><Button fx:id="exit" layoutX="513.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" styleClass="exit" text="Exit" />
 </children>
 </HBox>
 </children></AnchorPane>

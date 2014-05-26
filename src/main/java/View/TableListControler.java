@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import main.java.Adapter.MainAdapter;
+import main.java.Main.Run;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ public class TableListControler implements TableListInterface{
 	
 	TableListControler(){
 		recentlyCreatedTableList = this;
-		
+		adapter = Run.adapter;
 	}
 	
 	public void initialize(){
@@ -50,10 +51,11 @@ public class TableListControler implements TableListInterface{
 		for(Button l : tableJoins){
 			l = null;
 		}
+		isConstructed = true;
 	}
 	
 	@Override
-	public void guiAddTable(int numberOfTable) {
+	public void guiAddTable(final int numberOfTable) {
 		tableNames[numberOfTable] = new Label("Table "+ numberOfTable);
 		tablePlayers[numberOfTable] = new Label("1/" + "8");
 		tableStarteds[numberOfTable] = new Label("No");
@@ -61,7 +63,12 @@ public class TableListControler implements TableListInterface{
 	 	tableJoins[numberOfTable].setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               adapter.addPlayerToTable(numberOfTable);
+            	Thread a = new Thread(new Runnable(){
+            		@Override
+            		public void run(){
+            			adapter.addPlayerToTable(numberOfTable);
+            		}
+            	});
             }
         });
 
@@ -82,6 +89,9 @@ public class TableListControler implements TableListInterface{
 		tablePlayers[numberOfTable].setText(currentNumberOfPlayers + "/8");
 	}
 	
+	@FXML
+	private Button exit;
+	
     @FXML
     private Label table1Started, table2Started, table3Started, table4Started, table5Started, table6Started,
     			table7Started, table8Started, table9Started, table10Started, table11Started, table12Started,
@@ -101,7 +111,6 @@ public class TableListControler implements TableListInterface{
     			table13Players, table14Players, table15Players, table16Players, table17Players, table18Players,
     			table19Players, table20Players, table21Players, table22Players, table23Players;
     private Label [] tablePlayers;
-
     @FXML
     private Label table1Name, table2Name, table3Name, table4Name, table5Name, table6Name, table7Name,
     			table8Name, table9Name, table10Name, table11Name, table12Name, table13Name, table14Name,
@@ -109,10 +118,21 @@ public class TableListControler implements TableListInterface{
     			table22Name, table23Name;
     private Label [] tableNames;
     @FXML
-    public void checkEvent(ActionEvent e){
+    public void exitEvent(ActionEvent e){
     	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
+    		}
+    	});
+    }
+
+    
+    @FXML
+    public void addEvent(ActionEvent e){
+    	tasksExecutor.execute(new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.addTable();
     		}
     	});
     }
