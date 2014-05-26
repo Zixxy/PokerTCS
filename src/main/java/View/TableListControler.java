@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class TableListControler implements TableViewInterface{
 	volatile private boolean isConstructed = false;
@@ -46,7 +47,7 @@ public class TableListControler implements TableViewInterface{
 		for(Label l : tableStarteds){
 			l = null;
 		}
-		tableJoins = new Button[] {table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
+		tableJoins = new HBox[] {table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
     			table9Join, table10Join, table11Join, table12Join, table13Join, table14Join, table15Join, table16Join,
     			table17Join, table18Join, table19Join, table20Join, table21Join, table22Join, table23Join};
 		for(Button l : tableJoins){
@@ -102,10 +103,10 @@ public class TableListControler implements TableViewInterface{
     private Label [] tableStarteds;
 
     @FXML
-    private Button table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
+    private HBox table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
     			table9Join, table10Join, table11Join, table12Join, table13Join, table14Join, table15Join, table16Join,
     			table17Join, table18Join, table19Join, table20Join, table21Join, table22Join, table23Join;
-    private Button [] tableJoins;
+    private HBox [] tableJoins;
 
     @FXML
     private Label table1Players, table2Players, table3Players, table4Players, table5Players, table6Players,
