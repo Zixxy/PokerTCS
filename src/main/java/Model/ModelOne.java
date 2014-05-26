@@ -102,7 +102,6 @@ public class ModelOne implements ModelInterface {
     @Override
     public void setBigBlind(int big) {
         this.bigBlind = big;
-
     }
 
     @Override
@@ -153,16 +152,52 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void removePlayer(int playerId) {
+        Player player = players.get(playerId);
+        if(player == null || player.getResigned())
+            return;
+        if(started) {
+            if(player.getInGame() == true) {
+                int tmpCurrentPlayerId = currentPlayerId;
+                currentPlayerId = playerId;
+                fold(playerId);
+                currentPlayerId = tmpCurrentPlayerId;
+
+
+            }
+        }
+        player.setResigned(true);
+        numberOfPlayers--;
+    }//
+
+
+    @Override
+    public void resign(int playerId) {
+        removePlayer(playerId);
+        /*
+
         if(players.get(playerId).getInGame()==true) numberInGame--;
         players.get(playerId).setResigned(true);
-        
+
         numberOfPlayers--;
         adapter.removePlayer(playerId);
-    }//
+
+
+        if(!started){
+            adapter.updateResignPlayer(playerId);
+            removePlayer(playerId);
+        }
+        int temporaryCurrentPlayerId=currentPlayerId;
+        currentPlayerId=playerId;
+        fold(playerId);
+        currentPlayerId=temporaryCurrentPlayerId;
+        adapter.updateActualPlayer(currentPlayerId);
+        removePlayer(playerId);
+        adapter.updateResignPlayer(playerId);*/
+    }
 
     private int getNextPlayerPosition(int position)
     {
-        position++;
+        position = (position+1) % players.size();
         while(players.get(position).getInGame() == false)
             position = (position+1) % players.size();
         return position;
@@ -196,7 +231,7 @@ public class ModelOne implements ModelInterface {
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
             
-            adapter.setLastMove(currentPlayerId, 1);
+            adapter.setLastMove(playerId, 1);
             if(raising)
                 raisingPlayerId = currentPlayerId;
         }
@@ -218,7 +253,7 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(currentPlayerId, 2);
+            adapter.setLastMove(playerId, 2);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
@@ -265,24 +300,8 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(currentPlayerId, 0);
+            adapter.setLastMove(playerId, 0);
         }
-    }
-
-
-    @Override
-    public void resign(int playerId) {
-    	if(!started){
-    		adapter.updateResignPlayer(playerId);
-    		removePlayer(playerId);
-    	}
-        int temporaryCurrentPlayerId=currentPlayerId;
-        currentPlayerId=playerId;
-        fold(playerId);
-        currentPlayerId=temporaryCurrentPlayerId;
-        adapter.updateActualPlayer(currentPlayerId);
-        removePlayer(playerId);
-        adapter.updateResignPlayer(playerId);
     }
 
     private int reducePlayersRoundOffer(int x) {

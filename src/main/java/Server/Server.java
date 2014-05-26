@@ -3,6 +3,7 @@ package main.java.Server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -10,13 +11,13 @@ import java.util.ArrayList;
 import main.java.Adapter.MainAdapter;
 import main.java.Communication.CommunicationView;
 import main.java.Model.ModelOne;
-import main.java.View.CommandLine;
-import main.java.View.TableView;
-import main.java.View.TableViewInterface;
+
 class Listener implements Runnable{
     ServerSocket socket;
-    public Listener(int port) throws IOException {
+    Server server;
+    public Listener(int port, Server server) throws IOException {
         socket=new ServerSocket(port);
+        this.server=server;
     }
     @Override
     public void run() {
@@ -25,8 +26,8 @@ class Listener implements Runnable{
         while(true){
             try {
                 p=new PlayerOnline(socket.accept());
-                Server.connected.add(p);
-                thread = new Thread(new PlayerListener(p));
+                server.connected.add(p);
+                thread = new Thread(new PlayerListener(p,server));
                 thread.start();
             } catch (IOException e) {
                 System.err.println("Error while waiting for connection");
@@ -37,8 +38,10 @@ class Listener implements Runnable{
 class PlayerListener implements Runnable{
     PlayerOnline p;
     BufferedReader in;
-    public PlayerListener(PlayerOnline p){
+    Server server;
+    public PlayerListener(PlayerOnline p, Server server){
         this.p=p;
+        this.server=server;
         try {
             this.in =  new BufferedReader(new InputStreamReader(p.socket.getInputStream()));
         } catch (IOException e) {
@@ -52,14 +55,14 @@ class PlayerListener implements Runnable{
                 order=in.readLine();
                 String txt[] = order.split("~");
                 if(p.inGame && !txt[0].equals("removeplayerfromtable".toLowerCase())){
-                Server.tables.get(p.tableNumber).cm.parse(order, p.socket);}
+                server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
                 else{
-                    Server.parse(order,p.socket, p);
+                    server.parse(order,p.socket, p);
                 }
             } catch (IOException e) {
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
-                Server.removePlayerFromTable(p,p.tableNumber);
+                server.removePlayerFromTable(p,p.tableNumber);
                 break;
             }
         }
@@ -67,15 +70,23 @@ class PlayerListener implements Runnable{
 }
 class PlayerOnline{
     public volatile boolean inGame;
-    public PlayerOnline(Socket socket){
+    public PrintWriter writer;
+    public PlayerOnline(Socket socket) throws IOException{
         this.inGame=false;
         this.socket=socket;
+        try {
+            writer = new PrintWriter(socket.getOutputStream(), true);
+        }
+        catch (IOException e) {
+            System.err.println("Cannot make PrintWriter for socket: "+socket.toString());
+            throw e;
+        }
     }
     public Socket socket;
     public int tableNumber;
 }
 class Table{
-    public CommunicationView cm;
+    public CommunicationView cv;
     public ModelOne mo;
     public MainAdapter ma;
     public PlayerOnline host;
@@ -84,20 +95,20 @@ class Table{
         this.players  = new ArrayList<PlayerOnline>();
         this.host=p;
         ma = new MainAdapter();
-        this.cm=new CommunicationView(ma);
+        this.cv =new CommunicationView(ma);
         this.mo=new ModelOne(ma);
         ma.addModel(mo);
-        ma.addView(cm);
+        ma.addView(cv);
     }
 }
 public class Server {
 
-    private static Thread mainListener;
-    public static int port=1229;
-    public static ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
-    public static ArrayList<Table> tables = new ArrayList<Table>();
+    private Thread mainListener;
+    public int port=1229;
+    public ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
+    public ArrayList<Table> tables = new ArrayList<Table>();
 
-    synchronized static void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
+    synchronized void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
         System.err.println("GOT SERVER ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
@@ -114,42 +125,59 @@ public class Server {
             removePlayerFromTable(p,new Integer(txt[1]));
         }
     }
-    public static void addTable(PlayerOnline host){
+
+    public void sendToLobby(String txt) {
+        for(PlayerOnline player: connected) {
+            if(!player.inGame){
+                player.writer.println(txt);
+            }
+        }
+    }
+
+    public void addTable(PlayerOnline host){
         Table table = new Table(host);
         tables.add(table);
         addPlayerToTable(host, tables.indexOf(table));
     }
-    public static void addPlayerToTable(PlayerOnline p, int tableIndex){
+    public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
         p.tableNumber=tableIndex;
         tables.get(tableIndex).mo.addPlayer(p.toString());
         tables.get(tableIndex).players.add(p);
         try {
-            tables.get(tableIndex).cm.addOut(p.socket);
+            tables.get(tableIndex).cv.addOut(p.writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-    public static void removeTable(int tableIndex){
+    public void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){
             p.inGame = false;
         }
         tables.set(tableIndex, null);
     }
-    public static void  removePlayerFromTable(PlayerOnline p, int tableIndex){
+    public void  removePlayerFromTable(PlayerOnline p, int tableIndex){
         if(p == tables.get(tableIndex).host) removeTable(tableIndex);
         else {
             p.inGame = false;
             tables.get(tableIndex).players.remove(p);
         }
-    }
-    public static void main(String[] args) {
         try {
-            mainListener = new Thread(new Listener(port)) ;
+            tables.get(tableIndex).cv.removeOut(p.writer);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public Server(int port) {
+        try {
+            mainListener = new Thread(new Listener(port,this)) ;
         } catch (IOException e) {
             System.err.println("Cannot make server at port" + port);
         }
         mainListener.start();
     }
+
 }

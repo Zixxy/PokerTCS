@@ -22,9 +22,29 @@ public class CommunicationView  implements TableViewInterface{
     private Collection<PrintWriter> outs;
     private AdapterInterface adapter;
     private int waiting;
-    public void addOut(Socket socket) throws IOException {
-        outs.add(new PrintWriter(socket.getOutputStream(),true));
+
+    public void addOut(PrintWriter writer) throws IOException {
+        outs.add(writer);
     }
+    public void removeOut(PrintWriter writer) throws IOException{
+        outs.remove(writer);
+    }
+
+    @Override
+    public void guiAddTable(int numberOfTable) {
+        sendCommand("guiAddTable~"+numberOfTable);
+    }
+
+    @Override
+    public void guiRemoveTable(int numberOfTable) {
+        sendCommand("guiRemoveTable~"+numberOfTable);
+    }
+
+    @Override
+    public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers) {
+        sendCommand("updateNumberOfPlayers~"+numberOfTable+"~"+currentNumberOfPlayers);
+    }
+
     private class ClientsListener implements Runnable {
         private CommunicationView communicationView;
         private ServerSocket server;
