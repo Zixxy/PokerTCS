@@ -182,7 +182,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 	@Deprecated
 	public static void main(String[] args){
 		System.out.println("im here");
-		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(), args);
+		MainWindowInterface a = MainWindow.createMainView(new MainAdapter(),0, args);
 		a.showMainMenu();
 		/*try {
 			Thread.sleep(7000);
