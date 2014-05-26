@@ -21,18 +21,17 @@ public class RunHereClient {
     public static void runClient(String ip, int port, String name){
     	MainAdapter adapter = Run.adapter;
         ModelInterface model = null;
+    	TableViewInterface view  = Run.mainWindow.showTableList();
+    	adapter.addView(view);
     	try {
             model = new CommunicationModel(adapter,ip,port);
         } catch (IOException e) {
             System.err.println("Super blad polaczenia na "+ip+":"+port);
             e.printStackTrace();
         }
-    	TableViewInterface view  = Run.mainWindow.showTableList();
-    //	adapter.addView(view);
-    //	TableViewInterface textView = new CommandLine(adapter);
-    //   adapter.addView(textView);
-        
-    //    adapter.addModel(model);
+    	TableViewInterface textView = new CommandLine(adapter);
+        adapter.addView(textView);
+        adapter.addModel(model);
     }
     public static void main(String[] args){
         //config = new Config("config");
