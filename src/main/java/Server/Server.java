@@ -186,6 +186,7 @@ public class Server {
             p.inGame = false;
             tables.get(tableIndex).players.remove(p);
         }
+
         try {
             tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);
         }
