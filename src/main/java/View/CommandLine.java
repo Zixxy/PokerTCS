@@ -164,5 +164,20 @@ public class CommandLine implements TableViewInterface{
 			int secondCardNumber) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+
+    @Override
+    public void guiAddTable(int numberOfTable) {
+
+    }
+
+    @Override
+    public void guiRemoveTable(int numberOfTable) {
+
+    }
+
+    @Override
+    public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers) {
+
+    }
 }

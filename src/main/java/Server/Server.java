@@ -142,11 +142,21 @@ public class Server {
             }
         }
     }
+    public void guiAddTable(){
+        sendToLobby("guiaddtable~");
+    }
+    public void guiRemoveTable(int tableIndex){
+        sendToLobby("updatenumberofplayers~"+tableIndex);
+    }
+    public void updateNumberOfPlayers(int tableIndex, int number){
+        sendToLobby("updatenumberofplayers~"+tableIndex+"~"+number);
+    }
 
     public void addTable(PlayerOnline host){
         Table table = new Table(host);
         tables.add(table);
         addPlayerToTable(host, tables.indexOf(table));
+        guiAddTable();
     }
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
@@ -158,7 +168,7 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
     }
     public void setPlayerName(PlayerOnline p, String txt){
         p.name=txt;
@@ -168,6 +178,7 @@ public class Server {
             p.inGame = false;
         }
         tables.set(tableIndex, null);
+        guiRemoveTable(tableIndex);
     }
     public void  removePlayerFromTable(PlayerOnline p, int tableIndex){
         if(p == tables.get(tableIndex).host) removeTable(tableIndex);
@@ -181,7 +192,7 @@ public class Server {
         catch (IOException e) {
             e.printStackTrace();
         }
-
+        updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
     }
     public Server(int port) {
         try {
