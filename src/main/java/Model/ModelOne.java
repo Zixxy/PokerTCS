@@ -102,7 +102,6 @@ public class ModelOne implements ModelInterface {
     @Override
     public void setBigBlind(int big) {
         this.bigBlind = big;
-
     }
 
     @Override
@@ -162,7 +161,7 @@ public class ModelOne implements ModelInterface {
 
     private int getNextPlayerPosition(int position)
     {
-        position++;
+        position = (position+1) % players.size();
         while(players.get(position).getInGame() == false)
             position = (position+1) % players.size();
         return position;
@@ -196,7 +195,7 @@ public class ModelOne implements ModelInterface {
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
             
-            adapter.setLastMove(currentPlayerId, 1);
+            adapter.setLastMove(playerId, 1);
             if(raising)
                 raisingPlayerId = currentPlayerId;
         }
@@ -218,7 +217,7 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(currentPlayerId, 2);
+            adapter.setLastMove(playerId, 2);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
@@ -265,7 +264,7 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(currentPlayerId, 0);
+            adapter.setLastMove(playerId, 0);
         }
     }
 
