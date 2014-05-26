@@ -184,4 +184,26 @@ public class MainAdapter implements AdapterInterface {
 			view.showCards(playerId, firstCardNumber, secondCardNumber);
 		}
     }
+
+    @Override
+    public void guiAddTable(int numberOfTable) {
+        for(TableViewInterface view: views) {
+            view.guiAddTable(numberOfTable);
+        }
+    }
+
+    @Override
+    public void guiRemoveTable(int numberOfTable) {
+        for(TableViewInterface view: views) {
+            view.guiRemoveTable(numberOfTable);
+        }
+    }
+
+    @Override
+    public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers) {
+        for(TableViewInterface view: views) {
+            view.updateNumberOfPlayers(numberOfTable, currentNumberOfPlayers);
+        }
+
+    }
 }

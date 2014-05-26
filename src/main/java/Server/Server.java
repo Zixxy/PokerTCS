@@ -3,6 +3,7 @@ package main.java.Server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -65,9 +66,17 @@ class PlayerListener implements Runnable{
 }
 class PlayerOnline{
     public volatile boolean inGame;
-    public PlayerOnline(Socket socket){
+    public PrintWriter writer;
+    public PlayerOnline(Socket socket) throws IOException{
         this.inGame=false;
         this.socket=socket;
+        try {
+            writer = new PrintWriter(socket.getOutputStream(), true);
+        }
+        catch (IOException e) {
+            System.err.println("Cannot make PrintWriter for socket: "+socket.toString());
+            throw e;
+        }
     }
     public Socket socket;
     public int tableNumber;
@@ -112,6 +121,15 @@ public class Server {
             removePlayerFromTable(p,new Integer(txt[1]));
         }
     }
+
+    public static void sendToLobby(String txt) {
+        for(PlayerOnline player: connected) {
+            if(!player.inGame){
+                player.writer.println(txt);
+            }
+        }
+    }
+
     public static void addTable(PlayerOnline host){
         Table table = new Table(host);
         tables.add(table);
@@ -123,7 +141,7 @@ public class Server {
         tables.get(tableIndex).mo.addPlayer(p.toString());
         tables.get(tableIndex).players.add(p);
         try {
-            tables.get(tableIndex).cv.addOut(p.socket);
+            tables.get(tableIndex).cv.addOut(p.writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -142,11 +160,12 @@ public class Server {
             tables.get(tableIndex).players.remove(p);
         }
         try {
-            tables.get(tableIndex).cv.removeOut(p.socket);
+            tables.get(tableIndex).cv.removeOut(p.writer);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
     }
     public static void main(String[] args) {
         try {
