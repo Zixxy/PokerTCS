@@ -152,12 +152,47 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void removePlayer(int playerId) {
+        Player player = players.get(playerId);
+        if(player == null || player.getResigned())
+            return;
+        if(started) {
+            if(player.getInGame() == true) {
+                int tmpCurrentPlayerId = currentPlayerId;
+                currentPlayerId = playerId;
+                fold(playerId);
+                currentPlayerId = tmpCurrentPlayerId;
+
+            }
+        }
+        player.setResigned(true);
+        numberOfPlayers--;
+    }//
+
+
+    @Override
+    public void resign(int playerId) {
+        removePlayer(playerId);
+        /*
+
         if(players.get(playerId).getInGame()==true) numberInGame--;
         players.get(playerId).setResigned(true);
-        
+
         numberOfPlayers--;
         adapter.removePlayer(playerId);
-    }//
+
+
+        if(!started){
+            adapter.updateResignPlayer(playerId);
+            removePlayer(playerId);
+        }
+        int temporaryCurrentPlayerId=currentPlayerId;
+        currentPlayerId=playerId;
+        fold(playerId);
+        currentPlayerId=temporaryCurrentPlayerId;
+        adapter.updateActualPlayer(currentPlayerId);
+        removePlayer(playerId);
+        adapter.updateResignPlayer(playerId);*/
+    }
 
     private int getNextPlayerPosition(int position)
     {
@@ -266,22 +301,6 @@ public class ModelOne implements ModelInterface {
             adapter.updateActualPlayer(currentPlayerId);
             adapter.setLastMove(playerId, 0);
         }
-    }
-
-
-    @Override
-    public void resign(int playerId) {
-    	if(!started){
-    		adapter.updateResignPlayer(playerId);
-    		removePlayer(playerId);
-    	}
-        int temporaryCurrentPlayerId=currentPlayerId;
-        currentPlayerId=playerId;
-        fold(playerId);
-        currentPlayerId=temporaryCurrentPlayerId;
-        adapter.updateActualPlayer(currentPlayerId);
-        removePlayer(playerId);
-        adapter.updateResignPlayer(playerId);
     }
 
     private int reducePlayersRoundOffer(int x) {
