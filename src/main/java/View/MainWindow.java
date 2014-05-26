@@ -128,6 +128,8 @@ public class MainWindow extends Application implements MainWindowInterface {
 					}
 				});
 				fullyCreatedTableViewInterface.almostConstructor();
+
+    			adapter.exchangeReference((TableViewInterface)TableListControler.recentlyCreatedTableList, TableView.RecentlyCreatedInstanceOfThis);
 				/*synchronized(innerSynchronizer){
 					innerSynchronizer.notifyAll();
 				}

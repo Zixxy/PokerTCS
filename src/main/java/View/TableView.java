@@ -22,7 +22,7 @@ public class TableView extends Application implements TableViewInterface{
 	
 	private static AtomicBoolean constructionFlag = new AtomicBoolean(false);
 	
-	private static TableView RecentlyCreatedInstanceOfThis;
+	public static TableView RecentlyCreatedInstanceOfThis;
 	
 	public static MainAdapter tempAdapter;
 	

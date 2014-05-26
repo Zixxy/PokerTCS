@@ -133,6 +133,7 @@ public class TableListControler implements TableListInterface{
     	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
+    			Run.mainWindow.showGame(0);
     			adapter.addTable();
     		}
     	});
