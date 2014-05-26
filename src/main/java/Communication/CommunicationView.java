@@ -15,19 +15,37 @@ import main.java.View.TableViewInterface;
  */
 public class CommunicationView  implements TableViewInterface{
 
+    private class WriterWithId {
+        public PrintWriter writer;
+        public int id;
+        public WriterWithId(PrintWriter writer, int id) {
+            this.writer = writer;
+            this.id = id;
+        }
+        @Override
+        public boolean equals(Object obj) {
+            if(obj != null && obj instanceof WriterWithId) {
+                WriterWithId wwi = (WriterWithId) obj;
+                if(wwi.writer == this.writer && wwi.id == this.id)
+                    return true;
+            }
+            return false;
+        }
+    }
+
     private Thread clientsListener;
     private Collection<Thread> massagesListeners;
     private ServerSocket server;
     private Collection<Socket> clients;
-    private Collection<PrintWriter> outs;
+    private Collection<WriterWithId> outs;
     private AdapterInterface adapter;
     private int waiting;
 
-    public void addOut(PrintWriter writer) throws IOException {
-        outs.add(writer);
+    public void addOut(PrintWriter writer, int id) throws IOException {
+        outs.add(new WriterWithId(writer, id));
     }
-    public void removeOut(PrintWriter writer) throws IOException{
-        outs.remove(writer);
+    public void removeOut(PrintWriter writer, int id) throws IOException{
+        outs.remove(new WriterWithId(writer, id));
     }
 
     @Override
@@ -99,21 +117,21 @@ public class CommunicationView  implements TableViewInterface{
         System.out.println("Created server at port : " + port);
         this.adapter = adapter;
         clients = new ArrayList<Socket>();
-        outs = new ArrayList<PrintWriter>();
+        outs = new ArrayList<WriterWithId>();
         massagesListeners = new ArrayList<Thread>();
         clientsListener = new Thread(new ClientsListener(this, this.server));
         clientsListener.start();
     }
     public CommunicationView(AdapterInterface adapter){
         this.adapter=adapter;
-        outs = new ArrayList<PrintWriter>();
+        outs = new ArrayList<WriterWithId>();
     }
 
     private synchronized void add(Socket x) {
         System.out.println("CONNECT: " + x.getInetAddress().toString());
         clients.add(x);
         try {
-            outs.add(new PrintWriter(x.getOutputStream(), true));
+            outs.add(new WriterWithId(new PrintWriter(x.getOutputStream(), true), -1));
             Thread newUser = new Thread(new MassageListener(this, x));
             newUser.start();
             massagesListeners.add(newUser);
@@ -161,8 +179,15 @@ public class CommunicationView  implements TableViewInterface{
 
     private void sendCommand(String txt) {
         System.err.println("SEND OUT: "+txt);
-        for (PrintWriter print : outs)
-            print.println(txt);
+        for (WriterWithId print : outs)
+            print.writer.println(txt);
+    }
+
+    private void sendCommandToId(String txt, int id) {
+        System.err.println("SEND OUT: "+txt);
+        for (WriterWithId print : outs)
+            if(print.id == id)
+                print.writer.println(txt);
     }
   /*  private synchronized void sendCards(Socket socket, int id) {
         try {
@@ -223,7 +248,7 @@ public class CommunicationView  implements TableViewInterface{
     @Override
     public void updatePlayerHand(int playerId, Deck.Card firstCard, Deck.Card secondCard) {
         synchronized(CommunicationView.class) {
-            this.sendCommand("updatePlayerHand~" + playerId + "~" + firstCard + "~" + secondCard );
+            this.sendCommandToId("updatePlayerHand~" + playerId + "~" + firstCard + "~" + secondCard, playerId );
         }
     }
 

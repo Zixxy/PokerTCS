@@ -131,23 +131,25 @@ public class ModelOne implements ModelInterface {
     }
 
     @Override
-    public void addPlayer(String name) {
+    public int addPlayer(String name) {
         if(!this.started) {
         	if(numberOfPlayers >= 8){
         		System.err.println("No available place");
-        		return;
+        		return -1;
         	}
         	numberOfPlayers++;
         	for(Player p : players){
         		if(p.getResigned()){
         			p.setResigned(false);
         			adapter.addPlayer(name, p.getId());
-        			return;
+        			return p.getId();
         		}
         	}
             players.add(new Player(name, startedAmount, numberOfPlayers -1));
             adapter.addPlayer(name, numberOfPlayers - 1);
+            return numberOfPlayers-1;
         }
+        return -1;
     }
 
     @Override

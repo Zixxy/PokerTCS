@@ -71,6 +71,7 @@ class PlayerListener implements Runnable{
 class PlayerOnline{
     public volatile boolean inGame;
     public PrintWriter writer;
+    public int inGameId=-1;
     public PlayerOnline(Socket socket) throws IOException{
         this.inGame=false;
         this.socket=socket;
@@ -142,10 +143,10 @@ public class Server {
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
         p.tableNumber=tableIndex;
-        tables.get(tableIndex).mo.addPlayer(p.toString());
+        p.inGameId = tables.get(tableIndex).mo.addPlayer(p.toString());
         tables.get(tableIndex).players.add(p);
         try {
-            tables.get(tableIndex).cv.addOut(p.writer);
+            tables.get(tableIndex).cv.addOut(p.writer, p.inGameId);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,7 +165,7 @@ public class Server {
             tables.get(tableIndex).players.remove(p);
         }
         try {
-            tables.get(tableIndex).cv.removeOut(p.writer);
+            tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);
         }
         catch (IOException e) {
             e.printStackTrace();

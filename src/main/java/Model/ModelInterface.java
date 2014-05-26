@@ -17,7 +17,7 @@ public interface ModelInterface {
 	int getMoney(int playerId);  //returns amount of many of player
 	//set
 	void setStartedAmount(int amount);
-	void addPlayer(String name);
+	int addPlayer(String name);
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
     void setAnte(int arg);//sets Ante
