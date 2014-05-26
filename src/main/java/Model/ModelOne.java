@@ -6,6 +6,7 @@ import main.java.Model.Deck.Card;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -159,6 +160,14 @@ public class ModelOne implements ModelInterface {
         adapter.removePlayer(playerId);
     }//
 
+    private int getNextPlayerPosition(int position)
+    {
+        position++;
+        while(players.get(position).getInGame() == false)
+            position = (position+1) % players.size();
+        return position;
+    }
+
     @Override
     public void start() {
         int i=0;
@@ -182,8 +191,7 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setInGame(false);
             numberInGame--;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje");
-            while (players.get(currentPlayerId).getInGame() == false)
-                currentPlayerId = (currentPlayerId + 1) % players.size();
+            currentPlayerId = getNextPlayerPosition(currentPlayerId -1); //getNextPlayerPosition is moving current player, but we don't want exactly that
             adapter.updateActualPlayer(currentPlayerId);
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
@@ -206,22 +214,39 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setOffer(this.limit);
             adapter.updatePlayerLinedCash(playerId, players.get(playerId).getOffer());
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
-            currentPlayerId = (currentPlayerId + 1) % players.size();
-            while (players.get(currentPlayerId).getInGame() == false) {
-                currentPlayerId = (currentPlayerId + 1) % players.size();
-            }
+
+            currentPlayerId = getNextPlayerPosition(currentPlayerId);
+
             adapter.updateActualPlayer(currentPlayerId);
             adapter.setLastMove(currentPlayerId, 2);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
 
+    public void allIn(int playerId) {
+        if(!started) return;
+        if(currentPlayerId  != playerId) return;
+        Player actualPlayer = players.get(playerId);
+        actualPlayer.setOffer(actualPlayer.getOffer() + actualPlayer.getMoney());
+        actualPlayer.setMoney(0);
+        actualPlayer.setAllIned(true);
+        if(actualPlayer.getOffer() > limit) {
+            this.raisingPlayerId = playerId;
+            this.limit = actualPlayer.getOffer();
+        }
+        adapter.updatePlayerLinedCash(playerId, actualPlayer.getOffer());
+        adapter.updatePlayerCash(playerId, 0);
+        actualPlayer.setInGame(false);
+        currentPlayerId = getNextPlayerPosition(currentPlayerId);
+    }
+
     @Override
     public void raise(int playerId, int amount) {
         if (!started) return;
         if(currentPlayerId==playerId) {
-            if(amount > players.get(playerId).getMoney())
-                return;
+            if(amount >= players.get(playerId).getMoney()){
+                allIn(playerId);
+            }
             if(amount + players.get(playerId).getOffer() < limit)
                 return;
             if(amount + players.get(playerId).getOffer() == limit) {
@@ -236,10 +261,9 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(playerId, players.get(playerId).getMoney());
             this.limit = players.get(playerId).getOffer();
             this.raisingPlayerId = playerId;
-            currentPlayerId = (currentPlayerId + 1) % players.size();
-            while (players.get(currentPlayerId).getInGame() == false) {
-                currentPlayerId = (currentPlayerId + 1) % players.size();
-            }
+
+            currentPlayerId = getNextPlayerPosition(currentPlayerId);
+
             adapter.updateActualPlayer(currentPlayerId);
             adapter.setLastMove(currentPlayerId, 0);
         }
@@ -261,8 +285,48 @@ public class ModelOne implements ModelInterface {
         adapter.updateResignPlayer(playerId);
     }
 
+    private int reducePlayersRoundOffer(int x) {
+        int out = 0;
+        for(Player player: players) {
+            out+=Math.min(x, player.getRoundCash());
+            player.setRoundCash(Math.max(0, player.getRoundCash()-x));
+        }
+        return out;
+    }
+
+    private ArrayList<Player> bestPlayers() {
+        ArrayList<Player> out = new ArrayList<Player>();
+        for(Player player: players) {
+            if(!player.getInGame() && !player.getAllIned())
+            if(out.isEmpty() || getPlayerHand(player).compareTo(getPlayerHand(out.get(0))) > 0) {
+                out = new ArrayList<Player>();
+                out.add(player);
+            }
+        }
+        return out;
+    }
+
+    private Player removeSmallestPlayer(ArrayList<Player> list){
+        int smallest = 0;
+        for(int i = 1; i<list.size(); i++)
+            if(list.get(smallest).getRoundCash() > list.get(i).getRoundCash()) {
+                smallest = i;
+            }
+        return list.remove(smallest);
+    }
+
     private void won(){
-        int numberOfWiners=0;
+
+        ArrayList<Player> best;
+        while(!(best = bestPlayers()).isEmpty()) {
+            int cash=0;
+            while(!best.isEmpty()) {
+                Player smaller = removeSmallestPlayer(best);
+                cash+=reducePlayersRoundOffer(smaller.getRoundCash())/(best.size() + 1);
+                smaller.setMoney(smaller.getMoney() + cash);
+            }
+        }
+        /*int numberOfWiners=0;
         for(Player p:players) if(p.getInGame()) numberOfWiners++;
         int i=-1;
         for(Player p:players) {
@@ -270,15 +334,16 @@ public class ModelOne implements ModelInterface {
             if(!p.getInGame()) continue;
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
             adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName());
-        }
+        }*/
         adapter.sendMessage("Rozpoczynanie nowej rundy ");
-        i = -1;
+        int pos = -1;
         for(Player p: players) {
-            i++;
+            pos++;
             if(p.getResigned()) continue;
-            adapter.updatePlayerCash(i, players.get(i).getMoney());
-            adapter.updatePlayerLinedCash(i, 0);
+            adapter.updatePlayerCash(pos, players.get(pos).getMoney());
+            adapter.updatePlayerLinedCash(pos, 0);
         }
+
         for(Player p:players) {
 
 
@@ -286,10 +351,10 @@ public class ModelOne implements ModelInterface {
         }
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
 
-        smallBlindPosition = (smallBlindPosition + 1) % players.size();
-        while (players.get(smallBlindPosition).getResigned() == true) {
-            smallBlindPosition = (smallBlindPosition + 1) % players.size();
-        }
+
+
+        smallBlindPosition = getNextPlayerPosition(smallBlindPosition);
+
         started=false;
         //startRound();
     }
@@ -304,6 +369,10 @@ public class ModelOne implements ModelInterface {
 
         int i=0;
         for(Player p:players){
+            if(p.getMoney() == 0) {
+                p.setResigned(true);
+                continue;
+            }
             p.setCards(deck);
             p.setMoney(p.getMoney()- ante);
             adapter.updatePlayerCash(i, p.getMoney());
@@ -311,10 +380,11 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerLinedCash(i, p.getOffer());
             adapter.updatePlayerHand(i,p.getCards());
             p.setInGame(true);
+            p.setAllIned(false);
+            p.setRoundCash(0);
             i++;
         }
-        while(players.get(smallBlindPosition).getInGame() == false)
-            smallBlindPosition = (smallBlindPosition+1)%players.size();
+        smallBlindPosition = getNextPlayerPosition(smallBlindPosition-1);
         adapter.sendMessage("SmallBlindPosition: "+smallBlindPosition);
         adapter.startNewRound();
         currentPlayerId=smallBlindPosition;
@@ -325,9 +395,9 @@ public class ModelOne implements ModelInterface {
 
 
         adapter.sendMessage("Gracz " + players.get(currentPlayerId).getName() + " wpłacił małą ciemną");
-        raise(currentPlayerId, Math.min(players.get(currentPlayerId).getMoney(), smallBlind));
+        raise(currentPlayerId, smallBlind);
         adapter.sendMessage("Gracz " + players.get(currentPlayerId).getName() + " wpłacił dużą ciemną");
-        raise(currentPlayerId, Math.min(players.get(currentPlayerId).getMoney(), bigBlind));
+        raise(currentPlayerId, bigBlind);
         raisingPlayerId = currentPlayerId;
         adapter.setPot(pot);
     }
@@ -354,8 +424,7 @@ public class ModelOne implements ModelInterface {
         this.limit = 0;
         currentPlayerId = smallBlindPosition;
     
-        while(players.get(currentPlayerId).getInGame() == false)
-            currentPlayerId = (currentPlayerId + 1)%players.size();
+        currentPlayerId = getNextPlayerPosition(currentPlayerId - 1);
         adapter.updateActualPlayer(currentPlayerId);
         
         raisingPlayerId = currentPlayerId;
@@ -378,7 +447,7 @@ public class ModelOne implements ModelInterface {
             stage = getActualStage() + 1;
         }
         else if (getActualStage() ==3) {
-            List<Player> inGamePlayers = new ArrayList<Player>();
+           /* List<Player> inGamePlayers = new ArrayList<Player>();
             for(Player p:players) {
                 if(p.getInGame()) {
                     inGamePlayers.add(p);
@@ -392,7 +461,7 @@ public class ModelOne implements ModelInterface {
              for(Player player: inGamePlayers) {
                  if (getPlayerHand(player).compareTo(getPlayerHand(max)) < 0)
                      player.setInGame(false);
-             }
+             }*/
             won();
         }
     }
