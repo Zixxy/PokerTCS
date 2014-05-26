@@ -1,12 +1,35 @@
 package main.java.View;
 
-<<<<<<< HEAD
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class TableListControler {
+public class TableListControler implements TableListInterface{
 
+	public static TableListControler recentlyCreatedTableList;
+	
+	TableListControler(){
+		recentlyCreatedTableList = this;
+	}
+	@Override
+	public void guiAddTable(int numberOfTable) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void guiRemoveTable(int numberOfTable) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateNumberOfPlayers(int numberOfTable,
+			int currentNumberOfPlayers) {
+		// TODO Auto-generated method stub
+
+	}
+	
     @FXML
     private Label table1Started, table2Started, table3Started, table4Started, table5Started, table6Started,
     			table7Started, table8Started, table9Started, table10Started, table11Started, table12Started,
@@ -36,33 +59,3 @@ public class TableListControler {
     
 
 }
-
-=======
-public class TableListControler implements TableListInterface {
-
-	public static TableListControler recentlyCreatedTableList;
-	
-	TableListControler(){
-		recentlyCreatedTableList = this;
-	}
-	@Override
-	public void guiAddTable(int numberOfTable) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void guiRemoveTable(int numberOfTable) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateNumberOfPlayers(int numberOfTable,
-			int currentNumberOfPlayers) {
-		// TODO Auto-generated method stub
-
-	}
-
-}
->>>>>>> e7a4f71866b9276385c93dc57130213a84fc9f63

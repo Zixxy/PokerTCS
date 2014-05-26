@@ -18,20 +18,21 @@ import java.io.IOException;
 */
 public class RunHereClient {
     private static Config config;
-    public static void runClient(String ip, int port){
+    public static void runClient(String ip, int port, String name){
     	MainAdapter adapter = Run.adapter;
-    	TableViewInterface view  = Run.mainWindow.showTable(1);
-    	adapter.addView(view);
-    	TableViewInterface textView = new CommandLine(adapter);
-        adapter.addView(textView);
         ModelInterface model = null;
-        try {
+    	try {
             model = new CommunicationModel(adapter,ip,port);
         } catch (IOException e) {
             System.err.println("Super blad polaczenia na "+ip+":"+port);
             e.printStackTrace();
         }
-        adapter.addModel(model);
+    	TableViewInterface view  = Run.mainWindow.showTableList();
+    //	adapter.addView(view);
+    //	TableViewInterface textView = new CommandLine(adapter);
+    //   adapter.addView(textView);
+        
+    //    adapter.addModel(model);
     }
     public static void main(String[] args){
         //config = new Config("config");
