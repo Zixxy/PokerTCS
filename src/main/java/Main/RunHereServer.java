@@ -26,7 +26,7 @@ public class RunHereServer {
 		}
 		adapter.addView(view);
 		//try{
-		TableViewInterface view2 = Run.mainWindow.showTable();
+		TableViewInterface view2 = Run.mainWindow.showTable(0);
 	/*	} catch(Exception e){
 			System.out.println("problems here!");
 		}*/

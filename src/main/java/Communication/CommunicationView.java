@@ -34,8 +34,6 @@ public class CommunicationView  implements TableViewInterface{
             this.server = server;
         }
 
-
-
         @Override
         public void run() {
             while(true) {

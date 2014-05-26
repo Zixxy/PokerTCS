@@ -20,7 +20,7 @@ public class RunHereClient {
     private static Config config;
     public static void runClient(String ip, int port){
     	MainAdapter adapter = Run.adapter;
-    	TableViewInterface view  = Run.mainWindow.showTable();
+    	TableViewInterface view  = Run.mainWindow.showTable(1);
     	adapter.addView(view);
     	TableViewInterface textView = new CommandLine(adapter);
         adapter.addView(textView);
