@@ -18,6 +18,8 @@ public class Player{
     private int offer;
     private boolean resigned;
     private Deck.Card cards[];
+    private boolean allIned;
+    private int thisRoundOffer;
 
     public int getId(){
     	return this.id;
@@ -61,10 +63,28 @@ public class Player{
     }
 
     public void setOffer(Integer arg1){
+        if(arg1 > this.offer)
+            thisRoundOffer += arg1 - this.offer;
         this.offer=arg1;
     }
 
     public int getOffer(){
         return this.offer;
+    }
+
+    public boolean getAllIned() {
+        return allIned;
+    }
+
+    public void setAllIned(boolean arg) {
+        allIned = arg;
+    }
+
+    public void setRoundCash(int x){
+        this.thisRoundOffer = x;
+    }
+
+    public int getRoundCash(){
+        return thisRoundOffer;
     }
 }
