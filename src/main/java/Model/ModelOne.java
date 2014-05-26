@@ -227,7 +227,7 @@ public class ModelOne implements ModelInterface {
                 raising = true;
             players.get(playerId).setInGame(false);
             numberInGame--;
-            adapter.sendMessage("Gracz " + players.get(playerId).getName() +" pasuje");
+            adapter.sendMessage("Gracz " + players.get(playerId).getName() + " pasuje");
             currentPlayerId = getNextPlayerPosition(currentPlayerId -1); //getNextPlayerPosition is moving current player, but we don't want exactly that
             adapter.updateActualPlayer(currentPlayerId);
             if (numberInGame == 1) won();
@@ -399,7 +399,7 @@ public class ModelOne implements ModelInterface {
             adapter.updatePlayerCash(i, p.getMoney());
             p.setOffer(ante);
             adapter.updatePlayerLinedCash(i, p.getOffer());
-            adapter.updatePlayerHand(i,p.getCards());
+            adapter.updatePlayerHand(i, p.getCards());
             p.setInGame(true);
             p.setAllIned(false);
             p.setRoundCash(0);
@@ -495,4 +495,19 @@ public class ModelOne implements ModelInterface {
 	public void showPlayerCards(int playerId, Card[] cards) {
 		// TODO Auto-generated method stub
 	}
+
+    @Override
+    public void addTable() {
+        //JUST FOR NETWORK CONNECTION
+    }
+
+    @Override
+    public void removePlayerFromTable(int tableIndex) {
+        //JUST FOR NETWORK CONNECTION
+    }
+
+    @Override
+    public void addPlayerToTable(int tableIndex) {
+        //JUST FOR NETWORK CONNECTION
+    }
 }

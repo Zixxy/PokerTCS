@@ -206,4 +206,19 @@ public class MainAdapter implements AdapterInterface {
         }
 
     }
+
+    @Override
+    public void addTable() {
+        model.addTable();
+    }
+
+    @Override
+    public void addPlayerToTable(int tableIndex) {
+        model.addPlayerToTable(tableIndex);
+    }
+
+    @Override
+    public void removePlayerFromTable(int tableIndex) {
+        model.removePlayerFromTable(tableIndex);
+    }
 }

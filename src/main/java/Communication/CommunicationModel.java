@@ -192,8 +192,9 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
-    public void addPlayer(String name) {
+    public int addPlayer(String name) {
         out.println("addPlayer~"+name);
+        return 7;//7 to bardzo duzo
     }
 
     @Override
@@ -289,4 +290,19 @@ public class CommunicationModel implements ModelInterface {
     	
     	out.println("showCards~" + playerId + "~" + firstCardNumber + "~" + secondCardNumber);
 	}
+
+    @Override
+    public void addTable() {
+        out.println("addtable~");
+    }
+
+    @Override
+    public void removePlayerFromTable(int tableIndex) {
+        out.println("removeplayerfromtable~"+tableIndex);
+    }
+
+    @Override
+    public void addPlayerToTable(int tableIndex) {
+        out.println("addplayertotable~"+tableIndex);
+    }
 }

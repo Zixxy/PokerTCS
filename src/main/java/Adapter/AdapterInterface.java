@@ -44,4 +44,7 @@ public interface AdapterInterface {
     public void guiAddTable(int numberOfTable);
     public void guiRemoveTable(int numberOfTable);
     public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers);
+    public void addTable();
+    public void addPlayerToTable(int tableIndex);
+    public void removePlayerFromTable(int tableIndex);
 }
