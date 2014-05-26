@@ -18,7 +18,7 @@ public class TableListControler implements TableListInterface{
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	public static TableListControler recentlyCreatedTableList;
 	
-	TableListControler(){
+	public TableListControler(){
 		recentlyCreatedTableList = this;
 		adapter = Run.adapter;
 	}
@@ -69,6 +69,7 @@ public class TableListControler implements TableListInterface{
             			adapter.addPlayerToTable(numberOfTable);
             		}
             	});
+            	a.start();
             }
         });
 

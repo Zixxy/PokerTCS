@@ -180,6 +180,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(602);
 				mainPane.getChildren().clear();
 				try {
+					System.out.println("im here");
 					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableList.fxml")));// or sth...
 				} catch (IOException e) {
 					System.err.println("We got a problem with launching TableList ");
