@@ -222,7 +222,10 @@ public class MainAdapter implements AdapterInterface {
         model.removePlayerFromTable(tableIndex);
     }
     public void exchangeReference(TableViewInterface from, TableViewInterface to){
+
+		System.out.println(views);
     	for(TableViewInterface i : views){
+    		System.out.println("from"+from);
     		if(i.equals(from)){
     			views.remove(i);
     			break;

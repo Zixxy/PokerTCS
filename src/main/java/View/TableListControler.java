@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 import main.java.Adapter.MainAdapter;
 import main.java.Main.Run;
+import main.java.Model.Deck.Card;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-public class TableListControler implements TableListInterface{
+public class TableListControler implements TableViewInterface{
 	volatile private boolean isConstructed = false;
 	private MainAdapter adapter;
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
@@ -138,5 +139,115 @@ public class TableListControler implements TableListInterface{
     		}
     	});
     }
+
+	@Override
+	public void almostConstructor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPlayer(String name, int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePlayerCash(int id, int cash) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateActualPlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateNormalPlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateResignedPlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addThreeCardsOnTable(Card firstCard, Card secondCard,
+			Card thirdCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addOneCard(Card card) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearTable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePlayerHand(int id, Card firstCard, Card secondCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePlayerLinedCash(int id, int cash) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePlayersLinedCash(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendMessage(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void startNewRound() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPot(int cash) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLastMove(int id, int move) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showCards(int playerId, int firstCardNumber,
+			int secondCardNumber) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

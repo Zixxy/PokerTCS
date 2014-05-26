@@ -192,6 +192,13 @@ public class MainWindow extends Application implements MainWindowInterface {
 				}
 			}
 		});
+		// IT WILL BE REMOVED AS SOON AS POSSIBLE.
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// we need to wait until this will not be null.
 		return (TableViewInterface) TableListControler.recentlyCreatedTableList;
 	}

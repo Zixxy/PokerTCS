@@ -22,6 +22,7 @@ public class RunHereClient {
     	MainAdapter adapter = Run.adapter;
         ModelInterface model = null;
     	TableViewInterface view  = Run.mainWindow.showTableList();
+    	System.out.println("TUTAK KURWA JESTEM "+view);
     	adapter.addView(view);
     	try {
             model = new CommunicationModel(adapter,ip,port);
