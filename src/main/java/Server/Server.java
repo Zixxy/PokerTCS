@@ -70,6 +70,7 @@ class PlayerListener implements Runnable{
 }
 class PlayerOnline{
     public volatile boolean inGame;
+    public String name;
     public PrintWriter writer;
     public int inGameId=-1;
     public PlayerOnline(Socket socket) throws IOException{
@@ -85,6 +86,10 @@ class PlayerOnline{
     }
     public Socket socket;
     public int tableNumber;
+    @Override
+    public String toString(){
+        return name;
+    }
 }
 class Table{
     public CommunicationView cv;
@@ -125,6 +130,9 @@ public class Server {
         else if(txt[0].equals("removeplayerfromtable")) {
             removePlayerFromTable(p,new Integer(txt[1]));
         }
+        else if(txt[0].equals("setplayername~")) {
+            setPlayerName(p,txt[1]);
+        }
     }
 
     public void sendToLobby(String txt) {
@@ -151,6 +159,9 @@ public class Server {
             e.printStackTrace();
         }
 
+    }
+    public void setPlayerName(PlayerOnline p, String txt){
+        p.name=txt;
     }
     public void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){
