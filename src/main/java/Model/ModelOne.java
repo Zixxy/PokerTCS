@@ -162,6 +162,7 @@ public class ModelOne implements ModelInterface {
                 fold(playerId);
                 currentPlayerId = tmpCurrentPlayerId;
 
+
             }
         }
         player.setResigned(true);
