@@ -31,27 +31,27 @@ public class TableListControler implements TableViewInterface{
     			table13Started, table14Started, table15Started, table16Started, table17Started, table18Started,
     			table19Started, table20Started, table21Started, table22Started, table23Started};
 		for(Label l : tableNames){
-			l = null;
+			l.setText(null);
 		}
 		tablePlayers = new Label[]{table1Players, table2Players, table3Players, table4Players, table5Players, table6Players,
     			table7Players, table8Players, table9Players, table10Players, table11Players, table12Players,
     			table13Players, table14Players, table15Players, table16Players, table17Players, table18Players,
     			table19Players, table20Players, table21Players, table22Players, table23Players};
 		for(Label l : tablePlayers){
-			l = null;
+			l.setText(null);
 		}
 		tableStarteds = new Label[] {table1Started, table2Started, table3Started, table4Started, table5Started, table6Started,
     			table7Started, table8Started, table9Started, table10Started, table11Started, table12Started,
     			table13Started, table14Started, table15Started, table16Started, table17Started, table18Started,
     			table19Started, table20Started, table21Started, table22Started, table23Started};
 		for(Label l : tableStarteds){
-			l = null;
+			l.setText(null);
 		}
 		tableJoins = new HBox[] {table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
     			table9Join, table10Join, table11Join, table12Join, table13Join, table14Join, table15Join, table16Join,
     			table17Join, table18Join, table19Join, table20Join, table21Join, table22Join, table23Join};
-		for(Button l : tableJoins){
-			l = null;
+		for(HBox l : tableJoins){
+			l.getChildren().clear();
 		}
 		isConstructed = true;
 	}
@@ -61,8 +61,8 @@ public class TableListControler implements TableViewInterface{
 		tableNames[numberOfTable] = new Label("Table "+ numberOfTable);
 		tablePlayers[numberOfTable] = new Label("1/" + "8");
 		tableStarteds[numberOfTable] = new Label("No");
-		tableJoins[numberOfTable] = new Button("Join");
-	 	tableJoins[numberOfTable].setOnAction(new EventHandler<ActionEvent>() {
+		Button b = new Button("Join");
+		b.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
             	Thread a = new Thread(new Runnable(){
@@ -74,7 +74,7 @@ public class TableListControler implements TableViewInterface{
             	a.start();
             }
         });
-
+		tableJoins[numberOfTable].getChildren().add(b);
 	}
 
 	@Override
