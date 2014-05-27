@@ -82,6 +82,11 @@ public class CommandLine implements TableViewInterface{
     }
 
     @Override
+    public void setPlayerId(int id) {
+
+    }
+
+    @Override
     public void clearTable() {
         System.out.println("Table cleared");
     }
