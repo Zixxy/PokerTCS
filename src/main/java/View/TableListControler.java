@@ -79,10 +79,10 @@ public class TableListControler implements TableViewInterface{
 
 	@Override
 	public void guiRemoveTable(int numberOfTable) {
-		tableNames[numberOfTable] = null;
-		tablePlayers[numberOfTable] = null;
-		tableStarteds[numberOfTable] = null;
-		tableJoins[numberOfTable] = null;
+		tableNames[numberOfTable].setText(null);
+		tablePlayers[numberOfTable].setText(null);
+		tableStarteds[numberOfTable].setText(null);
+		tableJoins[numberOfTable].getChildren().clear();
 
 	}
 
