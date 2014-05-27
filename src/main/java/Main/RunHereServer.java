@@ -20,8 +20,8 @@ public class RunHereServer {
 		Server server = new Server(port);
 		Run.mainWindow.showTableList();
 		
-		
-	/*	TableViewInterface view;
+		/*
+		TableViewInterface view;
 		try {
 			view = new CommunicationView(port, adapter);
 		}
@@ -29,9 +29,9 @@ public class RunHereServer {
 			System.err.println("FATAL ERROR");
 			return;
 		}
-		adapter.addView(view);
+		adapter.addView(view);*/
 		//try{
-		TableViewInterface view2 = Run.mainWindow.showGame(0);*/
+	//	TableViewInterface view2 = Run.mainWindow.showGame(0);
 	/*	} catch(Exception e){
 			System.out.println("problems here!");
 		}*/

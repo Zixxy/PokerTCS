@@ -55,42 +55,59 @@ public class TableListControler implements TableViewInterface{
 		}
 		isConstructed = true;
 	}
-	
+
 	@Override
 	public void guiAddTable(final int numberOfTable) {
-		tableNames[numberOfTable] = new Label("Table "+ numberOfTable);
-		tablePlayers[numberOfTable] = new Label("1/" + "8");
-		tableStarteds[numberOfTable] = new Label("No");
-		Button b = new Button("Join");
-		b.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	Thread a = new Thread(new Runnable(){
-            		@Override
-            		public void run(){
-            			adapter.addPlayerToTable(numberOfTable);
-            		}
-            	});
-            	a.start();
-            }
-        });
-		tableJoins[numberOfTable].getChildren().clear();
-		tableJoins[numberOfTable].getChildren().add(b);
+		javafx.application.Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				tableNames[numberOfTable] = new Label("Table "+ numberOfTable);
+				tablePlayers[numberOfTable] = new Label("1/" + "8");
+				tableStarteds[numberOfTable] = new Label("No");
+				Button b = new Button("Join");
+				b.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						Thread a = new Thread(new Runnable(){
+							@Override
+							public void run(){
+								adapter.addPlayerToTable(numberOfTable);
+							}
+						});
+						a.start();
+					}
+				});
+				tableJoins[numberOfTable].getChildren().clear();
+				tableJoins[numberOfTable].getChildren().add(b);
+			}
+		});
 	}
 
 	@Override
-	public void guiRemoveTable(int numberOfTable) {
-		tableNames[numberOfTable].setText(null);
-		tablePlayers[numberOfTable].setText(null);
-		tableStarteds[numberOfTable].setText(null);
-		tableJoins[numberOfTable].getChildren().clear();
+	public void guiRemoveTable(final int numberOfTable) {
+		javafx.application.Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				tableNames[numberOfTable].setText(null);
+				tablePlayers[numberOfTable].setText(null);
+				tableStarteds[numberOfTable].setText(null);
+				tableJoins[numberOfTable].getChildren().clear();
+			}
+		});
 	}
 
 	@Override
-	public void updateNumberOfPlayers(int numberOfTable,
-			int currentNumberOfPlayers) {
-		tablePlayers[numberOfTable].setText(currentNumberOfPlayers + "/8");
+	public void updateNumberOfPlayers(final int numberOfTable,
+			final int currentNumberOfPlayers) {
+		javafx.application.Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				tablePlayers[numberOfTable].setText(currentNumberOfPlayers + "/8");
+			}
+		});
 	}
 	
 	@FXML
