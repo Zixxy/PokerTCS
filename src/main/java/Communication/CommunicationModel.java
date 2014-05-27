@@ -121,13 +121,13 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("showcards")){
         	adapter.showCards(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
         }
-        if(tab[0].toLowerCase().equals("guiAddTable")) {
+        if(tab[0].toLowerCase().equals("guiaddtable")) {
             adapter.guiAddTable(new Integer(tab[1]));
         }
-        if(tab[0].toLowerCase().equals("guiRemoveTable")){
+        if(tab[0].toLowerCase().equals("guiremovetable")){
             adapter.guiRemoveTable(new Integer(tab[1]));
         }
-        if(tab[0].toLowerCase().equals("updateNumberOfPlayers")){
+        if(tab[0].toLowerCase().equals("updatenumberofplayers")){
             adapter.updateNumberOfPlayers(new Integer(tab[1]), new Integer(tab[2]));
         }
     }

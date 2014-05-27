@@ -136,6 +136,7 @@ public class Server {
     }
 
     public void sendToLobby(String txt) {
+        System.out.println("SEND LOBBY OUT" + txt);
         for(PlayerOnline player: connected) {
             if(!player.inGame){
                 player.writer.println(txt);
@@ -143,20 +144,21 @@ public class Server {
         }
     }
     public void guiAddTable(){
-        sendToLobby("guiaddtable~");
+        sendToLobby("guiaddtable~"+(tables.size()));
     }
     public void guiRemoveTable(int tableIndex){
-        sendToLobby("updatenumberofplayers~"+tableIndex);
+        sendToLobby("guiremovetable~"+tableIndex);
     }
     public void updateNumberOfPlayers(int tableIndex, int number){
         sendToLobby("updatenumberofplayers~"+tableIndex+"~"+number);
     }
 
     public void addTable(PlayerOnline host){
+        guiAddTable();
         Table table = new Table(host);
         tables.add(table);
         addPlayerToTable(host, tables.indexOf(table));
-        guiAddTable();
+
     }
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
