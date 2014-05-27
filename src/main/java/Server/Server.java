@@ -170,7 +170,11 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setPlayerId(p,p.inGameId);
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
+    }
+    public void setPlayerId(PlayerOnline p, int inGameId){
+        p.writer.println("setplayerid~"+inGameId);
     }
     public void setPlayerName(PlayerOnline p, String txt){
         p.name=txt;

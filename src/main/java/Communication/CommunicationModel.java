@@ -130,6 +130,9 @@ public class CommunicationModel implements ModelInterface {
         if(tab[0].toLowerCase().equals("updatenumberofplayers")){
             adapter.updateNumberOfPlayers(new Integer(tab[1]), new Integer(tab[2]));
         }
+        if(tab[0].toLowerCase().equals("setplayerid")){
+            adapter.setPlayerId(new Integer(tab[1]));
+        }
     }
     @Override
     public boolean isStarted() {
