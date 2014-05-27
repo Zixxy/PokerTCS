@@ -189,6 +189,7 @@ public class MainAdapter implements AdapterInterface {
     public void guiAddTable(int numberOfTable) {
         for(TableViewInterface view: views) {
             view.guiAddTable(numberOfTable);
+            System.out.println("Dodaje stol do"+view);
         }
     }
 

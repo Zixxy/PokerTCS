@@ -144,7 +144,7 @@ public class Server {
         }
     }
     public void guiAddTable(){
-        sendToLobby("guiaddtable~");
+        sendToLobby("guiaddtable~"+(tables.size()));
     }
     public void guiRemoveTable(int tableIndex){
         sendToLobby("guiremovetable~"+tableIndex);
