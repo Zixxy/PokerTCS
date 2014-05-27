@@ -101,12 +101,14 @@ public class MainAdapter implements AdapterInterface {
     @Override
     public void addView(TableViewInterface view){
         views.add(view);
+        //System.out.println("Dodaje view "+view+" i mam teraz ich "+views.size());
     }
 
     @Override
     public void addThreeCards(Deck.Card[] cards) {
         for(TableViewInterface view: views) {
             view.addThreeCardsOnTable(cards[0], cards[1], cards[2]);
+            //System.out.println("Dodaje view "+view+" i mam ich "+views.size());
         }
     }
 
@@ -233,13 +235,9 @@ public class MainAdapter implements AdapterInterface {
     public void exchangeReference(TableViewInterface from, TableViewInterface to){
 
 		System.out.println(views);
-    	for(TableViewInterface i : views){
-    		System.out.println("from"+from);
-    		if(i.equals(from)){
-    			views.remove(i);
-    			break;
-    		}
-    	}
-    	views.add(to);
+    	views.remove(from);
+        //Sylwek umrzyj za pisanie remove w ten sposob jak bylo
+    	if(!views.contains(to)) addView(to);
+        //Dodaje to sprawdzenie bo gdzies jest wywolywane tak, ze dodaje po raz drugi
     }
 }

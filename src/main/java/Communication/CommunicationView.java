@@ -178,7 +178,9 @@ public class CommunicationView  implements TableViewInterface{
     }
 
     private void sendCommand(String txt) {
+        //System.err.println("Mam "+outs.size()+" outy");
         System.err.println("SEND OUT: "+txt);
+
         for (WriterWithId print : outs)
             print.writer.println(txt);
     }
