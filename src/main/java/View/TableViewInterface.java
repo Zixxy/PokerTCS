@@ -12,6 +12,7 @@ public interface TableViewInterface extends TableListInterface{
 	public void updateResignedPlayer(int id); //remove face of player with id
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard);
 	public void addOneCard(Card card);
+	public void setPlayerId(int id);
 	/**
 	 * Method:
 	 * -removes cards from table.

@@ -330,4 +330,9 @@ public class CommunicationView  implements TableViewInterface{
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber) {
 		// TODO Auto-generated method stub	
 	}
+	@Override
+	public void setPlayerId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -295,4 +295,10 @@ public class TableView extends Application implements TableViewInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setPlayerId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

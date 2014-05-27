@@ -19,6 +19,7 @@ public class TableListControler implements TableViewInterface{
 	private MainAdapter adapter;
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	public static TableListControler recentlyCreatedTableList;
+	private volatile int playerId;
 	
 	public TableListControler(){
 		recentlyCreatedTableList = this;
@@ -55,9 +56,14 @@ public class TableListControler implements TableViewInterface{
 		}
 		isConstructed = true;
 	}
-
+	
+	@Override
+	public void setPlayerId(int id) {
+		playerId = id;
+	}
 	@Override
 	public void guiAddTable(final int numberOfTable) {
+		final TableViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
 
 			@Override
@@ -68,14 +74,19 @@ public class TableListControler implements TableViewInterface{
 				Button b = new Button("Join");
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
-					public void handle(ActionEvent event) {
-						Thread a = new Thread(new Runnable(){
-							@Override
-							public void run(){
-								adapter.addPlayerToTable(numberOfTable);
+					public void handle(ActionEvent event) {// SAOIJADSOIJSD
+						playerId = -100;
+            			adapter.addPlayerToTable(numberOfTable);
+            			while(playerId == -100){
+            				try {
+								Thread.sleep(50); // This will be changed to wait.
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-						});
-						a.start();
+            			}
+            			TableViewInterface res = Run.mainWindow.showGame(playerId);// we are waiting 
+            			adapter.exchangeReference(actual, res);
 					}
 				});
 				tableJoins[numberOfTable].getChildren().clear();
