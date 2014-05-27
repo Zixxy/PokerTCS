@@ -74,6 +74,7 @@ public class TableListControler implements TableViewInterface{
             	a.start();
             }
         });
+		tableJoins[numberOfTable].getChildren().clear();
 		tableJoins[numberOfTable].getChildren().add(b);
 	}
 
