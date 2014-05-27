@@ -77,16 +77,22 @@ public class TableListControler implements TableViewInterface{
 					public void handle(ActionEvent event) {// SAOIJADSOIJSD
 						playerId = -100;
             			adapter.addPlayerToTable(numberOfTable);
-            			while(playerId == -100){
+            			/*while(playerId == -100){
             				try {
 								Thread.sleep(50); // This will be changed to wait.
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-            			}
-            			TableViewInterface res = Run.mainWindow.showGame(playerId);// we are waiting 
-            			adapter.exchangeReference(actual, res);
+            			}*/
+            			Thread showGame = new Thread(new Runnable(){
+            				@Override
+            				public void run(){
+            					TableViewInterface res = Run.mainWindow.showGame(1);// we are waiting for scheduling playerId-s
+                    			adapter.exchangeReference(actual, res);
+            				}
+            			});
+            			showGame.start();
 					}
 				});
 				tableJoins[numberOfTable].getChildren().clear();
