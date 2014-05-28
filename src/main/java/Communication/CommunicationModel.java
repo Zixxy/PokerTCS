@@ -201,6 +201,11 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
+    public void setPlayerName(String name) {
+        out.println("setPlayerName~"+name);
+    }
+
+    @Override
     public void removePlayer(int playerId) {
         out.println("removePlayer~"+playerId);
     }

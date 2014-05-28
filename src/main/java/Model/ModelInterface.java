@@ -18,6 +18,7 @@ public interface ModelInterface {
 	//set
 	void setStartedAmount(int amount);
 	int addPlayer(String name);
+    void setPlayerName(String name);
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
     void setAnte(int arg);//sets Ante

@@ -235,6 +235,11 @@ public class MainAdapter implements AdapterInterface {
         }
     }
 
+    @Override
+    public void setPlayerName(String name) {
+        model.setPlayerName(name);
+    }
+
     public void exchangeReference(TableViewInterface from, TableViewInterface to){
 
 		System.out.println(views);

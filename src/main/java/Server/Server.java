@@ -131,7 +131,8 @@ public class Server {
         else if(txt[0].equals("removeplayerfromtable")) {
             removePlayerFromTable(p,new Integer(txt[1]));
         }
-        else if(txt[0].equals("setplayername~")) {
+        else if(txt[0].equals("setplayername")) {
+            System.err.println(order);
             setPlayerName(p,txt[1]);
         }
     }

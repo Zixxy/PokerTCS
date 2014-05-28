@@ -32,6 +32,7 @@ public class RunHereClient {
     	TableViewInterface textView = new CommandLine(adapter);
         adapter.addView(textView);
         adapter.addModel(model);
+        model.setPlayerName(name);
     }
     public static void main(String[] args){
         //config = new Config("config");

@@ -153,6 +153,11 @@ public class ModelOne implements ModelInterface {
     }
 
     @Override
+    public void setPlayerName(String name) {
+        //TODO xDDDD
+    }
+
+    @Override
     public void removePlayer(int playerId) {
         Player player = players.get(playerId);
         if(player == null || player.getResigned())
