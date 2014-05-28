@@ -379,8 +379,10 @@ public class ModelOne implements ModelInterface {
                 Player smaller = removeSmallestPlayer(best);
                 cash+=reducePlayersRoundOffer(smaller.getRoundCash())/(best.size() + 1);
                 smaller.setMoney(smaller.getMoney() + cash);
+                smaller.setInGame(false);
             }
         }
+        adapter.setPot(0);
         /*int numberOfWiners=0;
         for(Player p:players) if(p.getInGame()) numberOfWiners++;
         int i=-1;
