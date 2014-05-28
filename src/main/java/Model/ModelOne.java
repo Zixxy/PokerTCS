@@ -45,8 +45,8 @@ public class ModelOne implements ModelInterface {
         this.cards = new Deck.Card[5];
         this.ante=10;
         this.startedAmount=1000;
-        this.smallBlindPosition = 0;
-        this.smallBlind = 0;
+        this.smallBlindPosition = 10;
+        this.smallBlind = 20;
         this.bigBlind = 0;
     }//
     @Override
