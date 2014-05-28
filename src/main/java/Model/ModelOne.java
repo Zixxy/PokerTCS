@@ -323,6 +323,7 @@ public class ModelOne implements ModelInterface {
         ArrayList<Player> out = new ArrayList<Player>();
         for(Player player: players) {
             if(!player.getInGame() && !player.getAllIned())
+                continue;
             if(out.isEmpty() || getPlayerHand(player).compareTo(getPlayerHand(out.get(0))) > 0) {
                 out = new ArrayList<Player>();
                 out.add(player);
@@ -341,7 +342,23 @@ public class ModelOne implements ModelInterface {
     }
 
     private void won(){
-
+        if (getActualStage() ==0){
+            cards[0]=deck.getNextCard();
+            cards[1]=deck.getNextCard();
+            cards[2]=deck.getNextCard();
+            adapter.addThreeCards(cards);
+            stage = getActualStage() + 1;
+        }
+        if (getActualStage() ==1){
+            cards[3]=deck.getNextCard();
+            adapter.addOneCard(cards[3]);
+            stage = getActualStage() + 1;
+        }
+        if (getActualStage() ==2){
+            cards[4]=deck.getNextCard();
+            adapter.addOneCard(cards[4]);
+            stage = getActualStage() + 1;
+        }
         ArrayList<Player> best;
         while(!(best = bestPlayers()).isEmpty()) {
             int cash=0;
