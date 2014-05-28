@@ -339,6 +339,7 @@ public class TableControler{
 		 * 0 - raise
 		 * 1 - fold
 		 * 2 - check
+		 * 3 - all in
 		 */
 		Text text;
 		switch(move){
@@ -351,14 +352,17 @@ public class TableControler{
 			case 2:
 				text = new Text("CHECK");
 				break;
+			case 3:
+				text = new Text("ALL IN");
+				break;
 			default:
 				throw new RuntimeException("Unknown operation type");
 		}
     	text.setFill(Color.WHITE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-    	playersLastMove[id].getChildren().clear();
-    	playersLastMove[id].getChildren().add(text);
-    	text.setTextAlignment(TextAlignment.CENTER);		
+    	text.setTextAlignment(TextAlignment.CENTER);
+    	playersLastMove[id-1].getChildren().clear();
+    	playersLastMove[id-1].getChildren().add(text);		
 	}
 	
 	public void showCards(int id, int firstCardNumber, int secondCardNumber){

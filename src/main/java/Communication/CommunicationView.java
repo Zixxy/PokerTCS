@@ -319,6 +319,7 @@ public class CommunicationView  implements TableViewInterface{
 		 * 0 - raise
 		 * 1 - fold
 		 * 2 - check
+		 * 3 - all in
 		 */
 		synchronized(CommunicationView.class) {
 			this.sendCommand("setLastMove~" + id + "~" + move);

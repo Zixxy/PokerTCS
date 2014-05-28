@@ -222,6 +222,7 @@ public class ModelOne implements ModelInterface {
     public void fold(int playerId) {
         if (!started) return;
         if(currentPlayerId==playerId) {
+            adapter.setLastMove(playerId, 1);
             boolean raising = false;
             if (currentPlayerId == raisingPlayerId)
                 raising = true;
@@ -233,7 +234,6 @@ public class ModelOne implements ModelInterface {
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
             else {
-                adapter.setLastMove(playerId, 1);
                 if (raising)
                     raisingPlayerId = currentPlayerId;
             }
@@ -244,6 +244,7 @@ public class ModelOne implements ModelInterface {
     public void check(int playerId) {
         if (!started) return;
         if(currentPlayerId==playerId) {
+            adapter.setLastMove(playerId, 2);
             if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer()) {
                 allIn(playerId);
                 return;
@@ -258,14 +259,15 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(playerId, 2);
             if(currentPlayerId==raisingPlayerId) checkItAll();
         }
     }
 
     public void allIn(int playerId) {
         if(!started) return;
+
         if(currentPlayerId  != playerId) return;
+    	adapter.setLastMove(playerId, 3);
         Player actualPlayer = players.get(playerId);
         actualPlayer.setOffer(actualPlayer.getOffer() + actualPlayer.getMoney());
         actualPlayer.setMoney(0);
@@ -294,6 +296,7 @@ public class ModelOne implements ModelInterface {
                 check(playerId);
                 return;
             }
+            adapter.setLastMove(playerId, 0);
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" podbija o " + amount );
             onTable+=amount;
             players.get(playerId).setMoney(players.get(playerId).getMoney() -amount);
@@ -306,7 +309,6 @@ public class ModelOne implements ModelInterface {
             currentPlayerId = getNextPlayerPosition(currentPlayerId);
 
             adapter.updateActualPlayer(currentPlayerId);
-            adapter.setLastMove(playerId, 0);
         }
     }
 

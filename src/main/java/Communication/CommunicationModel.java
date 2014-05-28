@@ -254,11 +254,13 @@ public class CommunicationModel implements ModelInterface {
 
     @Override
     public void check(int playerId) {
+    	System.out.println("Ja chce sprawdzac");
         out.println("check~"+playerId);
     }
 
     @Override
     public void raise(int playerId, int amount) {
+    	System.out.println("Ja chce podbijac");
         out.println("raise~"+playerId+"~"+amount);
     }
 
