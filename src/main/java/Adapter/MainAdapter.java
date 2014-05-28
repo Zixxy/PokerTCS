@@ -21,16 +21,19 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void fold(int playerId) {
+        System.out.println("Jestesmy w adapterze fold!!"+playerId+"~");
         model.fold(playerId);
     }
 
     @Override
     public void check(int playerId) {
+        System.out.println("Jestesmy w adapterze check!!"+playerId);
         model.check(playerId);
     }
 
     @Override
     public void raise(int playerId, String amount){
+        System.out.println("Jestesmy w adapterze raise!!"+playerId+"~"+amount);
         int cash;
         try {
             cash = Integer.valueOf(amount);

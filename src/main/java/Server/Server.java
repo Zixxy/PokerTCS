@@ -54,6 +54,7 @@ class PlayerListener implements Runnable{
             try {
                 order=in.readLine();
                 String txt[] = order.split("~");
+                System.err.println("GOT SERVER ORDER: "+order);
                 if(p.inGame && !txt[0].toLowerCase().equals("removeplayerfromtable")){
                 server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
                 else{
