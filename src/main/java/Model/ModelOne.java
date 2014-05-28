@@ -342,6 +342,7 @@ public class ModelOne implements ModelInterface {
     }
 
     private void won(){
+        //begin of copypaste
         if (getActualStage() ==0){
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
@@ -359,6 +360,16 @@ public class ModelOne implements ModelInterface {
             adapter.addOneCard(cards[4]);
             stage = getActualStage() + 1;
         }
+        int x = -1;
+        for(Player player: players) {
+            x++;
+            if(player.getResigned()) continue;
+            pot += player.getOffer();
+            player.setOffer(0);
+            adapter.updatePlayerLinedCash(x, 0);
+        }
+        adapter.setPot(pot);
+        //END OF COPYPASTE I FEEL GUILTY :((((((((((((
         ArrayList<Player> best;
         while(!(best = bestPlayers()).isEmpty()) {
             int cash=0;
@@ -443,8 +454,6 @@ public class ModelOne implements ModelInterface {
         raisingPlayerId = currentPlayerId;
         adapter.setPot(pot);
     }
-
-
     private PokerHand getPlayerHand(Player player) {
         List<Deck.Card> cards = new ArrayList<Deck.Card>();
         cards.addAll(Arrays.asList(player.getCards()));
