@@ -101,49 +101,53 @@ public class TableControler{
 
     @FXML
     public void checkEvent(ActionEvent e){
-    	tasksExecutor.execute(new Runnable() {
+    	javafx.application.Platform.runLater((new Runnable() {
     		@Override
     		public void run(){
     			adapter.check(playerId);
     		}
-    	});
+    	}));
     }
     
     @FXML
     public void foldEvent(ActionEvent e){
-    	tasksExecutor.execute(new Runnable() {
+    	javafx.application.Platform.runLater((new Runnable() {
     		@Override
     		public void run(){
     			adapter.fold(playerId);
     		}
-    	});
+    	}));
     }
     
     @FXML
     public void raiseEvent(ActionEvent e){
-    	tasksExecutor.execute(new Runnable() {
+    	javafx.application.Platform.runLater((new Runnable() {
     		@Override
     		public void run(){
     			adapter.raise(playerId, userCashTextField.getText());
     			userCashTextField.clear();
     		}
-    	});
-        
+    	}));
     }
     
     @FXML
     public void showCardsEvent(ActionEvent e){
-    	adapter.showPlayerCards(playerId, thisPlayerCards);
+    	javafx.application.Platform.runLater((new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.showPlayerCards(playerId, thisPlayerCards);
+    		}
+    	}));
     }
     
     @FXML
     public void startEvent(ActionEvent e){
-    	tasksExecutor.execute(new Runnable() {
+    	javafx.application.Platform.runLater((new Runnable() {
     		@Override
     		public void run(){
     			adapter.start();
     		}
-    	});
+    	}));
     }
 
     @FXML
