@@ -41,7 +41,7 @@ class PlayerListener implements Runnable{
     Server server;
     public PlayerListener(PlayerOnline p, Server server){
         this.p=p;
-        this.server=server;
+        this.server=server; 
         try {
             this.in =  new BufferedReader(new InputStreamReader(p.socket.getInputStream()));
         } catch (IOException e) {
@@ -54,7 +54,7 @@ class PlayerListener implements Runnable{
             try {
                 order=in.readLine();
                 String txt[] = order.split("~");
-                if(p.inGame && !txt[0].equals("removeplayerfromtable".toLowerCase())){
+                if(p.inGame && !txt[0].toLowerCase().equals("removeplayerfromtable")){
                 server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
                 else{
                     server.parse(order,p.socket, p);
