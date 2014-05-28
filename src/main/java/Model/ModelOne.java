@@ -279,7 +279,11 @@ public class ModelOne implements ModelInterface {
         adapter.updatePlayerLinedCash(playerId, actualPlayer.getOffer());
         adapter.updatePlayerCash(playerId, 0);
         actualPlayer.setInGame(false);
+        numberInGame--;
         currentPlayerId = getNextPlayerPosition(currentPlayerId);
+        if (numberInGame == 1) won();
+        else if (currentPlayerId == raisingPlayerId) checkItAll();
+
     }
 
     @Override
