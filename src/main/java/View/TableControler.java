@@ -125,9 +125,10 @@ public class TableControler{
     		@Override
     		public void run(){
     			adapter.raise(playerId, userCashTextField.getText());
+    			userCashTextField.clear();
     		}
     	});
-        userCashTextField.clear();
+        
     }
     
     @FXML
