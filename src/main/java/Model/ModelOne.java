@@ -281,7 +281,7 @@ public class ModelOne implements ModelInterface {
         actualPlayer.setInGame(false);
         numberInGame--;
         currentPlayerId = getNextPlayerPosition(currentPlayerId);
-        if (numberInGame == 1) won();
+        if (numberInGame == 0) won();
         else if (currentPlayerId == raisingPlayerId) checkItAll();
 
     }
@@ -487,7 +487,10 @@ public class ModelOne implements ModelInterface {
         adapter.updateActualPlayer(currentPlayerId);
         
         raisingPlayerId = currentPlayerId;
-
+        if(numberInGame == 1) {
+            won();
+            return;
+        }
         if (getActualStage() ==0){
             cards[0]=deck.getNextCard();
             cards[1]=deck.getNextCard();
