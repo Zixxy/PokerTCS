@@ -68,9 +68,9 @@ public class TableListControler implements TableViewInterface{
 
 			@Override
 			public void run() {
-				tableNames[numberOfTable] = new Label("Table "+ numberOfTable);
-				tablePlayers[numberOfTable] = new Label("1/" + "8");
-				tableStarteds[numberOfTable] = new Label("No");
+				tableNames[numberOfTable].setText("Table "+ numberOfTable);
+				tablePlayers[numberOfTable].setText("1/" + "8");
+				tableStarteds[numberOfTable].setText("No");
 				Button b = new Button("Join");
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
