@@ -223,19 +223,20 @@ public class ModelOne implements ModelInterface {
         if (!started) return;
         if(currentPlayerId==playerId) {
             boolean raising = false;
-            if(currentPlayerId == raisingPlayerId)
+            if (currentPlayerId == raisingPlayerId)
                 raising = true;
             players.get(playerId).setInGame(false);
             numberInGame--;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() + " pasuje");
-            currentPlayerId = getNextPlayerPosition(currentPlayerId -1); //getNextPlayerPosition is moving current player, but we don't want exactly that
+            currentPlayerId = getNextPlayerPosition(currentPlayerId - 1); //getNextPlayerPosition is moving current player, but we don't want exactly that
             adapter.updateActualPlayer(currentPlayerId);
             if (numberInGame == 1) won();
             else if (currentPlayerId == raisingPlayerId) checkItAll();
-            
-            adapter.setLastMove(playerId, 1);
-            if(raising)
-                raisingPlayerId = currentPlayerId;
+            else {
+                adapter.setLastMove(playerId, 1);
+                if (raising)
+                    raisingPlayerId = currentPlayerId;
+            }
         }
     }
 
@@ -243,8 +244,10 @@ public class ModelOne implements ModelInterface {
     public void check(int playerId) {
         if (!started) return;
         if(currentPlayerId==playerId) {
-            if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer())
+            if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer()) {
+                allIn(playerId);
                 return;
+            }
             adapter.sendMessage("Gracz " + players.get(playerId).getName() +" sprawdza");
             onTable+=this.limit - players.get(playerId).getOffer();
             players.get(playerId).setMoney(players.get(playerId).getMoney() - (this.limit - players.get(playerId).getOffer()));
@@ -283,6 +286,7 @@ public class ModelOne implements ModelInterface {
         if(currentPlayerId==playerId) {
             if(amount >= players.get(playerId).getMoney()){
                 allIn(playerId);
+                return;
             }
             if(amount + players.get(playerId).getOffer() < limit)
                 return;
