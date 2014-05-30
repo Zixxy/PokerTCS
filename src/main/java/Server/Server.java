@@ -128,21 +128,25 @@ public class Server {
         System.err.println("GOT SERVER ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
-        if(txt[0].equals("addtable")) {
-            addTable(p);
-        }
-        else if(txt[0].equals("addplayertotable")) {
-            addPlayerToTable(p,new Integer(txt[1]));
-        }
-        if(txt[0].equals("removetable")) {
-            removeTable(new Integer(txt[1]));
-        }
-        else if(txt[0].equals("removeplayerfromtable")) {
-            removePlayerFromTable(p,new Integer(txt[1]));
-        }
-        else if(txt[0].equals("setplayername")) {
-            System.err.println(order);
-            setPlayerName(p,txt[1]);
+        switch(txt[0]){
+        	case "addtable":
+        		addTable(p);
+        		break;
+        	case "addplayertotable":
+        		addPlayerToTable(p,new Integer(txt[1]));
+        		break;
+        	case "removetable":
+        		removeTable(new Integer(txt[1]));
+        		break;
+        	case "removeplayerfromtable":
+        		removePlayerFromTable(p,new Integer(txt[1]));
+        		break;
+        	case "setplayername":
+        		System.err.println(order);
+                setPlayerName(p,txt[1]);
+                break;
+             default:
+                throw new RuntimeException("Unknown operation type");
         }
     }
 

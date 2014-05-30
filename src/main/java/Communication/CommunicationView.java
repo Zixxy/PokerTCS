@@ -101,6 +101,8 @@ public class CommunicationView  implements ViewInterface{
         	case "showcards":
         		adapter.showCards(Integer.parseInt(txt[1]), Integer.parseInt(txt[2]), Integer.parseInt(txt[3]));
         		break;
+        	default:
+                throw new RuntimeException("Unknown operation type");
         }
     }
 
