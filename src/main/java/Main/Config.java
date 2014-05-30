@@ -3,7 +3,6 @@ package main.java.Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.IllegalFormatCodePointException;
 
 /**
  * Created by dakurels on 2014-05-14.
@@ -18,8 +17,7 @@ public class Config {
         try {
             br = new BufferedReader(new FileReader("config"));
         } catch (IOException e) {
-            System.err.println("Cannot open config file");
-            throw new IllegalStateException();
+            throw new RuntimeException("Cannot open config file", e);
         }
         boolean foundIP = false, foundUserId=false;
         String actualLine;
@@ -36,17 +34,29 @@ public class Config {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Cannot read from config file");
-            throw new IllegalStateException();
+            throw new RuntimeException("Cannot read from config file", e);
         }
         if (!foundIP) {
-            System.err.println("Cannot find IP configuration");
-            throw new IllegalStateException();
+        	try {
+				br.close();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+            throw new RuntimeException("Cannot find IP configuration");
         }
         if (!foundUserId) {
-            System.err.println("Cannot find user's id configuration");
-            throw new IllegalStateException();
+        	try {
+				br.close();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+            throw new RuntimeException("Cannot find user's id configuration");
         }
+        try {
+			br.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
     }
 
     public String getIP() {

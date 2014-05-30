@@ -285,20 +285,14 @@ public class TableView extends Application implements ViewInterface{
 
 	@Override
 	public void guiRemoveTable(int numberOfTable) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void updateNumberOfPlayers(int numberOfTable,
 			int currentNumberOfPlayers) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void setPlayerId(int id) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -1,13 +1,12 @@
 package main.java.Model;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck.Card;
-
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by bartek on 05.05.14.

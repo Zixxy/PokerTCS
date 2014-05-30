@@ -1,11 +1,10 @@
 package main.java.View;
 
-import main.java.Adapter.AdapterInterface;
-import main.java.Model.Deck;
-import main.java.Model.Deck.Card;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import main.java.Adapter.AdapterInterface;
+import main.java.Model.Deck;
 
 /**
  * Created by Dakurels on 2014-05-12.

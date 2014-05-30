@@ -6,13 +6,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
 import main.java.Model.Deck.Card;
 import main.java.Model.ModelInterface;
-import main.java.View.TableView;
 
 /**
  * Created by arytmetyk on 2014-05-14.
@@ -58,7 +55,7 @@ public class CommunicationModel implements ModelInterface {
                         communicationModel.parse(in2.readLine());
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         }

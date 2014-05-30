@@ -38,7 +38,10 @@ public class MainAdapter implements AdapterInterface {
         try {
             cash = Integer.valueOf(amount);
         }
-        catch (NumberFormatException e) { return; }
+        catch (NumberFormatException e) 
+        { 
+        	throw new RuntimeException(e);
+        }
         if(cash < 0)
             return;
         model.raise(playerId, cash);

@@ -1,7 +1,6 @@
 package main.java.Adapter;
 
 import main.java.Model.Deck;
-import main.java.Model.Deck.Card;
 import main.java.Model.ModelInterface;
 import main.java.View.ViewInterface;
 

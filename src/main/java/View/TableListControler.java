@@ -3,16 +3,15 @@ package main.java.View;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import main.java.Adapter.MainAdapter;
-import main.java.Main.Run;
-import main.java.Model.Deck.Card;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import main.java.Adapter.MainAdapter;
+import main.java.Main.Run;
+import main.java.Model.Deck.Card;
 
 public class TableListControler implements ViewInterface{
 	volatile private boolean isConstructed = false;

@@ -2,13 +2,13 @@ package main.java.View;
 
 import java.io.IOException;
 
-import main.java.Adapter.MainAdapter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import main.java.Adapter.MainAdapter;
 
 /*
  * Created by sylwek 21.05.14
@@ -88,8 +88,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 				try {
 					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml")));
 				} catch (IOException e) {
-					System.err.println("We got a problem with launching TableView");
-					e.printStackTrace();
+					throw new RuntimeException("We got a problem with launching TableView", e);
 				}
 			}
 		});
@@ -138,11 +137,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				try {
 					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/Login.fxml")));
 				} catch (IOException e) {
-					System.err.println("We got a problem with launching LoginControler ");
-					e.printStackTrace();
+					throw new RuntimeException("We got a problem with launching LoginControler", e);
 				} catch (Exception a) {
-					System.err.println("We got a huge problem with launching LoginControler ");
-					a.printStackTrace();
+					throw new RuntimeException("We got a huge problem with launching LoginControler", a);
 				}
 			}
 		});
@@ -160,11 +157,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				try {
 					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableList.fxml")));// or sth...
 				} catch (IOException e) {
-					System.err.println("We got a problem with launching TableList ");
-					e.printStackTrace();
+					throw new RuntimeException("We got a problem with launching TableList ", e);
 				} catch (Exception a) {
-					System.err.println("We got a huge problem with launching TableList ");
-					a.printStackTrace();
+					throw new RuntimeException("We got a huge problem with launching TableList", a);
 				}
 			}
 		});
@@ -172,8 +167,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		// we need to wait until this will not be null.
 		return (ViewInterface) TableListControler.recentlyCreatedTableList;

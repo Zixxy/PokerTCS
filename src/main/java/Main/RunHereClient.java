@@ -1,16 +1,13 @@
 package main.java.Main;
 
+import java.io.IOException;
+
 import main.java.Adapter.MainAdapter;
 import main.java.Communication.CommunicationModel;
 import main.java.Model.ModelInterface;
-import main.java.Model.ModelOne;
 import main.java.View.CommandLine;
-import main.java.View.*;
+import main.java.View.TableView;
 import main.java.View.ViewInterface;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 
 /**
@@ -26,8 +23,7 @@ public class RunHereClient {
 			model = new CommunicationModel(adapter,ip,port);
 			connected = true;
 		} catch (IOException e) {
-			System.err.println("Connection error "+ip+":"+port);
-			e.printStackTrace();
+			throw new RuntimeException("Connection error "+ip+":"+port, e);
 		}
 		if(connected){
 			ViewInterface view  = Run.mainWindow.showTableList();
@@ -55,9 +51,7 @@ public class RunHereClient {
             model = new CommunicationModel(adapter,ip,port);
             //model = new CommunicationModel(adapter,config.getIP(),config.getPort());
         } catch (IOException e) {
-            System.err.println("Super blad polaczenia na "+ip+":"+port);
-            //System.err.println("Super blad polaczenia na "+config.getIP()+":"+config.getPort());
-            e.printStackTrace();
+        	throw new RuntimeException("Super blad polaczenia na "+ip+":"+port, e);
         }
         adapter.addModel(model);
     }

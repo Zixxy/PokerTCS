@@ -1,8 +1,5 @@
 package main.java.View;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,7 +28,7 @@ public class TableControler{
 	
 	public Card[] thisPlayerCards;
 	
-	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
+	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
 		playerId = TableView.tempPlayerId;

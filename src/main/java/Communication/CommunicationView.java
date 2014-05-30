@@ -1,7 +1,7 @@
 package main.java.Communication;
 
-import java.io.*;
-import java.net.ServerSocket;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;

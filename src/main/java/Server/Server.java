@@ -30,7 +30,7 @@ class Listener implements Runnable{
                 thread = new Thread(new PlayerListener(p,server));
                 thread.start();
             } catch (IOException e) {
-                System.err.println("Error while waiting for connection");
+                throw new RuntimeException("Error while waiting for connection", e);
             }
         }
     }
@@ -45,7 +45,7 @@ class PlayerListener implements Runnable{
         try {
             this.in =  new BufferedReader(new InputStreamReader(p.socket.getInputStream()));
         } catch (IOException e) {
-            System.err.println("Cannot make BufferedReader from connected player");
+        	throw new RuntimeException("Cannot make BufferedReader from connected player", e);
         }
     }
     public void run(){
@@ -64,7 +64,7 @@ class PlayerListener implements Runnable{
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
                 server.removePlayerFromTable(p,p.tableNumber);
-                break;
+                throw new RuntimeException("Cannot read message from playing player", e);
             }
         }
     }
@@ -81,8 +81,7 @@ class PlayerOnline{
             writer = new PrintWriter(socket.getOutputStream(), true);
         }
         catch (IOException e) {
-            System.err.println("Cannot make PrintWriter for socket: "+socket.toString());
-            throw e;
+            throw new RuntimeException("Cannot make PrintWriter for socket: "+socket.toString(), e);
         }
     }
     public Socket socket;
@@ -119,7 +118,7 @@ public class Server {
         try {
             mainListener = new Thread(new Listener(port,this)) ;
         } catch (IOException e) {
-            System.err.println("Cannot make server at port" + port);
+        	throw new RuntimeException("Cannot make server at port" + port, e);
         }
         mainListener.start();
     }
@@ -183,7 +182,7 @@ public class Server {
         try {
             tables.get(tableIndex).cv.addOut(p.writer, p.inGameId);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         setPlayerId(p,p.inGameId);
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
@@ -212,10 +211,8 @@ public class Server {
             tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	throw new RuntimeException(e);
         }
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
     }
-
-
 }
