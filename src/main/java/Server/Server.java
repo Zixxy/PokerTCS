@@ -114,6 +114,15 @@ public class Server {
     public int port=1229;
     public ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
     public ArrayList<Table> tables = new ArrayList<Table>();
+    
+    public Server(int port) {
+        try {
+            mainListener = new Thread(new Listener(port,this)) ;
+        } catch (IOException e) {
+            System.err.println("Cannot make server at port" + port);
+        }
+        mainListener.start();
+    }
 
     synchronized void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
         System.err.println("GOT SERVER ORDER: " + order);
@@ -203,13 +212,6 @@ public class Server {
         }
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
     }
-    public Server(int port) {
-        try {
-            mainListener = new Thread(new Listener(port,this)) ;
-        } catch (IOException e) {
-            System.err.println("Cannot make server at port" + port);
-        }
-        mainListener.start();
-    }
+
 
 }
