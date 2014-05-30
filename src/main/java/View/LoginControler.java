@@ -1,5 +1,6 @@
 package main.java.View;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -93,7 +94,7 @@ public class LoginControler {
 
     @FXML
     void exit(ActionEvent event) {
-    	// we need to kill every process.
+    	Platform.exit();
     	System.exit(0);
     }
 
