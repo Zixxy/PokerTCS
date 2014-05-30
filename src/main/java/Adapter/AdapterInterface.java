@@ -3,7 +3,7 @@ package main.java.Adapter;
 import main.java.Model.Deck;
 import main.java.Model.Deck.Card;
 import main.java.Model.ModelInterface;
-import main.java.View.TableViewInterface;
+import main.java.View.ViewInterface;
 
 /**
  * Created by dakurels on 05.05.14.
@@ -17,7 +17,7 @@ public interface AdapterInterface {
 
 
     public void addModel(ModelInterface mod);
-    public void addView(TableViewInterface view);
+    public void addView(ViewInterface view);
 
 
     //public Deck.Card[] getHandCards(int playerId);

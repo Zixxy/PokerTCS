@@ -11,7 +11,7 @@ import main.java.Adapter.MainAdapter;
 import main.java.Model.Deck.Card;
 
 
-public class TableView extends Application implements TableViewInterface{
+public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
 	
 	private int playerId;
@@ -38,7 +38,7 @@ public class TableView extends Application implements TableViewInterface{
 		constructionFlag.set(true);
 	}
 
-	public static TableViewInterface getTableView(MainAdapter adapt, int userId){
+	public static ViewInterface getTableView(MainAdapter adapt, int userId){
 		tempAdapter = adapt;
 		System.out.println("adapter:= "+adapt);
 		tempPlayerId = userId;
@@ -48,7 +48,7 @@ public class TableView extends Application implements TableViewInterface{
 	 * this method soon will be removed, when both gui and adapter will get used to new formation of files.
 	 */
 	@Deprecated
-	public static synchronized TableViewInterface createTableView(final String[] args, MainAdapter a, int p){
+	public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
 		tempAdapter = a;
 		tempPlayerId = p;
 		Thread viewThread = new Thread(){

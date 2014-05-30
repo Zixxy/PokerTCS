@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class TableListControler implements TableViewInterface{
+public class TableListControler implements ViewInterface{
 	volatile private boolean isConstructed = false;
 	private MainAdapter adapter;
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
@@ -63,7 +63,7 @@ public class TableListControler implements TableViewInterface{
 	}
 	@Override
 	public void guiAddTable(final int numberOfTable) {
-		final TableViewInterface actual = this;
+		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
 
 			@Override
@@ -88,7 +88,7 @@ public class TableListControler implements TableViewInterface{
             			Thread showGame = new Thread(new Runnable(){
             				@Override
             				public void run(){
-            					TableViewInterface res = Run.mainWindow.showGame(1);// we are waiting for scheduling playerId-s
+            					ViewInterface res = Run.mainWindow.showGame(1);// we are waiting for scheduling playerId-s
                     			adapter.exchangeReference(actual, res);
             				}
             			});
@@ -136,7 +136,7 @@ public class TableListControler implements TableViewInterface{
     			table13Started, table14Started, table15Started, table16Started, table17Started, table18Started,
     			table19Started, table20Started, table21Started, table22Started, table23Started;
     private Label [] tableStarteds;
-
+ 
     @FXML
     private HBox table1Join, table2Join, table3Join, table4Join, table5Join, table6Join, table7Join, table8Join,
     			table9Join, table10Join, table11Join, table12Join, table13Join, table14Join, table15Join, table16Join,

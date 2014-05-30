@@ -8,12 +8,12 @@ import java.util.Collection;
 
 import main.java.Adapter.AdapterInterface;
 import main.java.Model.Deck;
-import main.java.View.TableViewInterface;
+import main.java.View.ViewInterface;
 
 /**
  * Created by dakurels on 2014-05-14.
  */
-public class CommunicationView  implements TableViewInterface{
+public class CommunicationView  implements ViewInterface{
 
     private class WriterWithId {
         public PrintWriter writer;

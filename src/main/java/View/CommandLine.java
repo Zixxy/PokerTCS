@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Created by Dakurels on 2014-05-12.
  */
-public class CommandLine implements TableViewInterface{
+public class CommandLine implements ViewInterface{
 
     private ArrayList<Integer> players;
 
