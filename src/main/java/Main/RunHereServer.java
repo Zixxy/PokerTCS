@@ -22,7 +22,7 @@ public class RunHereServer {
 	}
 	@Deprecated
 	public static void main(String[] args) {
-
+		/*
 		MainAdapter adapter = new MainAdapter();
 		ViewInterface view;
 		try {
@@ -54,6 +54,6 @@ public class RunHereServer {
 		model.addPlayer("Maciek");
 		model.addPlayer("Sylwek");
 		//model.start();
-
+		*/
 	}
 }

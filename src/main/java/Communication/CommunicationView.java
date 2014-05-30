@@ -33,13 +33,8 @@ public class CommunicationView  implements ViewInterface{
         }
     }
 
-    private Thread clientsListener;
-    private Collection<Thread> massagesListeners;
-    private ServerSocket server;
-    private Collection<Socket> clients;
     private Collection<WriterWithId> outs;
     private AdapterInterface adapter;
-    private int waiting;
 
     public void addOut(PrintWriter writer, int id) throws IOException {
         outs.add(new WriterWithId(writer, id));
@@ -63,82 +58,12 @@ public class CommunicationView  implements ViewInterface{
         sendCommand("updateNumberOfPlayers~"+numberOfTable+"~"+currentNumberOfPlayers);
     }
 
-    private class ClientsListener implements Runnable {
-        private CommunicationView communicationView;
-        private ServerSocket server;
 
-        public ClientsListener(CommunicationView communicationView, ServerSocket server) {
-            this.communicationView = communicationView;
-            this.server = server;
-        }
-
-        @Override
-        public void run() {
-            while(true) {
-                try {
-                    System.out.println("WAITING FOR CONNECTION");
-                    communicationView.add(server.accept());
-                    System.out.println("STOPPED");
-                }
-                catch (IOException e) {}
-            }
-        }
-    }
-    private class MassageListener implements Runnable {
-        private CommunicationView view;
-        private Socket socket;
-        private BufferedReader in;
-        public MassageListener(CommunicationView view, Socket socket) throws IOException {
-            this.view = view;
-            this.socket = socket;
-            this.in =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    this.view.parse(this.in.readLine(), socket);
-                } catch (IOException e) {
-                    System.err.println("Cannot read message");
-                }
-            }
-        }
-    }
-
-    public CommunicationView(int port, AdapterInterface adapter) throws IOException{
-        try {
-            this.server = new ServerSocket(port);
-        }
-        catch (IOException e){
-            System.err.println("Cannot make server at port: " + port);
-            throw e;
-        }
-        System.out.println("Created server at port : " + port);
-        this.adapter = adapter;
-        clients = new ArrayList<Socket>();
-        outs = new ArrayList<WriterWithId>();
-        massagesListeners = new ArrayList<Thread>();
-        clientsListener = new Thread(new ClientsListener(this, this.server));
-        clientsListener.start();
-    }
     public CommunicationView(AdapterInterface adapter){
         this.adapter=adapter;
         outs = new ArrayList<WriterWithId>();
     }
 
-    private synchronized void add(Socket x) {
-        System.out.println("CONNECT: " + x.getInetAddress().toString());
-        clients.add(x);
-        try {
-            outs.add(new WriterWithId(new PrintWriter(x.getOutputStream(), true), -1));
-            Thread newUser = new Thread(new MassageListener(this, x));
-            newUser.start();
-            massagesListeners.add(newUser);
-        }
-        catch (Exception e){}
-
-    }
 
     public synchronized void parse(String order, Socket socket){//public because Server uses it
         System.err.println("GOT ORDER: " + order);
@@ -150,30 +75,32 @@ public class CommunicationView  implements ViewInterface{
         public void raise(int playerId, String amount);
         public void resign(int playerId);
          */
-        if(txt[0].equals("fold")) {
-            adapter.fold(Integer.valueOf(txt[1]));
-        }
-        else if(txt[0].equals("check")) {
-            adapter.check(Integer.valueOf(txt[1]));
-        }
-        else if(txt[0].equals("raise")) {
-            adapter.raise(Integer.valueOf(txt[1]), txt[2]);
-        }
-        else if(txt[0].equals("resign")) {
-            adapter.resign(Integer.valueOf(txt[1]));
-        }
-        else if(txt[0].equals("start")) {
-            adapter.start();
-        }
-        else if(txt[0].equals("usercards")) {
-            //System.out.println("ASKED: " + txt[1]);
-            //this.sendCards(socket, Integer.valueOf(txt[1]));
-        }
-        else if(txt[0].equals("setstartedamount")){
-            adapter.setStartedAmount(Integer.valueOf(txt[1]));
-        }
-        else if(txt[0].equals("showcards")){
-        	adapter.showCards(Integer.parseInt(txt[1]), Integer.parseInt(txt[2]), Integer.parseInt(txt[3]));
+        switch(txt[0]){
+        	case "fold":
+        		adapter.fold(Integer.valueOf(txt[1]));
+        		break;
+        	case "check":
+        		adapter.check(Integer.valueOf(txt[1]));
+        		break;
+        	case "raise":
+        		adapter.raise(Integer.valueOf(txt[1]), txt[2]);
+        		break;
+        	case "resign":
+        		adapter.resign(Integer.valueOf(txt[1]));
+        		break;
+        	case "start":
+        		adapter.start();
+        		break;
+        	case "usercards":
+                //System.out.println("ASKED: " + txt[1]);
+                //this.sendCards(socket, Integer.valueOf(txt[1]));
+        		break;
+        	case "setstartedamount":
+        		adapter.setStartedAmount(Integer.valueOf(txt[1]));
+        		break;
+        	case "showcards":
+        		adapter.showCards(Integer.parseInt(txt[1]), Integer.parseInt(txt[2]), Integer.parseInt(txt[3]));
+        		break;
         }
     }
 
