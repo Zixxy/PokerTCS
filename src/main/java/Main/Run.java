@@ -1,8 +1,8 @@
-package main.java.Main;
+package Main;
 
-import main.java.Adapter.MainAdapter;
-import main.java.View.MainWindow;
-import main.java.View.MainWindowInterface;
+import Adapter.MainAdapter;
+import View.MainWindow;
+import View.MainWindowInterface;
 
 public class Run {
 	public static MainAdapter adapter;

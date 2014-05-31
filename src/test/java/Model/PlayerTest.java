@@ -1,7 +1,7 @@
-package test.main.java.Model;
+package Model;
 
 import junit.framework.TestCase;
-import main.java.Model.Player;
+import Model.Player;
 
 import org.junit.Test;
 

@@ -1,9 +1,9 @@
-package test.main.java.Model;
+package Model;
 
 import static org.junit.Assert.*;
-import main.java.Adapter.MainAdapter;
-import main.java.Model.ModelOne;
-import main.java.View.CommandLine;
+import Adapter.MainAdapter;
+import Model.ModelOne;
+import View.CommandLine;
 
 import org.junit.Test;
 

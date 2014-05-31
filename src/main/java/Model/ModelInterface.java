@@ -1,6 +1,6 @@
-package main.java.Model;
+package Model;
 
-import main.java.Model.Deck.Card;
+import Model.Deck.Card;
 
 public interface ModelInterface {
 	//get

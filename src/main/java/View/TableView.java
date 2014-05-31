@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -7,8 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.java.Adapter.MainAdapter;
-import main.java.Model.Deck.Card;
+import Adapter.MainAdapter;
+import Model.Deck.Card;
 
 
 public class TableView extends Application implements ViewInterface{

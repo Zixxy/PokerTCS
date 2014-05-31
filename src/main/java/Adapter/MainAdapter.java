@@ -1,8 +1,8 @@
-package main.java.Adapter;
+package Adapter;
 
-import main.java.Model.Deck;
-import main.java.Model.ModelInterface;
-import main.java.View.ViewInterface;
+import Model.Deck;
+import Model.ModelInterface;
+import View.ViewInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;

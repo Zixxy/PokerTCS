@@ -1,8 +1,8 @@
-package test.main.java.Model;
+package Model;
 
 import junit.framework.TestCase;
-import main.java.Adapter.MainAdapter;
-import main.java.Model.ModelOne;
+import Adapter.MainAdapter;
+import Model.ModelOne;
 
 import org.junit.Test;
 //

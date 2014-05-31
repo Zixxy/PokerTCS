@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,9 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import main.java.Adapter.MainAdapter;
-import main.java.Main.Run;
-import main.java.Model.Deck.Card;
+import Adapter.MainAdapter;
+import Main.Run;
+import Model.Deck.Card;
 
 public class TableListControler implements ViewInterface{
 	volatile private boolean isConstructed = false;

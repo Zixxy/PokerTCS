@@ -1,10 +1,10 @@
-package main.java.View;
+package View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.java.Adapter.AdapterInterface;
-import main.java.Model.Deck;
+import Adapter.AdapterInterface;
+import Model.Deck;
 
 /**
  * Created by Dakurels on 2014-05-12.

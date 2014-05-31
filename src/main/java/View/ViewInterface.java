@@ -1,6 +1,6 @@
-package main.java.View;
+package View;
 
-import main.java.Model.Deck.Card;
+import Model.Deck.Card;
 
 public interface ViewInterface extends TableListInterface{
 	public void almostConstructor();

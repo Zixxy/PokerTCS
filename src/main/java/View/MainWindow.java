@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.java.Adapter.MainAdapter;
+import Adapter.MainAdapter;
 
 /*
  * Created by sylwek 21.05.14

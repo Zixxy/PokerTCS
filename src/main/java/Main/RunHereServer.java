@@ -1,7 +1,7 @@
-package main.java.Main;
+package Main;
 
-import main.java.Adapter.MainAdapter;
-import main.java.Server.Server;
+import Adapter.MainAdapter;
+import Server.Server;
 
 public class RunHereServer {
 	private static Config config;
