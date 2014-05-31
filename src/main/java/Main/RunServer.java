@@ -1,6 +1,6 @@
-package main.java.Main;
+package Main;
 
-import main.java.Server.Server;
+import Server.Server;
 
 /**
  * Created by Arytmetyk on 2014-05-26.

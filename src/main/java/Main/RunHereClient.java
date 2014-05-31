@@ -1,13 +1,13 @@
-package main.java.Main;
+package Main;
 
 import java.io.IOException;
 
-import main.java.Adapter.MainAdapter;
-import main.java.Communication.CommunicationModel;
-import main.java.Model.ModelInterface;
-import main.java.View.CommandLine;
-import main.java.View.TableView;
-import main.java.View.ViewInterface;
+import Adapter.MainAdapter;
+import Communication.CommunicationModel;
+import Model.ModelInterface;
+import View.CommandLine;
+import View.TableView;
+import View.ViewInterface;
 
 
 /**

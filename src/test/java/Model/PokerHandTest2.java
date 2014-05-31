@@ -1,13 +1,13 @@
-package test.main.java.Model;
+package Model;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.Model.Deck;
-import main.java.Model.PokerHand;
-import main.java.Model.Deck.Card;
+import Model.Deck;
+import Model.PokerHand;
+import Model.Deck.Card;
 
 import org.junit.Test;
 

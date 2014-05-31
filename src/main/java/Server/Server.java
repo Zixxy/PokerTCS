@@ -1,4 +1,4 @@
-package main.java.Server;
+package Server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +8,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import main.java.Adapter.MainAdapter;
-import main.java.Communication.CommunicationView;
-import main.java.Model.ModelOne;
+import Adapter.MainAdapter;
+import Communication.CommunicationView;
+import Model.ModelOne;
 
 class Listener implements Runnable{
     ServerSocket socket;

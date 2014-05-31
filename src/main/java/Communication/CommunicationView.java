@@ -1,4 +1,4 @@
-package main.java.Communication;
+package Communication;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,9 +6,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import main.java.Adapter.AdapterInterface;
-import main.java.Model.Deck;
-import main.java.View.ViewInterface;
+import Adapter.AdapterInterface;
+import Model.Deck;
+import View.ViewInterface;
 
 /**
  * Created by dakurels on 2014-05-14.

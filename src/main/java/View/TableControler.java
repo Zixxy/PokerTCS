@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import main.java.Adapter.MainAdapter;
-import main.java.Model.Deck.Card;
+import Adapter.MainAdapter;
+import Model.Deck.Card;
 
 public class TableControler{
 	private MainAdapter adapter;

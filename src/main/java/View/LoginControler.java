@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -11,8 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
-import main.java.Main.RunHereClient;
-import main.java.Main.RunHereServer;
+import Main.RunHereClient;
+import Main.RunHereServer;
 
 public class LoginControler {
 
