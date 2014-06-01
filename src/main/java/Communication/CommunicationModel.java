@@ -283,6 +283,7 @@ public class CommunicationModel implements ModelInterface {
     
 	@Override
 	public void showPlayerCards(int playerId, Card[] cards) {
+		System.out.println("jestem w communicationModel");
 		Card c = cards[0];
 		int cardId = c.getValue().id;
     	int cardColor = getCardColorValue(c.getColor());

@@ -28,6 +28,7 @@ class Listener implements Runnable{
                 p=new PlayerOnline(socket.accept());
                 server.connected.add(p);
                 thread = new Thread(new PlayerListener(p,server));
+                thread.setDaemon(true);
                 thread.start();
             } catch (IOException e) {
                 throw new RuntimeException("Error while waiting for connection", e);

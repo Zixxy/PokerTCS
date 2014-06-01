@@ -183,11 +183,13 @@ public class MainAdapter implements AdapterInterface {
     }
     
     public void showPlayerCards(int playerId, Deck.Card[] cards){
+    	System.out.println("jestem w adapter");
     	model.showPlayerCards(playerId, cards);
     }
     
     @Override
     public void showCards(int playerId, int firstCardNumber, int secondCardNumber){
+    	System.out.println("ok, powrot do adaptera");
     	for(ViewInterface view: views){
 			view.showCards(playerId, firstCardNumber, secondCardNumber);
 		}

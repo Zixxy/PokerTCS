@@ -132,6 +132,7 @@ public class TableControler{
     	javafx.application.Platform.runLater((new Runnable() {
     		@Override
     		public void run(){
+    			System.out.println("jestem w view event");
     			adapter.showPlayerCards(playerId, thisPlayerCards);
     		}
     	}));
@@ -368,6 +369,7 @@ public class TableControler{
 	}
 	
 	public void showCards(int id, int firstCardNumber, int secondCardNumber){
+		System.out.println("No i wyswietlam karty w tableControler.");
 		Integer[] cardsNumbers = new Integer[] { firstCardNumber, secondCardNumber };
 		for (int i = 0; i < 2; ++i) {
 			String s = cardsNumbers[i].toString();

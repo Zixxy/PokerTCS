@@ -254,6 +254,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("ok, tableView showCards");
 				tableControler.showCards(playerId, firstCardNumber, secondCardNumber);
 			}
 		});
