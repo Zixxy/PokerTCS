@@ -99,8 +99,7 @@ public class CommunicationView  implements ViewInterface{
         		adapter.setStartedAmount(Integer.valueOf(txt[1]));
         		break;
         	case "showcards":
-        		System.out.println("ok, jestem w parserze w CommunicationView");
-        		adapter.showCards(Integer.parseInt(txt[1]), Integer.parseInt(txt[2]), Integer.parseInt(txt[3]));
+        		sendCommand(order);
         		break;
         	default:
                 throw new RuntimeException("Unknown operation type");

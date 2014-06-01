@@ -61,74 +61,77 @@ public class CommunicationModel implements ModelInterface {
         }
     }
     private void parse(String txt){
-        String[] tab = txt.split("~");
-
-        if(tab[0].toLowerCase().equals("addplayer")){
-            adapter.addPlayer(tab[1],new Integer(tab[2]));
-        }
-        if(tab[0].toLowerCase().equals("removeplayer")){
-            adapter.removePlayer(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("updateplayerlinedcash")){
-            adapter.updatePlayerLinedCash(new Integer(tab[1]),new Integer(tab[2]));
-        }
-        if(tab[0].toLowerCase().equals("updateplayercash")){
-            adapter.updatePlayerCash(new Integer(tab[1]), new Integer(tab[2]));
-        }
-        if(tab[0].toLowerCase().equals("updateresignedplayer")){
-            adapter.updateResignPlayer(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("updateactualplayer")){
-            adapter.updateActualPlayer(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("updateplayerhand")){
-            Deck.Card arr[] = new Deck.Card[2];
-            arr[0]=Deck.getSpecifiedCard(tab[2]);
-            arr[1]=Deck.getSpecifiedCard(tab[3]);
-            adapter.updatePlayerHand(new Integer(tab[1]), arr);
-        }
-        if(tab[0].toLowerCase().equals("setpot")){
-            adapter.setPot(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("addthreecards")){
-            Deck.Card arr[]= new Deck.Card[3];
-            arr[0]=Deck.getSpecifiedCard(tab[1]);
-            arr[1]=Deck.getSpecifiedCard(tab[2]);
-            arr[2]=Deck.getSpecifiedCard(tab[3]);
-
-            adapter.addThreeCards(arr);
-        }
-        if(tab[0].toLowerCase().equals("addonecard")){
-            adapter.addOneCard(Deck.getSpecifiedCard(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("cleartable")){
-            adapter.clearTable();
-        }
-        if(tab[0].toLowerCase().equals("sendmessage")){
-            adapter.sendMessage(tab[1]);
-        }
-        if(tab[0].toLowerCase().equals("startnewround")){
-            adapter.startNewRound();
-        }
+    	System.out.println("Communication Model got order"+txt);
+        String tab[] = txt.split("~");
+        tab[0] = tab[0].toLowerCase();
         
-        if(tab[0].toLowerCase().equals("setlastmove")){
-        	adapter.setLastMove(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
-        } 	
-        
-        if(tab[0].toLowerCase().equals("showcards")){
-        	adapter.showCards(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
-        }
-        if(tab[0].toLowerCase().equals("guiaddtable")) {
-            adapter.guiAddTable(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("guiremovetable")){
-            adapter.guiRemoveTable(new Integer(tab[1]));
-        }
-        if(tab[0].toLowerCase().equals("updatenumberofplayers")){
-            adapter.updateNumberOfPlayers(new Integer(tab[1]), new Integer(tab[2]));
-        }
-        if(tab[0].toLowerCase().equals("setplayerid")){
-            adapter.setPlayerId(new Integer(tab[1]));
+        switch(tab[0]){
+        	case "addplayer":
+        		adapter.addPlayer(tab[1],new Integer(tab[2]));
+        		break;
+        	case "removeplayer":
+        		adapter.removePlayer(new Integer(tab[1]));
+        		break;
+        	case "updateplayerlinedcash":
+        		adapter.updatePlayerLinedCash(new Integer(tab[1]),new Integer(tab[2]));
+        		break;
+        	case "updateplayercash":
+        		adapter.updatePlayerCash(new Integer(tab[1]), new Integer(tab[2]));
+        		break;
+        	case "updateresignedplayer":
+        		adapter.updateResignPlayer(new Integer(tab[1]));
+        		break;
+        	case "updateactualplayer":
+        		adapter.updateActualPlayer(new Integer(tab[1]));
+        		break;
+        	case "updateplayerhand":
+        		Deck.Card arr[] = new Deck.Card[2];
+                arr[0]=Deck.getSpecifiedCard(tab[2]);
+                arr[1]=Deck.getSpecifiedCard(tab[3]);
+                adapter.updatePlayerHand(new Integer(tab[1]), arr);
+                break;
+        	case "setpot":
+        		adapter.setPot(new Integer(tab[1]));
+        		break;
+        	case "addthreecards":
+        		Deck.Card ar[]= new Deck.Card[3];
+                ar[0]=Deck.getSpecifiedCard(tab[1]);
+                ar[1]=Deck.getSpecifiedCard(tab[2]);
+                ar[2]=Deck.getSpecifiedCard(tab[3]);
+                adapter.addThreeCards(ar);
+                break;
+        	case "addonecard":
+        		adapter.addOneCard(Deck.getSpecifiedCard(tab[1]));
+        		break;
+        	case "cleartable":
+        		adapter.clearTable();
+        		break;
+        	case "sendmessage":
+        		adapter.sendMessage(tab[1]);
+        		break;
+        	case "startnewround":
+        		adapter.startNewRound();
+        		break;
+        	case "setlastmove":
+            	adapter.setLastMove(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
+            	break;
+        	case "showcards":
+            	adapter.showCards(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
+            	break;
+        	case "guiaddtable":
+                adapter.guiAddTable(new Integer(tab[1]));
+                break;
+        	case "guiremovetable":
+        		adapter.guiRemoveTable(new Integer(tab[1]));
+        		break;
+        	case "updatenumberofplayers":
+                adapter.updateNumberOfPlayers(new Integer(tab[1]), new Integer(tab[2]));
+                break;
+        	case "setplayerid":
+                adapter.setPlayerId(new Integer(tab[1]));
+                break;
+        	default:
+                throw new RuntimeException("Unknown operation type");
         }
     }
     @Override

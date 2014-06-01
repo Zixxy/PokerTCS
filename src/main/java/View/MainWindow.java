@@ -3,11 +3,13 @@ package View;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import Adapter.MainAdapter;
 
 /*
@@ -45,6 +47,13 @@ public class MainWindow extends Application implements MainWindowInterface {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		mainStage = primaryStage;
+		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	        public void handle(WindowEvent e){
+	        	// we need to send information about leaving player.
+	        	System.out.println("We are closing game!");
+	        	System.exit(0);
+	        }
+	    });
 		mainPane = new AnchorPane();
 		mainStage.setScene(actualScene = new Scene(mainPane));
 		mainStage.setTitle("TCS-Pocker-Club");
