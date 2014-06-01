@@ -8,7 +8,7 @@ import java.net.Socket;
 
 import Adapter.AdapterInterface;
 import Model.Deck;
-import Model.Deck.Card;
+import Model.Deck.*;
 import Model.ModelInterface;
 
 /**

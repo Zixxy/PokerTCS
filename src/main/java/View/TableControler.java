@@ -204,7 +204,7 @@ public class TableControler{
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id - 1].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
-    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif")));
+    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
     }
     
     public void removePlayer(int id){
@@ -243,8 +243,8 @@ public class TableControler{
     	
     	Integer cardNumber = 20*cardColor + cardId;
     	String s = Integer.toString(cardNumber);
-    	System.out.println("/main/java/Cards/" + s + ".png");
-    	Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+    	System.out.println("/Cards/" + s + ".png");
+    	Image image = new Image(TableView.class.getResourceAsStream("/Cards/" + s + ".png"));
         for (ImageView cardImage: cardsOnTable) {
             if (cardImage.getImage() == null) {
                 cardImage.setImage(image);
@@ -282,8 +282,8 @@ public class TableControler{
 
             Integer cardNumber = 20*cardColor + cardId;
             String s = Integer.toString(cardNumber);
-            System.out.println("/main/java/Cards/" + s + ".png");
-            Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+            System.out.println("/Cards/" + s + ".png");
+            Image image = new Image(TableView.class.getResourceAsStream("/Cards/" + s + ".png"));
 
             playersCard[i].setImage(image);
         }
@@ -314,7 +314,7 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
 	}
 	public void updateActualPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
 		for(int i = 0; i < playersFace.length; ++i){
 			if(i!=id){
 				if(playersFace[i] != null){
@@ -323,7 +323,7 @@ public class TableControler{
 			}
 			
 		}
-		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/main/java/Pictures/actualPerson.gif"))); 
+		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/actualPerson.gif"))); 
 	}
 
 	public void updateResignedPlayer(int id) {
@@ -331,7 +331,7 @@ public class TableControler{
 	}
 
 	public void updateNormalPlayer(int id) {
-		Image image = new Image(TableView.class.getResourceAsStream("/main/java/Pictures/playingPerson.gif"));
+		Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
 		playersFace[id].setImage(image);
 	}
 
@@ -372,7 +372,7 @@ public class TableControler{
 		for (int i = 0; i < 2; ++i) {
 			String s = cardsNumbers[i].toString();
             System.out.println("/main/java/Cards/" + s + ".png");
-            Image image = new Image(TableView.class.getResourceAsStream("/main/java/Cards/" + s + ".png"));
+            Image image = new Image(TableView.class.getResourceAsStream("/Cards/" + s + ".png"));
 
             playersCards[2*(id-1) + i].setImage(image);
         }
