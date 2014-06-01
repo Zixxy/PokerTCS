@@ -86,7 +86,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(1152);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableView.fxml")));
+					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/TableView.fxml")));
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching TableView", e);
 				}
@@ -135,7 +135,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(750);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/Login.fxml")));
+					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/Login.fxml")));
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching LoginControler", e);
 				} catch (Exception a) {
@@ -155,7 +155,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(602);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/main/java/FXML/TableList.fxml")));// or sth...
+					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/TableList.fxml")));// or sth...
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching TableList ", e);
 				} catch (Exception a) {
