@@ -30,6 +30,7 @@ class Listener implements Runnable{
                 thread = new Thread(new PlayerListener(p,server));
                 thread.setDaemon(true);
                 thread.start();
+
             } catch (IOException e) {
                 throw new RuntimeException("Error while waiting for connection", e);
             }
@@ -111,10 +112,28 @@ class Table{
         ma.addView(cv);
     }
 }
-//class SenderToLobby implements Runnable{}
+class SenderToLobby implements Runnable{
+    Server server;
+    public SenderToLobby(Server server){
+        this.server=server;
+    }
+    @Override
+    public void run() {
+        while(true) {
+            server.updateLobby();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                //just go on
+                System.err.println("Interupped exception ale probujemy dalej");
+
+            }
+        }
+    }
+}
 public class Server {
 
-    private Thread mainListener;
+    private Thread mainListener,lobbySender;
     public int port=1229;
     public ArrayList<PlayerOnline> connected =new ArrayList<PlayerOnline>();
     public ArrayList<Table> tables = new ArrayList<Table>();
@@ -126,9 +145,11 @@ public class Server {
         	throw new RuntimeException("Cannot make server at port" + port, e);
         }
         mainListener.start();
+        lobbySender=new Thread(new SenderToLobby(this));
+        lobbySender.start();
     }
 
-    synchronized void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
+    synchronized void parse(String order, Socket socket, PlayerOnline p){
         System.err.println("GOT SERVERRRRRRR ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
@@ -165,6 +186,9 @@ public class Server {
     public void guiAddTable(){
         sendToLobby("guiaddtable~"+(tables.size()));
     }
+    public void guiAddTable(Integer id){
+        sendToLobby("guiaddtable~"+(id));
+    }
     public void guiRemoveTable(int tableIndex){
         sendToLobby("guiremovetable~"+tableIndex);
     }
@@ -178,6 +202,14 @@ public class Server {
         tables.add(table);
         addPlayerToTable(host, tables.indexOf(table));
 
+    }
+    public void updateLobby(){
+        for(Table t:tables){
+            guiAddTable(tables.indexOf(t));
+        }
+        for(Table t:tables){
+            updateNumberOfPlayers(tables.indexOf(t),t.players.size());
+        }
     }
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
@@ -219,5 +251,6 @@ public class Server {
         	throw new RuntimeException(e);
         }
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
+
     }
 }
