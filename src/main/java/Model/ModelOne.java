@@ -446,6 +446,9 @@ public class ModelOne implements ModelInterface {
 
     private void startRound(){
         if(numberOfPlayers<2){
+            for(Player p:players){
+                p.setReady(false);
+            }
             adapter.sendMessage("Nie mozna rozpoczac gry poniewaz, nie ma wystarczajacej liczby graczy");
             return;
         }
