@@ -219,7 +219,7 @@ public class ModelOne implements ModelInterface {
             i++;
         }
         if (!started) {
-        	started=true;
+
         startRound();
        }
     }
@@ -445,6 +445,11 @@ public class ModelOne implements ModelInterface {
     }
 
     private void startRound(){
+        if(numberOfPlayers<2){
+            adapter.sendMessage("Nie mozna rozpoczac gry poniewaz, nie ma wystarczajacej liczby graczy");
+            return;
+        }
+        started=true;
         System.out.println("Paczajka 1");
         pot = 0;
         adapter.clearTable();
@@ -461,7 +466,7 @@ public class ModelOne implements ModelInterface {
             }
             p.setCards(deck);
             p.setMoney(p.getMoney()- ante);
-            adapter.updatePlayerCash(i, p.getMoney());
+            adapter.updatePlayerCash(i, players.get(i).getMoney());
             p.setOffer(ante);
             adapter.updatePlayerLinedCash(i, p.getOffer());
             adapter.updatePlayerHand(i, p.getCards());
