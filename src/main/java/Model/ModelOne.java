@@ -392,6 +392,8 @@ public class ModelOne implements ModelInterface {
                 cash+=reducePlayersRoundOffer(smaller.getRoundCash())/(best.size() + 1);
                 smaller.setMoney(smaller.getMoney() + cash);
                 smaller.setInGame(false);
+                smaller.setAllIned(false);
+                System.out.println("Jestem w pENtli");
             }
         }
         adapter.setPot(0);
@@ -422,13 +424,14 @@ public class ModelOne implements ModelInterface {
 
 
 
-        smallBlindPosition = getNextPlayerPosition(smallBlindPosition);
+
 
         started=false;
         //startRound();
     }
 
     private void startRound(){
+        System.out.println("Paczajka 1");
         pot = 0;
         adapter.clearTable();
         stage=0;
@@ -453,7 +456,9 @@ public class ModelOne implements ModelInterface {
             p.setRoundCash(0);
             i++;
         }
-        smallBlindPosition = getNextPlayerPosition(smallBlindPosition-1);
+        System.out.println("Paczajka 2");
+
+        smallBlindPosition = getNextPlayerPosition(smallBlindPosition);
         adapter.sendMessage("SmallBlindPosition: "+smallBlindPosition);
         adapter.startNewRound();
         currentPlayerId=smallBlindPosition;
@@ -462,13 +467,14 @@ public class ModelOne implements ModelInterface {
         this.numberInGame=numberOfPlayers;
         this.onTable= ante *numberInGame;
 
-
+        System.out.println("Paczajka 3");
         adapter.sendMessage("Gracz " + players.get(currentPlayerId).getName() + " wpłacił małą ciemną");
         raise(currentPlayerId, smallBlind);
         adapter.sendMessage("Gracz " + players.get(currentPlayerId).getName() + " wpłacił dużą ciemną");
         raise(currentPlayerId, bigBlind);
         raisingPlayerId = currentPlayerId;
         adapter.setPot(pot);
+        System.out.println("Paczajka 4");
     }
     private PokerHand getPlayerHand(Player player) {
         List<Deck.Card> cards = new ArrayList<Deck.Card>();

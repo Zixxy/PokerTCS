@@ -100,6 +100,7 @@ public class CommunicationView  implements ViewInterface{
         	default:
                 throw new RuntimeException("Unknown operation type "+txt);
         }
+        System.out.println("Now you can use cv.parse");
     }
 
     private void sendCommand(String txt) {

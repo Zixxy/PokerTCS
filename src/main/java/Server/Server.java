@@ -57,7 +57,10 @@ class PlayerListener implements Runnable{
                 String txt[] = order.split("~");
                 System.err.println("GOT SERVER ORDER: "+order);
                 if(p.inGame && !txt[0].toLowerCase().equals("removeplayerfromtable")){
-                server.tables.get(p.tableNumber).cv.parse(order, p.socket);}
+                    System.out.println("Tables: "+server.tables.get(p.tableNumber));
+                    System.out.println("I sit in "+p.tableNumber);
+                    server.tables.get(p.tableNumber).cv.parse(order, p.socket);
+                }
                 else{
                     server.parse(order,p.socket, p);
                 }
@@ -108,6 +111,7 @@ class Table{
         ma.addView(cv);
     }
 }
+//class SenderToLobby implements Runnable{}
 public class Server {
 
     private Thread mainListener;
@@ -125,7 +129,7 @@ public class Server {
     }
 
     synchronized void parse(String order, Socket socket, PlayerOnline p){//public because Server uses it
-        System.err.println("GOT SERVER ORDER: " + order);
+        System.err.println("GOT SERVERRRRRRR ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
         switch(txt[0]){
@@ -146,7 +150,7 @@ public class Server {
                 setPlayerName(p,txt[1]);
                 break;
              default:
-                throw new RuntimeException("Unknown operation type");
+                throw new RuntimeException("Unknown operation type "+txt);
         }
     }
 
