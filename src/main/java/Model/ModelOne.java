@@ -269,6 +269,7 @@ public class ModelOne implements ModelInterface {
     public void allIn(int playerId) {
         if(!started) return;
 
+        System.out.println("Jesteśmy w allinie");
         if(currentPlayerId  != playerId) return;
     	adapter.setLastMove(playerId, 3);
         Player actualPlayer = players.get(playerId);
@@ -286,9 +287,12 @@ public class ModelOne implements ModelInterface {
         boolean raising = false;
         if(currentPlayerId == raisingPlayerId)
             raising = true;
+        if (numberInGame == 0) {
+            won();
+            return;
+        }
         currentPlayerId = getNextPlayerPosition(currentPlayerId);
-        if (numberInGame == 0) won();
-        else if (currentPlayerId == raisingPlayerId) checkItAll();
+        if (currentPlayerId == raisingPlayerId) checkItAll();
         else if(raising)
             raisingPlayerId = currentPlayerId;
 
