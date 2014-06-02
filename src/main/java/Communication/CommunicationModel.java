@@ -55,7 +55,8 @@ public class CommunicationModel implements ModelInterface {
                         communicationModel.parse(in2.readLine());
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException("Lost connection with server");
+                    //Return to the main window should be here
                 }
             }
         }
@@ -220,32 +221,7 @@ public class CommunicationModel implements ModelInterface {
         out.println("setAnte~"+arg);
     }
 
-    public void alphaserver() {
-        out.println("addtable");
-    }
 
-    public void betaserver() {
-        out.println("addplayertotable~0");
-    }
- /*   @Override
-    public Deck.Card[] getHandCards(int playerId) {
-        String arr[];
-        Deck.Card arr2[]=new Deck.Card[2];
-        synchronized(CommunicationModel.class) {
-            out.println("userCards~" + playerId);
-            try {
-                arr=in.readLine().split("~");
-                arr2[0]=Deck.getSpecifiedCard(arr[1]);
-                arr2[1]=Deck.getSpecifiedCard(arr[2]);
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-
-            return arr2;
-        }
-    }
-*/
     @Override
     public int getActualStage() {
         return 0;

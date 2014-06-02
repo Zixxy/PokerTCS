@@ -8,6 +8,7 @@ import java.util.Collection;
 
 import Adapter.AdapterInterface;
 import Model.Deck;
+import View.TableListInterface;
 import View.ViewInterface;
 
 /**
@@ -69,12 +70,7 @@ public class CommunicationView  implements ViewInterface{
         System.err.println("GOT ORDER: " + order);
         String txt[] = order.split("~");
         txt[0]=txt[0].toLowerCase();
-        /*
-        public void fold(int playerId);
-        public void check(int playerId);
-        public void raise(int playerId, String amount);
-        public void resign(int playerId);
-         */
+
         switch(txt[0]){
         	case "fold":
         		adapter.fold(Integer.valueOf(txt[1]));
@@ -102,7 +98,7 @@ public class CommunicationView  implements ViewInterface{
         		sendCommand(order);
         		break;
         	default:
-                throw new RuntimeException("Unknown operation type");
+                throw new RuntimeException("Unknown operation type "+txt);
         }
     }
 
@@ -120,18 +116,7 @@ public class CommunicationView  implements ViewInterface{
             if(print.id == id)
                 print.writer.println(txt);
     }
-  /*  private synchronized void sendCards(Socket socket, int id) {
-        try {
-            (new PrintWriter(socket.getOutputStream(), true)).println("yourCards~" + adapter.getHandCards(id)[0].toString() + "~" + adapter.getHandCards(id)[1]);
-            System.out.println("yourCards~" + adapter.getHandCards(id)[0].toString() + "~" + adapter.getHandCards(id)[1]);
-            waiting--;
-        }
-        catch (IOException e) {
-            System.out.println("Cannot send cards, FATAL ERROR");
-            System.err.println("Cannot send cards, FATAL ERROR");
-        }
-    }
-*/
+
     @Override
     public void addPlayer(String name, int id) {
         synchronized(CommunicationView.class) {
@@ -208,10 +193,7 @@ public class CommunicationView  implements ViewInterface{
     public void startNewRound() {
         synchronized(CommunicationView.class) {
             this.sendCommand("startNewRound");
-            /*waiting = outs.size();
-            while(waiting > 0) {
-                System.out.println("ERRRRRRRROOOOOOOOORRRRRR");
-            }*/
+
         }
     }
 
@@ -256,15 +238,15 @@ public class CommunicationView  implements ViewInterface{
 	}
 	@Override
 	public void almostConstructor() {
-		// TODO Auto-generated method stub
+        throw new RuntimeException("This function should never be used");
 	}
 	@Override
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber) {
-		// TODO Auto-generated method stub	
+        throw new RuntimeException("This function should never be used");
 	}
 	@Override
 	public void setPlayerId(int id) {
-		// TODO Auto-generated method stub
+        throw new RuntimeException("This function should never be used");
 		
 	}
 }

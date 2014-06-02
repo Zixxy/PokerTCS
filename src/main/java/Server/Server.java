@@ -65,7 +65,7 @@ class PlayerListener implements Runnable{
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
                 server.removePlayerFromTable(p,p.tableNumber);
-                throw new RuntimeException("Cannot read message from playing player", e);
+                System.err.println("Lost connection with player "+p.socket);
             }
         }
     }
