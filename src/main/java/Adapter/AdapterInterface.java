@@ -48,4 +48,5 @@ public interface AdapterInterface {
     public void removePlayerFromTable(int tableIndex);
     public void setPlayerId(int id);
     public void setPlayerName(String name);
+    public void start(int id);
 }

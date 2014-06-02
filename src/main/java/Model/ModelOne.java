@@ -210,6 +210,9 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start() {
+        for(Player p:players)
+            if(!p.getResigned() && !p.getReady())
+                return;
         int i=0;
         for(Player p : players){
             if(!p.getResigned()) adapter.addPlayer(p.getName(),i);
@@ -219,6 +222,12 @@ public class ModelOne implements ModelInterface {
         	started=true;
         startRound();
        }
+    }
+
+    @Override
+    public void start(int id) {
+        players.get(id).setReady(true);
+        start();
     }
 
     @Override
@@ -385,6 +394,7 @@ public class ModelOne implements ModelInterface {
             pot += player.getOffer();
             player.setOffer(0);
             adapter.updatePlayerLinedCash(x, 0);
+            player.setReady(false);
         }
         adapter.setPot(pot);
         //END OF COPYPASTE I FEEL GUILTY :((((((((((((

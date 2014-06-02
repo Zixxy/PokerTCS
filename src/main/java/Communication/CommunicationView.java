@@ -65,6 +65,9 @@ public class CommunicationView  implements ViewInterface{
         outs = new ArrayList<WriterWithId>();
     }
 
+    public synchronized void start(int id) {
+        adapter.start(id);
+    }
 
     public synchronized void parse(String order, Socket socket){//public because Server uses it
         System.err.println("GOT ORDER: " + order);
@@ -83,9 +86,6 @@ public class CommunicationView  implements ViewInterface{
         		break;
         	case "resign":
         		adapter.resign(Integer.valueOf(txt[1]));
-        		break;
-        	case "start":
-        		adapter.start();
         		break;
         	case "usercards":
                 //System.out.println("ASKED: " + txt[1]);

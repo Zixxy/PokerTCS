@@ -10,6 +10,7 @@ public class Player{
         this.money=arg2;
         cards = new Deck.Card[2];
         resigned=false;
+        ready = false;
     }
     private final int id;
     private String name;
@@ -20,6 +21,7 @@ public class Player{
     private Deck.Card cards[];
     private boolean allIned;
     private int thisRoundOffer;
+    private boolean ready;
 
     public int getId(){
     	return this.id;
@@ -86,5 +88,13 @@ public class Player{
 
     public int getRoundCash(){
         return thisRoundOffer;
+    }
+
+    public boolean getReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 }

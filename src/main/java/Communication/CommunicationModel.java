@@ -217,6 +217,11 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
+    public void start(int id) {
+        //user cannot send this
+    }
+
+    @Override
     public void setAnte(int arg) {
         out.println("setAnte~"+arg);
     }

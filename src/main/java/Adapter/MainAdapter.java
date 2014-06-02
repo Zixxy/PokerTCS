@@ -245,6 +245,11 @@ public class MainAdapter implements AdapterInterface {
         model.setPlayerName(name);
     }
 
+    @Override
+    public void start(int id) {
+        model.start(id);
+    }
+
     public void exchangeReference(ViewInterface from, ViewInterface to){
 
 		System.out.println(views);

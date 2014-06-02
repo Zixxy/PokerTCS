@@ -21,6 +21,8 @@ public interface ModelInterface {
     void setPlayerName(String name);
 	void removePlayer(int playerId); //host of table removes player
 	void start(); //starts the game
+    @Deprecated
+    void start(int id);
     void setAnte(int arg);//sets Ante
    // Deck.Card[] getHandCards(int playerId);//
     int getActualStage();
