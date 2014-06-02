@@ -153,7 +153,6 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void setPlayerName(String name) {
-        //TODO xDDDD
     }
 
     @Override
@@ -249,7 +248,7 @@ public class ModelOne implements ModelInterface {
         if (!started) return;
         if(currentPlayerId==playerId) {
             adapter.setLastMove(playerId, 2);
-            if(players.get(playerId).getMoney() < this.limit - players.get(playerId).getOffer()) {
+            if(players.get(playerId).getMoney() <= this.limit - players.get(playerId).getOffer()) {
                 allIn(playerId);
                 return;
             }
@@ -284,9 +283,14 @@ public class ModelOne implements ModelInterface {
         adapter.updatePlayerCash(playerId, 0);
         actualPlayer.setInGame(false);
         numberInGame--;
+        boolean raising = false;
+        if(currentPlayerId == raisingPlayerId)
+            raising = true;
         currentPlayerId = getNextPlayerPosition(currentPlayerId);
         if (numberInGame == 0) won();
         else if (currentPlayerId == raisingPlayerId) checkItAll();
+        else if(raising)
+            raisingPlayerId = currentPlayerId;
 
     }
 
