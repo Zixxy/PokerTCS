@@ -9,11 +9,11 @@
 <children><SplitPane dividerPositions="0.2271062271062271" focusTraversable="true" layoutX="184.0" layoutY="22.0" orientation="VERTICAL" prefHeight="548.0" prefWidth="738.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
   <items>
     <AnchorPane layoutX="38.0" layoutY="13.0" minHeight="0.0" minWidth="0.0" prefHeight="141.0" prefWidth="659.0">
-<children><Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="9.0" prefHeight="31.0" prefWidth="80.0" text="Name:" /><TextField fx:id="userNameTextField" layoutX="115.0" layoutY="12.0" prefHeight="25.0" prefWidth="170.0" promptText="Type Your Name" />
+<children><Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="9.0" prefHeight="31.0" prefWidth="80.0" text="Name:" /><TextField fx:id="userNameTextField" layoutX="115.0" layoutY="12.0" onAction="#nameTyping" prefHeight="25.0" prefWidth="170.0" promptText="Type Your Name" />
 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="45.0" prefHeight="31.0" prefWidth="80.0" text="IP:" />
-<TextField fx:id="ipTextField" layoutX="115.0" layoutY="48.0" promptText="Type Server IP Address" />
+<TextField fx:id="ipTextField" layoutX="115.0" layoutY="48.0" onAction="#ipTyping" promptText="Type Server IP Address" />
 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="79.0" prefHeight="31.0" prefWidth="80.0" text="Port:" />
-<TextField fx:id="portNumberTextField" layoutX="115.0" layoutY="82.0" promptText="Type Port Number" /><Button fx:id="exitButton" layoutX="642.0" layoutY="13.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="80.0" text="Exit" />
+<TextField fx:id="portNumberTextField" layoutX="115.0" layoutY="82.0" onAction="#portTyping" promptText="Type Port Number" /><Button fx:id="exitButton" layoutX="642.0" layoutY="13.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="80.0" text="Exit" />
     <Button fx:id="joinButton" layoutX="344.0" layoutY="88.0" mnemonicParsing="false" onAction="#join" prefHeight="25.0" prefWidth="80.0" text="Join" />
 </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -59,7 +59,7 @@
 <children>
 <Button fx:id="newHostButton" layoutX="85.0" layoutY="88.0" mnemonicParsing="false" onAction="#makeNewHost" prefHeight="31.0" prefWidth="161.0" text="Make New Host" />
 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="30.0" prefHeight="31.0" prefWidth="69.0" text="Port:" />
-<TextField fx:id="serverPortNumberTextField" layoutX="81.0" layoutY="33.0" prefHeight="25.0" prefWidth="161.0" promptText="Type Port Number" />
+<TextField fx:id="serverPortNumberTextField" layoutX="81.0" layoutY="33.0" onAction="#portForHostTextField" prefHeight="25.0" prefWidth="161.0" promptText="Type Port Number" />
 </children></AnchorPane>
   </items>
 </SplitPane>

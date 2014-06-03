@@ -10,8 +10,6 @@ public class Run {
 	public static MainWindowInterface mainWindow;
 	
 	public static void main(String[] args){
-
-
         adapter = new MainAdapter();
 		mainWindow = MainWindow.createMainView(adapter, args);
 		mainWindow.showMainMenu();
