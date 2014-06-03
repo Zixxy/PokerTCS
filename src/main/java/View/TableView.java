@@ -282,13 +282,14 @@ public class TableView extends Application implements ViewInterface{
 	/*
 	 * we do not use this methods in game.
 	 */
-	@Override
-	public void guiAddTable(int numberOfTable) {
-        // UNUSED
-		
-	}
 
-	@Override
+
+    @Override
+    public void guiAddTable(int numberOfTable, String started) {
+
+    }
+
+    @Override
 	public void guiRemoveTable(int numberOfTable) {
 	}
 

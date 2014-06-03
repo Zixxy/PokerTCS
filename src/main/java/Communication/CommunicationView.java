@@ -43,9 +43,11 @@ public class CommunicationView  implements ViewInterface{
         outs.remove(new WriterWithId(writer, id));
     }
 
+
+
     @Override
-    public void guiAddTable(int numberOfTable) {
-        sendCommand("guiAddTable~"+numberOfTable);
+    public void guiAddTable(int numberOfTable, String started) {
+        //
     }
 
     @Override

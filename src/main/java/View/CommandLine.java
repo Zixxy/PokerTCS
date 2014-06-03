@@ -163,7 +163,8 @@ public class CommandLine implements ViewInterface{
 	}
 
     @Override
-    public void guiAddTable(int numberOfTable) {
+    public void guiAddTable(int numberOfTable, String started) {
+
     }
 
     @Override
