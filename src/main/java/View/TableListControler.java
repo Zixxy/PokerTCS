@@ -14,10 +14,12 @@ import Main.Run;
 import Model.Deck.Card;
 
 public class TableListControler implements ViewInterface{
+	@SuppressWarnings("unused")
 	volatile private boolean isConstructed = false;
 	private MainAdapter adapter;
 	private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	public static TableListControler recentlyCreatedTableList;
+	@SuppressWarnings("unused")
 	private volatile int playerId;
 	
 	public TableListControler(){
@@ -76,14 +78,6 @@ public class TableListControler implements ViewInterface{
 					public void handle(ActionEvent event) {// SAOIJADSOIJSD
 						playerId = -100;
             			adapter.addPlayerToTable(numberOfTable);
-            			/*while(playerId == -100){
-            				try {
-								Thread.sleep(50); // This will be changed to wait.
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-            			}*/
             			Thread showGame = new Thread(new Runnable(){
             				@Override
             				public void run(){
@@ -96,6 +90,23 @@ public class TableListControler implements ViewInterface{
 				});
 				tableJoins[numberOfTable].getChildren().clear();
 				tableJoins[numberOfTable].getChildren().add(b);
+			}
+		});
+	}
+	
+
+	@Override
+	public void guiClearTableList() {
+		javafx.application.Platform.runLater(new Runnable(){
+			
+			@Override
+			public void run(){
+				for(int i=0;i<23;++i){
+					tableNames[i].setText(null);
+					tablePlayers[i].setText(null);
+					tableStarteds[i].setText(null);
+					tableJoins[i].getChildren().clear();
+				}		
 			}
 		});
 	}
@@ -284,5 +295,4 @@ public class TableListControler implements ViewInterface{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

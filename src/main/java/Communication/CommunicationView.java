@@ -8,7 +8,6 @@ import java.util.Collection;
 
 import Adapter.AdapterInterface;
 import Model.Deck;
-import View.TableListInterface;
 import View.ViewInterface;
 
 /**
@@ -53,6 +52,11 @@ public class CommunicationView  implements ViewInterface{
     public void guiRemoveTable(int numberOfTable) {
         sendCommand("guiRemoveTable~"+numberOfTable);
     }
+    
+	@Override
+	public void guiClearTableList() {
+		sendCommand("guiClearTableList~");
+	}
 
     @Override
     public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers) {
@@ -250,4 +254,6 @@ public class CommunicationView  implements ViewInterface{
         throw new RuntimeException("This function should never be used");
 		
 	}
+	
+	
 }

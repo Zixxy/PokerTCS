@@ -122,6 +122,9 @@ public class CommunicationModel implements ModelInterface {
         	case "guiaddtable":
                 adapter.guiAddTable(new Integer(tab[1]));
                 break;
+        	case "guicleartablelist":
+        		adapter.guiClearTableList();
+                break;
         	case "guiremovetable":
         		adapter.guiRemoveTable(new Integer(tab[1]));
         		break;

@@ -49,4 +49,5 @@ public interface AdapterInterface {
     public void setPlayerId(int id);
     public void setPlayerName(String name);
     public void start(int id);
+    public void guiClearTableList();
 }

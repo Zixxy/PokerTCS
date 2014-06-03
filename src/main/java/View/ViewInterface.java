@@ -47,6 +47,7 @@ public interface ViewInterface extends TableListInterface{
 	public void setLastMove(int id, int move);
 	
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
+	public void guiClearTableList();
 
 
 }
