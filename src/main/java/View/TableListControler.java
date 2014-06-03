@@ -297,4 +297,8 @@ public class TableListControler implements ViewInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+    public void exitServer(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }

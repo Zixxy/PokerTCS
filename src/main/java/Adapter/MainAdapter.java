@@ -239,8 +239,8 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void removePlayerFromTable(int tableIndex) {
-        model.removePlayerFromTable(tableIndex);
+    public void removePlayerFromTable() {
+        model.removePlayerFromTable();
     }
 
     @Override

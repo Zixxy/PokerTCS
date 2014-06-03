@@ -1,5 +1,6 @@
 package View;
 
+import Main.Run;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -130,7 +131,19 @@ public class TableControler{
     		}
     	}));
     }
-    
+
+    @FXML
+    public void exitTable(ActionEvent e){
+        javafx.application.Platform.runLater((new Runnable() {
+            @Override
+            public void run(){
+                adapter.removePlayerFromTable();
+                ViewInterface view  = Run.mainWindow.showTableList();
+                adapter.exchangeReference(TableView.RecentlyCreatedInstanceOfThis,view);
+            }
+        }));
+    }
+
     @FXML
     public void showCardsEvent(ActionEvent e){
     	javafx.application.Platform.runLater((new Runnable() {

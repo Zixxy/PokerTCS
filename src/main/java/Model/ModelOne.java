@@ -607,7 +607,7 @@ public class ModelOne implements ModelInterface {
     }
 
     @Override
-    public void removePlayerFromTable(int tableIndex) {
+    public void removePlayerFromTable() {
         //JUST FOR NETWORK CONNECTION
     }
 

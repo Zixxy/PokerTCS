@@ -14,6 +14,7 @@ import Model.ModelInterface;
 /**
  * Created by arytmetyk on 2014-05-14.
  */
+
 public class CommunicationModel implements ModelInterface {
     Socket socket;
     String ip;
@@ -292,8 +293,8 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
-    public void removePlayerFromTable(int tableIndex) {
-        out.println("removeplayerfromtable~"+tableIndex);
+    public void removePlayerFromTable() {
+        out.println("removeplayerfromtable");
     }
 
     @Override
