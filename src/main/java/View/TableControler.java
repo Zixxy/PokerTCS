@@ -2,6 +2,7 @@ package View;
 
 import java.util.HashSet;
 
+import Main.Run;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,14 +24,12 @@ import Model.Deck.Card;
 
 public class TableControler{
     private MainAdapter adapter;
-    private HashSet<Integer> players;
+
     private String name;
 
     volatile private boolean isConstructed = false;
     
-	private int playerId;
-	
-	public Card[] thisPlayerCards;
+
 	
 	public HashSet<Integer> players;
 	
@@ -44,8 +43,7 @@ public class TableControler{
 		TableView.RecentlyCreatedInstanceOfTableControler = this;
 	}
 	
-	@FXML
-	private HBox PotBox;
+
 
     private int playerId;
 
@@ -53,12 +51,7 @@ public class TableControler{
 
     ///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 
-    public TableControler(){
-        name = TableView.tempName;
-        playerId = TableView.tempPlayerId;
-        adapter = TableView.tempAdapter;
-        TableView.RecentlyCreatedInstanceOfTableControler = this;
-    }
+
 
     @FXML
     private HBox PotBox;
@@ -116,7 +109,7 @@ public class TableControler{
     @FXML
     public void chatTyping(ActionEvent e){
         String message = messageTextField.getText();
-        adapter.sendMyMessageToEveryBody(name+": "+message);
+        adapter.sendMyMessageToEveryBody(name + ": " + message);
         messageTextField.clear();
     }
     
@@ -124,7 +117,7 @@ public class TableControler{
     public void riseTyping(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 adapter.raise(playerId, userCashTextField.getText());
                 userCashTextField.clear();
             }
@@ -358,40 +351,22 @@ public class TableControler{
 		updatePlayerLinedCash(id, -1);
 	}
 	
-	public void clearPlayerLastMove(int id){
-		playersLastMove[id].getChildren().clear();
-	}
+
 	
 	public void updatePlayerLinedCash(int id, int cash) {
-		Text text = new Text("$"+Integer.toString(cash));
-		text.setCache(true);
-		text.setFill(Color.MAROON);
-		text.setFont(Font.font(null, FontWeight.BOLD, 19));
-
-    public void removePlayersLinedCash(int id){
-        updatePlayerLinedCash(id, -1);
+        Text text = new Text("$" + Integer.toString(cash));
+        text.setCache(true);
+        text.setFill(Color.MAROON);
+        text.setFont(Font.font(null, FontWeight.BOLD, 19));
     }
+
+
 
     public void clearPlayerLastMove(int id){
         playersLastMove[id].getChildren().clear();
     }
 
-    public void updatePlayerLinedCash(int id, int cash) {
-        Text text = new Text("$"+Integer.toString(cash));
-        text.setCache(true);
-        text.setFill(Color.MAROON);
-        text.setFont(Font.font(null, FontWeight.BOLD, 19));
 
-        --id;
-        if (playersLinedCash[id] != null) {
-            playersLinedCash[id].getChildren().clear();
-        }
-        if (cash > 0) {
-            playersLinedCash[id].getChildren().add(text);
-        }
-
-        text.setTextAlignment(TextAlignment.CENTER);
-    }
     public void updateActualPlayer(int id) {
         Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
         for(int i = 0; i < playersFace.length; ++i){
