@@ -615,9 +615,4 @@ public class ModelOne implements ModelInterface {
     public void addPlayerToTable(int tableIndex) {
         //JUST FOR NETWORK CONNECTION
     }
-	@Override
-	public void sendOutMessage(String text) {
-		// UNUSED
-		
-	}
 }

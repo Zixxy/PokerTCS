@@ -6,7 +6,7 @@ public interface MainWindowInterface {
 	 * 
 	 * @param args PokerTCS's main method args.
 	 */
-	public ViewInterface showGame(int playerId,String name);
+	public ViewInterface showGame(int playerId);
 	public void showMainMenu();
-	public ViewInterface showTableList(String name);
+	public ViewInterface showTableList();
 }

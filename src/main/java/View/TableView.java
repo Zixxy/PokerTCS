@@ -30,8 +30,6 @@ public class TableView extends Application implements ViewInterface{
 	
 	public static TableControler RecentlyCreatedInstanceOfTableControler;
 
-	public static String tempName;
-	
 	public TableView(){
 		adapter = tempAdapter;
 		playerId = tempPlayerId;
@@ -40,11 +38,10 @@ public class TableView extends Application implements ViewInterface{
 		constructionFlag.set(true);
 	}
 
-	public static ViewInterface getTableView(MainAdapter adapt, int userId, String name){
+	public static ViewInterface getTableView(MainAdapter adapt, int userId){
 		tempAdapter = adapt;
 		System.out.println("adapter:= "+adapt);
 		tempPlayerId = userId;
-		tempName = name;
 		return new TableView();
 	}
 	/*

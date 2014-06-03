@@ -301,9 +301,4 @@ public class CommunicationModel implements ModelInterface {
     public void addPlayerToTable(int tableIndex) {
         out.println("addplayertotable~"+tableIndex);
     }
-	@Override
-	public void sendOutMessage(String text) {
-        // UNUSED
-		out.println("sendoutmessage~"+text);
-	}
 }

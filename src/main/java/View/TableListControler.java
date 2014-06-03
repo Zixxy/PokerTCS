@@ -21,10 +21,8 @@ public class TableListControler implements ViewInterface{
 	public static TableListControler recentlyCreatedTableList;
 	@SuppressWarnings("unused")
 	private volatile int playerId;
-	private volatile String myName;
 	
 	public TableListControler(){
-		myName = MainWindow.myName;
 		recentlyCreatedTableList = this;
 		adapter = Run.adapter;
 	}
@@ -83,7 +81,7 @@ public class TableListControler implements ViewInterface{
             			Thread showGame = new Thread(new Runnable(){
             				@Override
             				public void run(){
-            					ViewInterface res = Run.mainWindow.showGame(1, myName);// we are waiting for scheduling playerId-s
+            					ViewInterface res = Run.mainWindow.showGame(1);// we are waiting for scheduling playerId-s
                     			adapter.exchangeReference(actual, res);
             				}
             			});
@@ -182,7 +180,7 @@ public class TableListControler implements ViewInterface{
     	tasksExecutor.execute(new Runnable() {
     		@Override
     		public void run(){
-    			Run.mainWindow.showGame(0,myName);
+    			Run.mainWindow.showGame(0);
     			adapter.addTable();
     		}
     	});
