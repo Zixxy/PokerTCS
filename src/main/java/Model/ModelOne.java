@@ -617,7 +617,7 @@ public class ModelOne implements ModelInterface {
     }
 	@Override
 	public void sendOutMessage(String text) {
-		// TODO Auto-generated method stub
+		// UNUSED
 		
 	}
 }

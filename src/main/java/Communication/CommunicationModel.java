@@ -303,7 +303,7 @@ public class CommunicationModel implements ModelInterface {
     }
 	@Override
 	public void sendOutMessage(String text) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		out.println("sendoutmessage~"+text);
 	}
 }
