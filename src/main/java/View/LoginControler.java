@@ -105,7 +105,7 @@ public class LoginControler {
     	Thread thread = new Thread(){
 			@Override
 			public void run(){
-				RunHereServer.runServer(Integer.parseInt(port), res);
+				RunHereServer.runServer(Integer.parseInt(port), res,pickedImage);
 			}
     	};
     	thread.start();
