@@ -225,7 +225,7 @@ public class TableControler{
         playersNameBox[id].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
     	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
-    	//TODO
+    	System.out.println("name :" +name+" id: "+id+ "image: " +image);
     }
     
     public void removePlayer(int id){
