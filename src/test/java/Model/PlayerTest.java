@@ -1,4 +1,4 @@
-package Model;
+package java.Model;
 
 import junit.framework.TestCase;
 import Model.Player;
@@ -11,7 +11,7 @@ import org.junit.Test;
 public class PlayerTest extends TestCase {
     @Test
     public void testOfConstructor() throws Exception {
-        Player player=new Player("Krzysztof",0, 950);
+        Player player=new Player("Krzysztof",0, 950, 0);
         assertEquals("Krzysztof", player.getName());
         assertEquals((Object) 950, player.getMoney());
         player.setMoney(800);

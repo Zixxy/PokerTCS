@@ -1,4 +1,4 @@
-package Model;
+package java.Model;
 
 import static org.junit.Assert.*;
 import Adapter.MainAdapter;
@@ -17,15 +17,15 @@ public class ModelOneTest2 {
         adapter.addView(new CommandLine(adapter));
         model.setStartedAmount(2020);
         model.setAnte(20);
-        model.addPlayer("Sylwek");
-        model.addPlayer("Szymon");
-        model.addPlayer("Maciek");
-        model.addPlayer("Bartek");
-        model.addPlayer("Miron");
+        model.addPlayer("Sylwek", 0);
+        model.addPlayer("Szymon", 0);
+        model.addPlayer("Maciek", 0);
+        model.addPlayer("Bartek", 0);
+        model.addPlayer("Miron", 0);
 
         
         model.removePlayer(3);
-        model.addPlayer("Bartek");
+        model.addPlayer("Bartek", 0);
         //assertEquals(5,model.size());
         assertFalse(model.isStarted());
         model.start();
