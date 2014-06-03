@@ -206,7 +206,7 @@ public class Server {
         sendToLobby("guicleartablelist");
     }
     public void guiAddTable(Integer id, boolean started){
-        sendToLobby("guiaddtable~"+(id)+started);
+        sendToLobby("guiaddtable~"+(id)+"~"+started);
     }
     public void guiRemoveTable(int tableIndex){
         sendToLobby("guiremovetable~"+tableIndex);
