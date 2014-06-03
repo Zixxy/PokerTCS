@@ -36,6 +36,7 @@ public class TableControler{
 	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
+		name = TableView.tempName;
 		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
 		players = new HashSet<Integer>();
@@ -250,7 +251,9 @@ public class TableControler{
         text.setTextAlignment(TextAlignment.CENTER);
         playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
         //TODO
-    	System.err.println("name :" +name+" id: "+id+ "image: " +image);
+    	text.setTextAlignment(TextAlignment.CENTER);
+    	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
+    	System.out.println("name :" +name+" id: "+id+ "image: " +image);
     	//TODO
     }
 

@@ -13,6 +13,5 @@ public class Run {
         adapter = new MainAdapter();
 		mainWindow = MainWindow.createMainView(adapter, args);
 		mainWindow.showMainMenu();
-        //
         }
 	}
