@@ -30,10 +30,10 @@ public class TableListControler implements ViewInterface{
 	}
 	
 	public void initialize(){
-		tableNames = new Label[] {table1Started, table2Started, table3Started, table4Started, table5Started, table6Started,
-    			table7Started, table8Started, table9Started, table10Started, table11Started, table12Started,
-    			table13Started, table14Started, table15Started, table16Started, table17Started, table18Started,
-    			table19Started, table20Started, table21Started, table22Started, table23Started};
+		tableNames = new Label[] {table1Name, table2Name, table3Name, table4Name, table5Name, table6Name,
+                table7Name, table8Name, table9Name, table10Name, table11Name, table12Name,
+                table13Name, table14Name, table15Name, table16Name, table17Name, table18Name,
+                table19Name, table20Name, table21Name, table22Name, table23Name};
 		for(Label l : tableNames){
 			l.setText(null);
 		}
@@ -71,13 +71,13 @@ public class TableListControler implements ViewInterface{
 
 			@Override
 			public void run() {
-				tableNames[numberOfTable].setText("Table "+ numberOfTable);
+				tableNames[numberOfTable].setText("Table "+(numberOfTable+1));
 				tablePlayers[numberOfTable].setText("1/" + "8");
 				tableStarteds[numberOfTable].setText("No");
 				Button b = new Button("Join");
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
-					public void handle(ActionEvent event) {// SAOIJADSOIJSD
+					public void handle(ActionEvent event) {
 						playerId = -100;
             			adapter.addPlayerToTable(numberOfTable);
             			Thread showGame = new Thread(new Runnable(){
