@@ -199,7 +199,14 @@ public class MainAdapter implements AdapterInterface {
     public void guiAddTable(int numberOfTable) {
         for(ViewInterface view: views) {
             view.guiAddTable(numberOfTable);
-            System.out.println("Dodaje stol do"+view);
+            System.out.println("Dodaje stol do "+view);
+        }
+    }
+    @Override
+    public void guiClearTableList(){
+    	for(ViewInterface view: views) {
+            view.guiClearTableList();
+            System.out.println("Czyszcze liste stolow w: "+view);
         }
     }
 

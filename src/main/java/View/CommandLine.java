@@ -131,24 +131,20 @@ public class CommandLine implements ViewInterface{
 
     @Override
     public void setPot(int cash) {
-
     }
 
     @Override
     public void setLastMove(int id, int move) {
-
     }
 
     @Override
 	public void updateActualPlayer(int id) {
 		System.out.println("Player " + id + "is highlighted");
-		
 	}
 
 	@Override
 	public void updateNormalPlayer(int id) {
 		System.out.println("Player " + id + "is not highlighted");
-		
 	}
 
 	@Override
@@ -159,29 +155,26 @@ public class CommandLine implements ViewInterface{
 
 	@Override
 	public void almostConstructor() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void showCards(int playerId, int firstCardNumber,
 			int secondCardNumber) {
-		// TODO Auto-generated method stub
-		
 	}
 
     @Override
     public void guiAddTable(int numberOfTable) {
-
     }
 
     @Override
     public void guiRemoveTable(int numberOfTable) {
-
     }
 
     @Override
     public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers) {
-
     }
+
+	@Override
+	public void guiClearTableList() {	
+	}
 }
