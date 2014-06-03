@@ -78,7 +78,7 @@ public class LoginControler {
     	if(name1.length() > 1)
     		name = name1;
     	final String sendName = name;
-        // pickedImage should be used now.
+        final int sendImage = pickedImage;
     	userNameTextField.clear();
     	ipTextField.clear();
     	portNumberTextField.clear();
@@ -86,7 +86,7 @@ public class LoginControler {
     		@Override
     		public void run(){
                 System.err.println("sendname: " + sendName);
-    			RunHereClient.runClient(ip, Integer.parseInt(port), sendName, pickedImage);
+    			RunHereClient.runClient(ip, Integer.parseInt(port), sendName, sendImage);
     		}
     	};
     	thread.start();
