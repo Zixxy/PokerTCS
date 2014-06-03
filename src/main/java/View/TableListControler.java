@@ -65,7 +65,7 @@ public class TableListControler implements ViewInterface{
 		playerId = id;
 	}
 	@Override
-	public void guiAddTable(final int numberOfTable) {
+	public void guiAddTable(final int numberOfTable, String started) {
 		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
 
@@ -73,25 +73,30 @@ public class TableListControler implements ViewInterface{
 			public void run() {
 				tableNames[numberOfTable].setText("Table "+(numberOfTable+1));
 				tablePlayers[numberOfTable].setText("1/" + "8");
-				tableStarteds[numberOfTable].setText("No");
-				Button b = new Button("Join");
-				b.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						playerId = -100;
-            			adapter.addPlayerToTable(numberOfTable);
-            			Thread showGame = new Thread(new Runnable(){
-            				@Override
-            				public void run(){
-            					ViewInterface res = Run.mainWindow.showGame(1, myName);// we are waiting for scheduling playerId-s
-                    			adapter.exchangeReference(actual, res);
-            				}
-            			});
-            			showGame.start();
-					}
-				});
-				tableJoins[numberOfTable].getChildren().clear();
-				tableJoins[numberOfTable].getChildren().add(b);
+                if("true".equals(started)) {
+                    tableStarteds[numberOfTable].setText("Yes");
+                    tableJoins[numberOfTable].getChildren().clear();
+                }
+                else if(started.equals("false")) {
+                    Button b = new Button("Join");
+                    b.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            playerId = -100;
+                            adapter.addPlayerToTable(numberOfTable);
+                            Thread showGame = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ViewInterface res = Run.mainWindow.showGame(1, myName);// we are waiting for scheduling playerId-s
+                                    adapter.exchangeReference(actual, res);
+                                }
+                            });
+                            showGame.start();
+                        }
+                    });
+                    tableJoins[numberOfTable].getChildren().clear();
+                    tableJoins[numberOfTable].getChildren().add(b);
+                }
 			}
 		});
 	}
