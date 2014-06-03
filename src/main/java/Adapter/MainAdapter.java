@@ -199,9 +199,9 @@ public class MainAdapter implements AdapterInterface {
     }
 
     @Override
-    public void guiAddTable(int numberOfTable) {
+    public void guiAddTable(int numberOfTable,String started) {
         for(ViewInterface view: views) {
-            view.guiAddTable(numberOfTable);
+            view.guiAddTable(numberOfTable,started);
             System.out.println("Dodaje stol do "+view);
         }
     }

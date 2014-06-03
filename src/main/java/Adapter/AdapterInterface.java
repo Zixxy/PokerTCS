@@ -40,7 +40,7 @@ public interface AdapterInterface {
 	public void setLastMove(int id, int move);
     public void setStartedAmount(int amount);
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber);
-    public void guiAddTable(int numberOfTable);
+    public void guiAddTable(int numberOfTable, String started);
     public void guiRemoveTable(int numberOfTable);
     public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers);
     public void addTable();

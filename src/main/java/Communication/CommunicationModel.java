@@ -124,7 +124,7 @@ public class CommunicationModel implements ModelInterface {
             	adapter.showCards(Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
             	break;
         	case "guiaddtable":
-                adapter.guiAddTable(new Integer(tab[1]));
+                adapter.guiAddTable(new Integer(tab[1]),tab[2]);
                 break;
         	case "guicleartablelist":
         		adapter.guiClearTableList();

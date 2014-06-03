@@ -60,7 +60,7 @@ class PlayerListener implements Runnable{
                 if(p.inGame && txt[0].toLowerCase().equals("start")) {
                     server.tables.get(p.tableNumber).cv.start(p.inGameId);
                 }
-                else if(p.inGame && !txt[0].toLowerCase().equals("removeplayerfromtable")){
+                else if(p.inGame && !txt[0].toLowerCase().equals("removeplayerfromtable") && !txt[0].toLowerCase().equals("start")){
                     System.out.println("Tables: "+server.tables.get(p.tableNumber));
                     System.out.println("I sit in "+p.tableNumber);
                     server.tables.get(p.tableNumber).cv.parse(order, p.socket);
@@ -115,6 +115,7 @@ class Table{
         this.mo=new ModelOne(ma);
         ma.addModel(mo);
         ma.addView(cv);
+
     }
 }
 class SenderToLobby implements Runnable{
@@ -204,8 +205,8 @@ public class Server {
         System.out.println("Kaze wyczyscic stoly");
         sendToLobby("guicleartablelist");
     }
-    public void guiAddTable(Integer id){
-        sendToLobby("guiaddtable~"+(id));
+    public void guiAddTable(Integer id, boolean started){
+        sendToLobby("guiaddtable~"+(id)+started);
     }
     public void guiRemoveTable(int tableIndex){
         sendToLobby("guiremovetable~"+tableIndex);
@@ -226,7 +227,7 @@ public class Server {
         try{
         for(Table t:tables){
             if(t==null) continue;
-            guiAddTable(tables.indexOf(t));
+            guiAddTable(tables.indexOf(t),t.mo.isStarted());
         }
         for(Table t:tables){
             if(t==null) continue;
