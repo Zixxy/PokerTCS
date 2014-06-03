@@ -251,11 +251,12 @@ public class TableView extends Application implements ViewInterface{
 	
 	@Override
 	public void showCards(final int playerId, final int firstCardNumber, final int secondCardNumber) {
+		System.out.println("in tableView showCards method: "+playerId);
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("ok, tableView showCards");
-				tableControler.showCards(playerId, firstCardNumber, secondCardNumber);
+				tableControler.showCards(playerId+1, firstCardNumber, secondCardNumber);
 			}
 		});
 		
@@ -295,5 +296,11 @@ public class TableView extends Application implements ViewInterface{
 
 	@Override
 	public void setPlayerId(int id) {
+	}
+
+	@Override
+	public void guiClearTableList() {
+		// TODO Auto-generated method stub
+		
 	}
 }
