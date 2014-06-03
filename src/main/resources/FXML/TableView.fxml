@@ -13,7 +13,7 @@
 </image>
 </ImageView>
 <HBox layoutX="619.0" layoutY="680.0" prefHeight="27.0" prefWidth="523.0" spacing="10.0">
-<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" prefHeight="27.0" prefWidth="170.0" />
+<children><TextField fx:id="userCashTextField" layoutX="528.8759765625" layoutY="547.0" onAction="#riseTyping" prefHeight="27.0" prefWidth="170.0" />
 <HBox layoutX="714.8759765625" layoutY="547.0" prefHeight="27.0" prefWidth="346.0" spacing="15.0" AnchorPane.rightAnchor="61.7724609375" AnchorPane.topAnchor="547.0">
 <children><Button fx:id="btnRaise" layoutX="712.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#raiseEvent" prefHeight="25.0" prefWidth="60.0" styleClass="raise" text="Raise" /><Button fx:id="btnFold" layoutX="803.0" layoutY="547.0" mnemonicParsing="false" onAction="#foldEvent" prefHeight="25.0" prefWidth="60.0" styleClass="fold" text="Fold" /><Button fx:id="btnCheck" layoutX="875.2275390625" layoutY="547.0" mnemonicParsing="false" onAction="#checkEvent" prefHeight="25.0" prefWidth="60.0" styleClass="check" text="Check" /><Button fx:id="showCardsButton" mnemonicParsing="false" onAction="#showCardsEvent" prefHeight="25.0" prefWidth="100.0" styleClass="showCards" text="Show Cards" />
 </children>
@@ -329,7 +329,7 @@
 </children>
 </HBox>
 <HBox layoutX="1056.0" layoutY="20.0">
-<children><Button fx:id="exitButton"  onAction="#exitTable" layoutX="1055.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="exit" text="Exit" />
+<children><Button fx:id="exitButton" layoutX="1055.0" layoutY="12.0" mnemonicParsing="false" onAction="#exitTable" prefHeight="30.0" prefWidth="82.0" styleClass="exit" text="Exit" />
 </children>
 </HBox>
 	</children>
