@@ -26,7 +26,7 @@ public class RunHereClient {
 			throw new RuntimeException("Connection error "+ip+":"+port, e);
 		}
 		if(connected){
-			ViewInterface view  = Run.mainWindow.showTableList();
+			ViewInterface view  = Run.mainWindow.showTableList(name);
 			adapter.addView(view);
 			ViewInterface textView = new CommandLine(adapter);
 			adapter.addView(textView);

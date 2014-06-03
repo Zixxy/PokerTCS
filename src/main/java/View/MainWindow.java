@@ -22,11 +22,11 @@ public class MainWindow extends Application implements MainWindowInterface {
 	private Scene actualScene;
 	private AnchorPane mainPane;
 
-
 	private final MainAdapter adapter;
 	public static MainAdapter tempMainAdapter;
 	public static MainWindow recentlyCreatedMainWindow;
-
+	public static String myName;
+	
 	private static final String sync = "synchronizer";
 
 	public static final String TableControlerSynchronizer = "We synchronize on this object during creating instance of TableControler";
@@ -85,8 +85,8 @@ public class MainWindow extends Application implements MainWindowInterface {
 	}
 
 	@Override
-	public ViewInterface showGame(int playerId) {
-		fullyCreatedTableViewInterface = TableView.getTableView(adapter, playerId);
+	public ViewInterface showGame(int playerId, String name) {
+		fullyCreatedTableViewInterface = TableView.getTableView(adapter, playerId, name);
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -155,7 +155,8 @@ public class MainWindow extends Application implements MainWindowInterface {
 	}
 
 	@Override
-	public ViewInterface showTableList() {
+	public ViewInterface showTableList(String name) {
+		myName = name;
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
