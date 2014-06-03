@@ -330,11 +330,6 @@ public class TableControler{
 			secondPlayerCard.setImage(null);
 		}
 
-        if (firstCard == null && secondCard == null) {
-            firstPlayerCard.setImage(null);
-            secondPlayerCard.setImage(null);
-        }
-
         for (int i = 0; i < 2; ++i) {
             int cardId = cards[i].getValue().id;
             int cardColor = getCardColorValue(cards[i].getColor());
