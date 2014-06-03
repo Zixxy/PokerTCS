@@ -14,6 +14,7 @@ import Model.ModelInterface;
 /**
  * Created by arytmetyk on 2014-05-14.
  */
+
 public class CommunicationModel implements ModelInterface {
     Socket socket;
     String ip;

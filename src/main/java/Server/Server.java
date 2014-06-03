@@ -71,8 +71,9 @@ class PlayerListener implements Runnable{
             } catch (IOException e) {
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
-                server.removePlayerFromTable(p,p.tableNumber);
+                if(p.inGame) server.removePlayerFromTable(p,p.tableNumber);
                 System.err.println("Lost connection with player "+p.socket);
+                break;
             }
         }
     }
@@ -179,7 +180,7 @@ public class Server {
     }
 
     public void sendToLobby(String txt) {
-        System.out.println("SEND LOBBY OUT" + txt);
+        //System.out.println("SEND LOBBY OUT" + txt);
         for(PlayerOnline player: connected) {
             if(!player.inGame){
                 player.writer.println(txt);
@@ -188,6 +189,10 @@ public class Server {
     }
     public void guiAddTable(){
         sendToLobby("guiaddtable~"+(tables.size()));
+    }
+    public void guiClearTableList(){
+        System.out.println("Kaze wyczyscic stoly");
+        sendToLobby("guicleartablelist");
     }
     public void guiAddTable(Integer id){
         sendToLobby("guiaddtable~"+(id));
@@ -207,11 +212,19 @@ public class Server {
 
     }
     public void updateLobby(){
+        guiClearTableList();
+        try{
         for(Table t:tables){
+            if(t==null) continue;
             guiAddTable(tables.indexOf(t));
         }
         for(Table t:tables){
+            if(t==null) continue;
             updateNumberOfPlayers(tables.indexOf(t),t.players.size());
+        }} catch(Exception e){
+
+            e.printStackTrace();
+            System.err.println("Error with table detected, waiting for new information about tables");
         }
     }
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
@@ -241,19 +254,18 @@ public class Server {
         guiRemoveTable(tableIndex);
     }
     public void  removePlayerFromTable(PlayerOnline p, int tableIndex){
+        tables.get(p.tableNumber).mo.removePlayer(p.inGameId);
         if(p == tables.get(tableIndex).host) removeTable(tableIndex);
         else {
             p.inGame = false;
             tables.get(tableIndex).players.remove(p);
+            try {
+                tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-
-        try {
-            tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);
-        }
-        catch (IOException e) {
-        	throw new RuntimeException(e);
-        }
-        updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
 
     }
 }
