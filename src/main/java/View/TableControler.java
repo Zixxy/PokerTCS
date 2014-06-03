@@ -97,7 +97,6 @@ public class TableControler{
     public void chatTyping(ActionEvent e){
     	String message = messageTextField.getText();
     	adapter.sendMyMessageToEveryBody(name+": "+message);
-    	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
 
