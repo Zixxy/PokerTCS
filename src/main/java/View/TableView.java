@@ -284,7 +284,7 @@ public class TableView extends Application implements ViewInterface{
 	 */
 	@Override
 	public void guiAddTable(int numberOfTable) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
@@ -303,7 +303,7 @@ public class TableView extends Application implements ViewInterface{
 
 	@Override
 	public void guiClearTableList() {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 }

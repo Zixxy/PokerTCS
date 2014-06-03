@@ -598,7 +598,7 @@ public class ModelOne implements ModelInterface {
     }
 	@Override
 	public void showPlayerCards(int playerId, Card[] cards) {
-		// TODO Auto-generated method stub
+        //JUST FOR NETWORK CONNECTION
 	}
 
     @Override
