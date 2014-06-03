@@ -86,7 +86,7 @@ public class LoginControler {
     	Thread thread = new Thread(){
     		@Override
     		public void run(){
-    			RunHereClient.runClient(ip, Integer.parseInt(port), sendName);
+    			RunHereClient.runClient(ip, Integer.parseInt(port), sendName, pickedImage);
     		}
     	};
     	thread.start();

@@ -48,9 +48,9 @@ public class CommandLine implements ViewInterface{
     }
 
     @Override
-    public void addPlayer(String name, int id) {
+    public void addPlayer(String name, int id, int image) {
         players.add(id);
-        System.out.println("Added player " + name + ", id: " + id);
+        System.out.println("Added player " + name + ", id: " + id +" ,image: " +image);
     }
 
     @Override

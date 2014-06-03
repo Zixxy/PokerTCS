@@ -24,7 +24,7 @@ class ToTableSender implements Runnable {
 
         while (true) {
             for (Player p : mo.players) {
-                mo.adapter.addPlayer(p.getName(), p.getId());
+                mo.adapter.addPlayer(p.getName(), p.getId(), p.getImage());
             }
             try {
                 Thread.sleep(3000);
@@ -157,7 +157,7 @@ public class ModelOne implements ModelInterface {
     }
 
     @Override
-    public int addPlayer(String name) {
+    public int addPlayer(String name, int image) {
         if(!this.started) {
         	if(numberOfPlayers >= 8){
         		System.err.println("No available place");
@@ -167,12 +167,12 @@ public class ModelOne implements ModelInterface {
         	for(Player p : players){
         		if(p.getResigned()){
         			p.setResigned(false);
-        			adapter.addPlayer(name, p.getId());
+        			adapter.addPlayer(name, p.getId(),image);
         			return p.getId();
         		}
         	}
-            players.add(new Player(name, startedAmount, numberOfPlayers -1));
-            adapter.addPlayer(name, numberOfPlayers - 1);
+            players.add(new Player(name, startedAmount, numberOfPlayers -1,image));
+            adapter.addPlayer(name, numberOfPlayers - 1,image);
             return numberOfPlayers-1;
         }
         return -1;
@@ -181,7 +181,11 @@ public class ModelOne implements ModelInterface {
     @Override
     public void setPlayerName(String name) {
     }
-
+	@Override
+	public void setPlayerImage(int image) {
+		// TODO Auto-generated method stub
+		
+	}
     @Override
     public void removePlayer(int playerId) {
         Player player = players.get(playerId);
@@ -242,7 +246,7 @@ public class ModelOne implements ModelInterface {
                 return;
         int i=0;
         for(Player p : players){
-            if(!p.getResigned()) adapter.addPlayer(p.getName(),i);
+            if(!p.getResigned()) adapter.addPlayer(p.getName(),i,p.getImage());
             i++;
         }
         if (!started) {
@@ -617,7 +621,8 @@ public class ModelOne implements ModelInterface {
     }
 	@Override
 	public void sendOutMessage(String text) {
-		// TODO Auto-generated method stub
+		// UNUSED
 		
 	}
+
 }

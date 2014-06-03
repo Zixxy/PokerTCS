@@ -15,7 +15,7 @@ import View.ViewInterface;
  */
 public class RunHereClient {
 	private static Config config;
-	public static void runClient(String ip, int port, String name){
+	public static void runClient(String ip, int port, String name, int image){
 		MainAdapter adapter = Run.adapter;
 		ModelInterface model = null;
 		boolean connected = false;
@@ -32,6 +32,7 @@ public class RunHereClient {
 			adapter.addView(textView);
 			adapter.addModel(model);
 			model.setPlayerName(name);
+			model.setPlayerImage(image);
 		}
 	}
     @Deprecated

@@ -4,7 +4,7 @@ import Model.Deck.Card;
 
 public interface ViewInterface extends TableListInterface{
 	public void almostConstructor();
-	public void addPlayer(String name, int id);
+	public void addPlayer(String name, int id, int image);
 	public void removePlayer(int id);
 	public void updatePlayerCash(int id, int cash);
 	public void updateActualPlayer(int id);  // set highlight to player with id

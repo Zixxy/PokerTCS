@@ -38,9 +38,9 @@ public class MainAdapter implements AdapterInterface {
         try {
             cash = Integer.valueOf(amount);
         }
-        catch (NumberFormatException e)
-        {
-        	return;
+        catch (NumberFormatException e) 
+        { 
+        	throw new RuntimeException(e);
         }
         if(cash < 0)
             return;
@@ -67,9 +67,9 @@ public class MainAdapter implements AdapterInterface {
     	model.sendOutMessage(text);
     }
     @Override
-    public void addPlayer(String name, int id){
+    public void addPlayer(String name, int id, int image){
         for(ViewInterface view: views) {
-            view.addPlayer(name, id);
+            view.addPlayer(name, id, image);
         }
 
     }

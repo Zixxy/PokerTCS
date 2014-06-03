@@ -195,7 +195,7 @@ public class TableListControler implements ViewInterface{
 	}
 
 	@Override
-	public void addPlayer(String name, int id) {
+	public void addPlayer(String name, int id, int image) {
         // UNUSED
 		
 	}

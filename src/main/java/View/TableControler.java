@@ -1,6 +1,7 @@
 package View;
 
-import Main.Run;
+import java.util.HashSet;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,20 +24,21 @@ import Model.Deck.Card;
 public class TableControler{
 	private MainAdapter adapter;
 	
-	private String name;
-	
     volatile private boolean isConstructed = false;
     
 	private int playerId;
 	
 	public Card[] thisPlayerCards;
 	
+	public HashSet<Integer> players;
+	
 	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
-		name = TableView.tempName;
 		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
+		players = new HashSet<Integer>();
+		players.add(playerId);
 		TableView.RecentlyCreatedInstanceOfTableControler = this;
 	}
 	
@@ -96,7 +98,7 @@ public class TableControler{
     @FXML
     public void chatTyping(ActionEvent e){
     	String message = messageTextField.getText();
-    	adapter.sendMyMessageToEveryBody(name+": "+message);
+    	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
     
@@ -141,19 +143,7 @@ public class TableControler{
     		}
     	}));
     }
-
-    @FXML
-    public void exitTable(ActionEvent e){
-        javafx.application.Platform.runLater((new Runnable() {
-            @Override
-            public void run(){
-                adapter.removePlayerFromTable();
-                ViewInterface view  = Run.mainWindow.showTableList(name);
-                adapter.exchangeReference(TableView.RecentlyCreatedInstanceOfThis,view);
-            }
-        }));
-    }
-
+    
     @FXML
     public void showCardsEvent(ActionEvent e){
     	javafx.application.Platform.runLater((new Runnable() {
@@ -210,7 +200,6 @@ public class TableControler{
     	newMessage.append("\n");
     	if(gameCommunicate)
     	{} // text will be red.
-    	//adapter.
     	chatTextArea.appendText(newMessage.toString());
     }
     
@@ -223,7 +212,9 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
     }
     
-    public void addPlayer(String name, int id){
+    public void addPlayer(String name, int id, int image){
+    	--id;
+    	players.add(id);
     	Text text = new Text(name);
     	DropShadow ds = new DropShadow();
     	ds.setOffsetX(4.0f);
@@ -231,9 +222,10 @@ public class TableControler{
     	text.setEffect(ds);
     	text.setFill(Color.BURLYWOOD);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
-        playersNameBox[id - 1].getChildren().setAll(text);
+        playersNameBox[id].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
-    	playersFace[id - 1].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
+    	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
+    	//TODO
     }
     
     public void removePlayer(int id){
@@ -241,6 +233,9 @@ public class TableControler{
         playersNameBox[id].getChildren().clear();
         playersCashBox[id].getChildren().clear();
         playersLastMove[id].getChildren().clear();
+        playersFace[id].setImage(null);
+        players.remove(id);
+        
     }
     
     public void updatePlayerCash(int id,int cash){
@@ -283,6 +278,7 @@ public class TableControler{
     }
 
     public void clearTable() {
+    	
         for (ImageView cardImage: cardsOnTable) {
             cardImage.setImage(null);
         }
@@ -349,11 +345,10 @@ public class TableControler{
 		Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
 		for(int i = 0; i < playersFace.length; ++i){
 			if(i!=id){
-				if(playersFace[i] != null){
+				if(players.contains(i)){
 					playersFace[i].setImage(image);
 				}
 			}
-			
 		}
 		playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/actualPerson.gif"))); 
 	}
@@ -392,21 +387,23 @@ public class TableControler{
 			default:
 				throw new RuntimeException("Unknown operation type");
 		}
+		--id;
     	text.setFill(Color.WHITE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
     	text.setTextAlignment(TextAlignment.CENTER);
-    	playersLastMove[id-1].getChildren().clear();
-    	playersLastMove[id-1].getChildren().add(text);		
+    	playersLastMove[id].getChildren().clear();
+    	playersLastMove[id].getChildren().add(text);		
 	}
 	
 	public void showCards(int id, int firstCardNumber, int secondCardNumber){
+		--id;
 		System.out.println("No i wyswietlam karty w tableControler.");
 		Integer[] cardsNumbers = new Integer[] { firstCardNumber, secondCardNumber };
 		for (int i = 0; i < 2; ++i) {
 			String s = cardsNumbers[i].toString();
             System.out.println("/main/java/Cards/" + s + ".png");
             Image image = new Image(TableView.class.getResourceAsStream("/Cards/" + s + ".png"));
-            playersCards[2*(id-1) + i].setImage(image);
+            playersCards[2*id + i].setImage(image);
         }
 	}
 }

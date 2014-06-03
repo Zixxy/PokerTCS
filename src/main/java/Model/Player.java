@@ -4,7 +4,8 @@ package Model;
  * Created by bartek on 05.05.14.
  */
 public class Player{
-    public Player(String arg1, Integer arg2, int id){
+    public Player(String arg1, Integer arg2, int id, int image){
+    	this.image = image;
     	this.id = id;
         this.name=arg1;
         this.money=arg2;
@@ -12,6 +13,7 @@ public class Player{
         resigned=false;
         ready = false;
     }
+    private int image;
     private final int id;
     private String name;
     private int money;
@@ -97,4 +99,10 @@ public class Player{
     public void setReady(boolean ready) {
         this.ready = ready;
     }
+	public int getImage() {
+		return image;
+	}
+	public void setImage(int image) {
+		this.image = image;
+	}
 }

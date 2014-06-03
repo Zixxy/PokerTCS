@@ -98,12 +98,12 @@ public class TableView extends Application implements ViewInterface{
 	}
 
 	@Override
-	public void addPlayer(final String name,final int id) {
+	public void addPlayer(final String name,final int id, final int image) {
 		javafx.application.Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				tableControler.addPlayer(name, id+1);
+				tableControler.addPlayer(name, id+1, image);
 			}
 		});
 	}

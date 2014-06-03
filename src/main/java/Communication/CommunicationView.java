@@ -126,9 +126,9 @@ public class CommunicationView  implements ViewInterface{
     }
 
     @Override
-    public void addPlayer(String name, int id) {
+    public void addPlayer(String name, int id, int image) {
         synchronized(CommunicationView.class) {
-            this.sendCommand("addPlayer~" + name + "~" + id);
+            this.sendCommand("addPlayer~" + name + "~" + id +"~" +image);
         }
     }
 

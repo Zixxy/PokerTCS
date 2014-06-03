@@ -79,6 +79,7 @@ class PlayerListener implements Runnable{
     }
 }
 class PlayerOnline{
+	public int image;
     public volatile boolean inGame;
     public String name;
     public PrintWriter writer;
@@ -174,12 +175,19 @@ public class Server {
         		System.err.println(order);
                 setPlayerName(p,txt[1]);
                 break;
+        	case "setplayerimage":
+        		System.err.println(order);
+        		setPlayerImage(p,new Integer(txt[1]));
              default:
                 throw new RuntimeException("Unknown operation type "+txt);
         }
     }
 
-    public void sendToLobby(String txt) {
+    private void setPlayerImage(PlayerOnline p, int image) {
+		p.image = image;
+	}
+
+	public void sendToLobby(String txt) {
         //System.out.println("SEND LOBBY OUT" + txt);
         for(PlayerOnline player: connected) {
             if(!player.inGame){
@@ -230,7 +238,7 @@ public class Server {
     public void addPlayerToTable(PlayerOnline p, int tableIndex){
         p.inGame=true;
         p.tableNumber=tableIndex;
-        p.inGameId = tables.get(tableIndex).mo.addPlayer(p.toString());
+        p.inGameId = tables.get(tableIndex).mo.addPlayer(p.toString(), p.image);
         tables.get(tableIndex).players.add(p);
         try {
             tables.get(tableIndex).cv.addOut(p.writer, p.inGameId);

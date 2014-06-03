@@ -69,7 +69,7 @@ public class CommunicationModel implements ModelInterface {
         
         switch(tab[0]){
         	case "addplayer":
-        		adapter.addPlayer(tab[1],new Integer(tab[2]));
+        		adapter.addPlayer(tab[1],new Integer(tab[2]), new Integer(tab[3]));
         		break;
         	case "removeplayer":
         		adapter.removePlayer(new Integer(tab[1]));
@@ -200,8 +200,8 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
-    public int addPlayer(String name) {
-        out.println("addPlayer~"+name);
+    public int addPlayer(String name, int image) {
+        out.println("addPlayer~"+name+"~"+image);
         return 7;//7 to bardzo duzo
     }
 
@@ -209,6 +209,11 @@ public class CommunicationModel implements ModelInterface {
     public void setPlayerName(String name) {
         out.println("setPlayerName~"+name);
     }
+	@Override
+	public void setPlayerImage(int image) {
+		out.println("setPlayerName~"+image);
+		
+	}
 
     @Override
     public void removePlayer(int playerId) {
@@ -303,7 +308,8 @@ public class CommunicationModel implements ModelInterface {
     }
 	@Override
 	public void sendOutMessage(String text) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		out.println("sendoutmessage~"+text);
 	}
+
 }

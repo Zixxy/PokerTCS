@@ -24,7 +24,7 @@ public interface AdapterInterface {
     public int getActualStage();
     public void sendMyMessageToEveryBody(String text);
     public void start();
-    public void addPlayer(String name, int id);
+    public void addPlayer(String name, int id, int image);
     public void removePlayer(int id);
     public void updateActualPlayer(int id);
     public void updateResignPlayer(int id);
