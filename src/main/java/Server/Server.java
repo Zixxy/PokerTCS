@@ -199,7 +199,7 @@ public class Server {
         }
     }
     public void guiAddTable(){
-        sendToLobby("guiaddtable~"+(tables.size()));
+        sendToLobby("guiaddtable~"+(tables.size())+"~false");
     }
     public void guiClearTableList(){
         System.out.println("Kaze wyczyscic stoly");
