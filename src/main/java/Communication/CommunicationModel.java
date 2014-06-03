@@ -214,7 +214,7 @@ public class CommunicationModel implements ModelInterface {
     }
 	@Override
 	public void setPlayerImage(int image) {
-		out.println("setPlayerName~"+image);
+		out.println("setPlayerImage~"+image);
 		
 	}
 

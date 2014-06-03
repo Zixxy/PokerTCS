@@ -178,12 +178,14 @@ public class Server {
         	case "setplayerimage":
         		System.err.println(order);
         		setPlayerImage(p,new Integer(txt[1]));
+                break;
              default:
                 throw new RuntimeException("Unknown operation type "+txt);
         }
     }
 
     private void setPlayerImage(PlayerOnline p, int image) {
+        System.err.println("TESTING:"+ p.name);
 		p.image = image;
 	}
 
@@ -253,6 +255,7 @@ public class Server {
     }
     public void setPlayerName(PlayerOnline p, String txt){
         p.name=txt;
+        System.err.println("TESTING SET PLAYER NAME:"+ p.name);
     }
     public void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){

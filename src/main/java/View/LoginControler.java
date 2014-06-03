@@ -86,6 +86,7 @@ public class LoginControler {
     	Thread thread = new Thread(){
     		@Override
     		public void run(){
+                System.err.println("sendname: " + sendName);
     			RunHereClient.runClient(ip, Integer.parseInt(port), sendName, pickedImage);
     		}
     	};
