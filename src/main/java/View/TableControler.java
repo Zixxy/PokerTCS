@@ -1,6 +1,7 @@
 package View;
 
-import Main.Run;
+import java.util.HashSet;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,14 +21,31 @@ import javafx.scene.text.TextAlignment;
 import Adapter.MainAdapter;
 import Model.Deck.Card;
 
-import java.util.HashSet;
-
 public class TableControler{
     private MainAdapter adapter;
     private HashSet<Integer> players;
     private String name;
 
     volatile private boolean isConstructed = false;
+    
+	private int playerId;
+	
+	public Card[] thisPlayerCards;
+	
+	public HashSet<Integer> players;
+	
+	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
+	
+	public TableControler(){
+		playerId = TableView.tempPlayerId;
+		adapter = TableView.tempAdapter;
+		players = new HashSet<Integer>();
+		players.add(playerId);
+		TableView.RecentlyCreatedInstanceOfTableControler = this;
+	}
+	
+	@FXML
+	private HBox PotBox;
 
     private int playerId;
 
@@ -53,22 +71,22 @@ public class TableControler{
 
     @FXML
     private TextField userCashTextField;
-
+    
     @FXML
     private Button btnCheck, btnRaise, btnFold, startButton, showCardsButton, exitButton;
-
+    
     @FXML
     private ImageView playerOneFace, playerTwoFace, playerThreeFace, playerFourFace, playerFiveFace,
-            playerSixFace, playerSevenFace, playerEightFace;
+    				playerSixFace, playerSevenFace, playerEightFace;
     private ImageView[] playersFace;
-    @FXML
+	@FXML
     private ImageView firstPlayerCard, secondPlayerCard;
     private ImageView[] playersCard;
 
     @FXML
     private ImageView firstCardOnTable, secondCardOnTable, thirdCardOnTable, fourthCardOnTable, fifthCardOnTable;
     private ImageView[] cardsOnTable;
-
+    
     @FXML
     private HBox playerOneCashBox, playerTwoCashBox, playerThreeCashBox, playerFourCashBox, playerFiveCashBox,
             playerSixCashBox, playerSevenCashBox, playerEightCashBox;
@@ -83,25 +101,25 @@ public class TableControler{
     private HBox playerOneLinedCash, playerTwoLinedCash, playerThreeLinedCash, playerFourLinedCash, playerFiveLinedCash,
             playerSixLinedCash, playerSevenLinedCash, playerEightLinedCash;
     private HBox[] playersLinedCash;
-
+    
     @FXML
     private HBox playerOneLastMove, playerTwoLastMove, playerThreeLastMove, playerFourLastMove, playerFiveLastMove,
             playerSixLastMove, playerSevenLastMove, playerEightLastMove;
     private HBox[] playersLastMove;
-
+    
     @FXML
     private ImageView playerOneFirstCard, playerOneSecondCard, playerTwoFirstCard, playerTwoSecondCard, playerThreeFirstCard,
             playerThreeSecondCard, playerFourFirstCard, playerFourSecondCard, playerFiveFirstCard, playerFiveSecondCard,
             playerSixFirstCard, playerSixSecondCard, playerSevenFirstCard, playerSevenSecondCard, playerEightFirstCard, playerEightSecondCard;
     private ImageView[] playersCards;
-
+    
     @FXML
     public void chatTyping(ActionEvent e){
         String message = messageTextField.getText();
         adapter.sendMyMessageToEveryBody(name+": "+message);
         messageTextField.clear();
     }
-
+    
     @FXML
     public void riseTyping(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -112,7 +130,7 @@ public class TableControler{
             }
         }));
     }
-
+    
     @FXML
     public void checkEvent(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -122,7 +140,7 @@ public class TableControler{
             }
         }));
     }
-
+    
     @FXML
     public void foldEvent(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -132,7 +150,7 @@ public class TableControler{
             }
         }));
     }
-
+    
     @FXML
     public void raiseEvent(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -143,7 +161,7 @@ public class TableControler{
             }
         }));
     }
-
+    
     @FXML
     public void exitTable(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -166,7 +184,7 @@ public class TableControler{
             }
         }));
     }
-
+    
     @FXML
     public void startEvent(ActionEvent e){
         javafx.application.Platform.runLater((new Runnable() {
@@ -239,6 +257,10 @@ public class TableControler{
         text.setTextAlignment(TextAlignment.CENTER);
         playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
         //TODO
+    	text.setTextAlignment(TextAlignment.CENTER);
+    	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
+    	System.out.println("name :" +name+" id: "+id+ "image: " +image);
+    	//TODO
     }
 
     public void removePlayer(int id){
@@ -288,6 +310,7 @@ public class TableControler{
     }
 
     public void clearTable() {
+    	
         for (ImageView cardImage: cardsOnTable) {
             cardImage.setImage(null);
         }
@@ -307,6 +330,11 @@ public class TableControler{
             playersCards[i].setImage(null);
         }
         Card[] cards = new Card[] {firstCard, secondCard};
+		
+		if (firstCard == null && secondCard == null) {
+			firstPlayerCard.setImage(null);
+			secondPlayerCard.setImage(null);
+		}
 
         if (firstCard == null && secondCard == null) {
             firstPlayerCard.setImage(null);
@@ -324,7 +352,21 @@ public class TableControler{
 
             playersCard[i].setImage(image);
         }
-    }
+	}
+	
+	public void removePlayersLinedCash(int id){
+		updatePlayerLinedCash(id, -1);
+	}
+	
+	public void clearPlayerLastMove(int id){
+		playersLastMove[id].getChildren().clear();
+	}
+	
+	public void updatePlayerLinedCash(int id, int cash) {
+		Text text = new Text("$"+Integer.toString(cash));
+		text.setCache(true);
+		text.setFill(Color.MAROON);
+		text.setFont(Font.font(null, FontWeight.BOLD, 19));
 
     public void removePlayersLinedCash(int id){
         updatePlayerLinedCash(id, -1);

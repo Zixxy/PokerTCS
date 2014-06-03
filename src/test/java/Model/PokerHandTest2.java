@@ -1,4 +1,4 @@
-package java.Model;
+package Model;
 
 import static org.junit.Assert.*;
 
