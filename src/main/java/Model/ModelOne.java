@@ -11,15 +11,39 @@ import Model.Deck.Card;
 /**
  * Created by bartek on 05.05.14.
  */
+
+class ToTableSender implements Runnable {
+    ModelOne mo;
+
+    public ToTableSender(ModelOne mo) {
+        this.mo = mo;
+    }
+
+    @Override
+    public void run() {
+
+        while (true) {
+            for (Player p : mo.players) {
+                mo.adapter.addPlayer(p.getName(), p.getId());
+            }
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                System.err.println("InteruppedException ale cocojambo i do przodu");
+            }
+        }
+    }
+}
 public class ModelOne implements ModelInterface {
+    private Thread updateSender;
     private int pot;
     private int actualId;
     private int smallBlindPosition;
     private int bigBlindPosition;
-    private AdapterInterface adapter;
+    public AdapterInterface adapter;
     private boolean started;//is game started?
     private int numberOfPlayers;
-    private ArrayList<Player> players;
+    public ArrayList<Player> players;
     private int limit;
     private int onTable;
     private int currentPlayerId;
@@ -35,6 +59,7 @@ public class ModelOne implements ModelInterface {
 
 
     public ModelOne(AdapterInterface arg1){
+
         actualId = 0;
         this.started=false;
         this.numberOfPlayers=0;
@@ -47,6 +72,8 @@ public class ModelOne implements ModelInterface {
         this.smallBlindPosition = 0;
         this.smallBlind = 10;
         this.bigBlind = 20;
+        this.updateSender = new Thread(new ToTableSender(this));
+        this.updateSender.start();
     }//
     @Override
     public boolean isStarted() {
