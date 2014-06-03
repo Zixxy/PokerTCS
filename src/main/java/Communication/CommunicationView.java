@@ -243,7 +243,11 @@ public class CommunicationView  implements ViewInterface{
 	}
 	@Override
 	public void showCards(int playerId, int firstCardNumber, int secondCardNumber) {
-        throw new RuntimeException("This function should never be used");
+        synchronized(CommunicationView.class) {
+            this.sendCommand("showCards~" + playerId + "~" + firstCardNumber  + "~" + secondCardNumber);
+        }
+
+        //throw new RuntimeException("This function should never be used");
 	}
 	@Override
 	public void setPlayerId(int id) {

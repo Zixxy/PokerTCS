@@ -132,7 +132,7 @@ public class CommunicationModel implements ModelInterface {
                 adapter.setPlayerId(new Integer(tab[1]));
                 break;
         	default:
-                throw new RuntimeException("Unknown operation type");
+                throw new RuntimeException("Unknown operation type: " + txt);
         }
     }
     @Override

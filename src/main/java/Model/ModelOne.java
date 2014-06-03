@@ -432,7 +432,8 @@ public class ModelOne implements ModelInterface {
         for(Player p:players) {
 
 
-            if (!p.getResigned()) adapter.sendMessage("Gracz "+p.getName() + " mial "+ Arrays.deepToString(p.getCards()));
+            adapter.sendMessage("Gracz " + p.getName() + " miał: " + getPlayerHand(p).toString());
+            adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
         }
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
 

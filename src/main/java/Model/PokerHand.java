@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +52,17 @@ public class PokerHand implements Comparable<PokerHand>{
     }
     @Override
     public String toString(){
-    	return cards.toString();
+        List<Deck.Card> pom = new ArrayList<>();
+        pom.addAll(cards);
+        Collections.reverse(pom);
+        String out;
+        if(handName == HandNames.TWOPAIRS) {
+            out = "Two pairs";
+        }
+        else {
+            out = handName.toString().substring(0,1) + handName.toString().toLowerCase().substring(1);
+        }
+    	return out + " " + pom.toString();
     }
     @Override
     public int compareTo(PokerHand o) {
