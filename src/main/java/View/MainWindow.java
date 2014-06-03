@@ -45,7 +45,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
+
 		mainStage = primaryStage;
 		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	        public void handle(WindowEvent e){

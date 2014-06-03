@@ -188,115 +188,115 @@ public class TableListControler implements ViewInterface{
 
 	@Override
 	public void almostConstructor() {
-		// TODO Auto-generated method stub
+		// UNUSED
 		
 	}
 
 	@Override
 	public void addPlayer(String name, int id) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void removePlayer(int id) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void updatePlayerCash(int id, int cash) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void updateActualPlayer(int id) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void updateNormalPlayer(int id) {
-		// TODO Auto-generated method stub
+// UNUSED
 		
 	}
 
 	@Override
 	public void updateResignedPlayer(int id) {
-		// TODO Auto-generated method stub
-		
+        // UNUSED
 	}
 
 	@Override
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard,
 			Card thirdCard) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void addOneCard(Card card) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void clearTable() {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void updatePlayerHand(int id, Card firstCard, Card secondCard) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void updatePlayerLinedCash(int id, int cash) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void removePlayersLinedCash(int id) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void sendMessage(String text) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void startNewRound() {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void setPot(int cash) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void setLastMove(int id, int move) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
 	@Override
 	public void showCards(int playerId, int firstCardNumber,
 			int secondCardNumber) {
-		// TODO Auto-generated method stub
+        // UNUSED
 		
 	}
 
     public void exitServer(ActionEvent actionEvent) {
         System.exit(0);
+        //TODO zmienic na cofanie do okna logowania
     }
 }
