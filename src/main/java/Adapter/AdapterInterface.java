@@ -50,4 +50,6 @@ public interface AdapterInterface {
     public void setPlayerName(String name);
     public void start(int id);
     public void guiClearTableList();
+    public void exchangeReference(ViewInterface from, ViewInterface to);
+    public void removeAllViews();
 }

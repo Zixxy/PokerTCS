@@ -7,9 +7,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import Adapter.AdapterInterface;
+import Main.Run;
 import Model.Deck;
 import Model.Deck.*;
 import Model.ModelInterface;
+import View.MainWindow;
 
 /**
  * Created by arytmetyk on 2014-05-14.
@@ -56,7 +58,8 @@ public class CommunicationModel implements ModelInterface {
                         communicationModel.parse(in2.readLine());
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException("Lost connection with server");
+                    Run.mainWindow.showMainMenu();
+                    break;
                     //Return to the main window should be here
                 }
             }

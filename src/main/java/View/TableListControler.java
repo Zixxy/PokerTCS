@@ -298,7 +298,6 @@ public class TableListControler implements ViewInterface{
 	}
 
     public void exitServer(ActionEvent actionEvent) {
-        System.exit(0);
-        //TODO zmienic na cofanie do okna logowania
+        Run.mainWindow.showMainMenu();
     }
 }

@@ -139,6 +139,7 @@ public class MainWindow extends Application implements MainWindowInterface {
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+                adapter.removeAllViews();
 				mainStage.setResizable(true);
 				mainStage.setHeight(560);
 				mainStage.setWidth(750);
