@@ -264,6 +264,9 @@ public class MainAdapter implements AdapterInterface {
 
 		System.out.println(views);
     	views.remove(from);
-    	if(!views.contains(to)) addView(to);
+    	if(!views.contains(to) && to!=null) addView(to);
+    }
+    public void removeAllViews(){
+        views = new ArrayList<ViewInterface>();
     }
 }
