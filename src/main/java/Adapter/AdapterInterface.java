@@ -45,7 +45,7 @@ public interface AdapterInterface {
     public void updateNumberOfPlayers(int numberOfTable, int currentNumberOfPlayers);
     public void addTable();
     public void addPlayerToTable(int tableIndex);
-    public void removePlayerFromTable(int tableIndex);
+    public void removePlayerFromTable();
     public void setPlayerId(int id);
     public void setPlayerName(String name);
     public void start(int id);

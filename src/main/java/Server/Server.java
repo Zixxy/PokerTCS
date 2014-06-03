@@ -168,7 +168,7 @@ public class Server {
         		removeTable(new Integer(txt[1]));
         		break;
         	case "removeplayerfromtable":
-        		removePlayerFromTable(p,new Integer(txt[1]));
+        		removePlayerFromTable(p,p.tableNumber);
         		break;
         	case "setplayername":
         		System.err.println(order);

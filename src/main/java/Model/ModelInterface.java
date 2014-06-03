@@ -34,7 +34,7 @@ public interface ModelInterface {
 	void resign(int playerId);   // player is resigning to game
 	void showPlayerCards(int playerId, Card[] cards);
     void addTable();
-    void removePlayerFromTable(int tableIndex);
+    void removePlayerFromTable();
     void addPlayerToTable(int tableIndex);
 }
 

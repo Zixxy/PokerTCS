@@ -329,7 +329,7 @@
 </children>
 </HBox>
 <HBox layoutX="1056.0" layoutY="20.0">
-<children><Button fx:id="exitButton" layoutX="1055.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="exit" text="Exit" />
+<children><Button fx:id="exitButton"  onAction="#exitTable" layoutX="1055.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" styleClass="exit" text="Exit" />
 </children>
 </HBox>
 	</children>

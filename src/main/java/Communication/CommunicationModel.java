@@ -293,8 +293,8 @@ public class CommunicationModel implements ModelInterface {
     }
 
     @Override
-    public void removePlayerFromTable(int tableIndex) {
-        out.println("removeplayerfromtable~"+tableIndex);
+    public void removePlayerFromTable() {
+        out.println("removeplayerfromtable");
     }
 
     @Override
