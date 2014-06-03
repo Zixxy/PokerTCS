@@ -62,7 +62,10 @@ public class MainAdapter implements AdapterInterface {
             view.sendMessage(text);
         }
     }
-
+    @Override
+    public void sendMyMessageToEveryBody(String text){
+    	model.sendOutMessage(text);
+    }
     @Override
     public void addPlayer(String name, int id){
         for(ViewInterface view: views) {

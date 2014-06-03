@@ -36,5 +36,6 @@ public interface ModelInterface {
     void addTable();
     void removePlayerFromTable(int tableIndex);
     void addPlayerToTable(int tableIndex);
+    void sendOutMessage(String text);
 }
 

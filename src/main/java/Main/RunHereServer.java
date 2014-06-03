@@ -9,6 +9,6 @@ public class RunHereServer {
 	public static void runServer(int port, String name){
 		MainAdapter adapter = Run.adapter;
 		Server server = new Server(port);
-		Run.mainWindow.showTableList();
+		Run.mainWindow.showTableList(name);
 	}
 }

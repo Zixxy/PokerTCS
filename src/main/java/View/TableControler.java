@@ -22,6 +22,8 @@ import Model.Deck.Card;
 public class TableControler{
 	private MainAdapter adapter;
 	
+	private String name;
+	
     volatile private boolean isConstructed = false;
     
 	private int playerId;
@@ -31,6 +33,7 @@ public class TableControler{
 	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
+		name = TableView.tempName;
 		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
 		TableView.RecentlyCreatedInstanceOfTableControler = this;
@@ -92,6 +95,7 @@ public class TableControler{
     @FXML
     public void chatTyping(ActionEvent e){
     	String message = messageTextField.getText();
+    	adapter.sendMyMessageToEveryBody(name+": "+message);
     	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
@@ -183,6 +187,7 @@ public class TableControler{
     	newMessage.append("\n");
     	if(gameCommunicate)
     	{} // text will be red.
+    	//adapter.
     	chatTextArea.appendText(newMessage.toString());
     }
     

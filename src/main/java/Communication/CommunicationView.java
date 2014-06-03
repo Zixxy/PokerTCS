@@ -101,6 +101,9 @@ public class CommunicationView  implements ViewInterface{
         	case "showcards":
         		sendCommand(order);
         		break;
+        	case "sendoutmessage":
+        		adapter.sendMessage(txt[1]);
+        		break;
         	default:
                 throw new RuntimeException("Unknown operation type "+txt);
         }
