@@ -61,26 +61,6 @@
 </GridPane>
 </children>
 </Pane>
-<Pane layoutX="668.0" layoutY="495.0" prefHeight="136.0" prefWidth="110.0">
-<children>
-<GridPane alignment="CENTER" prefHeight="145.0" prefWidth="110.0">
-<children>
-<ImageView fx:id="playerOneFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-<HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="49.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerOneLastMove" alignment="CENTER" blendMode="DARKEN" prefHeight="32.0" prefWidth="110.0" GridPane.rowIndex="3" />
-</children>
-<columnConstraints>
-<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-</columnConstraints>
-<rowConstraints>
-<RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-<RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
-<RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-<RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
-</rowConstraints>
-</GridPane>
-</children>
-</Pane>
 <Pane layoutX="283.0" layoutY="1.0" prefHeight="129.0" prefWidth="110.0">
 <children>
 <GridPane alignment="CENTER" prefHeight="145.0" prefWidth="110.0">
@@ -207,7 +187,7 @@
 <HBox fx:id="playerFourLinedCash" layoutX="315.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFiveLinedCash" layoutX="781.0" layoutY="166.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerSevenLinedCash" layoutX="924.0" layoutY="404.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerEightLinedCash" layoutX="663.0" layoutY="389.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="491.0" layoutY="88.0" prefHeight="30.0" prefWidth="171.0" />
+<HBox fx:id="playerEightLinedCash" layoutX="827.0" layoutY="521.0" prefHeight="17.0" prefWidth="46.0" /><HBox fx:id="PotBox" alignment="CENTER" layoutX="491.0" layoutY="88.0" prefHeight="30.0" prefWidth="171.0" />
 <Pane layoutX="14.0" layoutY="555.0" prefHeight="136.0" prefWidth="261.0">
 <children><TextArea fx:id="chatTextArea" editable="false" prefHeight="111.0" prefWidth="261.0" /><TextField fx:id="messageTextField" layoutY="110.0" onAction="#chatTyping" prefHeight="27.0" prefWidth="261.0" />
 </children>
@@ -332,5 +312,25 @@
 <children><Button fx:id="exitButton" layoutX="1055.0" layoutY="12.0" mnemonicParsing="false" onAction="#exitTable" prefHeight="30.0" prefWidth="82.0" styleClass="exit" text="Exit" />
 </children>
 </HBox>
+<Pane layoutX="699.0" layoutY="494.0">
+<children><GridPane alignment="CENTER" prefHeight="145.0" prefWidth="110.0">
+<children>
+<ImageView fx:id="playerOneFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<HBox fx:id="playerOneNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+<HBox fx:id="playerOneCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+<HBox fx:id="playerOneLastMove" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
+</children>
+<columnConstraints>
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+</columnConstraints>
+<rowConstraints>
+<RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+</rowConstraints>
+</GridPane>
+</children>
+</Pane>
 	</children>
 </AnchorPane>
