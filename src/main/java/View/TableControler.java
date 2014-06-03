@@ -29,7 +29,7 @@ public class TableControler{
 
     volatile private boolean isConstructed = false;
     
-
+    private int playerId;
 	
 	public HashSet<Integer> players;
 	
@@ -43,16 +43,12 @@ public class TableControler{
 		players.add(playerId);
 		TableView.RecentlyCreatedInstanceOfTableControler = this;
 	}
-	
-
-
-    private int playerId;
 
     public Card[] thisPlayerCards;
 
     ///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 
-
+    
 
     @FXML
     private HBox PotBox;
@@ -384,7 +380,11 @@ public class TableControler{
         Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
         playersFace[id].setImage(image);
     }
-
+    
+    public void setPlayerId(int id) {
+		playerId = id;
+	}
+    
     public void setLastMove(int id, int move) {
 		/*
 		 * move:
