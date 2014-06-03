@@ -101,7 +101,18 @@ public class TableControler{
     	typeMessageToUserInChat(message, false);
     	messageTextField.clear();
     }
-
+    
+    @FXML
+    public void riseTyping(ActionEvent e){
+    	javafx.application.Platform.runLater((new Runnable() {
+    		@Override
+    		public void run(){
+    			adapter.raise(playerId, userCashTextField.getText());
+    			userCashTextField.clear();
+    		}
+    	}));
+    }
+    
     @FXML
     public void checkEvent(ActionEvent e){
     	javafx.application.Platform.runLater((new Runnable() {
@@ -201,7 +212,7 @@ public class TableControler{
     	text.setTextAlignment(TextAlignment.CENTER);
     }
     
-    public void addPlayer(String name, int id){
+    public void addPlayer(String name, int id, int image){
     	--id;
     	players.add(id);
     	Text text = new Text(name);
@@ -214,6 +225,7 @@ public class TableControler{
         playersNameBox[id].getChildren().setAll(text);
     	text.setTextAlignment(TextAlignment.CENTER);
     	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
+    	//TODO
     }
     
     public void removePlayer(int id){
@@ -282,6 +294,9 @@ public class TableControler{
 	}
 	
 	public void updatePlayerHand(Card firstCard, Card secondCard) {
+		for(int i = 0; i < 16 ;i++){
+			playersCards[i].setImage(null);
+		}
         Card[] cards = new Card[] {firstCard, secondCard};
 		
 		if (firstCard == null && secondCard == null) {
@@ -373,7 +388,7 @@ public class TableControler{
 				throw new RuntimeException("Unknown operation type");
 		}
 		--id;
-    	text.setFill(Color.BLACK);
+    	text.setFill(Color.WHITE);
     	text.setFont(Font.font(null, FontWeight.BOLD, 14));
     	text.setTextAlignment(TextAlignment.CENTER);
     	playersLastMove[id].getChildren().clear();

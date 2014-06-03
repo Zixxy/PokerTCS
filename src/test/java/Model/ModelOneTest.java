@@ -1,4 +1,4 @@
-package java.Model;
+package Model;
 
 import junit.framework.TestCase;
 import Adapter.MainAdapter;
@@ -15,10 +15,10 @@ public class ModelOneTest extends TestCase {
     public void testFold() throws Exception {
         MainAdapter adapter = new MainAdapter();
         ModelOne model= new ModelOne(adapter);
-        model.addPlayer("Sylwek", 0);
-        model.addPlayer("Szymon", 0);
-        model.addPlayer("Maciek", 0);
-        model.addPlayer("Bartek", 0);
+        model.addPlayer("Sylwek");
+        model.addPlayer("Szymon");
+        model.addPlayer("Maciek");
+        model.addPlayer("Bartek");
 
         assertFalse(model.isStarted());
         model.start();
