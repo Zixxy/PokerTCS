@@ -29,10 +29,14 @@ public class Deck {
             public final int id;
         }
         public enum Color {
-            CLUBS,
-            DIAMONDS,
-            HEARTS,
-            SPADES
+            CLUBS(0),
+            DIAMONDS(1),
+            HEARTS(2),
+            SPADES(3);
+            Color(int id) {
+                this.id = id;
+            }
+            public final int id;
         }
         private Value value;
         private Color color;
@@ -47,6 +51,10 @@ public class Deck {
         private Card(Value value, Color color) {
             this.value = value;
             this.color = color;
+        }
+
+        public int getMacieksId() {
+            return 20*color.id + value.id;
         }
 
         @Override

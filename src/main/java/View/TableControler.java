@@ -375,7 +375,6 @@ public class TableControler{
 			String s = cardsNumbers[i].toString();
             System.out.println("/main/java/Cards/" + s + ".png");
             Image image = new Image(TableView.class.getResourceAsStream("/Cards/" + s + ".png"));
-
             playersCards[2*(id-1) + i].setImage(image);
         }
 	}
