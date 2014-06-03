@@ -38,9 +38,9 @@ public class MainAdapter implements AdapterInterface {
         try {
             cash = Integer.valueOf(amount);
         }
-        catch (NumberFormatException e) 
-        { 
-        	throw new RuntimeException(e);
+        catch (NumberFormatException e)
+        {
+        	return;
         }
         if(cash < 0)
             return;
