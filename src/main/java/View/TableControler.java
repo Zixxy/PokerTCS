@@ -138,7 +138,7 @@ public class TableControler{
             @Override
             public void run(){
                 adapter.removePlayerFromTable();
-                ViewInterface view  = Run.mainWindow.showTableList();
+                ViewInterface view  = Run.mainWindow.showTableList(name);
                 adapter.exchangeReference(TableView.RecentlyCreatedInstanceOfThis,view);
             }
         }));
