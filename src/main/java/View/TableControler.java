@@ -412,8 +412,14 @@ public class TableControler{
             default:
                 throw new RuntimeException("Unknown operation type");
         }
+       /// Light.Distant light = new Light.Distant();
+        ///light.setAzimuth(-100.0);
+        ///Lighting lighting = new Lighting();
+
         text.setFill(Color.WHITE);
         text.setFont(Font.font(null, FontWeight.BOLD, 14));
+        ///text.setEffect(lighting);
+       /* text.setFill(Color.BLACK);*/
         text.setTextAlignment(TextAlignment.CENTER);
         playersLastMove[id-1].getChildren().clear();
         playersLastMove[id-1].getChildren().add(text);

@@ -70,8 +70,7 @@ public class LoginControler {
     			});
     }
     
-    @FXML
-    void join(ActionEvent event) {
+    private void realJoin(){
     	final String ip = ipTextField.getText();
     	final String port = portNumberTextField.getText();
     	String name = "defaultName";
@@ -92,15 +91,8 @@ public class LoginControler {
     	};
     	thread.start();
     }
-
-    @FXML
-    void exit(ActionEvent event) {
-    	Platform.exit();
-    	System.exit(0);
-    }
-
-    @FXML
-    void makeNewHost(ActionEvent event) {
+    
+    private void makeHost(){
     	final String port = serverPortNumberTextField.getText();
     	String name = "defaultName";
     	String name1 = userNameTextField.getText();
@@ -117,6 +109,37 @@ public class LoginControler {
 			}
     	};
     	thread.start();
-    	// now we build host on above port.
     }
+    @FXML
+    public void portForHostTextField(ActionEvent e){
+    	makeHost();
+    }
+    @FXML
+    public void nameTyping(ActionEvent e){
+    	realJoin();
+    }
+    @FXML
+    public void ipTyping(ActionEvent e){
+    	realJoin();
+    }
+    @FXML
+    public void portTyping(ActionEvent e){
+    	realJoin();
+    }
+    @FXML
+    void join(ActionEvent event) {
+    	realJoin();
+    }
+
+    @FXML
+    void exit(ActionEvent event) {
+    	Platform.exit();
+    	System.exit(0);
+    }
+
+    @FXML
+    void makeNewHost(ActionEvent event) {
+    	makeHost();
+    }
+    
 }
