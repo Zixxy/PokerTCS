@@ -29,7 +29,7 @@ public class TableControler{
 
     volatile private boolean isConstructed = false;
     
-    private int playerId;
+   public static int playerId;
 	
 	public HashSet<Integer> players;
 	

@@ -300,6 +300,8 @@ public class TableView extends Application implements ViewInterface{
 	public void setPlayerId(int id) {
 		tableControler.setPlayerId(id);
 		playerId = id;
+        tempPlayerId=id;
+        TableControler.playerId=id;
 	}
 
 	@Override
