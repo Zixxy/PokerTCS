@@ -1,12 +1,12 @@
 package Model;
 
 
+import Adapter.AdapterInterface;
+import Model.Deck.Card;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import Adapter.AdapterInterface;
-import Model.Deck.Card;
 
 /**
  * Created by bartek on 05.05.14.
@@ -474,15 +474,20 @@ public class ModelOne implements ModelInterface {
 
 
         started=false;
-        //startRound();
-    }
-
-    private void startRound(){
         for(Player p: players) {
             if(p.getMoney() == 0) {
                 p.setResigned(true);
                 numberOfPlayers--;
             }
+        }
+        //startRound();
+    }
+
+    private void startRound(){
+
+        for(Player p:players) {
+            adapter.sendMessage(p.getResultMassage());
+            adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
         }
         if(numberOfPlayers<2){
             for(Player p:players){
