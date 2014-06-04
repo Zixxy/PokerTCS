@@ -50,37 +50,6 @@ public class TableView extends Application implements ViewInterface{
 	/*
 	 * this method soon will be removed, when both gui and adapter will get used to new formation of files.
 	 */
-	@Deprecated
-	public static synchronized ViewInterface createTableView(final String[] args, MainAdapter a, int p){
-		tempAdapter = a;
-		tempPlayerId = p;
-		Thread viewThread = new Thread(){
-			public void run(){
-				Application.launch(TableView.class, args);
-			}
-		};
-		viewThread.start();
-		while(!constructionFlag.get()){
-			Thread.yield();
-		}
-		while(RecentlyCreatedInstanceOfTableControler == null){
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		RecentlyCreatedInstanceOfThis.almostConstructor();
-		while(!RecentlyCreatedInstanceOfTableControler.isConstructed()){
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		constructionFlag.set(false);
-		return RecentlyCreatedInstanceOfThis;
-	}
 	@Override
 	public void almostConstructor(){
 		tableControler = RecentlyCreatedInstanceOfTableControler;
@@ -176,7 +145,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				tableControler.updatePlayerLinedCash(id+1, cash);
+				tableControler.updatePlayerLinedCash(id, cash);
 			}
 		});
 	}
@@ -186,7 +155,7 @@ public class TableView extends Application implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				tableControler.removePlayersLinedCash(id+1);
+				tableControler.removePlayersLinedCash(id);
 			}
 		});
 	}

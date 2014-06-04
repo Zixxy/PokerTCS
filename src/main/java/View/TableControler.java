@@ -356,10 +356,16 @@ public class TableControler{
 
 	
 	public void updatePlayerLinedCash(int id, int cash) {
+		if(cash > 0){
         Text text = new Text("$" + Integer.toString(cash));
         text.setCache(true);
         text.setFill(Color.MAROON);
         text.setFont(Font.font(null, FontWeight.BOLD, 19));
+        playersLinedCash[id].getChildren().setAll(text);
+		}
+		else{
+			playersLinedCash[id].getChildren().clear();
+		}
     }
 
 
@@ -370,7 +376,6 @@ public class TableControler{
 
 
     public void updateActualPlayer(int id) {
-    	System.out.println("+++++++++++++++++++++++++++++++update actual player, id"+id);
        // Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
         for(int i = 0; i < playersFace.length; ++i){
             if(i!=id){
@@ -385,12 +390,10 @@ public class TableControler{
     }
 
     public void updateResignedPlayer(int id) {
-    	System.out.println("++++++++++++++++++++++++++++++++update resigned player, id"+id);
         playersFace[id].setImage(null);
     }
 
     public void updateNormalPlayer(int id) {
-    	System.out.println("+++++++++++++++++++++++++++++++++update normal player, id"+id);
         Image image = new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(avatars[id]).toString() + "0"+".jpg"));
         playersFace[id].setImage(image);
     }

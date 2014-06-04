@@ -181,8 +181,8 @@
 </GridPane>
 </children>
 </Pane><HBox fx:id="playerOneLinedCash" layoutX="686.0" layoutY="467.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerTwoLinedCash" layoutX="170.0" layoutY="296.0" prefHeight="17.0" prefWidth="46.0" />
-<HBox fx:id="playerThreeLinedCash" layoutX="197.0" layoutY="133.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerTwoLinedCash" layoutX="193.0" layoutY="404.0" prefHeight="17.0" prefWidth="46.0" />
+<HBox fx:id="playerThreeLinedCash" layoutX="168.0" layoutY="268.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerSixLinedCash" layoutX="876.0" layoutY="232.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFourLinedCash" layoutX="315.0" layoutY="137.0" prefHeight="17.0" prefWidth="46.0" />
 <HBox fx:id="playerFiveLinedCash" layoutX="781.0" layoutY="166.0" prefHeight="17.0" prefWidth="46.0" />
