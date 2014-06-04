@@ -78,6 +78,7 @@ public class TableListControler implements ViewInterface{
                     tableJoins[numberOfTable].getChildren().clear();
                 }
                 else if(started.equals("false")) {
+                    tableStarteds[numberOfTable].setText("No");
                     Button b = new Button("Join");
                     b.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
