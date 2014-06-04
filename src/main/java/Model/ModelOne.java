@@ -475,7 +475,7 @@ public class ModelOne implements ModelInterface {
 
         started=false;
         for(Player p: players) {
-            if(p.getMoney() == 0) {
+            if(!p.getResigned() && p.getMoney() == 0) {
                 p.setResigned(true);
                 numberOfPlayers--;
             }
