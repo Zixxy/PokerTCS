@@ -199,7 +199,7 @@ public class Server {
         }
     }
     public void guiAddTable(){
-        sendToLobby("guiaddtable~"+(tables.size())+"~false");
+        sendToLobby("guiaddtable~"+(tables.size()-1)+"~false");
     }
     public void guiClearTableList(){
         System.out.println("Kaze wyczyscic stoly");
@@ -216,9 +216,14 @@ public class Server {
     }
 
     public void addTable(PlayerOnline host){
-        guiAddTable();
+        int index = tables.size();
         Table table = new Table(host);
-        tables.add(table);
+        if (tables.contains(null)){
+             index=tables.indexOf(null);
+            tables.set(index,table);
+        }
+            else tables.add(table);
+        guiAddTable(index,false);
         addPlayerToTable(host, tables.indexOf(table));
 
     }
