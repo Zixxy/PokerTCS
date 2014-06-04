@@ -13,6 +13,7 @@ public class Player{
         this.cards = new Deck.Card[2];
         this.resigned=false;
         this.ready = false;
+        this.resultMassage = "";
     }
 
     private int image;
@@ -27,6 +28,7 @@ public class Player{
     private int thisRoundOffer;
     private boolean ready;
     private int beforeEndRoundCash;
+    private String resultMassage;
 
     public int getId(){
     	return this.id;
@@ -115,5 +117,34 @@ public class Player{
 
     public void setBeforeEndRoundCash(int beforeEndRoundCash) {
         this.beforeEndRoundCash = beforeEndRoundCash;
+    }
+
+    public void setResultMassage(PokerHand hand) {
+        String massage = "Gracz: " + getName() + " ";
+        int cashChange = getMoney() - getBeforeEndRoundCash();
+        if(getResigned())
+            massage += "zrezygnował.";
+        else if(!getInGame() && !getAllIned()) {
+            massage += "spasował.";
+        }
+        else {
+            if(getAllIned())
+                massage += " wszedł all-in i ";
+            if(cashChange > 0) {
+                massage += "wygrał " + cashChange + "$";
+            }
+            else if(cashChange == 0) {
+                massage += "nic nie wygrał";
+            }
+            else {
+                massage += "przegrał " + (-cashChange) + "$";
+            }
+            massage += "[" + hand.toString() + "].";
+        }
+        resultMassage = massage;
+    }
+
+    public String getResultMassage() {
+        return resultMassage;
     }
 }

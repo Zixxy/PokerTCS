@@ -40,8 +40,10 @@ public class MainAdapter implements AdapterInterface {
             cash = Integer.valueOf(amount);
         }
         catch (NumberFormatException e) 
-        { 
-        	throw new RuntimeException(e);
+        {
+            //Da fuq Maciek, da fuq
+        	//throw new RuntimeException(e);
+            return;
         }
         if(cash < 0)
             return;

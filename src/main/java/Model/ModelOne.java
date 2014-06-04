@@ -336,7 +336,7 @@ public class ModelOne implements ModelInterface {
         if (currentPlayerId == raisingPlayerId) checkItAll();
         else if(raising)
             raisingPlayerId = currentPlayerId;
-
+        adapter.updateActualPlayer(currentPlayerId);
     }
 
     @Override
@@ -423,11 +423,11 @@ public class ModelOne implements ModelInterface {
         for(Player player: players) {
             x++;
             pot += player.getOffer();
+            player.setBeforeEndRoundCash(player.getMoney()+player.getOffer());
             player.setOffer(0);
             if(player.getResigned()) continue;
             adapter.updatePlayerLinedCash(x, 0);
             player.setReady(false);
-            player.setBeforeEndRoundCash(player.getMoney());
         }
         adapter.setPot(pot);
         //END OF COPYPASTE I FEEL GUILTY :((((((((((((
@@ -438,6 +438,7 @@ public class ModelOne implements ModelInterface {
                 Player smaller = removeSmallestPlayer(best);
                 cash+=reducePlayersRoundOffer(smaller.getRoundCash())/(best.size() + 1);
                 smaller.setMoney(smaller.getMoney() + cash);
+                smaller.setResultMassage(getPlayerHand(smaller));
                 smaller.setInGame(false);
                 smaller.setAllIned(false);
                 System.out.println("Jestem w pENtli");
@@ -463,10 +464,7 @@ public class ModelOne implements ModelInterface {
         }
 
         for(Player p:players) {
-
-
-            adapter.sendMessage(p.getName() + " miał: " + getPlayerHand(p).toString());
-            adapter.sendMessage(p.getName() + " wygrał: " + (p.getMoney() - p.getBeforeEndRoundCash()));
+            adapter.sendMessage(p.getResultMassage());
             adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
         }
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
@@ -480,6 +478,12 @@ public class ModelOne implements ModelInterface {
     }
 
     private void startRound(){
+        for(Player p: players) {
+            if(p.getMoney() == 0) {
+                p.setResigned(true);
+                numberOfPlayers--;
+            }
+        }
         if(numberOfPlayers<2){
             for(Player p:players){
                 p.setReady(false);
@@ -499,10 +503,6 @@ public class ModelOne implements ModelInterface {
         int i=0;
         for(Player p:players){
             adapter.updatePlayerLinedCash(p.getId(), 0);
-            if(p.getMoney() == 0) {
-                p.setResigned(true);
-                continue;
-            }
             p.setCards(deck);
             p.setMoney(p.getMoney()- ante);
             adapter.updatePlayerCash(i, players.get(i).getMoney());
