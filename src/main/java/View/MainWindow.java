@@ -102,6 +102,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				try {
 					if(tableViewObject == null)
 						tableViewObject = (Node) FXMLLoader.load(getClass().getResource("/FXML/TableView.fxml"));
+					else{
+						fullyCreatedTableViewInterface.clearTable();
+					}
 					mainPane.getChildren().add(tableViewObject);
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching TableView", e);
@@ -177,6 +180,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				try {
 					if(tableListObject == null){
 						tableListObject = (Node) FXMLLoader.load(getClass().getResource("/FXML/TableList.fxml"));
+					}
+					else{
+						TableListControler.recentlyCreatedTableList.clearTableList();
 					}
 					mainPane.getChildren().add(tableListObject);
 				} catch (IOException e) {

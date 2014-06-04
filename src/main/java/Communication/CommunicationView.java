@@ -263,6 +263,11 @@ public class CommunicationView  implements ViewInterface{
         throw new RuntimeException("This function should never be used");
 		
 	}
+	@Override
+	public void clearTableList() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

@@ -279,4 +279,10 @@ public class TableView extends Application implements ViewInterface{
         // UNUSED
 		
 	}
+
+	@Override
+	public void clearTableList() {
+		// TODO Auto-generated method stub
+		
+	}
 }
