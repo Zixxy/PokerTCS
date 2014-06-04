@@ -86,7 +86,11 @@ public class LoginControler {
     		@Override
     		public void run(){
                 System.err.println("sendname: " + sendName);
+                try{
     			RunHereClient.runClient(ip, Integer.parseInt(port), sendName, sendImage);
+                } catch (java.lang.NumberFormatException e){
+                	System.err.println("wrong port");
+                }
     		}
     	};
     	thread.start();
