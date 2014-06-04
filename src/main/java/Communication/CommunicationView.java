@@ -123,8 +123,10 @@ public class CommunicationView  implements ViewInterface{
         //System.err.println("Mam "+outs.size()+" outy");
         //System.err.println("SEND OUT: "+txt);
 
-        for (WriterWithId print : outs)
+        for (WriterWithId print : outs) {
+            System.out.println("Wysylam "+txt+" do "+print.writer);
             print.writer.println(txt);
+        }
     }
 
     private void sendCommandToId(String txt, int id) {

@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 public class MainAdapter implements AdapterInterface {
     private ModelInterface model;
-    private Collection<ViewInterface> views;
+    private ArrayList<ViewInterface> views;
 
     public MainAdapter() {
         model = null;
@@ -112,6 +112,13 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void addView(ViewInterface view){
+        if(view == null)
+            return;
+        for(int i =0; i<views.size(); i++)
+            if(views.get(i).getClass() == view.getClass()) {
+                views.remove(i);
+                i--;
+            }
         if(!views.contains(view) && view!=null) views.add(view);
         System.err.println("Dodaje view " + view + " i mam teraz ich " + views.size());
     }
