@@ -269,6 +269,10 @@ public class TableControler{
 
     public void removePlayer(int id){
         --id;
+        players.remove(id);
+        playersLinedCash[id].getChildren().clear();
+        playersCards[2*id].setImage(null);
+        playersCards[2*id+1].setImage(null);
         playersNameBox[id].getChildren().clear();
         playersCashBox[id].getChildren().clear();
         playersLastMove[id].getChildren().clear();
