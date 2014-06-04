@@ -167,6 +167,7 @@ public class ModelOne implements ModelInterface {
         	for(Player p : players){
         		if(p.getResigned()){
         			p.setResigned(false);
+                    p.recreatePlayer(name, startedAmount, image);
         			adapter.addPlayer(name, p.getId(),image);
         			return p.getId();
         		}

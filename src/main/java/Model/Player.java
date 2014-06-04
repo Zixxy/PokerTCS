@@ -30,6 +30,17 @@ public class Player{
     private int beforeEndRoundCash;
     private String resultMassage;
 
+    public void recreatePlayer(String arg1, Integer arg2, int image) {
+        this.image = image;
+        this.name=arg1;
+        this.money=arg2;
+        this.beforeEndRoundCash = 0;
+        this.cards = new Deck.Card[2];
+        this.resigned=false;
+        this.ready = false;
+        this.resultMassage = "";
+    }
+
     public int getId(){
     	return this.id;
     }
