@@ -21,7 +21,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 	private Stage mainStage;
 	private Scene actualScene;
 	private AnchorPane mainPane;
-
+	private Node tableListObject;
+	private Node lobbyObject;
+	private Node tableViewObject;
 	private final MainAdapter adapter;
 	public static MainAdapter tempMainAdapter;
 	public static MainWindow recentlyCreatedMainWindow;
@@ -35,6 +37,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 	private static volatile boolean tableViewInterfaceConstructionFlag;
 
 	public MainWindow(){
+		tableListObject = null;
+		lobbyObject = null;
+		tableViewObject = null;
 		adapter = tempMainAdapter;
 		System.out.println(adapter);
 		recentlyCreatedMainWindow = this;
@@ -95,7 +100,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(1152);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/TableView.fxml")));
+					if(tableViewObject == null)
+						tableViewObject = (Node) FXMLLoader.load(getClass().getResource("/FXML/TableView.fxml"));
+					mainPane.getChildren().add(tableViewObject);
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching TableView", e);
 				}
@@ -145,7 +152,9 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(750);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/Login.fxml")));
+					if(lobbyObject == null)
+						lobbyObject = (Node) FXMLLoader.load(getClass().getResource("/FXML/Login.fxml"));
+					mainPane.getChildren().add(lobbyObject);
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching LoginControler", e);
 				} catch (Exception a) {
@@ -166,7 +175,10 @@ public class MainWindow extends Application implements MainWindowInterface {
 				mainStage.setWidth(602);
 				mainPane.getChildren().clear();
 				try {
-					mainPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/FXML/TableList.fxml")));// or sth...
+					if(tableListObject == null){
+						tableListObject = (Node) FXMLLoader.load(getClass().getResource("/FXML/TableList.fxml"));
+					}
+					mainPane.getChildren().add(tableListObject);
 				} catch (IOException e) {
 					throw new RuntimeException("We got a problem with launching TableList ", e);
 				} catch (Exception a) {
