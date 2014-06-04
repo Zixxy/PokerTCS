@@ -126,7 +126,7 @@ public class TableView extends Application implements ViewInterface{
 				setPot(0);
 				tableControler.clearTable();
 				for(int i=0; i < 8; i++)
-					tableControler.removePlayersLinedCash(i+1);
+					tableControler.removePlayersLinedCash(i);
 			}
 		});
 	}
