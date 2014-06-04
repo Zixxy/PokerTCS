@@ -24,6 +24,8 @@ class ToTableSender implements Runnable {
 
         while (true) {
             for (Player p : mo.players) {
+                if(p.getResigned())
+                    continue;
                 mo.adapter.addPlayer(p.getName(), p.getId(), p.getImage());
             }
             mo.adapter.updateActualPlayer(mo.getActualPlayer());
