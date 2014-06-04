@@ -485,10 +485,8 @@ public class ModelOne implements ModelInterface {
 
     private void startRound(){
 
-        for(Player p:players) {
+        for(Player p:players)
             adapter.sendMessage(p.getResultMassage());
-            adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
-        }
         if(numberOfPlayers<2){
             for(Player p:players){
                 p.setReady(false);
@@ -509,6 +507,7 @@ public class ModelOne implements ModelInterface {
         for(Player p:players){
             adapter.updatePlayerLinedCash(p.getId(), 0);
             p.setCards(deck);
+            adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
             p.setMoney(p.getMoney()- ante);
             adapter.updatePlayerCash(i, players.get(i).getMoney());
             p.setOffer(ante);
