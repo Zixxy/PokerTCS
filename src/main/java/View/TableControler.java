@@ -36,9 +36,14 @@ public class TableControler{
 	
 	public HashSet<Integer> players;
 	
+	private boolean [] facesUpdateFlags;
 	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
+		facesUpdateFlags = new boolean[8];
+		for(int i = 0; i<8; i++){
+			facesUpdateFlags[i] = false;
+		}
 		avatars = new int[8];
 		name = TableView.tempName;
 		playerId = TableView.tempPlayerId;
@@ -250,7 +255,10 @@ public class TableControler{
         text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id].getChildren().setAll(text);
         text.setTextAlignment(TextAlignment.CENTER);
+        if(!facesUpdateFlags[id]){
+        	facesUpdateFlags[id] = true;
         playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(image).toString() + "0"+".jpg")));
+        }
     }
 
     public void removePlayer(int id){
@@ -258,6 +266,8 @@ public class TableControler{
         playersNameBox[id].getChildren().clear();
         playersCashBox[id].getChildren().clear();
         playersLastMove[id].getChildren().clear();
+        playersFace[id].setImage(null);
+        facesUpdateFlags[id] = false;
     }
 
     public void updatePlayerCash(int id,int cash){
@@ -360,6 +370,7 @@ public class TableControler{
 
 
     public void updateActualPlayer(int id) {
+    	System.out.println("+++++++++++++++++++++++++++++++update actual player, id"+id);
        // Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
         for(int i = 0; i < playersFace.length; ++i){
             if(i!=id){
@@ -374,10 +385,12 @@ public class TableControler{
     }
 
     public void updateResignedPlayer(int id) {
+    	System.out.println("++++++++++++++++++++++++++++++++update resigned player, id"+id);
         playersFace[id].setImage(null);
     }
 
     public void updateNormalPlayer(int id) {
+    	System.out.println("+++++++++++++++++++++++++++++++++update normal player, id"+id);
         Image image = new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(avatars[id]).toString() + "0"+".jpg"));
         playersFace[id].setImage(image);
     }
