@@ -507,7 +507,6 @@ public class ModelOne implements ModelInterface {
         for(Player p:players){
             adapter.updatePlayerLinedCash(p.getId(), 0);
             p.setCards(deck);
-            adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
             p.setMoney(p.getMoney()- ante);
             adapter.updatePlayerCash(i, players.get(i).getMoney());
             p.setOffer(ante);
