@@ -326,7 +326,13 @@ public class TableControler{
         for( HBox nameBox : playersNameBox){
         	nameBox.getChildren().clear();
         }
+        for(int i = 0; i<8; i++){
+			facesUpdateFlags[i] = false;
+		}
         for( ImageView card : playersCard){
+        	card.setImage(null);
+        }
+        for(ImageView card: playersCards){
         	card.setImage(null);
         }
         for(ImageView face : playersFace){
