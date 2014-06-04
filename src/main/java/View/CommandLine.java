@@ -178,4 +178,10 @@ public class CommandLine implements ViewInterface{
 	@Override
 	public void guiClearTableList() {	
 	}
+
+	@Override
+	public void clearTableList() {
+		// TODO Auto-generated method stub
+		
+	}
 }

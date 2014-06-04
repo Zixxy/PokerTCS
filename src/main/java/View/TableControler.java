@@ -320,6 +320,24 @@ public class TableControler{
         for (ImageView cardImage: cardsOnTable) {
             cardImage.setImage(null);
         }
+        for( HBox playerCash : playersCashBox){
+        	playerCash.getChildren().clear();
+        }
+        for( HBox nameBox : playersNameBox){
+        	nameBox.getChildren().clear();
+        }
+        for( ImageView card : playersCard){
+        	card.setImage(null);
+        }
+        for(ImageView face : playersFace){
+        	face.setImage(null);
+        }
+        for(HBox lastMove : playersLastMove){
+        	lastMove.getChildren().clear();
+        }
+        for(HBox cash : playersLinedCash){
+        	cash.getChildren().clear();
+        }
     }
 
     public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard) {

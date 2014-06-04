@@ -195,8 +195,21 @@ public class TableListControler implements ViewInterface{
     		}
     	});
     }
+    
+    public void exitServer(ActionEvent actionEvent) {
+        Run.mainWindow.showMainMenu();
+    }
 
-	@Override
+    @Override
+    public void clearTableList() {
+    	for(int i = 0; i<23; i++){
+    	tableNames[i].setText(null);
+    	tablePlayers[i].setText(null);
+    	tableStarteds[i].setText(null);
+    	tableJoins[i].getChildren().clear();
+    	}
+    }
+    @Override
 	public void almostConstructor() {
 		// UNUSED
 		
@@ -304,8 +317,4 @@ public class TableListControler implements ViewInterface{
         // UNUSED
 		
 	}
-
-    public void exitServer(ActionEvent actionEvent) {
-        Run.mainWindow.showMainMenu();
-    }
 }

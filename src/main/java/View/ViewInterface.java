@@ -20,6 +20,7 @@ public interface ViewInterface extends TableListInterface{
 	 * -sets pot to $0
 	 */
 	public void clearTable();
+	public void clearTableList();
 	/**
 	 * update Player Hand method. If nulls are given method clears player hand.
 	 */
