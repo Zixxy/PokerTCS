@@ -201,7 +201,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerSixSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerSixSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -215,7 +215,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerFiveSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerFiveSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -229,7 +229,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerSevenSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerSevenSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -243,7 +243,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerEightSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerEightSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -257,7 +257,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerOneSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerOneSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -271,7 +271,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerFourSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerFourSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -285,7 +285,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerThreeSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerThreeSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
@@ -299,7 +299,7 @@
 </Pane>
 <Pane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0">
 <children>
-<ImageView fx:id="playerTwoSecondCard" fitHeight="69.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
+<ImageView fx:id="playerTwoSecondCard" fitHeight="74.0" fitWidth="55.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true" />
 </children>
 </Pane>
 </children>
