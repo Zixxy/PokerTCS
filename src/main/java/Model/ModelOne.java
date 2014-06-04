@@ -26,6 +26,7 @@ class ToTableSender implements Runnable {
             for (Player p : mo.players) {
                 mo.adapter.addPlayer(p.getName(), p.getId(), p.getImage());
             }
+            mo.adapter.updateActualPlayer(mo.getActualPlayer());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -437,7 +438,7 @@ public class ModelOne implements ModelInterface {
             int cash=0;
             while(!best.isEmpty()) {
                 Player smaller = removeSmallestPlayer(best);
-                cash+=reducePlayersRoundOffer(smaller.getRoundCash())/(best.size() + 1);
+                cash+=reducePlayersRoundOffer(smaller.getRoundCash()) / (best.size() + 1);
                 smaller.setMoney(smaller.getMoney() + cash);
                 smaller.setResultMassage(getPlayerHand(smaller));
                 smaller.setInGame(false);
