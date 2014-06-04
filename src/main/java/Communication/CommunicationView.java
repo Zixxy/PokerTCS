@@ -40,7 +40,14 @@ public class CommunicationView  implements ViewInterface{
         outs.add(new WriterWithId(writer, id));
     }
     public void removeOut(PrintWriter writer, int id) throws IOException{
+        System.err.println("RemoveOut: " + writer.toString() + " id: " + id + "size: " + outs.size());
+        System.err.println("RemoveOut: " + writer.toString() + " id: " + id + "size: " + outs.size());
+        int x = outs.size();
         outs.remove(new WriterWithId(writer, id));
+        if(x==outs.size())
+            throw new RuntimeException("Cannot remove outs " + writer.toString() + " id: " + id);
+        System.err.println("RemoveOut: " + writer.toString() + " id: " + id + "size: " + outs.size());
+        System.err.println("RemoveOut: " + writer.toString() + " id: " + id + "size: " + outs.size());
     }
 
 
