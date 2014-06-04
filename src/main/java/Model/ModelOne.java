@@ -67,7 +67,7 @@ public class ModelOne implements ModelInterface {
         this.limit=0;
         this.adapter=arg1;
         this.cards = new Deck.Card[5];
-        this.ante=10;
+        this.ante=0;
         this.startedAmount=1000;
         this.smallBlindPosition = 0;
         this.smallBlind = 10;

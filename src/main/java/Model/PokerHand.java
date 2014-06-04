@@ -50,6 +50,7 @@ public class PokerHand implements Comparable<PokerHand>{
         }
         return out;
     }
+
     @Override
     public String toString(){
         List<Deck.Card> pom = new ArrayList<>();

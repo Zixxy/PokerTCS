@@ -14,6 +14,7 @@ public class Player{
         this.resigned=false;
         this.ready = false;
     }
+
     private int image;
     private final int id;
     private String name;
