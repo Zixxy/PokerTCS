@@ -67,7 +67,7 @@ public class ModelOne implements ModelInterface {
         this.limit=0;
         this.adapter=arg1;
         this.cards = new Deck.Card[5];
-        this.ante=10;
+        this.ante=0;
         this.startedAmount=1000;
         this.smallBlindPosition = 0;
         this.smallBlind = 10;
@@ -421,11 +421,12 @@ public class ModelOne implements ModelInterface {
         int x = -1;
         for(Player player: players) {
             x++;
-            if(player.getResigned()) continue;
             pot += player.getOffer();
             player.setOffer(0);
+            if(player.getResigned()) continue;
             adapter.updatePlayerLinedCash(x, 0);
             player.setReady(false);
+            player.setBeforeEndRoundCash(player.getMoney());
         }
         adapter.setPot(pot);
         //END OF COPYPASTE I FEEL GUILTY :((((((((((((
@@ -457,13 +458,14 @@ public class ModelOne implements ModelInterface {
             pos++;
             if(p.getResigned()) continue;
             adapter.updatePlayerCash(pos, players.get(pos).getMoney());
-            adapter.updatePlayerLinedCash(pos, 0);
+            adapter.updatePlayerLinedCash(pos, players.get(pos).getMoney() - players.get(pos).getBeforeEndRoundCash());
         }
 
         for(Player p:players) {
 
 
-            adapter.sendMessage("Gracz " + p.getName() + " miał: " + getPlayerHand(p).toString());
+            adapter.sendMessage(p.getName() + " miał: " + getPlayerHand(p).toString());
+            adapter.sendMessage(p.getName() + " wygrał: " + (p.getMoney() - p.getBeforeEndRoundCash()));
             adapter.showCards(p.getId(), p.getCards()[0].getMacieksId(), p.getCards()[1].getMacieksId());
         }
         //TU TRZEBA WSTAWIC WAIT NA JAKIES 10 SEKUND
@@ -495,6 +497,7 @@ public class ModelOne implements ModelInterface {
 
         int i=0;
         for(Player p:players){
+            adapter.updatePlayerLinedCash(p.getId(), 0);
             if(p.getMoney() == 0) {
                 p.setResigned(true);
                 continue;

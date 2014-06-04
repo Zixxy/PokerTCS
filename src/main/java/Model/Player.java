@@ -9,10 +9,12 @@ public class Player{
     	this.id = id;
         this.name=arg1;
         this.money=arg2;
-        cards = new Deck.Card[2];
-        resigned=false;
-        ready = false;
+        this.beforeEndRoundCash = 0;
+        this.cards = new Deck.Card[2];
+        this.resigned=false;
+        this.ready = false;
     }
+
     private int image;
     private final int id;
     private String name;
@@ -24,6 +26,7 @@ public class Player{
     private boolean allIned;
     private int thisRoundOffer;
     private boolean ready;
+    private int beforeEndRoundCash;
 
     public int getId(){
     	return this.id;
@@ -105,4 +108,12 @@ public class Player{
 	public void setImage(int image) {
 		this.image = image;
 	}
+
+    public int getBeforeEndRoundCash() {
+        return beforeEndRoundCash;
+    }
+
+    public void setBeforeEndRoundCash(int beforeEndRoundCash) {
+        this.beforeEndRoundCash = beforeEndRoundCash;
+    }
 }
