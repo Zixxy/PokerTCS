@@ -14,7 +14,7 @@ import Model.Deck.Card;
 public class TableView extends Application implements ViewInterface{
 	private MainAdapter adapter;
 	
-	private int playerId;
+	public static int playerId;
 	
 	private TableView referenceToThis;
 	
@@ -43,7 +43,7 @@ public class TableView extends Application implements ViewInterface{
 	public static ViewInterface getTableView(MainAdapter adapt, int userId, String name){
 		tempAdapter = adapt;
 		System.out.println("adapter:= "+adapt);
-		tempPlayerId = userId;
+		//tempPlayerId = userId;
 		tempName = name;
 		return new TableView();
 	}
@@ -302,6 +302,7 @@ public class TableView extends Application implements ViewInterface{
 		playerId = id;
         tempPlayerId=id;
         TableControler.playerId=id;
+        System.err.println("Jestem w setPlayerId TableView "+id);
 	}
 
 	@Override

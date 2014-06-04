@@ -382,7 +382,11 @@ public class TableControler{
     }
     
     public void setPlayerId(int id) {
-		playerId = id;
+        TableView.playerId=id;
+        playerId = id;
+        TableView.tempPlayerId=id;
+        TableControler.playerId=id;
+        System.err.println("Jestem w setPlayerId TableControler "+id);
 	}
     
     public void setLastMove(int id, int move) {

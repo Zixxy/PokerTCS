@@ -82,16 +82,17 @@ public class TableListControler implements ViewInterface{
                     b.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            playerId = -100;
-                            adapter.addPlayerToTable(numberOfTable);
+
+
                             Thread showGame = new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ViewInterface res = Run.mainWindow.showGame(1, myName);// we are waiting for scheduling playerId-s
-                                    adapter.exchangeReference(actual, res);
+                                    Run.mainWindow.showGame(0, myName);// we are waiting for scheduling playerId-s
+                                    adapter.addPlayerToTable(numberOfTable);
                                 }
                             });
                             showGame.start();
+
                         }
                     });
                     tableJoins[numberOfTable].getChildren().clear();

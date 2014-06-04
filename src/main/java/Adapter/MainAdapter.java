@@ -2,6 +2,7 @@ package Adapter;
 
 import Model.Deck;
 import Model.ModelInterface;
+import View.TableControler;
 import View.ViewInterface;
 
 import java.util.ArrayList;
@@ -245,9 +246,11 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void setPlayerId(int id) {
+        System.err.println("USTAWIAM MOJE ID "+id);
         for(ViewInterface view: views) {
             view.setPlayerId(id);
         }
+        TableControler.playerId=id;
     }
 
     @Override

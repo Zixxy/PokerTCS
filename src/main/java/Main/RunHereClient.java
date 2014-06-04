@@ -35,26 +35,6 @@ public class RunHereClient {
 			model.setPlayerImage(image);
 		}
 	}
-    public static void runClientServer(String ip, int port, String name, int image){
-        MainAdapter adapter = Run.adapter;
-        ModelInterface model = null;
-        boolean connected = false;
-        try {
-            model = new CommunicationModel(adapter,ip,port);
-            connected = true;
-        } catch (IOException e) {
-            throw new RuntimeException("Connection error "+ip+":"+port, e);
-        }
-        if(connected){
-            ViewInterface view  = Run.mainWindow.showTableList(name);
-            adapter.addView(view);
-            ViewInterface textView = new CommandLine(adapter);
-            adapter.addView(textView);
-            adapter.addModel(model);
-            model.setPlayerName(name);
-            model.setPlayerImage(image);
-        }
-    }
     @Deprecated
     public static void main(String[] args){
         //config = new Config("config");
