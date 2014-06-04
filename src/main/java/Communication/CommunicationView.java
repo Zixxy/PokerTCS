@@ -1,14 +1,14 @@
 package Communication;
 
+import Adapter.AdapterInterface;
+import Model.Deck;
+import View.ViewInterface;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import Adapter.AdapterInterface;
-import Model.Deck;
-import View.ViewInterface;
 
 /**
  * Created by dakurels on 2014-05-14.
@@ -26,7 +26,7 @@ public class CommunicationView  implements ViewInterface{
         public boolean equals(Object obj) {
             if(obj != null && obj instanceof WriterWithId) {
                 WriterWithId wwi = (WriterWithId) obj;
-                if(wwi.writer == this.writer && wwi.id == this.id)
+                if(/*wwi.writer == this.writer &&*/ wwi.id == this.id)
                     return true;
             }
             return false;
