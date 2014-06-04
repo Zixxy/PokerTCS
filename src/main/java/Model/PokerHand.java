@@ -62,7 +62,7 @@ public class PokerHand implements Comparable<PokerHand>{
         else {
             out = handName.toString().substring(0,1) + handName.toString().toLowerCase().substring(1);
         }
-    	return out + " " + pom.toString();
+    	return out; // + " " + pom.toString();
     }
     @Override
     public int compareTo(PokerHand o) {
