@@ -426,6 +426,7 @@ public class TableControler{
     }
 
     public void updateNormalPlayer(int id) {
+    	facesUpdateFlags[id] = true;
         Image image = new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(avatars[id]).toString() + "0"+".jpg"));
         playersFace[id].setImage(image);
     }
