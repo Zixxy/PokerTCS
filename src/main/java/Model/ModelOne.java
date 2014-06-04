@@ -23,6 +23,7 @@ class ToTableSender implements Runnable {
     public void run() {
 
         while (true) {
+            if(mo.finished==true) break;
             for (Player p : mo.players) {
                 if(p.getResigned())
                     continue;
@@ -42,6 +43,7 @@ public class ModelOne implements ModelInterface {
     private Thread updateSender;
     private int pot;
     private int actualId;
+    public boolean finished = false;
     private int smallBlindPosition;
     private int bigBlindPosition;
     public AdapterInterface adapter;
