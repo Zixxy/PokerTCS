@@ -22,31 +22,31 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 <children><Label alignment="CENTER" layoutX="142.0" layoutY="-6.0" prefHeight="40.0" prefWidth="198.0" text="Choose Your Picture" /><ImageView fx:id="firstImage" fitHeight="114.0" fitWidth="113.0" layoutX="14.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/00.jpg" />
 </image></ImageView>
 <ImageView fx:id="thirdImage" fitHeight="114.0" fitWidth="113.0" layoutX="339.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/20.jpg" />
 </image>
 </ImageView>
 <ImageView fx:id="secondImage" fitHeight="114.0" fitWidth="113.0" layoutX="184.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/10.jpg" />
 </image>
 </ImageView>
 <ImageView fx:id="fourthImage" fitHeight="114.0" fitWidth="113.0" layoutX="14.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/30.jpg" />
 </image>
 </ImageView>
 <ImageView fx:id="fifthImage" fitHeight="114.0" fitWidth="113.0" layoutX="184.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/40.jpg" />
 </image>
 </ImageView>
 <ImageView fx:id="sixthImage" fitHeight="114.0" fitWidth="113.0" layoutX="339.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
 <image>
-<Image url="@../Pictures/playingPerson.gif" />
+<Image url="@../Pictures/50.jpg" />
 </image>
 </ImageView><RadioButton fx:id="firstRadioButton" layoutX="59.0" layoutY="183.0" mnemonicParsing="false" />
 <RadioButton fx:id="secondRadioButton" layoutX="229.0" layoutY="183.0" mnemonicParsing="false" />

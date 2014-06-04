@@ -65,7 +65,7 @@ public class TableListControler implements ViewInterface{
 		playerId = id;
 	}
 	@Override
-	public void guiAddTable(final int numberOfTable, String started) {
+	public void guiAddTable(final int numberOfTable,final String started) {
 		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
 

@@ -23,6 +23,9 @@ import Adapter.MainAdapter;
 import Model.Deck.Card;
 
 public class TableControler{
+	
+	private int [] avatars;
+	
     private MainAdapter adapter;
 
     private String name;
@@ -36,6 +39,7 @@ public class TableControler{
 	///private ExecutorService tasksExecutor = Executors.newSingleThreadExecutor();
 	
 	public TableControler(){
+		avatars = new int[8];
 		name = TableView.tempName;
 		playerId = TableView.tempPlayerId;
 		adapter = TableView.tempAdapter;
@@ -235,6 +239,7 @@ public class TableControler{
 
     public void addPlayer(String name, int id, int image){
         --id;
+        avatars[id] = image;
         players.add(id);
         Text text = new Text(name);
         DropShadow ds = new DropShadow();
@@ -245,12 +250,7 @@ public class TableControler{
         text.setFont(Font.font(null, FontWeight.BOLD, 14));
         playersNameBox[id].getChildren().setAll(text);
         text.setTextAlignment(TextAlignment.CENTER);
-        playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
-        //TODO
-    	text.setTextAlignment(TextAlignment.CENTER);
-    	playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif")));
-    	System.out.println("name :" +name+" id: "+id+ "image: " +image);
-    	//TODO
+        playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(image).toString() + "0"+".jpg")));
     }
 
     public void removePlayer(int id){
@@ -360,16 +360,17 @@ public class TableControler{
 
 
     public void updateActualPlayer(int id) {
-        Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
+       // Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
         for(int i = 0; i < playersFace.length; ++i){
             if(i!=id){
                 if(players.contains(i)){
-                    playersFace[i].setImage(image);
+                	Image image = new Image(TableView.class.getResourceAsStream("/Pictures/"+ new Integer(avatars[i]).toString() + "0" +".jpg"));
+                	playersFace[i].setImage(image);
                 }
             }
 
         }
-        playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/actualPerson.gif")));
+        playersFace[id].setImage(new Image(TableView.class.getResourceAsStream("/Pictures/"+ new Integer(avatars[id]).toString() + "1" +".jpg")));
     }
 
     public void updateResignedPlayer(int id) {
@@ -377,7 +378,7 @@ public class TableControler{
     }
 
     public void updateNormalPlayer(int id) {
-        Image image = new Image(TableView.class.getResourceAsStream("/Pictures/playingPerson.gif"));
+        Image image = new Image(TableView.class.getResourceAsStream("/Pictures/" +new Integer(avatars[id]).toString() + "0"+".jpg"));
         playersFace[id].setImage(image);
     }
     
