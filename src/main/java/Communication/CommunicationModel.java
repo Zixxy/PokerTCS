@@ -112,7 +112,8 @@ public class CommunicationModel implements ModelInterface {
         		adapter.clearTable();
         		break;
         	case "sendmessage":
-        		adapter.sendMessage(tab[1]);
+                if (tab.length>1)
+        		    adapter.sendMessage(tab[1]);
         		break;
         	case "startnewround":
         		adapter.startNewRound();
