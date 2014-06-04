@@ -28,7 +28,8 @@ class ToTableSender implements Runnable {
                     continue;
                 mo.adapter.addPlayer(p.getName(), p.getId(), p.getImage());
             }
-            mo.adapter.updateActualPlayer(mo.getActualPlayer());
+            if(mo.isStarted())
+                mo.adapter.updateActualPlayer(mo.getActualPlayer());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
