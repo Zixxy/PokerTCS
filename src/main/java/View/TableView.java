@@ -3,6 +3,7 @@ package View;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -274,7 +275,13 @@ public class TableView extends Application implements ViewInterface{
         System.err.println("Jestem w setPlayerId TableView "+id);
 	}
 
-	@Override
+    @Override
+    public void guiExitTable() {
+        System.err.println("NO POWINIENIEM WYLECIEC");
+        tableControler.exitTable(new ActionEvent());
+    }
+
+    @Override
 	public void guiClearTableList() {
         // UNUSED
 		

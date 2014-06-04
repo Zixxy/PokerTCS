@@ -138,6 +138,9 @@ public class CommunicationModel implements ModelInterface {
         	case "setplayerid":
                 adapter.setPlayerId(new Integer(tab[1]));
                 break;
+            case "guiexittable":
+                adapter.guiExitTable();
+                break;
         	default:
                 throw new RuntimeException("Unknown operation type: " + txt);
         }

@@ -52,4 +52,5 @@ public interface AdapterInterface {
     public void guiClearTableList();
     public void exchangeReference(ViewInterface from, ViewInterface to);
     public void removeAllViews();
+    public void guiExitTable();
 }

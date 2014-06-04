@@ -251,6 +251,10 @@ public class Server {
         setPlayerId(p,p.inGameId);
         updateNumberOfPlayers(tableIndex, tables.get(tableIndex).players.size());
     }
+    public void guiExitTable(PlayerOnline p){
+        System.out.println("WYSYLKA GUI EXIT TABLE");
+        p.writer.println("guiexittable");
+    }
     public void setPlayerId(PlayerOnline p, int inGameId){
         p.writer.println("setplayerid~"+inGameId);
     }
@@ -261,15 +265,22 @@ public class Server {
     public void removeTable(int tableIndex){
         for(PlayerOnline p : tables.get(tableIndex).players ){
             p.inGame = false;
+            guiExitTable(p);
         }
         tables.set(tableIndex, null);
         guiRemoveTable(tableIndex);
     }
     public void  removePlayerFromTable(PlayerOnline p, int tableIndex){
-        tables.get(p.tableNumber).mo.removePlayer(p.inGameId);
+        System.out.println("USUWAM GRACZA "+p.inGameId);
+
+        if(tables.get(tableIndex)!=null)
         if(p == tables.get(tableIndex).host) removeTable(tableIndex);
         else {
+            System.out.println("USUWAM GRACZA ELSE "+p.inGameId);
+
             p.inGame = false;
+
+            tables.get(p.tableNumber).mo.removePlayer(p.inGameId);
             tables.get(tableIndex).players.remove(p);
             try {
                 tables.get(tableIndex).cv.removeOut(p.writer, p.inGameId);

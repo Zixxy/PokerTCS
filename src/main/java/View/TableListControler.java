@@ -64,7 +64,13 @@ public class TableListControler implements ViewInterface{
 	public void setPlayerId(int id) {
 		playerId = id;
 	}
-	@Override
+
+    @Override
+    public void guiExitTable() {
+
+    }
+
+    @Override
 	public void guiAddTable(final int numberOfTable,final String started) {
         System.out.println("Uwaga - bede dodawac stol");
 		final ViewInterface actual = this;

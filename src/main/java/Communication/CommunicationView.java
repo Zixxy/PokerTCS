@@ -172,6 +172,11 @@ public class CommunicationView  implements ViewInterface{
     }
 
     @Override
+    public void clearTableList() {
+
+    }
+
+    @Override
     public void updatePlayerHand(int playerId, Deck.Card firstCard, Deck.Card secondCard) {
         synchronized(CommunicationView.class) {
             this.sendCommandToId("updatePlayerHand~" + playerId + "~" + firstCard + "~" + secondCard, playerId );
@@ -263,11 +268,11 @@ public class CommunicationView  implements ViewInterface{
         throw new RuntimeException("This function should never be used");
 		
 	}
-	@Override
-	public void clearTableList() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+
+    @Override
+    public void guiExitTable() {
+
+    }
+
+
 }

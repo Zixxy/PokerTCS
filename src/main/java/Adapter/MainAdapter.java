@@ -113,7 +113,7 @@ public class MainAdapter implements AdapterInterface {
     @Override
     public void addView(ViewInterface view){
         if(!views.contains(view) && view!=null) views.add(view);
-        System.err.println("Dodaje view "+view+" i mam teraz ich "+views.size());
+        System.err.println("Dodaje view " + view + " i mam teraz ich " + views.size());
     }
 
     @Override
@@ -274,5 +274,13 @@ public class MainAdapter implements AdapterInterface {
     public void removeAllViews(){
         //System.err.println("USUWAM WSZYSTKO");
         //views = new ArrayList<ViewInterface>();
+    }
+
+    @Override
+    public void guiExitTable() {
+        for(ViewInterface view: views) {
+            System.out.println("Zamykam "+view);
+            view.guiExitTable();
+        }
     }
 }

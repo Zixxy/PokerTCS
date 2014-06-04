@@ -13,6 +13,7 @@ public interface ViewInterface extends TableListInterface{
 	public void addThreeCardsOnTable(Card firstCard, Card secondCard, Card thirdCard);
 	public void addOneCard(Card card);
 	public void setPlayerId(int id);
+    public void guiExitTable();
 	/**
 	 * Method:
 	 * -removes cards from table.

@@ -86,6 +86,11 @@ public class CommandLine implements ViewInterface{
     }
 
     @Override
+    public void guiExitTable() {
+
+    }
+
+    @Override
     public void clearTable() {
         System.out.println("Table cleared");
     }
