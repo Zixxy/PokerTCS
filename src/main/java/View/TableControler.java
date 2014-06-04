@@ -420,7 +420,9 @@ public class TableControler{
     }
 
     public void updateResignedPlayer(int id) {
+    	facesUpdateFlags[id] = false;
         playersFace[id].setImage(null);
+        
     }
 
     public void updateNormalPlayer(int id) {
