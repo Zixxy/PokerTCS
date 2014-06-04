@@ -267,6 +267,7 @@ public class Server {
             p.inGame = false;
             guiExitTable(p);
         }
+        tables.get(tableIndex).mo.finished=true;
         tables.set(tableIndex, null);
         guiRemoveTable(tableIndex);
     }
