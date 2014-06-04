@@ -189,6 +189,11 @@ public class TableControler{
         javafx.application.Platform.runLater((new Runnable() {
             @Override
             public void run(){
+                for(int i=0;i<playersLinedCash.length;++i) {
+                    if(playersLinedCash[i] != null)
+                        playersLinedCash[i].getChildren().clear();
+                }
+
                 adapter.start();
             }
         }));
