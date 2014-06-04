@@ -68,7 +68,7 @@ class PlayerListener implements Runnable{
                 else{
                     server.parse(order,p.socket, p);
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.err.println("Cannot read massage from playing player");
                 //player disconnected - removing him from game
                 if(p.inGame) server.removePlayerFromTable(p,p.tableNumber);
