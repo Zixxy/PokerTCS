@@ -110,8 +110,8 @@ public class MainAdapter implements AdapterInterface {
 
     @Override
     public void addView(ViewInterface view){
-        views.add(view);
-        //System.out.println("Dodaje view "+view+" i mam teraz ich "+views.size());
+        if(!views.contains(view) && view!=null) views.add(view);
+        System.err.println("Dodaje view "+view+" i mam teraz ich "+views.size());
     }
 
     @Override
@@ -264,12 +264,13 @@ public class MainAdapter implements AdapterInterface {
     }
 
     public void exchangeReference(ViewInterface from, ViewInterface to){
-
+        System.err.println("ROBIE EXCHANGE" + from + to);
 		System.out.println(views);
-    	views.remove(from);
+    	//views.remove(from);
     	if(!views.contains(to) && to!=null) addView(to);
     }
     public void removeAllViews(){
-        views = new ArrayList<ViewInterface>();
+        //System.err.println("USUWAM WSZYSTKO");
+        //views = new ArrayList<ViewInterface>();
     }
 }

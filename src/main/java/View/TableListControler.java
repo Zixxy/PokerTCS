@@ -66,6 +66,7 @@ public class TableListControler implements ViewInterface{
 	}
 	@Override
 	public void guiAddTable(final int numberOfTable,final String started) {
+        System.out.println("Uwaga - bede dodawac stol");
 		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
 

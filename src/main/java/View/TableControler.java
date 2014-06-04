@@ -168,7 +168,8 @@ public class TableControler{
             public void run(){
                 adapter.removePlayerFromTable();
                 ViewInterface view  = Run.mainWindow.showTableList(name);
-                adapter.exchangeReference(TableView.RecentlyCreatedInstanceOfThis,view);
+                adapter.removeAllViews();
+                adapter.addView(view);
             }
         }));
     }

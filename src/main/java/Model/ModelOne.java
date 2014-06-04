@@ -197,10 +197,11 @@ public class ModelOne implements ModelInterface {
                 currentPlayerId = playerId;
                 fold(playerId);
                 currentPlayerId = tmpCurrentPlayerId;
-
+                adapter.updateActualPlayer(currentPlayerId);
 
             }
         }
+        adapter.removePlayer(playerId);
         player.setResigned(true);
         numberOfPlayers--;
     }//
