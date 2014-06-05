@@ -514,7 +514,7 @@ public class ModelOne implements ModelInterface {
 
         int i=0;
         for(Player p:players){
-            if(p.getResigned() || !p.getInGame())
+            if(p.getResigned())
                 continue;
             adapter.updatePlayerLinedCash(p.getId(), 0);
             p.setCards(deck);
