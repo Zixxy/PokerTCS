@@ -22,6 +22,7 @@ public class TableListControler implements ViewInterface{
 	@SuppressWarnings("unused")
 	private volatile int playerId;
 	private volatile String myName;
+	private String startedString;
 	
 	public TableListControler(){
 		myName = MainWindow.myName;
@@ -72,6 +73,7 @@ public class TableListControler implements ViewInterface{
 
     @Override
 	public void guiAddTable(final int numberOfTable,final String started) {
+    	startedString=started;
         System.out.println("Uwaga - bede dodawac stol");
 		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
@@ -148,10 +150,10 @@ public class TableListControler implements ViewInterface{
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-                if(currentNumberOfPlayers >= 8) {
+                if(currentNumberOfPlayers >= 8 || startedString.equals("true")) {
                     tableJoins[numberOfTable].getChildren().clear();
                 }
-                if(currentNumberOfPlayers <8){
+                if(currentNumberOfPlayers <8 && startedString.equals("false")){
                     Button b = new Button("Join");
                     b.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
