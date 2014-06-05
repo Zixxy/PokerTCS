@@ -265,6 +265,8 @@ public class ModelOne implements ModelInterface {
 
     @Override
     public void start(int id) {
+        if(!players.get(id).getReady())
+            adapter.sendMessage(players.get(id).getName() + " jest gotów.");
         players.get(id).setReady(true);
         start();
     }
@@ -461,7 +463,6 @@ public class ModelOne implements ModelInterface {
             players.get(i).setMoney(players.get(i).getMoney()+(onTable/numberOfWiners));
             adapter.sendMessage("Koniec rundy, wygrał gracz " + players.get(i).getName());
         }*/
-        adapter.sendMessage("Rozpoczynanie nowej rundy ");
         int pos = -1;
         for(Player p: players) {
             pos++;
@@ -501,6 +502,7 @@ public class ModelOne implements ModelInterface {
             adapter.sendMessage("Nie mozna rozpoczac gry poniewaz, nie ma wystarczajacej liczby graczy");
             return;
         }
+        adapter.sendMessage("Rozpoczynanie nowej rundy ");
         started=true;
         System.out.println("Paczajka 1");
         pot = 0;
