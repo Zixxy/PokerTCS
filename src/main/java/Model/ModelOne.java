@@ -493,8 +493,8 @@ public class ModelOne implements ModelInterface {
 
     private void startRound(){
 
-        for(Player p:players)
-            adapter.sendMessage(p.getResultMassage());
+        /*for(Player p:players)
+            adapter.sendMessage(p.getResultMassage());*/
         if(numberOfPlayers<2){
             for(Player p:players){
                 p.setReady(false);
@@ -514,6 +514,8 @@ public class ModelOne implements ModelInterface {
 
         int i=0;
         for(Player p:players){
+            if(p.getResigned() || !p.getInGame())
+                continue;
             adapter.updatePlayerLinedCash(p.getId(), 0);
             p.setCards(deck);
             p.setMoney(p.getMoney()- ante);
