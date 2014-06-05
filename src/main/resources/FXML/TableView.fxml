@@ -146,7 +146,7 @@
 <children>
 <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="110.0">
 <children>
-<ImageView fx:id="playerEightFace" fitHeight="75.0" fitWidth="63.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+<ImageView fx:id="playerEightFace" fitHeight="75.0" fitWidth="75.0" layoutX="14.0" layoutY="87.5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
 <HBox fx:id="playerEightNameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 <HBox fx:id="playerEightCashBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" /><HBox fx:id="playerEightLastMove" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
 </children>
