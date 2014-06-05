@@ -22,6 +22,7 @@ public class TableListControler implements ViewInterface{
 	@SuppressWarnings("unused")
 	private volatile int playerId;
 	private volatile String myName;
+	private String startedString;
 	
 	public TableListControler(){
 		myName = MainWindow.myName;
@@ -72,6 +73,7 @@ public class TableListControler implements ViewInterface{
 
     @Override
 	public void guiAddTable(final int numberOfTable,final String started) {
+    	startedString=started;
         System.out.println("Uwaga - bede dodawac stol");
 		final ViewInterface actual = this;
 		javafx.application.Platform.runLater(new Runnable() {
@@ -144,34 +146,34 @@ public class TableListControler implements ViewInterface{
 	@Override
 	public void updateNumberOfPlayers(final int numberOfTable,
 			final int currentNumberOfPlayers) {
-		if(currentNumberOfPlayers >= 8) {
-			tableJoins[numberOfTable].getChildren().clear(); 
-		}
-		if(currentNumberOfPlayers <8){
-			Button b = new Button("Join");
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
 
-
-                    Thread showGame = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Run.mainWindow.showGame(0, myName);// we are waiting for scheduling playerId-s
-                            adapter.addPlayerToTable(numberOfTable);
-                        }
-                    });
-                    showGame.start();
-
-                }
-            });
-            tableJoins[numberOfTable].getChildren().clear();
-            tableJoins[numberOfTable].getChildren().add(b);
-		}
 		javafx.application.Platform.runLater(new Runnable() {
-
 			@Override
 			public void run() {
+                if(currentNumberOfPlayers >= 8 || startedString.equals("true")) {
+                    tableJoins[numberOfTable].getChildren().clear();
+                }
+                if(currentNumberOfPlayers <8 && startedString.equals("false")){
+                    Button b = new Button("Join");
+                    b.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+
+
+                            Thread showGame = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Run.mainWindow.showGame(0, myName);// we are waiting for scheduling playerId-s
+                                    adapter.addPlayerToTable(numberOfTable);
+                                }
+                            });
+                            showGame.start();
+
+                        }
+                    });
+                    tableJoins[numberOfTable].getChildren().clear();
+                    tableJoins[numberOfTable].getChildren().add(b);
+                }
 				tablePlayers[numberOfTable].setText(currentNumberOfPlayers + "/8");
 			}
 		});
