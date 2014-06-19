@@ -282,10 +282,16 @@ public class ModelOne implements ModelInterface {
             players.get(playerId).setInGame(false);
             numberInGame--;
             adapter.sendMessage("Gracz " + players.get(playerId).getName() + " pasuje");
+            //adapter.sendMessage("ID aktualnego gracza:" + currentPlayerId);
+            if (numberInGame <= 1){
+                won();
+                return;
+            }
+            //now I have no idea what I have done in next line (why -1), but it works, so it's good!
             currentPlayerId = getNextPlayerPosition(currentPlayerId - 1); //getNextPlayerPosition is moving current player, but we don't want exactly that
             adapter.updateActualPlayer(currentPlayerId);
-            if (numberInGame == 1) won();
-            else if (currentPlayerId == raisingPlayerId) checkItAll();
+
+            if (currentPlayerId == raisingPlayerId) checkItAll();
             else {
                 if (raising)
                     raisingPlayerId = currentPlayerId;
